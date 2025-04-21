@@ -10,5 +10,6 @@ namespace EwkQxObd.Core.Model
     {
         public uint AccountID { get; set; }
         public string PartnerName { get; set; } = string.Empty;
+        public Guid GeisID { get; set; }
     }
 }
