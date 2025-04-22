@@ -26,11 +26,10 @@ SELECT * FROM Eqo_Contract;
                 using var reader = command.ExecuteReader();
                 while (reader.Read())
                 {
-                    for (int i = 0; i < reader.FieldCount; i++)
-                    {
-                        var t = reader.GetFieldType(i);
-                        Console.WriteLine($"Type at {i} is {t.FullName}");
-                    }
+                    var entity = reader.ToEqoContract();
+
+                    entity.Cout();
+
                 }
 
 

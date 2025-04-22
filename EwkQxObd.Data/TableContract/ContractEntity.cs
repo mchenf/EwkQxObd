@@ -13,8 +13,27 @@ namespace EwkQxObd.Data.TableContract
     {
         public static EqoContract? ToEqoContract(
             this SqliteDataReader reader)
-        { 
-            throw new NotImplementedException();
+        {
+            EqoContract contract = new EqoContract();
+
+            
+            contract.ContractNumber = reader.GetInt64(1);
+            contract.ValidFrom = reader.GetDateTime(2);
+            contract.ValidTo = reader.GetDateTime(3);
+
+
+            return contract;
+        }
+
+        private const string PrintTemplate =
+            "{0}\t\t{1}\t{2}";
+
+        public static void Cout(this EqoContract contract)
+        {
+            Console.WriteLine(PrintTemplate,
+                contract.ContractNumber,
+                contract.ValidFrom,
+                contract.ValidTo);
         }
 
     }

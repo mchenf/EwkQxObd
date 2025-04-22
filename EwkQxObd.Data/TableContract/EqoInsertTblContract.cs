@@ -18,13 +18,13 @@ INSERT INTO Eqo_Contract (
     ValidTo
 )
 VALUES (
-    $ContractNo,
-    $ValidFrom,
-    $ValidTo
+    @ContractNo,
+    @ValidFrom,
+    @ValidTo
 );
 ";
         public int InsertContracts(
-            uint ContractNo,
+            long ContractNo,
             DateOnly ValidFrom,
             DateOnly ValidTo)
         {
@@ -36,9 +36,10 @@ VALUES (
 
                 command.CommandText = Cmdtx_I_Tbl_Contract;
 
-                command.Parameters.AddWithValue("$ContractNo", ContractNo);
-                command.Parameters.AddWithValue("$ValidFrom", ValidFrom);
-                command.Parameters.AddWithValue("$ValidTo", ValidTo);
+                command.Parameters.Add("@ContractNo", SqliteType.Integer);
+                command.Parameters[0].Value = ContractNo;
+                command.Parameters.AddWithValue("@ValidFrom", ValidFrom);
+                command.Parameters.AddWithValue("@ValidTo", ValidTo);
 
                 rowsAffected = command.ExecuteNonQuery();
             });

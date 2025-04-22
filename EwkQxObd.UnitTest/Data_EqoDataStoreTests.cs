@@ -31,10 +31,10 @@ namespace EwkQxObd.UnitTest
             Assert.IsNotNull(store);
         }
 
-        [TestCase(2233418u)]
+        [TestCase(2233418L)]
         [Test, Order(2)]
         public void InsertContractTest(
-            uint ContractNo)
+            long ContractNo)
         {
             var from = new DateOnly(1998, 3, 2);
             var to = new DateOnly(2000, 4, 7);

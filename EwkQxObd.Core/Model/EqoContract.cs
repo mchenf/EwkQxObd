@@ -8,9 +8,8 @@ namespace EwkQxObd.Core.Model
 {
     public class EqoContract
     {
-        public uint ContractNumber { get; set; }
-        public IEnumerable<EqoIqxProduct> Products { get; set; } = [];
-        public DateOnly ValidFrom { get; set; }
-        public DateOnly ValidTo { get; set; }
+        public long ContractNumber { get; set; }
+        public DateTime ValidFrom { get; set; }
+        public DateTime ValidTo { get; set; }
     }
 }
