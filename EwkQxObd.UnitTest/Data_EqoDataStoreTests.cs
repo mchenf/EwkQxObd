@@ -31,13 +31,14 @@ namespace EwkQxObd.UnitTest
             Assert.IsNotNull(store);
         }
 
-        [TestCase(2233418L)]
         [Test, Order(2)]
-        public void InsertContractTest(
-            long ContractNo)
+        [TestCaseSource(typeof(TestInsertContractFixture))]
+        public void RandInsertContractTest(
+            long ContractNo,
+            DateOnly from,
+            DateOnly to)
         {
-            var from = new DateOnly(1998, 3, 2);
-            var to = new DateOnly(2000, 4, 7);
+            
             using EqoInsertTblContract store = new();
 
             int rowsAffected = store.InsertContracts(ContractNo,
