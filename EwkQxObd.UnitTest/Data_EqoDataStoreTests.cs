@@ -1,4 +1,5 @@
 using EwkQxObd.Data;
+using EwkQxObd.Data.TableContract;
 
 namespace EwkQxObd.UnitTest
 {
@@ -10,20 +11,20 @@ namespace EwkQxObd.UnitTest
 
         }
 
-        [Test]
+        [Test, Order(0)]
         public void DropTableTest()
         {
-            using EqoDataStore store = new();
+            using EqoDropTblContract store = new();
 
             store.DropTable();
 
             Assert.IsNotNull(store);
         }
 
-        [Test]
+        [Test, Order(1)]
         public void CreateTableTest()
         {
-            using EqoDataStore store = new();
+            using EqoCreateTblContract store = new();
 
             store.CreateTables();
 
@@ -31,13 +32,13 @@ namespace EwkQxObd.UnitTest
         }
 
         [TestCase(2233418u)]
-        [Test]
+        [Test, Order(2)]
         public void InsertContractTest(
             uint ContractNo)
         {
             var from = new DateOnly(1998, 3, 2);
             var to = new DateOnly(2000, 4, 7);
-            using EqoDataStore store = new();
+            using EqoInsertTblContract store = new();
 
             int rowsAffected = store.InsertContracts(ContractNo,
                 from, to);
