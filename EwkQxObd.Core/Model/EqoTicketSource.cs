@@ -8,6 +8,8 @@ namespace EwkQxObd.Core.Model
 {
     public class EqoTicketSource
     {
-
+        public string TicketNumber { get; set; } = string.Empty;
+        public string TicketDescription { get; set; } = string.Empty;
+        
     }
 }
