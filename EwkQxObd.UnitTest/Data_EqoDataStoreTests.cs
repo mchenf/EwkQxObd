@@ -45,5 +45,16 @@ namespace EwkQxObd.UnitTest
 
             Assert.That(rowsAffected, Is.EqualTo(1));
         }
+
+        [Test, Order(3)]
+        public void SelectAllContractTest()
+        {
+            
+            using EqoSelectTblContract store = new();
+
+            store.SelectAll();
+
+            Assert.That(store, Is.Not.Null);
+        }
     }
 }
