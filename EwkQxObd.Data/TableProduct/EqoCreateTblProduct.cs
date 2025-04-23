@@ -9,9 +9,9 @@ namespace EwkQxObd.Data.TableProduct
     public class EqoCreateTblProduct : EqoDataStoreBase
     {
         private const string Cmdtx_C_Tbl_Contract = @"
-CREATE TABLE IF NOT EXISTS Eqo_Contract (
+CREATE TABLE IF NOT EXISTS Eqo_Product (
     Id              INTEGER PRIMARY KEY     AUTOINCREMENT,
-    ContractNo      UNSIGNED BIG INT    NOT NULL,
+    SerialNumber    UNSIGNED BIG INT    NOT NULL,
     ValidFrom       DATE                NOT NULL,
     ValidTo         DATE                NOT NULL
 );
