@@ -25,7 +25,7 @@ namespace EwkQxObd.UnitTest
 
             var rng = RandomNumberGenerator.Create();
 
-            byte[] randBytes = new byte[864];
+            byte[] randBytes = new byte[2048];
             rng.GetBytes(randBytes);
 
 
@@ -35,6 +35,7 @@ namespace EwkQxObd.UnitTest
             // 32 + 32 = 64 bits
             //
             //To generate 108 test cases, requires 864 bytes
+            //To generate 256 test cases, requires 2048 bytes
 
 
 
@@ -42,7 +43,7 @@ namespace EwkQxObd.UnitTest
             int VfromOff = 0;
             int VtoOff = 0;
 
-            for (int i = 0; i < 864; i+=8)
+            for (int i = 0; i < 2048; i+=8)
             {
                 //Gen contract num
 

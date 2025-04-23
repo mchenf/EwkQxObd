@@ -1,4 +1,5 @@
-﻿using Microsoft.Data.Sqlite;
+﻿using EwkQxObd.Core.Model;
+using Microsoft.Data.Sqlite;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -10,32 +11,58 @@ namespace EwkQxObd.Data.TableContract
 {
     public class EqoSelectWhereTblContract : EqoDataStoreBase
     {
-        private const string Cmdtx_SLCT_Tbl_Contract
+        private const string Cmdtx_SLCT_byID_Tbl_Contract
 = @"
-SELECT * FROM Eqo_Contract WHERE ;
+SELECT * FROM Eqo_Contract WHERE Id = @Id;
 ";
-        public int SelectAll()
+        private const string Cmdtx_SLCT_byCntr_Tbl_Contract
+= @"
+SELECT * FROM Eqo_Contract WHERE ContractNo = @Contract;
+";
+
+        private EqoContract? SelectByBase(string Parm, object Val)
         {
-            int rowsAffected = -1;
+            EqoContract? res = null;
             OpenConnDoStuff(() =>
             {
                 var command = Connection.CreateCommand();
+                switch (Parm)
+                {
+                    case "@Id":
+                        command.CommandText = Cmdtx_SLCT_byID_Tbl_Contract;
+                        break;
+                    case "@Contract":
+                        command.CommandText = Cmdtx_SLCT_byCntr_Tbl_Contract;
+                        break;
+                    default:
+                        return;
+                }
 
-                command.CommandText = Cmdtx_SLCT_Tbl_Contract;
+
+                command.Parameters.AddWithValue(Parm, Val);
 
                 using var reader = command.ExecuteReader();
                 while (reader.Read())
                 {
-                    var entity = reader.ToEqoContract();
-
-                    entity.Cout();
-
+                    res = reader.ToEqoContract();
                 }
-
-
             });
 
-            return rowsAffected;
+            return res;
+        }
+
+        public EqoContract? SelectById(long Id)
+        {
+            EqoContract? rowsRead = SelectByBase("@Id", Id);
+
+            return rowsRead;
+        }
+
+        public EqoContract? SelectByContract(long ContractNo)
+        {
+            EqoContract? rowsRead = SelectByBase("@Contract", ContractNo);
+
+            return rowsRead;
         }
     }
 }
