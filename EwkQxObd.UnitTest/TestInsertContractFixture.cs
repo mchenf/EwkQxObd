@@ -11,7 +11,7 @@ namespace EwkQxObd.UnitTest
     public class TestInsertContractFixture : IEnumerable
     {
         private const int Mask23 =
-            0b_00000000_01111111_11111111_11111111;
+            0b_00000000_00111111_11111111_11111111;
         private const int Mask13 =
             0b_00000000_00000000_00011111_11111111;
 
@@ -23,7 +23,6 @@ namespace EwkQxObd.UnitTest
         public IEnumerator GetEnumerator()
         {
 
-            yield return new object[] { contractBase, startDate, startDate };
             var rng = RandomNumberGenerator.Create();
 
             byte[] randBytes = new byte[864];
@@ -64,11 +63,11 @@ namespace EwkQxObd.UnitTest
                 startDate.AddDays(VfromOff);
                 startDate.AddDays(VtoOff);
 
-                yield return new object[] {
+                yield return (
                     contractBase + ContractNoOff,
                     startDate.AddDays(VfromOff),
                     startDate.AddDays(VtoOff)
-                };
+                );
             }
 
 

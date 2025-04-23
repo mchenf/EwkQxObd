@@ -1,5 +1,6 @@
 using EwkQxObd.Data;
 using EwkQxObd.Data.TableContract;
+using System.Diagnostics.Contracts;
 
 namespace EwkQxObd.UnitTest
 {
@@ -32,19 +33,22 @@ namespace EwkQxObd.UnitTest
         }
 
         [Test, Order(2)]
-        [TestCaseSource(typeof(TestInsertContractFixture))]
-        public void RandInsertContractTest(
-            long ContractNo,
-            DateOnly from,
-            DateOnly to)
+        public void RandInsertContractTest()
         {
-            
+            var RandTestCase = new TestInsertContractFixture();
             using EqoInsertTblContract store = new();
 
-            int rowsAffected = store.InsertContracts(ContractNo,
-                from, to);
+            foreach ((long, DateOnly, DateOnly) item in RandTestCase)
+            {
 
-            Assert.That(rowsAffected, Is.EqualTo(1));
+                int rowsAffected = 
+                    store.InsertContracts(
+                        item.Item1,
+                        item.Item2,
+                        item.Item3
+                    );
+                Assert.That(rowsAffected, Is.EqualTo(1));
+            }
         }
 
         [Test, Order(3)]
