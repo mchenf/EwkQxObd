@@ -16,7 +16,7 @@ namespace EwkQxObd.Data.TableContract
         {
             EqoContract contract = new EqoContract();
 
-            
+            contract.Id = reader.GetInt64(0);
             contract.ContractNumber = reader.GetInt64(1);
             contract.ValidFrom = reader.GetDateTime(2);
             contract.ValidTo = reader.GetDateTime(3);
@@ -26,11 +26,12 @@ namespace EwkQxObd.Data.TableContract
         }
 
         private const string PrintTemplate =
-            "{0}\t\t{1}\t{2}";
+            "{0}\t\t{1}\t\t{2}\t{3}";
 
         public static void Cout(this EqoContract contract)
         {
             Console.WriteLine(PrintTemplate,
+                contract.Id,
                 contract.ContractNumber,
                 contract.ValidFrom,
                 contract.ValidTo);

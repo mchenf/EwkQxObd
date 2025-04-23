@@ -12,7 +12,7 @@ namespace EwkQxObd.Data.TableContract
     {
         private const string Cmdtx_C_Tbl_Contract = @"
 CREATE TABLE IF NOT EXISTS Eqo_Contract (
-    Id              INT PRIMARY KEY     ,
+    Id              INTEGER PRIMARY KEY     AUTOINCREMENT,
     ContractNo      UNSIGNED BIG INT    NOT NULL,
     ValidFrom       DATE                NOT NULL,
     ValidTo         DATE                NOT NULL

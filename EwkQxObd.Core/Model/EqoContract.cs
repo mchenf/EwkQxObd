@@ -8,6 +8,7 @@ namespace EwkQxObd.Core.Model
 {
     public class EqoContract
     {
+        public long Id { get; set; }
         public long ContractNumber { get; set; }
         public DateTime ValidFrom { get; set; }
         public DateTime ValidTo { get; set; }
