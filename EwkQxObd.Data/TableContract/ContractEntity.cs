@@ -11,7 +11,7 @@ namespace EwkQxObd.Data.TableContract
 {
     public static class ContractEntity
     {
-        public static EqoContract? ToEqoContract(
+        public static EqoContract ToEqoContract(
             this SqliteDataReader reader)
         {
             EqoContract contract = new EqoContract();
