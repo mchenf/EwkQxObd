@@ -18,7 +18,7 @@ CREATE TABLE IF NOT EXISTS Eqo_Contract (
     ValidTo         DATE                NOT NULL
 );
 ";
-        public void CreateTables()
+        public void CreateTable()
         {
             OpenConnDoStuff(() =>
             {

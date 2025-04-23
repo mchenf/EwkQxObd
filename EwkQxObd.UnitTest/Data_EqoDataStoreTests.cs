@@ -29,7 +29,7 @@ namespace EwkQxObd.UnitTest
         {
             using EqoCreateTblContract store = new();
 
-            store.CreateTables();
+            store.CreateTable();
 
             Assert.IsNotNull(store);
         }
