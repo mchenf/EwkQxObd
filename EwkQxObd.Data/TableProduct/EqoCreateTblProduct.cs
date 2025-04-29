@@ -13,7 +13,8 @@ CREATE TABLE IF NOT EXISTS Eqo_Product (
     Id              INTEGER PRIMARY KEY     AUTOINCREMENT,
     SerialNumber    UNSIGNED BIG INT    NOT NULL,
     ValidFrom       DATE                NOT NULL,
-    ValidTo         DATE                NOT NULL
+    ValidTo         DATE                NOT NULL,
+    FOREIGN KEY     (ContractId)    REFERENCES Eqo_Contract(Id)
 );
 ";
         public void CreateTable()
