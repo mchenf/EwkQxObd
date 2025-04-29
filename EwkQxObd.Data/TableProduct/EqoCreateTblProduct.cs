@@ -11,10 +11,11 @@ namespace EwkQxObd.Data.TableProduct
         private const string Cmdtx_C_Tbl_Contract = @"
 CREATE TABLE IF NOT EXISTS Eqo_Product (
     Id              INTEGER PRIMARY KEY     AUTOINCREMENT,
-    SerialNumber    UNSIGNED BIG INT    NOT NULL,
-    ValidFrom       DATE                NOT NULL,
-    ValidTo         DATE                NOT NULL,
-    FOREIGN KEY     (ContractId)    REFERENCES Eqo_Contract(Id)
+    SerialNumber    UNSIGNED BIG INT        NOT NULL,
+    ValidFrom       DATE                    NOT NULL,
+    ValidTo         DATE                    NOT NULL,
+    FOREIGN KEY     (ContractId)    REFERENCES Eqo_Contract(Id),
+    FOREIGN KEY     (ShipToId)      REFERENCES Eqo_Account(Id),
 );
 ";
         public void CreateTable()
