@@ -8,11 +8,14 @@ namespace EwkQxObd.Core.Model
 {
     public class EqoIqxProduct
     {
+        public required string SerialNumber { get; set; }
+        public required EqoContract Contract { get; set; }
         public required EqoAccount ShipTo { get; set; }
-        public required uint SerialNumber { get; set; }
 
         public uint AccountNumber { get => ShipTo.AccountID; }
         public string PartnerName { get => ShipTo.PartnerName; }
+
+        public long ContractNumber { get => Contract.Id; }
 
     }
 }
