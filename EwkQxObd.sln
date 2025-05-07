@@ -11,6 +11,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EwkQxObd.Data", "EwkQxObd.D
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EwkQxObd.UnitTest", "EwkQxObd.UnitTest\EwkQxObd.UnitTest.csproj", "{BF622246-A6A4-434B-88DC-B998D3BF6B8F}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EwkQxObd", "EwkQxObd\EwkQxObd.csproj", "{A1C00967-D5E8-43F0-BD09-4BE3E8350C54}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|ARM64 = Debug|ARM64
@@ -69,6 +71,18 @@ Global
 		{BF622246-A6A4-434B-88DC-B998D3BF6B8F}.Release|x64.Build.0 = Release|Any CPU
 		{BF622246-A6A4-434B-88DC-B998D3BF6B8F}.Release|x86.ActiveCfg = Release|Any CPU
 		{BF622246-A6A4-434B-88DC-B998D3BF6B8F}.Release|x86.Build.0 = Release|Any CPU
+		{A1C00967-D5E8-43F0-BD09-4BE3E8350C54}.Debug|ARM64.ActiveCfg = Debug|Any CPU
+		{A1C00967-D5E8-43F0-BD09-4BE3E8350C54}.Debug|ARM64.Build.0 = Debug|Any CPU
+		{A1C00967-D5E8-43F0-BD09-4BE3E8350C54}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{A1C00967-D5E8-43F0-BD09-4BE3E8350C54}.Debug|x64.Build.0 = Debug|Any CPU
+		{A1C00967-D5E8-43F0-BD09-4BE3E8350C54}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{A1C00967-D5E8-43F0-BD09-4BE3E8350C54}.Debug|x86.Build.0 = Debug|Any CPU
+		{A1C00967-D5E8-43F0-BD09-4BE3E8350C54}.Release|ARM64.ActiveCfg = Release|Any CPU
+		{A1C00967-D5E8-43F0-BD09-4BE3E8350C54}.Release|ARM64.Build.0 = Release|Any CPU
+		{A1C00967-D5E8-43F0-BD09-4BE3E8350C54}.Release|x64.ActiveCfg = Release|Any CPU
+		{A1C00967-D5E8-43F0-BD09-4BE3E8350C54}.Release|x64.Build.0 = Release|Any CPU
+		{A1C00967-D5E8-43F0-BD09-4BE3E8350C54}.Release|x86.ActiveCfg = Release|Any CPU
+		{A1C00967-D5E8-43F0-BD09-4BE3E8350C54}.Release|x86.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
