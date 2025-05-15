@@ -13,6 +13,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EwkQxObd.UnitTest", "EwkQxO
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EwkQxObd", "EwkQxObd\EwkQxObd.csproj", "{A1C00967-D5E8-43F0-BD09-4BE3E8350C54}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EwkQxObd.Pwsh", "EwkQxObd.Pwsh\EwkQxObd.Pwsh.csproj", "{C5E61FF2-8063-4473-A539-1FF897CC4865}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|ARM64 = Debug|ARM64
@@ -83,6 +85,18 @@ Global
 		{A1C00967-D5E8-43F0-BD09-4BE3E8350C54}.Release|x64.Build.0 = Release|Any CPU
 		{A1C00967-D5E8-43F0-BD09-4BE3E8350C54}.Release|x86.ActiveCfg = Release|Any CPU
 		{A1C00967-D5E8-43F0-BD09-4BE3E8350C54}.Release|x86.Build.0 = Release|Any CPU
+		{C5E61FF2-8063-4473-A539-1FF897CC4865}.Debug|ARM64.ActiveCfg = Debug|Any CPU
+		{C5E61FF2-8063-4473-A539-1FF897CC4865}.Debug|ARM64.Build.0 = Debug|Any CPU
+		{C5E61FF2-8063-4473-A539-1FF897CC4865}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{C5E61FF2-8063-4473-A539-1FF897CC4865}.Debug|x64.Build.0 = Debug|Any CPU
+		{C5E61FF2-8063-4473-A539-1FF897CC4865}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{C5E61FF2-8063-4473-A539-1FF897CC4865}.Debug|x86.Build.0 = Debug|Any CPU
+		{C5E61FF2-8063-4473-A539-1FF897CC4865}.Release|ARM64.ActiveCfg = Release|Any CPU
+		{C5E61FF2-8063-4473-A539-1FF897CC4865}.Release|ARM64.Build.0 = Release|Any CPU
+		{C5E61FF2-8063-4473-A539-1FF897CC4865}.Release|x64.ActiveCfg = Release|Any CPU
+		{C5E61FF2-8063-4473-A539-1FF897CC4865}.Release|x64.Build.0 = Release|Any CPU
+		{C5E61FF2-8063-4473-A539-1FF897CC4865}.Release|x86.ActiveCfg = Release|Any CPU
+		{C5E61FF2-8063-4473-A539-1FF897CC4865}.Release|x86.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
