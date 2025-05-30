@@ -18,8 +18,9 @@ namespace EwkQxObd.Data.TableContract
 
             contract.Id = reader.GetInt64(0);
             contract.ContractNumber = reader.GetInt64(1);
-            contract.ValidFrom = reader.GetDateTime(2);
-            contract.ValidTo = reader.GetDateTime(3);
+            contract.Description = reader.IsDBNull(2) ? string.Empty : reader.GetString(2);
+            contract.ValidFrom = reader.GetDateTime(3);
+            contract.ValidTo = reader.GetDateTime(4);
 
 
             return contract;

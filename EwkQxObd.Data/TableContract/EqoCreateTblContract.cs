@@ -14,7 +14,7 @@ namespace EwkQxObd.Data.TableContract
 CREATE TABLE IF NOT EXISTS Eqo_Contract (
     Id              INTEGER PRIMARY KEY     AUTOINCREMENT,
     ContractNo      UNSIGNED BIG INT    NOT NULL,
-    Description     VARCHAR(255)        NOT NULL,
+    Description     VARCHAR(255)        ,
     ValidFrom       DATE                NOT NULL,
     ValidTo         DATE                NOT NULL
 );
