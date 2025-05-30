@@ -13,7 +13,7 @@ namespace EwkQxObd.Data.TableContract
         private const string Cmdtx_I_Tbl_Product
 = @"
 INSERT INTO Eqo_Product (
-    SerialNumber,
+    ContractId,
     SerialNumber,
     ValidTo
 )
