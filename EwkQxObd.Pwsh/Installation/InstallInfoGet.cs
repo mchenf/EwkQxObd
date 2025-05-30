@@ -17,8 +17,8 @@ namespace EwkQxObd.Pwsh.Installation
 
         protected private void printAll()
         {
-            WriteObject(appRootDir);
-            WriteObject(appDbDir);
+            WriteObject("App Root Directory:" + appRootDir);
+            WriteObject("App DB Directory:" + appDbDir);
         }
     }
 }
