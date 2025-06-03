@@ -6,6 +6,9 @@ using System.Threading.Tasks;
 
 namespace EwkQxObd.Core.Model
 {
+    /// <summary>
+    /// Represent an Account
+    /// </summary>
     public class EqoAccount
     {
         public uint AccountID { get; set; }

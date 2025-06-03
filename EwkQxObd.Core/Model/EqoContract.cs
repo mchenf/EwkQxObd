@@ -6,6 +6,9 @@ using System.Threading.Tasks;
 
 namespace EwkQxObd.Core.Model
 {
+    /// <summary>
+    /// Represent a Contract object
+    /// </summary>
     public class EqoContract
     {
         public long Id { get; set; }

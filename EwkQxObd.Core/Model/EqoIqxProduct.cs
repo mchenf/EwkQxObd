@@ -6,6 +6,9 @@ using System.Threading.Tasks;
 
 namespace EwkQxObd.Core.Model
 {
+    /// <summary>
+    /// Represent an IQX product, this object links instrument to contract and to account
+    /// </summary>
     public class EqoIqxProduct
     {
         public required string SerialNumber { get; set; }
