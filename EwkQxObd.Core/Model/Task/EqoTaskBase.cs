@@ -6,7 +6,12 @@ using System.Threading.Tasks;
 
 namespace EwkQxObd.Core.Model.Task
 {
-    class EqoTaskBase
+    /// <summary>
+    /// A Task is something to be completed.
+    /// </summary>
+    public abstract class EqoTaskBase
     {
+        public EqoTaskBase? Prerequisite { get; set; }
+        public IEnumerable<EqoBlocker>? Blockers { get; set; }
     }
 }

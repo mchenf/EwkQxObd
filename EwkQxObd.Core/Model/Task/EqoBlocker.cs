@@ -1,6 +1,6 @@
 ﻿namespace EwkQxObd.Core.Model.Task
 {
-    public class EqoBlocker
+    public abstract class EqoBlocker
     {
     }
 }
