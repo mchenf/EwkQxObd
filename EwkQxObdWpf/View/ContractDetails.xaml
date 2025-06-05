@@ -1,0 +1,43 @@
+﻿<Window x:Class="EwkQxObdWpf.View.ContractDetails"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:EwkQxObdWpf.View"
+        mc:Ignorable="d"
+        Title="ContractDetails" Height="450" Width="800">
+    <Grid>
+        <StackPanel>
+            <Button Content="Add New"
+                    Command="{Binding NewContractCommand}"
+                    CommandParameter="{Binding IqxContract}">
+                
+            </Button>
+            <StackPanel Orientation="Horizontal">
+                <Label>
+                    Contract No.
+                </Label>
+
+
+                <TextBox
+                Text="{Binding Path=IqxContract.ContractNumber, Mode=TwoWay}">
+
+                </TextBox>
+            </StackPanel>
+            <StackPanel Orientation="Horizontal">
+                <Label>
+                    Contract Description
+                </Label>
+
+
+                <TextBox
+    Text="{Binding Path=IqxContract.Description, Mode=TwoWay}">
+
+                </TextBox>
+            </StackPanel>
+        </StackPanel>
+        
+        
+        
+    </Grid>
+</Window>

@@ -10,7 +10,11 @@
 
   <ItemGroup>
     <Folder Include="Model\" />
-    <Folder Include="ViewModel\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\EwkQxObd.Core\EwkQxObd.Core.csproj" />
+    <ProjectReference Include="..\EwkQxObd.Data\EwkQxObd.Data.csproj" />
   </ItemGroup>
 
 </Project>
