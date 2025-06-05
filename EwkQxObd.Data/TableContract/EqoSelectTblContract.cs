@@ -1,4 +1,5 @@
-﻿using Microsoft.Data.Sqlite;
+﻿using EwkQxObd.Core.Model;
+using Microsoft.Data.Sqlite;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -14,6 +15,8 @@ namespace EwkQxObd.Data.TableContract
 = @"
 SELECT * FROM Eqo_Contract;
 ";
+
+
         public int SelectAll()
         {
             int rowsAffected = -1;
@@ -36,6 +39,28 @@ SELECT * FROM Eqo_Contract;
             });
 
             return rowsAffected;
+        }
+
+        public List<EqoContract> SelectAllAsContracts()
+        {
+            List<EqoContract> contracts = new List<EqoContract>();
+            OpenConnDoStuff(() =>
+            {
+                var command = Connection.CreateCommand();
+
+                command.CommandText = Cmdtx_SLCT_Tbl_Contract;
+
+                using var reader = command.ExecuteReader();
+                while (reader.Read())
+                {
+                    var entity = reader.ToEqoContract();
+
+                    contracts.Add(entity);
+
+                }
+            });
+
+            return contracts;
         }
     }
 }

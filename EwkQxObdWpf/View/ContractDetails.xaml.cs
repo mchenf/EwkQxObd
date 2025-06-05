@@ -1,4 +1,5 @@
-﻿using EwkQxObdWpf.ViewModel;
+﻿using EwkQxObd.Core.Model;
+using EwkQxObdWpf.ViewModel;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -26,6 +27,13 @@ namespace EwkQxObdWpf.View
             ContractDetailPageViewMod mwMod = new ContractDetailPageViewMod();
 
             DataContext = mwMod;
+        }
+
+        public ContractDetails(EqoContract contract) : this()
+        {
+            var mwMod = DataContext as ContractDetailPageViewMod;
+
+            mwMod!.IqxContract = contract;
         }
     }
 }

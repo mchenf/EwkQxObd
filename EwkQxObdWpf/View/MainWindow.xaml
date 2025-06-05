@@ -4,9 +4,30 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:EwkQxObdWpf"
+        xmlns:cmd="clr-namespace:EwkQxObdWpf.Command"
         mc:Ignorable="d"
         Title="MainWindow" Height="450" Width="800">
     <Grid>
+        <DataGrid Name="Contracts"
+                  ItemsSource="{Binding Contracts}">
 
+            <DataGrid.Columns>
+                <DataGridTemplateColumn>
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <Button>
+                                <Button.Command>
+                                    <cmd:CheckContractDetailCommand/>
+                                </Button.Command>
+                                <Button.CommandParameter>
+                                    <Binding/>
+                                </Button.CommandParameter>
+                                Details
+                            </Button>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+            </DataGrid.Columns>
+        </DataGrid>
     </Grid>
 </Window>

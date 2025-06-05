@@ -17,4 +17,10 @@
     <ProjectReference Include="..\EwkQxObd.Data\EwkQxObd.Data.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <None Update="EwkQxObd.Main.DataStore.db">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
+
 </Project>
