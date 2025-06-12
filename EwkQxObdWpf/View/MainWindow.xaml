@@ -8,11 +8,17 @@
         mc:Ignorable="d"
         Title="MainWindow" Height="450" Width="800">
     <Grid>
-        <DataGrid Name="Contracts"
-                  ItemsSource="{Binding Contracts}">
-
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="1*"/>
+        </Grid.ColumnDefinitions>
+        <DataGrid Name="ContractsDataGrid"
+                  ItemsSource="{Binding Contracts}"
+                  Grid.Column="0"
+                  AutoGenerateColumns="False"
+                  >
             <DataGrid.Columns>
-                <DataGridTemplateColumn>
+                <DataGridTemplateColumn
+                    Width="1*">
                     <DataGridTemplateColumn.CellTemplate>
                         <DataTemplate>
                             <Button>
@@ -27,6 +33,24 @@
                         </DataTemplate>
                     </DataGridTemplateColumn.CellTemplate>
                 </DataGridTemplateColumn>
+                <DataGridTextColumn
+    Header="ID"
+    Binding="{Binding Id}"
+                    Width="1*">
+                
+                </DataGridTextColumn>
+                <DataGridTextColumn
+Header="Contract No."
+Binding="{Binding ContractNumber}"
+                    Width="3*">
+
+                </DataGridTextColumn>
+                <DataGridTextColumn
+    Header="Valid To"
+    Binding="{Binding ValidTo, StringFormat='dd/MM/yyyy'}"
+                    Width="3*">
+
+                </DataGridTextColumn>
             </DataGrid.Columns>
         </DataGrid>
     </Grid>
