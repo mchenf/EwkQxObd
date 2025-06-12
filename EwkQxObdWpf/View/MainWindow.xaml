@@ -46,6 +46,19 @@ Binding="{Binding ContractNumber}"
 
                 </DataGridTextColumn>
                 <DataGridTextColumn
+Header="Description"
+Binding="{Binding Description}"
+                    Width="5*">
+
+                </DataGridTextColumn>
+
+                <DataGridTextColumn
+    Header="Valid From"
+    Binding="{Binding ValidFrom, StringFormat='dd/MM/yyyy'}"
+                    Width="3*">
+
+                </DataGridTextColumn>
+                <DataGridTextColumn
     Header="Valid To"
     Binding="{Binding ValidTo, StringFormat='dd/MM/yyyy'}"
                     Width="3*">
