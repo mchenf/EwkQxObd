@@ -54,6 +54,7 @@
                     Binding="{Binding Id}"
                     Width="1*"
                     IsReadOnly="True"
+                    ElementStyle="{StaticResource centeredDgCell}"
                     HeaderStyle="{StaticResource centeredDgHedr}">
                 </DataGridTextColumn>
                 <DataGridTextColumn
