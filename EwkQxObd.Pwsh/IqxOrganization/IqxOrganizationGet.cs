@@ -1,8 +1,10 @@
-﻿using System;
+﻿using EwkQxObd.Api.ObjectModel;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Management.Automation;
 using System.Text;
+using System.Text.Json;
 using System.Threading.Tasks;
 
 namespace EwkQxObd.Pwsh.IqxOrganization
@@ -57,20 +59,28 @@ namespace EwkQxObd.Pwsh.IqxOrganization
                 return;
             }
             using var request = new HttpRequestMessage(HttpMethod.Get, requestUrl);
+
             request.Headers.Add("Authorization", Bearer);
 
             using var response = _httpClient.Send(request);
 
             response.EnsureSuccessStatusCode();
 
+            var results = 
+                JsonSerializer.Deserialize<List<IqxOrgResponse>>(response.Content.ReadAsStream());
 
-            using StreamReader reader = new(response.Content.ReadAsStream());
-
-
-
-            string responseContent = reader.ReadToEnd();
-
-            WriteObject(responseContent);
+            if (results != null)
+            {
+                WriteObject(results);
+            }
+            else
+            {
+                WriteInformation(new InformationRecord
+            (
+                "No results found",
+                nameof(EndProcessing)
+            ));
+            }
 
         }
 

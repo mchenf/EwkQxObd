@@ -1,4 +1,5 @@
 ﻿using EwkQxObd.Api;
+using EwkQxObd.Pwsh.IqxOrganization;
 using Microsoft.Extensions.Configuration;
 using NUnit.Framework.Constraints;
 using System;
@@ -21,6 +22,31 @@ namespace EwkQxObd.UnitTest
                 .Build();
         }
 
+
+        [Test]
+        public void GetUserOrganization()
+        {
+            if (config == null)
+            {
+                Assert.Fail();
+                return;
+            }
+            string bearer = config["IQX:Bearer"];
+
+            IqxOrganizationGet cmdlet = new();
+
+            Console.WriteLine(bearer);
+
+            cmdlet.Bearer = bearer;
+
+            var res = cmdlet.Invoke();
+
+            var enmu = res.GetEnumerator();
+            while (enmu.MoveNext())
+            {
+                Console.WriteLine(enmu.Current);
+            }
+        }
 
         [Test]
         public async Task AuthTest()

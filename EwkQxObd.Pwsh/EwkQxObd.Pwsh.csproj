@@ -14,4 +14,8 @@
     <Folder Include="Authticate\" />
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\EwkQxObd.Api\EwkQxObd.Api.csproj" />
+  </ItemGroup>
+
 </Project>
