@@ -5,8 +5,8 @@ namespace EwkQxObd.Pwsh.Installation
 {
     public abstract class InstallBase : Cmdlet
     {
-        private const string rootFolder = "EwkQxObd.Foss.Mochen";
-        private const string appDatabase = "appdata.db";
+        private const string rootFolder = AppSharedResources.RootFolder;
+        private const string appDatabase = AppSharedResources.AppDatabase;
 
         internal static string localAppDir = string.Empty;
         internal static string appRootDir = string.Empty;
