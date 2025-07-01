@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace EwkQxObd.Pwsh.Installation
 {
-    [Cmdlet(VerbsData.Initialize, "Install")]
+    [Cmdlet(VerbsLifecycle.Install, "EwkQxObd")]
     public class InstallInitialize : InstallBase
     {
         private bool should_Terminate = false;
@@ -20,15 +20,24 @@ namespace EwkQxObd.Pwsh.Installation
 
         protected override void BeginProcessing()
         {
+            WriteVerbose("Beginning Pre-install checks.");
             var installedStat = EqoInstallStatus.None;
 
+
+            WriteVerbose("Checking if db file exists");
             installedStat = Path.Exists(appDbDir) ? 
                 installedStat | EqoInstallStatus.DbFileExist 
                 : installedStat | EqoInstallStatus.None;
 
             if (installedStat == EqoInstallStatus.Installed)
             {
+
+                WriteVerbose("Already installed");
                 should_Terminate = true;
+            }
+            else
+            {
+                WriteVerbose("Not installed.");
             }
         }
 
@@ -40,10 +49,7 @@ namespace EwkQxObd.Pwsh.Installation
                 WriteWarning($"{nameof(InstallInitialize)}~:: Maybe already installed.");
                 return;
             }
-            WriteInformation(new InformationRecord(
-                "Begin installation",
-                nameof(InstallInitialize)
-            ));
+            WriteVerbose("Beginning Installation");
 
             using EqoCreateTblContract storeContract = new();
 

@@ -6,7 +6,9 @@ using System.Threading.Tasks;
 
 namespace EwkQxObd.Pwsh
 {
-    class AppSharedResources
+    public static class AppSharedResources
     {
+        public const string RootFolder = "EwkQxObd.Foss.Mochen";
+        public const string AppDatabase = "appdata.db";
     }
 }
