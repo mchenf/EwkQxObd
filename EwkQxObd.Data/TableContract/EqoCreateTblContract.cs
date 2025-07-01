@@ -19,6 +19,13 @@ CREATE TABLE IF NOT EXISTS Eqo_Contract (
     ValidTo         DATE                NOT NULL
 );
 ";
+        public EqoCreateTblContract()
+        {
+            
+        }
+
+        public EqoCreateTblContract(string DbPath) : base(DbPath) { }
+
         public void CreateTable()
         {
             OpenConnDoStuff(() =>

@@ -51,7 +51,7 @@ namespace EwkQxObd.Pwsh.Installation
             }
             WriteVerbose("Beginning Installation");
 
-            using EqoCreateTblContract storeContract = new();
+            using EqoCreateTblContract storeContract = new(appDbDir);
 
             storeContract.CreateTable();
 

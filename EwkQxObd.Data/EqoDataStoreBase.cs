@@ -9,20 +9,30 @@ namespace EwkQxObd.Data
 {
     public class EqoDataStoreBase : IDisposable
     {
-        internal static readonly string ConnectionStr
-            = "Data Source=EwkQxObd.Main.DataStore.db";
+        internal static string ConnectionStr = "Data Source=EwkQxObd.Main.DataStore.db";
 
 
-        internal static SqliteConnection Connection
-            = new SqliteConnection(ConnectionStr);
+        internal static SqliteConnection? Connection;
+
+        public EqoDataStoreBase()
+        {
+            Connection = new SqliteConnection(ConnectionStr);
+        }
+
+        public EqoDataStoreBase(string DbPath) : this() {
+        
+            ConnectionStr = "Data Source=" + DbPath;
+        }
+
+
         public void Dispose()
         {
-            Connection.Dispose();
+            Connection!.Dispose();
         }
 
         internal void OpenConnDoStuff(Action stuffToDo)
         {
-            Connection.Open();
+            Connection!.Open();
             stuffToDo.Invoke();
             Connection.Close();
         }
