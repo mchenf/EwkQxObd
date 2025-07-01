@@ -8,12 +8,12 @@ using System.Threading.Tasks;
 
 namespace EwkQxObd.Pwsh.Installation
 {
-    [Cmdlet(VerbsLifecycle.Install, "EwkQxObd")]
-    public class InstallInitialize : InstallBase
+    [Cmdlet(VerbsLifecycle.Install, "EwkIqxObd")]
+    public class EwkIqxObd_Install : InstallBase
     {
         private bool should_Terminate = false;
 
-        public InstallInitialize()
+        public EwkIqxObd_Install()
         {
             
         }
@@ -45,8 +45,8 @@ namespace EwkQxObd.Pwsh.Installation
         {
             if (should_Terminate)
             {
-                WriteWarning($"{nameof(InstallInitialize)}~:: Failed to pass initial check.");
-                WriteWarning($"{nameof(InstallInitialize)}~:: Maybe already installed.");
+                WriteWarning($"{nameof(EwkIqxObd_Install)}~:: Failed to pass initial check.");
+                WriteWarning($"{nameof(EwkIqxObd_Install)}~:: Maybe already installed.");
                 return;
             }
             WriteVerbose("Beginning Installation");
