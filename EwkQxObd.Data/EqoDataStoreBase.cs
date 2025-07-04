@@ -12,16 +12,16 @@ namespace EwkQxObd.Data
         internal static string ConnectionStr = "Data Source=EwkQxObd.Main.DataStore.db";
 
 
-        internal static SqliteConnection? Connection;
+        internal static SqliteConnection Connection = new(ConnectionStr);
 
         public EqoDataStoreBase()
         {
-            Connection = new SqliteConnection(ConnectionStr);
+
         }
 
-        public EqoDataStoreBase(string DbPath) : this() {
-        
-            ConnectionStr = "Data Source=" + DbPath;
+        public EqoDataStoreBase(string DbPath) {
+
+            Connection.ConnectionString = "Data Source=" + DbPath;
         }
 
 
@@ -32,7 +32,7 @@ namespace EwkQxObd.Data
 
         internal void OpenConnDoStuff(Action stuffToDo)
         {
-            Connection!.Open();
+            Connection.Open();
             stuffToDo.Invoke();
             Connection.Close();
         }

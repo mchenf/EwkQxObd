@@ -51,11 +51,20 @@ namespace EwkQxObd.Pwsh.Installation
             }
             WriteVerbose("Beginning Installation");
 
+            if (!Directory.Exists(appRootDir))
+            {
+                WriteVerbose("No root folder detected, creating folder");
+
+                Directory.CreateDirectory(appRootDir);
+
+            }
+
+            WriteVerbose("Creating QueryStore for Contracts");
             using EqoCreateTblContract storeContract = new(appDbDir);
 
             storeContract.CreateTable();
 
-
+            WriteVerbose("QueryStore for Contracts Created");
 
         }
 
