@@ -17,6 +17,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EwkQxObd.Pwsh", "EwkQxObd.P
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EwkQxObd.Api", "EwkQxObd.Api\EwkQxObd.Api.csproj", "{09143588-0CFE-4FE3-ABD3-980C3AD932F0}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EwkQxObd.Web.Api", "EwkQxObd.Web.Api\EwkQxObd.Web.Api.csproj", "{496B34C6-F3B4-4A63-94B0-AB7320230CDA}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|ARM64 = Debug|ARM64
@@ -111,6 +113,18 @@ Global
 		{09143588-0CFE-4FE3-ABD3-980C3AD932F0}.Release|x64.Build.0 = Release|Any CPU
 		{09143588-0CFE-4FE3-ABD3-980C3AD932F0}.Release|x86.ActiveCfg = Release|Any CPU
 		{09143588-0CFE-4FE3-ABD3-980C3AD932F0}.Release|x86.Build.0 = Release|Any CPU
+		{496B34C6-F3B4-4A63-94B0-AB7320230CDA}.Debug|ARM64.ActiveCfg = Debug|Any CPU
+		{496B34C6-F3B4-4A63-94B0-AB7320230CDA}.Debug|ARM64.Build.0 = Debug|Any CPU
+		{496B34C6-F3B4-4A63-94B0-AB7320230CDA}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{496B34C6-F3B4-4A63-94B0-AB7320230CDA}.Debug|x64.Build.0 = Debug|Any CPU
+		{496B34C6-F3B4-4A63-94B0-AB7320230CDA}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{496B34C6-F3B4-4A63-94B0-AB7320230CDA}.Debug|x86.Build.0 = Debug|Any CPU
+		{496B34C6-F3B4-4A63-94B0-AB7320230CDA}.Release|ARM64.ActiveCfg = Release|Any CPU
+		{496B34C6-F3B4-4A63-94B0-AB7320230CDA}.Release|ARM64.Build.0 = Release|Any CPU
+		{496B34C6-F3B4-4A63-94B0-AB7320230CDA}.Release|x64.ActiveCfg = Release|Any CPU
+		{496B34C6-F3B4-4A63-94B0-AB7320230CDA}.Release|x64.Build.0 = Release|Any CPU
+		{496B34C6-F3B4-4A63-94B0-AB7320230CDA}.Release|x86.ActiveCfg = Release|Any CPU
+		{496B34C6-F3B4-4A63-94B0-AB7320230CDA}.Release|x86.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
