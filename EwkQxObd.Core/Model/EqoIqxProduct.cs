@@ -15,7 +15,7 @@ namespace EwkQxObd.Core.Model
         public required EqoContract Contract { get; set; }
         public required EqoAccount ShipTo { get; set; }
 
-        public uint AccountNumber { get => ShipTo.AccountID; }
+        public long AccountNumber { get => ShipTo.PartnerId; }
         public string PartnerName { get => ShipTo.PartnerName; }
 
         public long ContractNumber { get => Contract.Id; }

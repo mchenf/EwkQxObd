@@ -1,4 +1,5 @@
-﻿using EwkQxObd.Data.TableContract;
+﻿using EwkQxObd.Core.Model;
+using EwkQxObd.Data.TableContract;
 using EwkQxObd.Pwsh.Contract;
 using EwkQxObd.Pwsh.Installation;
 using System;
@@ -41,6 +42,62 @@ namespace EwkQxObd.UnitTest
             {
                 Console.WriteLine(item);
 
+            }
+        }
+
+        [Test, Order(2)]
+        [TestCase(167321)]
+        [TestCase(-33)]
+        public void Get_Account_Test(long PartnerID)
+        {
+            var cmd = new AccountGet();
+            cmd.PartnerID = PartnerID; //167321;
+            var res = cmd.Invoke();
+
+
+            int count = 0;
+
+            EqoAccount? account = null;
+            foreach (var item in res)
+            {
+                Console.WriteLine(item);
+                account = item as EqoAccount;
+                count++;
+            }
+
+            Assert.That(count, Is.EqualTo(1), "This cmdlet should give out only one result");
+            Assert.That(account, Is.Not.Null, "This cmdlet should not give out null object result");
+            Assert.That(account, Is.TypeOf<EqoAccount>(), $"This cmdlet should have result of {nameof(EqoAccount)}");
+
+            long Expected = PartnerID;
+            if (PartnerID < 0)
+            {
+                Expected = long.MinValue;
+            }
+            Assert.That(account.PartnerId, Is.EqualTo(Expected), $"This cmdlet should only get account number same as input");
+
+            
+        }
+
+        [Test, Order(3)]
+        public void New_Account_Test()
+        {
+            var cmd = new AccountNew();
+
+
+            cmd.PartnerID = 466789;
+
+            cmd.PartnerName = "Test Partner";
+            cmd.GeisGuid = Guid.NewGuid();
+
+            cmd.Country = "Lafafufa";
+            cmd.Region = "LalaLand";
+
+
+            var res = cmd.Invoke();
+            foreach (var item in res)
+            {
+                Console.WriteLine(item);
             }
         }
     }

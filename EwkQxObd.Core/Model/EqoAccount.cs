@@ -11,8 +11,13 @@ namespace EwkQxObd.Core.Model
     /// </summary>
     public class EqoAccount
     {
-        public uint AccountID { get; set; }
+        public int Id { get; set; }
+        public long PartnerId { get; set; } = long.MinValue;
         public string PartnerName { get; set; } = string.Empty;
         public Guid GeisID { get; set; }
+
+        public string Country { get; set; } = string.Empty;
+        public string Region { get; set; } = string.Empty;
+
     }
 }
