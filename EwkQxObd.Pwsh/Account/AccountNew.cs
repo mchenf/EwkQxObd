@@ -1,4 +1,5 @@
 ﻿using EwkQxObd.Core.Model;
+using EwkQxObd.Pwsh.DataStore.tblAccount;
 using Microsoft.Data.SqlClient;
 using System;
 using System.Collections.Generic;
@@ -30,49 +31,14 @@ namespace EwkQxObd.Pwsh.Contract
         public string Country { get; set; } = string.Empty;
 
 
-        private const string connStr = "Server=localhost\\SQLEXPRESS;Integrated Security=true;Encrypt=no";
-        private const string insertCommand = 
-            @"
-USE EwIqxOnboarding; 
-INSERT INTO eqoAccount (
-PartnerID,
-PartnerName,
-GeisGuid,
-Region,
-Country
-) VALUES (
-@val1,
-@val2,
-@val3,
-@val4,
-@val5
-);";
-
-
-
-
         protected override void ProcessRecord()
         {
-            
+            using var query = new InsertIntoValues();
 
-            using(SqlConnection conn = new(connStr))
-            {
-                conn.Open();
 
-                using SqlCommand command = new(insertCommand, conn) ;
+            throw new NotImplementedException();
 
-                command.Parameters.AddWithValue("@val1", PartnerID);
-                command.Parameters.AddWithValue("@val2", PartnerName);
-                command.Parameters.AddWithValue("@val3", GeisGuid);
-                command.Parameters.AddWithValue("@val4", Region);
-                command.Parameters.AddWithValue("@val5", Country);
 
-                var rowsAffected = command.ExecuteNonQuery();
-
-                
-
-                conn.Close();
-            }
         }
     }
 }

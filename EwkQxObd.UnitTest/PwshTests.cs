@@ -85,13 +85,13 @@ namespace EwkQxObd.UnitTest
             var cmd = new AccountNew();
 
 
-            cmd.PartnerID = 466789;
+            cmd.PartnerID = 167321;
 
-            cmd.PartnerName = "Test Partner";
+            cmd.PartnerName = "Test Partner Again";
             cmd.GeisGuid = Guid.NewGuid();
 
-            cmd.Country = "Lafafufa";
-            cmd.Region = "LalaLand";
+            cmd.Country = "Fellahahaz";
+            cmd.Region = "Creazzg";
 
 
             var res = cmd.Invoke();

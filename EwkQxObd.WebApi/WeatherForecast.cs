@@ -1,4 +1,4 @@
-namespace EwkQxObd.Web.Api
+namespace EwkQxObd.WebApi
 {
     public class WeatherForecast
     {

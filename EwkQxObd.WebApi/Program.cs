@@ -1,4 +1,4 @@
-namespace EwkQxObd.Web.Api
+namespace EwkQxObd.WebApi
 {
     public class Program
     {
@@ -13,8 +13,6 @@ namespace EwkQxObd.Web.Api
             var app = builder.Build();
 
             // Configure the HTTP request pipeline.
-
-            app.UseHttpsRedirection();
 
             app.UseAuthorization();
 

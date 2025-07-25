@@ -1,0 +1,6 @@
+@EwkQxObd.WebApi_HostAddress = http://localhost:5209
+
+GET {{EwkQxObd.WebApi_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###
