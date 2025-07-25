@@ -32,7 +32,7 @@ namespace EwkQxObd.WebApi.Controllers.ewkiqxobd.api
 
         [HttpPost("bulk")]
         [Consumes("application/json")]
-        public async Task<IActionResult> CreateOrganizations(IEnumerable<IqxOrganization> orgs)
+        public async Task<IActionResult> AddBulk(IEnumerable<IqxOrganization> orgs)
         {
             
 
@@ -45,11 +45,11 @@ namespace EwkQxObd.WebApi.Controllers.ewkiqxobd.api
 
         [HttpPost()]
         [Consumes("application/json")]
-        public async Task<IActionResult> CreateOrganization(IqxOrganization org)
+        public async Task<IActionResult> AddSingle(IqxOrganization org)
         {
 
 
-            await _context.IqxOrganisation.AddRangeAsync(org);
+            await _context.IqxOrganisation.AddAsync(org);
 
             await _context.SaveChangesAsync();
 
