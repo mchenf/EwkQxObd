@@ -1,5 +1,6 @@
 ﻿
 using EwkQxObd.Core.Model;
+using EwkQxObd.WebApi.Conversion;
 using EwkQxObd.WebApi.Data;
 using Microsoft.AspNetCore.Mvc;
 
@@ -29,17 +30,30 @@ namespace EwkQxObd.WebApi.Controllers.ewkiqxobd.api
             return _context.IqxOrganisation;
         }
 
-        [HttpPost]
+        [HttpPost("bulk")]
         [Consumes("application/json")]
         public async Task<IActionResult> CreateOrganizations(IEnumerable<IqxOrganization> orgs)
         {
-
+            
 
             await _context.IqxOrganisation.AddRangeAsync(orgs);
 
             await _context.SaveChangesAsync();
 
             return Ok(new { Consumes = "application/json", Values = orgs });
+        }
+
+        [HttpPost()]
+        [Consumes("application/json")]
+        public async Task<IActionResult> CreateOrganization(IqxOrganization org)
+        {
+
+
+            await _context.IqxOrganisation.AddRangeAsync(org);
+
+            await _context.SaveChangesAsync();
+
+            return Ok(new { Consumes = "application/json", Values = org });
         }
 
     }
