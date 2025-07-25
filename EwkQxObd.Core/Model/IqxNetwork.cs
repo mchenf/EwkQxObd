@@ -8,13 +8,10 @@ namespace EwkQxObd.Core.Model
 {
     public class IqxNetwork
     {
-        public IqxSystem System { get; set; }
+        public long id { get; set; }
+        public IqxSystem? System { get; set; }
         public Guid NetworkGuid { get; set; }
         public EqoAccount? Account { get; set; }
 
-        public IqxNetwork(IqxSystem system)
-        {
-            System = system;
-        }
     }
 }
