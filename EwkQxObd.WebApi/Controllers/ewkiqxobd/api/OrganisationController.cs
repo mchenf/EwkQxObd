@@ -31,9 +31,16 @@ namespace EwkQxObd.WebApi.Controllers.ewkiqxobd.api
 
         [HttpPost]
         [Consumes("application/json")]
-        public IActionResult CreateOrganization(IqxOrganization org)
+        public async Task<IActionResult> CreateOrganizations(IEnumerable<IqxOrganization> orgs)
         {
-            return Ok(new { Consumes = "application/json", Values = org });
+
+
+            await _context.IqxOrganisation.AddRangeAsync(orgs);
+
+            await _context.SaveChangesAsync();
+
+            return Ok(new { Consumes = "application/json", Values = orgs });
         }
+
     }
 }
