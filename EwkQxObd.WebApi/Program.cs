@@ -1,3 +1,8 @@
+using EwkQxObd.WebApi.Data;
+using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Configuration;
+using System.Diagnostics;
+
 namespace EwkQxObd.WebApi
 {
     public class Program
@@ -9,6 +14,16 @@ namespace EwkQxObd.WebApi
             // Add services to the container.
 
             builder.Services.AddControllers();
+
+
+
+            builder.Services.AddDbContext<EwkIqxObdContext>(options =>
+            {
+                options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection"));
+#if true
+                Debug.WriteLine($"Connection String is: \r\n${builder.Configuration.GetConnectionString("DefaultConnection")}");
+#endif
+            });
 
             var app = builder.Build();
 

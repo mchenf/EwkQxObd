@@ -10,8 +10,8 @@ namespace EwkQxObd.WebApi.Data
             
         }
 
-        public DbSet<IqxSystem> IqxSystems { get; set; }
-        public DbSet<IqxNetwork> IqxNetworks { get; set; }
+        public DbSet<IqxSystem> IqxSystem { get; set; }
+        public DbSet<IqxNetwork> IqxNetwork { get; set; }
         public DbSet<IqxOrganization> IqxOrganisation { get; set; }
 
 
@@ -20,6 +20,8 @@ namespace EwkQxObd.WebApi.Data
         public DbSet<EqoContactInfo> EqoContactInfo { get; set; }
         public DbSet<EqoAccount> EqoAccount { get; set; }
 
+
+        
 
     }
 }
