@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.EntityFrameworkCore;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -9,6 +10,9 @@ namespace EwkQxObd.Core.Model
     /// <summary>
     /// Represent a Contract object
     /// </summary>
+    /// 
+
+    [Index(nameof(ContractNumber), IsUnique = true)]
     public class EqoContract
     {
         public long Id { get; set; }
