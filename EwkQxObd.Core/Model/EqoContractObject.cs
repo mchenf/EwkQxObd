@@ -26,10 +26,10 @@ namespace EwkQxObd.Core.Model
         public EqoContract? Contract { get; set; }
         public EqoAccount? ShipTo { get; set; }
 
-        public long AccountNumber { get => ShipTo!.PartnerId; }
-        public string PartnerName { get => ShipTo!.PartnerName; }
+        public long AccountNumber { get => ShipTo == default ? -1 : ShipTo.PartnerId; }
+        public string PartnerName { get => ShipTo == default ? string.Empty : ShipTo.PartnerName; }
 
-        public long ContractNumber { get => Contract!.ContractNumber; }
+        public long ContractNumber { get => Contract == default ? -1 : Contract.ContractNumber; }
 
     }
 }

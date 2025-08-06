@@ -41,17 +41,49 @@ namespace EwkQxObd.WebApi.Controllers.ewkiqxobd.api
                 InstrumentType = contractObj.InstrumentType
             };
 
+            bool refuseSync = false;
+
             if (contractObj.ShipTo != default)
             {
                 var shipTo = await _context.EqoAccount.FirstOrDefaultAsync(acc => acc.PartnerId == contractObj.ShipTo.PartnerId);
-                contractObjToSync.ShipTo = shipTo;
-                contractObjToSync.EqoAccountId = shipTo!.Id;
+                if (shipTo == default)
+                {
+                    contractObjToSync.ShipTo = contractObj.ShipTo;
+                }
+                else
+                {
+                    contractObjToSync.ShipTo = shipTo;
+                    contractObjToSync.EqoAccountId = shipTo.Id;
+                }
             }
+            else
+            {
+                refuseSync = true;
+            }
+
+
             if (contractObj.Contract != default)
             {
                 var contract = await _context.EqoContract.FirstOrDefaultAsync(con => con.ContractNumber == contractObj.Contract.ContractNumber);
-                contractObjToSync.Contract = contract;
-                contractObjToSync.EqoContractId = contract!.Id;
+
+                if (contract == default)
+                {
+                    contractObjToSync.Contract = contractObj.Contract;
+                }
+                else
+                {
+                    contractObjToSync.Contract = contract;
+                    contractObjToSync.EqoContractId = contract.Id;
+                }
+            }
+            else
+            {
+                refuseSync = true;
+            }
+
+            if (refuseSync)
+            {
+                return BadRequest("Contract object must have a linking contract and a ship-to account.");
             }
 
             await _context.EqoContractObject.AddAsync(contractObjToSync);
