@@ -23,13 +23,13 @@ namespace EwkQxObd.Core.Model
         [Column("ShipTo")]
         public int EqoAccountId { get; set; }
 
-        public required EqoContract Contract { get; set; }
-        public required EqoAccount ShipTo { get; set; }
+        public EqoContract? Contract { get; set; }
+        public EqoAccount? ShipTo { get; set; }
 
-        public long AccountNumber { get => ShipTo.PartnerId; }
-        public string PartnerName { get => ShipTo.PartnerName; }
+        public long AccountNumber { get => ShipTo!.PartnerId; }
+        public string PartnerName { get => ShipTo!.PartnerName; }
 
-        public long ContractNumber { get => Contract.Id; }
+        public long ContractNumber { get => Contract!.ContractNumber; }
 
     }
 }

@@ -35,30 +35,30 @@ namespace EwkQxObd.WebApi.Controllers.ewkiqxobd.api
         [Consumes("application/json")]
         public async Task<IActionResult> NewContractSingle(EqoContractObject contractObj)
         {
-            var account = await _context.EqoAccount.Where(
-                acc => acc.PartnerId == contractObj.AccountNumber)
-                .FirstOrDefaultAsync();
-
-            var contract = await _context.EqoContract.Where(
-                con => con.ContractNumber == contractObj.ContractNumber)
-                .FirstOrDefaultAsync();
-
-            if (account != default(EqoAccount))
+            var contractObjToSync = new EqoContractObject
             {
-                contractObj.ShipTo = new EqoAccount { Id = account.Id };
+                SerialNumber = contractObj.SerialNumber,
+                InstrumentType = contractObj.InstrumentType
+            };
+
+            if (contractObj.ShipTo != default)
+            {
+                var shipTo = await _context.EqoAccount.FirstOrDefaultAsync(acc => acc.PartnerId == contractObj.ShipTo.PartnerId);
+                contractObjToSync.ShipTo = shipTo;
+                contractObjToSync.EqoAccountId = shipTo!.Id;
+            }
+            if (contractObj.Contract != default)
+            {
+                var contract = await _context.EqoContract.FirstOrDefaultAsync(con => con.ContractNumber == contractObj.Contract.ContractNumber);
+                contractObjToSync.Contract = contract;
+                contractObjToSync.EqoContractId = contract!.Id;
             }
 
-            if (contract != default(EqoContract))
-            {
-                contractObj.Contract = new EqoContract {Id = contract.Id};
-            }
-
-
-            await _context.EqoContractObject.AddAsync(contractObj);
+            await _context.EqoContractObject.AddAsync(contractObjToSync);
 
             await _context.SaveChangesAsync();
 
-            return Ok(new { Consumes = "application/json", Values = contractObj });
+            return Ok(new { Consumes = "application/json", Values = contractObjToSync });
 
 
 
