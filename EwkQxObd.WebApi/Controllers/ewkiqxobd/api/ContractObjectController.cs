@@ -2,6 +2,7 @@
 using EwkQxObd.WebApi.Data;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using System.Threading.Tasks;
 
 namespace EwkQxObd.WebApi.Controllers.ewkiqxobd.api
 {
@@ -24,10 +25,17 @@ namespace EwkQxObd.WebApi.Controllers.ewkiqxobd.api
         }
 
         [HttpGet]
-        public IEnumerable<EqoContract> Details()
+        public async Task<IActionResult> Details()
         {
-            return _context.EqoContract;
-
+            var result = await _context.EqoContractObject
+                .Include(c => c.Contract)
+                .Include(c => c.ShipTo)
+                .ToListAsync();
+            if (result != default)
+            {
+                return Ok( new {Consumes = "application/json", Values = result });
+            }
+            return NoContent();
         }
 
 
