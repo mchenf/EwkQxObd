@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -16,6 +17,11 @@ namespace EwkQxObd.Core.Model
         public required string SerialNumber { get; set; }
 
         public required string InstrumentType { get; set; }
+
+        [Column("Contract")]
+        public long EqoContractId { get; set; }
+        [Column("ShipTo")]
+        public int EqoAccountId { get; set; }
 
         public required EqoContract Contract { get; set; }
         public required EqoAccount ShipTo { get; set; }
