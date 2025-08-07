@@ -11,8 +11,12 @@ namespace EwkQxObd.Core.Model
     /// </summary>
     public class EqoTicketSource
     {
+        public long id { get; set; }
         public string TicketNumber { get; set; } = string.Empty;
         public string TicketDescription { get; set; } = string.Empty;
         
+        public IEnumerable<EqoContract>? IqxContracts { get; set; }
+
+
     }
 }

@@ -33,7 +33,7 @@ namespace EwkQxObd.WebApi.Controllers.ewkiqxobd.api
                 .ToListAsync();
             if (result != default)
             {
-                return Ok( new {Consumes = "application/json", Values = result });
+                return Ok( new {ContentType = "application/json", Values = result });
             }
             return NoContent();
         }
