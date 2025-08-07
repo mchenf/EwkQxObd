@@ -21,7 +21,7 @@ namespace EwkQxObd.WebApi.Data
         public DbSet<EqoAccount> EqoAccount { get; set; }
 
 
-        
+        public DbSet<EqoTicketSource> EqoTicketSource { get; set; }
 
     }
 }
