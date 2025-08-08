@@ -3,6 +3,7 @@ using EwkQxObd.Core.Model;
 using EwkQxObd.WebApi.Conversion;
 using EwkQxObd.WebApi.Data;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 
 namespace EwkQxObd.WebApi.Controllers.ewkiqxobd.api
 {
@@ -34,13 +35,32 @@ namespace EwkQxObd.WebApi.Controllers.ewkiqxobd.api
         [Consumes("application/json")]
         public async Task<IActionResult> AddBulk(IEnumerable<IqxOrganization> orgs)
         {
-            
+            List<IqxOrganization> dups = new();
+            List<IqxOrganization> added = new();
 
-            await _context.IqxOrganisation.AddRangeAsync(orgs);
+            foreach (var org in orgs)
+            {
+                if (org == default)
+                {
+                    continue;
+                }
+                var found = await _context.IqxOrganisation
+                    .FirstOrDefaultAsync(a => a.GeisGuid == org.GeisGuid);
+
+                if (found == default)
+                {
+                    added.Add(org);
+                    await _context.IqxOrganisation.AddAsync(org);
+                }
+                else
+                {
+                    dups.Add(org);
+                }
+            }
 
             await _context.SaveChangesAsync();
 
-            return Ok(new { Consumes = "application/json", Values = orgs });
+            return Ok(new { ContentType = "application/json", Duplicates = dups, Added = added });
         }
 
         [HttpPost()]
