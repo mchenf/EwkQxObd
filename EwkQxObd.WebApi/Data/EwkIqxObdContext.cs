@@ -11,7 +11,7 @@ namespace EwkQxObd.WebApi.Data
         }
 
         public DbSet<IqxSystem> IqxSystem { get; set; }
-        public DbSet<IqxNetwork> IqxNetwork { get; set; }
+        public DbSet<IqxNetworkInstrument> IqxInstrument { get; set; }
         public DbSet<IqxOrganization> IqxOrganisation { get; set; }
 
 

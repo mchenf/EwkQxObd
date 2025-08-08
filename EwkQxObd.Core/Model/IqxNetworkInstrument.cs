@@ -1,0 +1,45 @@
+﻿using System;
+using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace EwkQxObd.Core.Model
+{
+    [Table("NetworkInstrument", Schema = "iqx")]
+    public class IqxNetworkInstrument
+    {
+
+        [Key]
+        public long id { get; set; }
+
+        [Column("System", TypeName = "char(16)")]
+        public string System { get; set; } = string.Empty;
+
+        [Column("QueryTimeStamp", TypeName = "datetime2")]
+        public DateTime QueryTimeStamp { get; set; }
+
+        [Column("NetworkName", TypeName = "nvarchar(64)")]
+        public string NetworkName { get; set; } = string.Empty;
+
+        [Column("NetworkId", TypeName = "bigint")]
+        public long NetworkId { get; set; }
+
+        [Column("LinkedAccountGuid", TypeName = "uniqueidentifier")]
+        public Guid LinkedAccountGuid { get; set; }
+
+        [Column("InstrumentGroup", TypeName = "nvarchar(64)")]
+        public string InstrumentGroup { get; set; } = string.Empty;
+
+        [Column("SerialNumber", TypeName = "nvarchar(32)")]
+        public string SerialNumber { get; set; } = string.Empty;
+
+        [Column("InstrumentName", TypeName = "nvarchar(64)")]
+        public string InstrumentName { get; set; } = string.Empty;
+
+
+        public EqoAccount? LinkedAccount { get; set; }
+    }
+}
