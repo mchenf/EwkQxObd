@@ -1,4 +1,5 @@
 ﻿using EwkQxObd.Core.Model;
+using EwkQxObd.Core.Serialization;
 using EwkQxObd.WebApi.Data;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
@@ -61,12 +62,23 @@ namespace EwkQxObd.WebApi.Controllers.ewkiqxobd.api
 
             using var reader = new StreamReader(memStream, Encoding.UTF8);
 
-            var data = await reader.ReadToEndAsync();
+            
+            List<IqxNetworkInstrument> results = new();
 
-            //TODO: Need a way to deserialize this file format.
-            throw new NotImplementedException();
-
-            return Ok(data);
+            while (!reader.EndOfStream)
+            {
+                string? line = await reader.ReadLineAsync();
+                if (string.IsNullOrEmpty(line))
+                {
+                    continue;
+                }
+                var deserilized = line.Deserialize();
+                if (deserilized != default)
+                {
+                    results.Add(deserilized);
+                }
+            }
+            return Ok(results);
         }
 
     }
