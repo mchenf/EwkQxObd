@@ -42,6 +42,15 @@ namespace EwkQxObd.WebApi.Controllers.ewkiqxobd.api
         [Consumes("application/json")]
         public async Task<IActionResult> NewTicketSingle(EqoTicketSource ticketSource)
         {
+            var contractNums =
+                from c in ticketSource.IqxContracts
+                select c.ContractNumber;
+
+            List<EqoContract> contracts = await _context.EqoContract.Where(
+                c => contractNums.Contains(c.ContractNumber)
+            ).ToListAsync();
+
+            ticketSource.IqxContracts = contracts;
             
             await _context.EqoTicketSource.AddAsync(ticketSource);
 
