@@ -77,7 +77,12 @@ namespace EwkQxObd.WebApi.Controllers.ewkiqxobd.api
                 {
                     results.Add(deserilized);
                 }
+
+
             }
+
+            await _context.IqxInstrument.AddRangeAsync(results);
+
             return Ok(results);
         }
 
