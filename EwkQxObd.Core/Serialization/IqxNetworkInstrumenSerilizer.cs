@@ -16,8 +16,53 @@ namespace EwkQxObd.Core.Serialization
 
             var result = new IqxNetworkInstrument();
 
+            int strLen = Line.Length;
+
+            bool shouldParseSep = true;
+            bool needToTrimQuote = false;
+
+            int syncStart = 0;
+            int syncEnd = 0;
+            string[] fields = new string[8];
+
+            int synPos = 0;
+
+            for (int i = 0; i < strLen; i++)
+            {
+                if (Line[i] == '"')
+                {
+                    shouldParseSep = !shouldParseSep;
+                    if (shouldParseSep)
+                    {
+                        needToTrimQuote = true;
+                    }
+                }
+
+
+                if (i == strLen - 1 || shouldParseSep && Line[i] == ',')
+                {
+                    syncEnd = i;
+
+                    int syncLen = i < strLen - 1 ? syncEnd - syncStart : syncEnd - syncStart + 1;
+
+                    fields[synPos] = needToTrimQuote ?
+                        Line.Substring(syncStart, syncLen).Replace("\"", string.Empty) :
+                        Line.Substring(syncStart, syncLen);
+
+                    needToTrimQuote = false;
+
+                    synPos++;
+                    syncStart = syncEnd + 1;
+
+
+
+                }
+            }
+
+
             //TODO: Fix the text qualifier containing comma issue, i.e. "Grain, oil, and palm tree" columns
-            string[] fields = Line.Split(seperator);
+
+
 
             result.System = fields[0];
             result.QueryTimeStamp = DateTime.Parse(fields[1]);
