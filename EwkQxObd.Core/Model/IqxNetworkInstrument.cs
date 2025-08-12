@@ -33,7 +33,7 @@ namespace EwkQxObd.Core.Model
         [Column("InstrumentGroup", TypeName = "nvarchar(64)")]
         public string InstrumentGroup { get; set; } = string.Empty;
 
-        [Column("SerialNumber", TypeName = "nvarchar(32)")]
+        [Column("SerialNumber", TypeName = "nvarchar(50)")]
         public string SerialNumber { get; set; } = string.Empty;
 
         [Column("InstrumentName", TypeName = "nvarchar(64)")]
