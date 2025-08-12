@@ -73,8 +73,38 @@ namespace EwkQxObd.WebApi.Controllers.ewkiqxobd.api
                     continue;
                 }
                 var deserilized = line.Deserialize();
+                bool checkToSync = true;
                 if (deserilized != default)
                 {
+                    //Finally gets deserialized
+                    //Check 2 things.
+                    //1) Does the database contain the timestamp
+                    //2) Does it contains the system
+                    //If this can be found, refuse to do anything and return BadRequest
+                    if (checkToSync)
+                    {
+
+                        var tryToFind = await _context.IqxInstrument.FirstOrDefaultAsync(
+                            a =>
+                            a.QueryTimeStamp == deserilized.QueryTimeStamp &&
+                            a.System == deserilized.System);
+
+                        if (tryToFind != null)
+                        {
+                            return BadRequest(
+                                "File is already sycned with duplicated query time & system." +
+                                $"Query Time: {tryToFind.QueryTimeStamp};" +
+                                $"System: {tryToFind.System};" +
+                                $"Try to upload a different query csv."
+                            );
+                        }
+                        else
+                        {
+                            checkToSync = false;
+                        }
+                    }
+
+
                     results.Add(deserilized);
                 }
 
@@ -82,6 +112,8 @@ namespace EwkQxObd.WebApi.Controllers.ewkiqxobd.api
             }
 
             await _context.IqxInstrument.AddRangeAsync(results);
+
+            await _context.SaveChangesAsync();
 
             return Ok(results);
         }
