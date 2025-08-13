@@ -12,7 +12,7 @@ namespace EwkQxObd.Core.Model
     /// Represent a Contract object
     /// </summary>
     /// 
-    [Table("Contract", Schema = "Eqo")]
+    [Table("Contract", Schema = "eqo")]
     [Index(nameof(ContractNumber), IsUnique = true)]
     public class EqoContract
     {

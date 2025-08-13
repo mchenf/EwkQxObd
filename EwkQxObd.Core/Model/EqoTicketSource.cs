@@ -10,7 +10,7 @@ namespace EwkQxObd.Core.Model
     /// <summary>
     /// Represent a ticket source, where this ticket is from
     /// </summary>
-    [Table("TicketSource", Schema = "Eqo")]
+    [Table("TicketSource", Schema = "eqo")]
     public class EqoTicketSource
     {
         public long id { get; set; }

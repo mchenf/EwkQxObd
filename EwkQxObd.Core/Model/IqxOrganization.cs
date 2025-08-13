@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace EwkQxObd.Core.Model
 {
-    [Table("Organization", Schema = "Iqx")]
+    [Table("Organization", Schema = "iqx")]
     [Index(nameof(GeisGuid), IsUnique = true)]
     public class IqxOrganization
     {

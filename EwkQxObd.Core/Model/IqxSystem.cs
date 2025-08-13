@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 
 namespace EwkQxObd.Core.Model
 {
+
     public class IqxSystem
     {
 

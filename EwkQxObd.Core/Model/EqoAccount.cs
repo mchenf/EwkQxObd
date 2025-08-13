@@ -11,7 +11,7 @@ namespace EwkQxObd.Core.Model
     /// Represent an Account
     /// </summary>
     /// 
-    [Table("Account", Schema = "Eqo")]
+    [Table("Account", Schema = "eqo")]
     public class EqoAccount
     {
         public int Id { get; set; }

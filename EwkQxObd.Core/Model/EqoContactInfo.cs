@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace EwkQxObd.Core.Model
 {
-    [Table("ContactInfo", Schema = "Eqo")]
+    [Table("ContactInfo", Schema = "eqo")]
     public class EqoContactInfo
     {
         public long ID { get; set; }
