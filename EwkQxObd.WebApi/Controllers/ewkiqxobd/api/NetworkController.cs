@@ -39,6 +39,19 @@ namespace EwkQxObd.WebApi.Controllers.ewkiqxobd.api
             return NoContent();
         }
 
+        [HttpGet("latest")]
+        public async Task<IActionResult> GetLatest()
+        {
+            var result = await _context.VwSysnetinst
+                .ToListAsync();
+            if (result != default)
+            {
+                return Ok(new { ContentType = "application/json", Values = result });
+            }
+            return NoContent();
+        }
+
+
 
         [HttpPost("csv/upload")]
         [Consumes("multipart/form-data")]
