@@ -27,16 +27,31 @@ namespace EwkQxObd.WebApi.Controllers.ewkiqxobd.api
         }
 
         [HttpGet]
-        public async Task<IActionResult> GetDetails()
+        public async Task<IActionResult> GetDetails([FromQuery] string? sn = null)
         {
-            var result = await _context.IqxInstrument
+            if (string.IsNullOrEmpty(sn))
+            {
+                var result = await _context.IqxInstrument
                 .Include(c => c.LinkedAccount)
                 .ToListAsync();
-            if (result != default)
-            {
-                return Ok( new {ContentType = "application/json", Values = result });
+                if (result != default)
+                {
+                    return Ok(new { ContentType = "application/json", Values = result });
+                }
             }
-            return NoContent();
+            else
+            {
+                var result = await _context.VwSysnetinst
+                    .Where(sni => sni.SerialNumber == sn)
+                    .FirstOrDefaultAsync();
+                if (result != default)
+                {
+                    return Ok(new { ContentType = "application/json", Values = result });
+                }
+            }
+
+
+                return NoContent();
         }
 
         [HttpGet("latest")]
