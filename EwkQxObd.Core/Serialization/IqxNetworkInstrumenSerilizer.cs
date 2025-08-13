@@ -9,7 +9,7 @@ namespace EwkQxObd.Core.Serialization
 {
     public static class IqxNetworkInstrumenSerilizer
     {
-        private const string ignore = "System,Query Timestamp,Network Name,NetworkID,GEIS GUID,Instrument Group,Instrument S/N,Instrument Name";
+        private const string ignore = "System,Query Timestamp,Network Name,NetworkID,GEIS GUID,Instrument Group,Instrument SN,Instrument Name";
         public static IqxNetworkInstrument? Deserialize(this string Line, char seperator = ',')
         {
             if (Line == ignore) return null;
