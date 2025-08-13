@@ -40,14 +40,35 @@ namespace EwkQxObd.WebApi.Controllers.ewkiqxobd.api
         }
 
         [HttpGet("latest")]
-        public async Task<IActionResult> GetLatest()
+        public async Task<IActionResult> GetLatest([FromHeader] bool IncludeOrg = false)
         {
-            var result = await _context.VwSysnetinst
-                .ToListAsync();
-            if (result != default)
+
+            if (IncludeOrg)
             {
-                return Ok(new { ContentType = "application/json", Values = result });
+                _logger.LogDebug("Starting GetLatest IncludeOrg = true");
+                var result = await _context.VwSysnetinstorg
+                    .ToListAsync();
+
+
+                foreach (var item in result)
+                {
+                    _logger.LogDebug(item.SerialNumber);
+                }
+                if (result != default)
+                {
+                    return Ok(new { ContentType = "application/json", Values = result });
+                }
             }
+            else
+            {
+                var result = await _context.VwSysnetinst
+                    .ToListAsync();
+                if (result != default)
+                {
+                    return Ok(new { ContentType = "application/json", Values = result });
+                }
+            }
+                
             return NoContent();
         }
 

@@ -25,11 +25,17 @@ namespace EwkQxObd.WebApi.Data
         public DbSet<EqoTicketSource> EqoTicketSource { get; set; }
 
         public DbSet<vwSysnetinst> VwSysnetinst { get; set; }
+        public DbSet<vwSysnetinstorg> VwSysnetinstorg { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             modelBuilder.Entity<vwSysnetinst>(ent => {
                 ent.ToView("vw_LatestSysnetinst");
+                ent.HasNoKey();
+            });
+
+            modelBuilder.Entity<vwSysnetinstorg>(ent => {
+                ent.ToView("vw_LatestSysnetinstorg");
                 ent.HasNoKey();
             });
 
