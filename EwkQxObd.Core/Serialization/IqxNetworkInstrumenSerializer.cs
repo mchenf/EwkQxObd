@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace EwkQxObd.Core.Serialization
 {
-    public static class IqxNetworkInstrumenSerilizer
+    public static class IqxNetworkInstrumenSerializer
     {
         private const string ignore = "System,Query Timestamp,Network Name,NetworkID,GEIS GUID,Instrument Group,Instrument SN,Instrument Name";
         public static IqxNetworkInstrument? Deserialize(this string Line, char seperator = ',')
@@ -58,11 +58,6 @@ namespace EwkQxObd.Core.Serialization
 
                 }
             }
-
-
-            //TODO: Fix the text qualifier containing comma issue, i.e. "Grain, oil, and palm tree" columns
-
-
 
             result.System = fields[0];
             result.QueryTimeStamp = DateTime.Parse(fields[1]);
