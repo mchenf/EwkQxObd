@@ -1,6 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -11,7 +12,7 @@ namespace EwkQxObd.Core.Model
     /// Represent a Contract object
     /// </summary>
     /// 
-
+    [Table("Contract", Schema = "Eqo")]
     [Index(nameof(ContractNumber), IsUnique = true)]
     public class EqoContract
     {
