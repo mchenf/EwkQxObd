@@ -67,8 +67,20 @@ namespace EwkQxObd.Core.Serialization
             result.System = fields[0];
             result.QueryTimeStamp = DateTime.Parse(fields[1]);
             result.NetworkName = fields[2];
-            result.NetworkId = long.Parse(fields[3]);
-            result.LinkedAccountGuid = Guid.Parse(fields[4]);
+
+            if (!long.TryParse(fields[3], out long f3Result))
+            {
+                f3Result = long.MinValue;
+            }
+
+            result.NetworkId = f3Result;
+
+            if (!Guid.TryParse(fields[4], out Guid f4Result))
+            {
+                f4Result = default;
+            }
+
+            result.LinkedAccountGuid = f4Result;
             result.InstrumentGroup = fields[5];
             result.SerialNumber = fields[6];
             result.InstrumentName = fields[7];
