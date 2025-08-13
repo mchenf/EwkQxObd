@@ -10,6 +10,8 @@ namespace EwkQxObd.Core.Model
     /// <summary>
     /// Represent an IQX product, this object links instrument to contract and to account
     /// </summary>
+    /// 
+    [Table("ContractObject", Schema = "Eqo")]
     public class EqoContractObject
     {
 
