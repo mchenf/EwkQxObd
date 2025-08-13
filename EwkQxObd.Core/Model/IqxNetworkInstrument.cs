@@ -27,7 +27,7 @@ namespace EwkQxObd.Core.Model
         [Column("NetworkId", TypeName = "bigint")]
         public long NetworkId { get; set; }
 
-        [Column("LinkedAccountGuid", TypeName = "uniqueidentifier")]
+        [Column("LinkedAccount", TypeName = "uniqueidentifier")]
         public Guid LinkedAccountGuid { get; set; }
 
         [Column("InstrumentGroup", TypeName = "nvarchar(64)")]
