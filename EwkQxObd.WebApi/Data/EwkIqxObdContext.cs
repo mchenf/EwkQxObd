@@ -1,4 +1,5 @@
 ﻿using EwkQxObd.Core.Model;
+using EwkQxObd.Core.Model.Views;
 using Microsoft.EntityFrameworkCore;
 
 namespace EwkQxObd.WebApi.Data
@@ -23,5 +24,15 @@ namespace EwkQxObd.WebApi.Data
 
         public DbSet<EqoTicketSource> EqoTicketSource { get; set; }
 
+        public DbSet<vwSysnetinst> VwSysnetinst { get; set; }
+
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        {
+            modelBuilder.Entity<vwSysnetinst>(ent => {
+                ent.ToView("vw_LatestSysnetinst");
+                ent.HasNoKey();
+            });
+
+        }
     }
 }
