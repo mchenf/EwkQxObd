@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -9,6 +10,8 @@ namespace EwkQxObd.Core.Model
     /// <summary>
     /// Represent an Account
     /// </summary>
+    /// 
+    [Table("Account", Schema = "Eqo")]
     public class EqoAccount
     {
         public int Id { get; set; }
