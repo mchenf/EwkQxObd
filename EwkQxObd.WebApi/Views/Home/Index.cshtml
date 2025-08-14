@@ -1,0 +1,40 @@
+﻿@using EwkQxObd.Core.Model.Views
+@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+    ViewData["Title"] = "E-work IQX Onboarding";
+}
+@model IEnumerable<vwSysnetinstorg>
+
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>@ViewData["Title"]</title>
+    </head>
+    <body>
+        <table>
+            <thead>
+                <tr>
+                    <th>System</th>
+                    <th>Query Time</th>
+                    <th>SerialNumber</th>
+                    <th>Network Name</th>
+                    <th>Account Number</th>
+                    <th>Name</th>
+                </tr>
+            </thead>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>@item.System</td>
+                <td>@item.QueryTimeStamp</td>
+                <td>@item.SerialNumber</td>
+                <td>@item.NetworkName</td>
+                <td>@item.AccountNumber</td>
+                <td>@item.Name</td>
+            </tr>
+        }
+</table>
+    </body>
+</html>

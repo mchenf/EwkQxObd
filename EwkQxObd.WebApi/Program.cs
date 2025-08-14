@@ -15,6 +15,7 @@ namespace EwkQxObd.WebApi
 
             builder.Services.AddControllers();
 
+            builder.Services.AddControllersWithViews();
 
 
             builder.Services.AddDbContext<EwkIqxObdContext>(options =>
@@ -31,6 +32,11 @@ namespace EwkQxObd.WebApi
 
             app.UseAuthorization();
 
+            app.MapControllerRoute(
+                name: "default",
+                pattern: "{controller=Home}/{action=Index}/{id?}"
+
+            );
 
             app.MapControllers();
 
