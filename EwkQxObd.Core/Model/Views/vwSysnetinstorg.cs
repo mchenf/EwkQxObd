@@ -23,13 +23,16 @@ namespace EwkQxObd.Core.Model.Views
         public string? NetworkName { get; set; } = string.Empty;
 
         [Column("NetworkId", TypeName = "bigint")]
-        public long NetworkId { get; set; }
+        public long? NetworkId { get; set; }
 
         [Column("InstrumentGroup", TypeName = "nvarchar(64)")]
         public string? InstrumentGroup { get; set; } = string.Empty;
 
         [Column("SerialNumber", TypeName = "nvarchar(50)")]
         public string SerialNumber { get; set; } = string.Empty;
+
+        [Column("LinkedAccount", TypeName = "uniqueidentifier")]
+        public Guid LinkedAccountGuid { get; set; }
 
         [Column("InstrumentName", TypeName = "nvarchar(64)")]
         public string InstrumentName { get; set; } = string.Empty;

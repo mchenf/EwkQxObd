@@ -10,6 +10,7 @@ namespace EwkQxObd.Core.Serialization
     public static class IqxNetworkInstrumenSerializer
     {
         private const string ignore = "System,Query Timestamp,Network Name,NetworkID,GEIS GUID,Instrument Group,Instrument SN,Instrument Name";
+        private const string NULL = "NULL";
         public static IqxNetworkInstrument? Deserialize(this string Line, char seperator = ',')
         {
             if (Line == ignore) return null;
@@ -61,14 +62,17 @@ namespace EwkQxObd.Core.Serialization
 
             result.System = fields[0];
             result.QueryTimeStamp = DateTime.Parse(fields[1]);
-            result.NetworkName = fields[2];
 
-            if (!long.TryParse(fields[3], out long f3Result))
+            result.NetworkName = fields[2] == NULL ? null : fields[2];
+
+            if (long.TryParse(fields[3], out long f3Result))
             {
-                f3Result = long.MinValue;
+                result.NetworkId = f3Result;
             }
-
-            result.NetworkId = f3Result;
+            else 
+            {
+                result.NetworkId = null;
+            }
 
             if (!Guid.TryParse(fields[4], out Guid f4Result))
             {
@@ -76,7 +80,10 @@ namespace EwkQxObd.Core.Serialization
             }
 
             result.LinkedAccountGuid = f4Result;
-            result.InstrumentGroup = fields[5];
+
+            result.InstrumentGroup = fields[5] == NULL ? null : fields[5];
+
+
             result.SerialNumber = fields[6];
             result.InstrumentName = fields[7];
 

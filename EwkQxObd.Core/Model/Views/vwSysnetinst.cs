@@ -19,16 +19,16 @@ namespace EwkQxObd.Core.Model.Views
         public DateTime QueryTimeStamp { get; set; }
 
         [Column("NetworkName", TypeName = "nvarchar(64)")]
-        public string NetworkName { get; set; } = string.Empty;
+        public string? NetworkName { get; set; } = string.Empty;
 
         [Column("NetworkId", TypeName = "bigint")]
-        public long NetworkId { get; set; }
+        public long? NetworkId { get; set; }
 
         [Column("LinkedAccount", TypeName = "uniqueidentifier")]
         public Guid LinkedAccountGuid { get; set; }
 
         [Column("InstrumentGroup", TypeName = "nvarchar(64)")]
-        public string InstrumentGroup { get; set; } = string.Empty;
+        public string? InstrumentGroup { get; set; } = string.Empty;
 
         [Column("SerialNumber", TypeName = "nvarchar(50)")]
         public string SerialNumber { get; set; } = string.Empty;
