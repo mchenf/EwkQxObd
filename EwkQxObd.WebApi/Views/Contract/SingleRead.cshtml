@@ -11,6 +11,28 @@
     <title>@ViewData["Title"]</title>
 </head>
 <body>
-    @Model
+    <table>
+        <thead>
+            <tr>
+                <td>Contract Details</td>
+            </tr>
+        </thead>
+        <tr>
+            <td>Contract Number</td>
+            <td>@Model.ContractNumber</td>
+        </tr>
+        <tr>
+            <td>Contract Description</td>
+            <td>@Model.Description</td>
+        </tr>
+        <tr>
+            <td>Contract Starts</td>
+            <td>@Model.ValidFrom</td>
+        </tr>
+        <tr>
+            <td>Contract End</td>
+            <td>@Model.ValidTo</td>
+        </tr>
+    </table>
 </body>
 </html>
