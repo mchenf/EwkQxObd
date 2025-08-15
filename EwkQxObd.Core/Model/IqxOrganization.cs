@@ -25,7 +25,7 @@ namespace EwkQxObd.Core.Model
         [JsonPropertyName("city")]
         public string City { get; set; } = string.Empty;
         [JsonPropertyName("street")]
-        public string Street { get; set; } = string.Empty;
+        public string? Street { get; set; } = string.Empty;
 
     }
 }
