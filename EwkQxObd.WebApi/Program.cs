@@ -14,9 +14,8 @@ namespace EwkQxObd.WebApi
             // Add services to the container.
 
             builder.Services.AddControllers();
-
             builder.Services.AddControllersWithViews();
-
+            builder.Services.AddMvc();
 
             builder.Services.AddDbContext<EwkIqxObdContext>(options =>
             {
@@ -31,7 +30,7 @@ namespace EwkQxObd.WebApi
             // Configure the HTTP request pipeline.
 
             app.UseAuthorization();
-
+            app.UseStaticFiles();
             app.MapControllerRoute(
                 name: "default",
                 pattern: "{controller=Home}/{action=Index}/{id?}"

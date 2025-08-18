@@ -1,26 +1,28 @@
-﻿@using EwkQxObd.Core.Model.Views
-@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
-@*
-    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
-*@
-@{
-    ViewData["Title"] = "E-work IQX Onboarding";
-}
-@model IEnumerable<vwSysnetinstorg>
+﻿@model IEnumerable<vwSysnetinstorg>
 
-<!DOCTYPE html>
-<html>
-    <head>
-        <title>@ViewData["Title"]</title>
-    </head>
-<body>
-    <h1>E-Workspace FOSS IQX™ Onboarding & Other Tasks</h1>
-    <h2>IQX Onboarding Tasks</h2>
-    <div>
-        <ul>
+
+<h1>E-Workspace FOSS IQX™ Onboarding & Other Tasks</h1>
+<h2>IQX Onboarding Task</h2>
+<div>
+    <h3>Contract</h3>
+    <ul>
+        <li>
             <a asp-controller="Contract" asp-action="Index">View Contracts</a>
+        </li>
+        <li>
             <a asp-controller="Contract" asp-action="SingleRead">Search Contracts</a>
-        </ul>
-    </div>
-</body>
-</html>
+        </li>
+    </ul>
+</div>
+
+<div>
+    <h3>Contract Objects</h3>
+    <ul>
+        <li>
+            <a asp-controller="Contract" asp-action="Index">View Contracts</a>
+        </li>
+        <li>
+            <a asp-controller="Contract" asp-action="SingleRead">Search Contracts</a>
+        </li>
+    </ul>
+</div>
