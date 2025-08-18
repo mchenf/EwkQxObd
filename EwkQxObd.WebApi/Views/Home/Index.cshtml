@@ -1,4 +1,5 @@
 ﻿@using EwkQxObd.Core.Model.Views
+@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
 @*
     For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 *@
@@ -12,31 +13,14 @@
     <head>
         <title>@ViewData["Title"]</title>
     </head>
-    <body>
-        <table>
-            <thead>
-                <tr>
-                    <th>System</th>
-                    <th>Query Time</th>
-                    <th>SerialNumber</th>
-                    <th>Network Name</th>
-                    <th>Linked Account</th>
-                    <th>Account Number</th>
-                    <th>Name</th>
-                </tr>
-            </thead>
-        @foreach (var item in Model)
-        {
-            <tr>
-                <td>@item.System</td>
-                <td>@item.QueryTimeStamp</td>
-                <td>@item.SerialNumber</td>
-                <td>@item.NetworkName</td>
-                <td>@item.LinkedAccountGuid</td>
-                <td>@item.AccountNumber</td>
-                <td>@item.Name</td>
-            </tr>
-        }
-</table>
-    </body>
+<body>
+    <h1>E-Workspace FOSS IQX™ Onboarding & Other Tasks</h1>
+    <h2>IQX Onboarding Tasks</h2>
+    <div>
+        <ul>
+            <a asp-controller="Contract" asp-action="Index">View Contracts</a>
+            <a asp-controller="Contract" asp-action="SingleRead">Search Contracts</a>
+        </ul>
+    </div>
+</body>
 </html>
