@@ -20,4 +20,11 @@
     <ProjectReference Include="..\EwkQxObd.Core\EwkQxObd.Core.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Controllers\" />
+    <Folder Include="Data\" />
+    <Folder Include="Models\" />
+    <Folder Include="wwwroot\images\" />
+  </ItemGroup>
+
 </Project>
