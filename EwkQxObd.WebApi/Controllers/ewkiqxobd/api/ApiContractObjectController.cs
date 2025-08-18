@@ -8,12 +8,12 @@ namespace EwkQxObd.WebApi.Controllers.ewkiqxobd.api
 {
     [ApiController]
     [Route("ewkiqxobd/api/[controller]")]
-    public class ContractObjectController : Controller
+    public class ApiContractObjectController : Controller
     {
-        private readonly ILogger<ContractObjectController> _logger;
+        private readonly ILogger<ApiContractObjectController> _logger;
         private readonly EwkIqxObdContext _context;
 
-        public ContractObjectController(ILogger<ContractObjectController> logger, EwkIqxObdContext dataContext)
+        public ApiContractObjectController(ILogger<ApiContractObjectController> logger, EwkIqxObdContext dataContext)
         {
             _logger = logger;
             _context = dataContext;
