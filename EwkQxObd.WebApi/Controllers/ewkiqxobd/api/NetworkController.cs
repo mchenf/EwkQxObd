@@ -27,13 +27,23 @@ namespace EwkQxObd.WebApi.Controllers.ewkiqxobd.api
         }
 
         [HttpGet]
-        public async Task<IActionResult> GetDetails([FromQuery] string? sn = null)
+        public async Task<IActionResult> GetDetails([FromQuery] string? sn = null, [FromQuery] bool includeOrg = false)
         {
             if (string.IsNullOrEmpty(sn))
             {
                 var result = await _context.IqxInstrument
                 .Include(c => c.LinkedAccount)
                 .ToListAsync();
+                if (result != default)
+                {
+                    return Ok(new { ContentType = "application/json", Values = result });
+                }
+            }
+            else if (includeOrg)
+            {
+                var result = await _context.VwSysnetinstorg
+                    .Where(sni => sni.SerialNumber == sn)
+                    .FirstOrDefaultAsync();
                 if (result != default)
                 {
                     return Ok(new { ContentType = "application/json", Values = result });
@@ -51,7 +61,7 @@ namespace EwkQxObd.WebApi.Controllers.ewkiqxobd.api
             }
 
 
-                return NoContent();
+            return NoContent();
         }
 
         [HttpGet("latest")]
