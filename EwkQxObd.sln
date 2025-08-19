@@ -19,6 +19,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EwkQxObd.Api", "EwkQxObd.Ap
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EwkQxObd.WebApi", "EwkQxObd.WebApi\EwkQxObd.WebApi.csproj", "{E209AF8C-6E68-4B26-8710-FF8E1765D5CA}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EwkiQxobd.Web", "EwkiQxobd.Web\EwkiQxobd.Web.csproj", "{55AB0118-20BD-4B4E-98FA-1495FBD59A04}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|ARM64 = Debug|ARM64
@@ -125,6 +127,18 @@ Global
 		{E209AF8C-6E68-4B26-8710-FF8E1765D5CA}.Release|x64.Build.0 = Release|Any CPU
 		{E209AF8C-6E68-4B26-8710-FF8E1765D5CA}.Release|x86.ActiveCfg = Release|Any CPU
 		{E209AF8C-6E68-4B26-8710-FF8E1765D5CA}.Release|x86.Build.0 = Release|Any CPU
+		{55AB0118-20BD-4B4E-98FA-1495FBD59A04}.Debug|ARM64.ActiveCfg = Debug|Any CPU
+		{55AB0118-20BD-4B4E-98FA-1495FBD59A04}.Debug|ARM64.Build.0 = Debug|Any CPU
+		{55AB0118-20BD-4B4E-98FA-1495FBD59A04}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{55AB0118-20BD-4B4E-98FA-1495FBD59A04}.Debug|x64.Build.0 = Debug|Any CPU
+		{55AB0118-20BD-4B4E-98FA-1495FBD59A04}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{55AB0118-20BD-4B4E-98FA-1495FBD59A04}.Debug|x86.Build.0 = Debug|Any CPU
+		{55AB0118-20BD-4B4E-98FA-1495FBD59A04}.Release|ARM64.ActiveCfg = Release|Any CPU
+		{55AB0118-20BD-4B4E-98FA-1495FBD59A04}.Release|ARM64.Build.0 = Release|Any CPU
+		{55AB0118-20BD-4B4E-98FA-1495FBD59A04}.Release|x64.ActiveCfg = Release|Any CPU
+		{55AB0118-20BD-4B4E-98FA-1495FBD59A04}.Release|x64.Build.0 = Release|Any CPU
+		{55AB0118-20BD-4B4E-98FA-1495FBD59A04}.Release|x86.ActiveCfg = Release|Any CPU
+		{55AB0118-20BD-4B4E-98FA-1495FBD59A04}.Release|x86.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
