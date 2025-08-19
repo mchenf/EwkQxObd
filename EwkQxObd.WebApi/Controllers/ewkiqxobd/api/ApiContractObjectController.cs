@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 namespace EwkQxObd.WebApi.Controllers.ewkiqxobd.api
 {
     [ApiController]
-    [Route("ewkiqxobd/api/[controller]")]
+    [Route("ewkiqxobd/api/ContractObject")]
     public class ApiContractObjectController : Controller
     {
         private readonly ILogger<ApiContractObjectController> _logger;
@@ -41,6 +41,7 @@ namespace EwkQxObd.WebApi.Controllers.ewkiqxobd.api
 
         [HttpPost]
         [Consumes("application/json")]
+        [Produces("application/json")]
         public async Task<IActionResult> NewContractSingle(EqoContractObject contractObj)
         {
             var contractObjToSync = new EqoContractObject

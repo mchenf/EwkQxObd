@@ -1,0 +1,50 @@
+﻿@model EqoContractObject
+<form method="post" enctype="text/plain" asp-controller="ContractObject" asp-action="New">
+    <table>
+        <tr>
+            <td>Serial Number</td>
+            <td><input type="text" asp-for="SerialNumber"/></td>
+        </tr>
+        <tr>
+            <td>Instrument Type</td>
+            <td><input type="text" asp-for="InstrumentType" /></td>
+        </tr>
+        <tr>
+            <td>Contract Number</td>
+            <td><input type="text" asp-for="Contract.ContractNumber" /></td>
+        </tr>
+        <tr>
+            <td>Contract Description</td>
+            <td><input type="text" asp-for="Contract.Description" /></td>
+        </tr>
+        <tr>
+            <td>Contract Starts</td>
+            <td><input type="date" asp-for="Contract.ValidFrom" /></td>
+        </tr>
+        <tr>
+            <td>Contract Ends</td>
+            <td><input type="date" asp-for="Contract.ValidTo" /></td>
+        </tr>
+        <tr>
+            <td>Partner ID</td>
+            <td><input type="number" asp-for="ShipTo.Id" /></td>
+        </tr>
+        <tr>
+            <td>Partner Name</td>
+            <td><input type="text" asp-for="ShipTo.PartnerName" /></td>
+        </tr>
+        <tr>
+            <td>Region</td>
+            <td><input type="text" asp-for="ShipTo.Country" /></td>
+        </tr>
+        <tr>
+            <td>Country</td>
+            <td><input type="text" asp-for="ShipTo.Region" /></td>
+        </tr>
+        <tr>
+            <td></td>
+            <td><input type="submit" value="Submit" /></td>
+        </tr>
+    </table>
+
+</form>
