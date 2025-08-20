@@ -1,4 +1,4 @@
-﻿using EwkQxObd.WebApi.Data;
+﻿using EwkiQxobd.Web.Data;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
@@ -7,10 +7,10 @@ namespace EwkiQxobd.Web.Controllers
 {
     public class ContractObjectController : Controller
     {
-        private EwkIqxObdContext _context;
+        private ApplicationDbContext _context;
         private ILogger<ContractObjectController> _logger;
 
-        public ContractObjectController(EwkIqxObdContext ctx, ILogger<ContractObjectController> logger)
+        public ContractObjectController(ApplicationDbContext ctx, ILogger<ContractObjectController> logger)
         {
             _context = ctx;
             _logger = logger;

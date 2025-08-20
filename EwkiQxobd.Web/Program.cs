@@ -1,5 +1,4 @@
 using EwkiQxobd.Web.Data;
-using EwkQxObd.WebApi.Data;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using System.Diagnostics;
@@ -18,14 +17,6 @@ builder.Services.AddDatabaseDeveloperPageExceptionFilter();
 builder.Services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = true)
     .AddEntityFrameworkStores<ApplicationDbContext>();
 builder.Services.AddControllersWithViews();
-
-builder.Services.AddDbContext<EwkIqxObdContext>(options =>
-{
-    options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection"));
-#if true
-    Debug.WriteLine($"Connection String is: \r\n${builder.Configuration.GetConnectionString("DefaultConnection")}");
-#endif
-});
 
 var app = builder.Build();
 

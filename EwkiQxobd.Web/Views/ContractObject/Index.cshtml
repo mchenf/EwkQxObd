@@ -1,67 +1,30 @@
-﻿
-@model List<vwSysnetinstorg>
+﻿@model List<vwSysnetinstorg>
 
 
 <table>
     <tr>
-        <th>
-            System
-        </th>
-        <th>
-            Network
-        </th>
-        <th>
-            Group
-        </th>
-        <th>
-            Serial Number
-        </th>
-        <th>
-            Instrument Name
-        </th>
-        <th>
-            Linked Account
-        </th>
-        <th>
-            Account Name
-        </th>
-        <th>
-            City
-        </th>
-        <th>
-            Street
-        </th>
-        <th>
-            Options
-        </th>
+        <th>System</th>
+        <th>Network</th>
+        <th>Group</th>
+        <th>Serial Number</th>
+        <th>Instrument Name</th>
+        <th>Linked Account</th>
+        <th>Account Name</th>
+        <th>City</th>
+        <th>Street</th>
+        <th>Options</th>
     </tr>
     @foreach (vwSysnetinstorg m in Model)
     {
         <tr>
             <td>@m.System</td>
-        </tr>
-        <tr>
             <td>@m.NetworkName</td>
-        </tr>
-        <tr>
             <td>@m.InstrumentGroup</td>
-        </tr>
-        <tr>
             <td>@m.SerialNumber</td>
-        </tr>
-        <tr>
             <td>@m.InstrumentName</td>
-        </tr>
-        <tr>
             <td>@m.AccountNumber</td>
-        </tr>
-        <tr>
             <td>@m.Name</td>
-        </tr>
-        <tr>
             <td>@m.City</td>
-        </tr>
-        <tr>
             <td>@m.Street</td>
         </tr>
     }
