@@ -30,13 +30,13 @@ namespace EwkQxObd.WebApi
             // Configure the HTTP request pipeline.
 
             app.UseAuthorization();
-            app.UseStaticFiles();
             app.MapControllerRoute(
                 name: "default",
                 pattern: "{controller=Home}/{action=Index}/{id?}"
 
             );
 
+            app.UseStaticFiles();
             app.MapControllers();
 
             app.Run();
