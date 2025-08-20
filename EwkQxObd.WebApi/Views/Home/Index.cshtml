@@ -1,5 +1,7 @@
 ﻿@model IEnumerable<vwSysnetinstorg>
-
+@{
+    ViewData["Title"] = "Home";
+}
 
 <h1>E-Workspace FOSS IQX™ Onboarding & Other Tasks</h1>
 <h2>IQX Onboarding Task</h2>
@@ -19,7 +21,7 @@
     <h3>Contract Objects</h3>
     <ul>
         <li>
-            <a asp-controller="Contract" asp-action="Index">View Contracts</a>
+            <a asp-controller="ContractObject" asp-action="Index">View Contract Objects</a>
         </li>
         <li>
             <a asp-controller="ContractObject" asp-action="New">New Contract Object</a>

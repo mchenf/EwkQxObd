@@ -5,7 +5,7 @@
       "commandName": "Project",
       "dotnetRunMessages": true,
       "launchBrowser": false,
-      "applicationUrl": "http://sci-jwrzdk3.foss.net:5029/",
+      "applicationUrl": "http://localhost:5029/",
       "environmentVariables": {
         "ASPNETCORE_ENVIRONMENT": "Development"
       }
