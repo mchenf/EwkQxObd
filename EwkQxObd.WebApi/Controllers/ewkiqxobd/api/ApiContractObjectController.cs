@@ -102,8 +102,6 @@ namespace EwkQxObd.WebApi.Controllers.ewkiqxobd.api
             return Ok(new { Consumes = "application/json", Values = contractObjToSync });
 
 
-
-
         }
 
     }

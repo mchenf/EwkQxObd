@@ -21,9 +21,16 @@ namespace EwkQxObd.WebApi.Controllers
             return View(await _context.VwSysnetinstorg.ToListAsync());
         }
 
+
+        [Route(nameof(New))]
+        [HttpGet]
+        public IActionResult New()
+        {
+            return View();
+        }
+
+        [Route(nameof(New))]
         [HttpPost]
-        [Consumes("application/json")]
-        [Produces("application/json")]
         public async Task<IActionResult> New(EqoContractObject contractObj)
         {
             var contractObjToSync = new EqoContractObject
@@ -81,7 +88,7 @@ namespace EwkQxObd.WebApi.Controllers
 
             await _context.SaveChangesAsync();
 
-            return Ok(new { Consumes = "application/json", Values = contractObjToSync });
+            return RedirectToAction(nameof(Index));
         }
     }
 }
