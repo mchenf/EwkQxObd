@@ -5,6 +5,7 @@ using Microsoft.EntityFrameworkCore;
 
 namespace EwkQxObd.WebApi.Controllers
 {
+    [Route("[controller]/[action]")]
     public class ContractObjectController : Controller
     {
         private EwkIqxObdContext _context;
@@ -22,15 +23,14 @@ namespace EwkQxObd.WebApi.Controllers
         }
 
 
-        [Route(nameof(New))]
         [HttpGet]
         public IActionResult New()
         {
             return View();
         }
 
-        [Route(nameof(New))]
         [HttpPost]
+        [ValidateAntiForgeryToken]
         public async Task<IActionResult> New(EqoContractObject contractObj)
         {
             var contractObjToSync = new EqoContractObject
