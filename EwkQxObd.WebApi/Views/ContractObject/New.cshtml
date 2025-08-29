@@ -1,50 +1,104 @@
 ﻿@model EqoContractObject
-<form method="post" asp-controller="ContractObject" asp-action="New">
-    <table>
-        <tr>
-            <td>Serial Number</td>
-            <td><input type="text" asp-for="SerialNumber"/></td>
-        </tr>
-        <tr>
-            <td>Instrument Type</td>
-            <td><input type="text" asp-for="InstrumentType" /></td>
-        </tr>
-        <tr>
-            <td>Contract Number</td>
-            <td><input type="text" asp-for="Contract.ContractNumber" /></td>
-        </tr>
-        <tr>
-            <td>Contract Description</td>
-            <td><input type="text" asp-for="Contract.Description" /></td>
-        </tr>
-        <tr>
-            <td>Contract Starts</td>
-            <td><input type="date" asp-for="Contract.ValidFrom" /></td>
-        </tr>
-        <tr>
-            <td>Contract Ends</td>
-            <td><input type="date" asp-for="Contract.ValidTo" /></td>
-        </tr>
-        <tr>
-            <td>Partner ID</td>
-            <td><input type="number" asp-for="ShipTo.PartnerId" /></td>
-        </tr>
-        <tr>
-            <td>Partner Name</td>
-            <td><input type="text" asp-for="ShipTo.PartnerName" /></td>
-        </tr>
-        <tr>
-            <td>Region</td>
-            <td><input type="text" asp-for="ShipTo.Country" /></td>
-        </tr>
-        <tr>
-            <td>Country</td>
-            <td><input type="text" asp-for="ShipTo.Region" /></td>
-        </tr>
-        <tr>
-            <td></td>
-            <td><input type="submit" value="Submit" /></td>
-        </tr>
-    </table>
+@{
+    ViewData["Title"] = "New Contract Object";
+}
 
+<form method="post" asp-controller="ContractObject" asp-action="New">
+
+    <div class="row mb-3">
+        <div class="col-sm-1"></div>
+        <h3 class="col-sm-8">Contract</h3>
+    </div>
+
+    <div class="row mb-3">
+        <label class="col-sm-2 col-form-label">Contract Number</label>
+        <div class="col-sm-3">
+            <input class="form-control" type="text" asp-for="Contract.ContractNumber" placeholder="i.e. 5432123" />
+        </div>
+    </div>
+
+
+    <div class="row mb-3">
+        <label class="col-sm-2 col-form-label">Contract Description</label>
+        <div class="col-sm-10">
+            <input class="form-control" type="text" asp-for="Contract.Description" placeholder="i.e. something to describe contract" />
+        </div>
+    </div>
+
+    <div class="row mb-3">
+        <label class="col-sm-2 col-form-label">Contract Starts</label>
+        <div class="col-sm-10">
+            <input class="form-control" type="date" asp-for="Contract.ValidFrom" placeholder="08/29/2025" />
+        </div>
+    </div>
+
+    <div class="row mb-3">
+        <label class="col-sm-2 col-form-label">Contract Ends</label>
+        <div class="col-sm-10">
+            <input class="form-control" type="date" asp-for="Contract.ValidTo" placeholder="09/29/2026" />
+        </div>
+    </div>
+
+    <div class="row mb-3 mt-5">
+        <div class="col-sm-1"></div>
+        <h3 class="col-sm-8">Instrument</h3>
+    </div>
+
+    <div class="row mb-3">
+        <label class="col-sm-2 col-form-label">Serial Number</label>
+        <div class="col-sm-3">
+            <input class="form-control" type="text" asp-for="SerialNumber" placeholder="i.e. 987654321" />
+        </div>
+        <button type="button" class="btn btn-outline-info col-sm-1">Verify</button>
+    </div>
+
+
+    <div class="row mb-3">
+        <label class="col-sm-2 col-form-label">Instrument Type</label>
+        <div class="col-sm-10">
+            <input class="form-control" type="text" asp-for="InstrumentType" placeholder="i.e. Base Unit NIRS DS DS2500" />
+        </div>
+    </div>
+
+    <div class="row mb-3 mt-5">
+        <div class="col-sm-1"></div>
+        <h3 class="col-sm-8">Ship-To</h3>
+    </div>
+
+    <div class="row mb-3">
+        <label class="col-sm-2 col-form-label">Partner ID</label>
+        <div class="col-sm-10">
+            <input class="form-control" type="text" asp-for="ShipTo.PartnerId" placeholder="i.e. 123456" />
+        </div>
+    </div>
+
+    <div class="row mb-3">
+        <label class="col-sm-2 col-form-label">Partner Name</label>
+        <div class="col-sm-10">
+            <input class="form-control" type="text" asp-for="ShipTo.PartnerName" placeholder="i.e. Foss Analaytical A/S" />
+        </div>
+    </div>
+
+    <div class="row mb-3">
+        <label class="col-sm-2 col-form-label">Region</label>
+        <div class="col-sm-10">
+            <input class="form-control" type="text" asp-for="ShipTo.Region" placeholder="i.e. Asia Pacific" />
+        </div>
+    </div>
+    <div class="row mb-3">
+        <label class="col-sm-2 col-form-label">Country</label>
+        <div class="col-sm-10">
+            <input class="form-control" type="text" asp-for="ShipTo.Country" placeholder="i.e. Japan" />
+        </div>
+    </div>
+
+
+    <div class="row mt-5 mb-lg-5">
+        <div class="col-sm-1"></div>
+        <button type="submit" class="btn btn-primary col-sm-2">Submit</button>
+        <div class="col-sm-1"></div>
+        <button type="reset" class="btn btn-warning col-sm-1">Reset</button>
+
+        <div class="col-sm-2"></div>
+    </div>
 </form>
