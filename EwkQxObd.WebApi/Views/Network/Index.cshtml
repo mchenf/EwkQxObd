@@ -1,0 +1,11 @@
+﻿@{
+    ViewData["Title"] = "Network";
+}
+
+@model List<vwSysnetinstorg>
+
+
+@foreach(vwSysnetinstorg inst in Model)
+{
+    <div>@inst.InstrumentName</div>
+}

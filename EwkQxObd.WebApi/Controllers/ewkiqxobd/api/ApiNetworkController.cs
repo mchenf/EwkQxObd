@@ -10,12 +10,12 @@ namespace EwkQxObd.WebApi.Controllers.ewkiqxobd.api
 {
     [ApiController]
     [Route("ewkiqxobd/api/[controller]")]
-    public class NetworkController : Controller
+    public class ApiNetworkController : Controller
     {
-        private readonly ILogger<NetworkController> _logger;
+        private readonly ILogger<ApiNetworkController> _logger;
         private readonly EwkIqxObdContext _context;
 
-        public NetworkController(ILogger<NetworkController> logger, EwkIqxObdContext dataContext)
+        public ApiNetworkController(ILogger<ApiNetworkController> logger, EwkIqxObdContext dataContext)
         {
             _logger = logger;
             _context = dataContext;
