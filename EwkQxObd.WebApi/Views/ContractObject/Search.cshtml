@@ -1,0 +1,75 @@
+﻿
+@{
+    ViewData["Title"] = "Contract Object Search";
+    int itemCount = 0;
+}
+
+
+@model ContractObjSearchPageModel
+
+<h1>Search Contract Objects</h1>
+
+
+<form method="post" asp-controller="ContractObject" asp-action="SearchPost">
+
+    <div class="row mb-3">
+        <label class="col-sm-3 col-form-label">Contract Number</label>
+        <div class="col-sm-6">
+            <input class="form-control" type="text" asp-for="FilterApplied.ContractNumber" placeholder="i.e. 5432123" />
+        </div>
+    </div>
+
+    <div class="row mb-3">
+        <label class="col-sm-3 col-form-label">Serial Number</label>
+        <div class="col-sm-6">
+            <input class="form-control" type="text" asp-for="FilterApplied.SerialNumber" placeholder="i.e. 987654321" />
+        </div>
+    </div>
+
+    <div class="row mb-3">
+        <label class="col-sm-3 col-form-label">Partner Account Number</label>
+        <div class="col-sm-6">
+            <input class="form-control" type="text" asp-for="FilterApplied.PartnerAccountNumber" placeholder="i.e. 123456" />
+        </div>
+    </div>
+
+    <div class="row mt-5 mb-lg-5">
+        <div class="col-sm-1"></div>
+        <button type="submit" class="btn btn-primary col-sm-2">Submit</button>
+        <div class="col-sm-1"></div>
+        <button type="reset" class="btn btn-warning col-sm-1">Reset</button>
+
+        <div class="col-sm-2"></div>
+    </div>
+</form>
+
+@if (Model != null && Model.Results != null)
+{
+    <table class="table">
+        <thead>
+            <tr>
+                <th scope="col">#</th>
+                <th scope="col">Contract Number</th>
+                <th scope="col">Contract Description</th>
+                <th scope="col">Serial Number</th>
+                <th scope="col">Instrument Type</th>
+                <th scope="col">ShipTo</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (EqoContractObject obj in Model.Results)
+            {
+                { itemCount++; }
+                <tr>
+                    <td scope="row">@itemCount</td>
+                    <td>@obj.Contract!.ContractNumber</td>
+                    <td>@obj.Contract.Description</td>
+                    <td>@obj.SerialNumber</td>
+                    <td>@obj.InstrumentType</td>
+                    <td>@obj.ShipTo!.PartnerId | @obj.ShipTo.PartnerName</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}
+

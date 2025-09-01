@@ -1,5 +1,6 @@
 ﻿using EwkQxObd.Core.Model;
 using EwkQxObd.WebApi.Data;
+using EwkQxObd.WebApi.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 
@@ -22,6 +23,32 @@ namespace EwkQxObd.WebApi.Controllers
             return View(await _context.VwSysnetinstorg.ToListAsync());
         }
 
+        [HttpGet()]
+        public IActionResult Search([FromRoute]ContractObjSearchPageModel model)
+        {
+            return View(model);
+        }
+        
+
+        [HttpPost()]
+        public async Task<IActionResult> SearchPost(ContractObjSearchPageModel model)
+        {
+            if (model.FilterApplied!.ContractNumber != long.MinValue)
+            {
+                var result = await _context.EqoContractObject
+                    .Include(co => co.Contract)
+                    .Include(co => co.ShipTo)
+                    .Where(co => co.Contract!.ContractNumber == model.FilterApplied!.ContractNumber)
+                    .ToListAsync();
+
+
+                model.Results = result;
+
+                return View(nameof(Search), model);
+            }
+
+            return NoContent();
+        }
 
         [HttpGet]
         public IActionResult New()
