@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 namespace EwkQxObd.WebApi.Controllers.ewkiqxobd.api
 {
     [ApiController]
-    [Route("ewkiqxobd/api/[controller]")]
+    [Route("ewkiqxobd/api/network")]
     public class ApiNetworkController : Controller
     {
         private readonly ILogger<ApiNetworkController> _logger;
