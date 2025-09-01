@@ -29,6 +29,12 @@ namespace EwkQxObd.WebApi.Data
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
+            foreach (var rel in modelBuilder.Model.GetEntityTypes().SelectMany(e => e.GetForeignKeys()))
+            {
+                rel.DeleteBehavior = DeleteBehavior.ClientSetNull;
+            }
+
+
             modelBuilder.Entity<vwSysnetinst>(ent => {
                 ent.ToView("vw_LatestSysnetinst");
                 ent.HasNoKey();

@@ -21,5 +21,13 @@ namespace EwkQxObd.Core.Model
         public string Description { get; set; } = string.Empty;
         public DateTime ValidFrom { get; set; }
         public DateTime ValidTo { get; set; }
+
+        public EqoContactInfo? CustomerContact { get; set; }
+        [Column("CustomerContact")]
+        public long? CustomerContactId { get; set; }
+
+        public EqoContactInfo? EmployeeResponsible { get; set; }
+        [Column("EmployeeResponsible")]
+        public long? EmployeeResponsibleId { get; set; }
     }
 }
