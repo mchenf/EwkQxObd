@@ -33,21 +33,43 @@ namespace EwkQxObd.WebApi.Controllers
         [HttpPost()]
         public async Task<IActionResult> SearchPost(ContractObjSearchPageModel model)
         {
-            if (model.FilterApplied!.ContractNumber != long.MinValue)
+
+            if (model.FilterApplied == null || 
+                model.FilterApplied.LoadState == 
+                ContractObjSearchTermLoadState.None )
             {
-                var result = await _context.EqoContractObject
-                    .Include(co => co.Contract)
-                    .Include(co => co.ShipTo)
-                    .Where(co => co.Contract!.ContractNumber == model.FilterApplied!.ContractNumber)
-                    .ToListAsync();
-
-
-                model.Results = result;
-
-                return View(nameof(Search), model);
+                return RedirectToAction(nameof(Search));
             }
 
-            return NoContent();
+            IQueryable<EqoContractObject> iqy = _context.EqoContractObject
+                    .Include(co => co.Contract)
+                    .Include(co => co.ShipTo);
+
+            var filter = model.FilterApplied;
+
+
+            if (ContractObjSearchTermLoadState.ContractNumber == (filter.LoadState & ContractObjSearchTermLoadState.ContractNumber))
+            {
+                iqy = iqy.Where(co => co.Contract!.ContractNumber == filter.ContractNumber);
+            }
+
+            if (ContractObjSearchTermLoadState.PartnerAccountNumber == (filter.LoadState & ContractObjSearchTermLoadState.PartnerAccountNumber))
+            {
+                iqy = iqy.Where(co => co.ShipTo!.PartnerId == filter.PartnerAccountNumber);
+            }
+
+            if (ContractObjSearchTermLoadState.SerialNumber == (filter.LoadState & ContractObjSearchTermLoadState.SerialNumber))
+            {
+                iqy = iqy.Where(co => co.SerialNumber == filter.SerialNumber);
+            }
+
+            var result = await iqy
+                .ToListAsync();
+
+
+            model.Results = result;
+
+            return View(nameof(Search), model);
         }
 
         [HttpGet]
