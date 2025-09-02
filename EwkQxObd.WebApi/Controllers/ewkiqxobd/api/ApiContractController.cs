@@ -1,11 +1,12 @@
 ﻿using EwkQxObd.Core.Model;
 using EwkQxObd.WebApi.Data;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 
 namespace EwkQxObd.WebApi.Controllers.ewkiqxobd.api
 {
     [ApiController]
-    [Route("ewkiqxobd/api/[controller]")]
+    [Route("ewkiqxobd/api/contract")]
     public class ApiContractController : Controller
     {
         private readonly ILogger<ApiContractController> _logger;
@@ -20,6 +21,17 @@ namespace EwkQxObd.WebApi.Controllers.ewkiqxobd.api
         public IActionResult Index()
         {
             return View();
+        }
+
+        [HttpGet("{contractNumber}")]
+        public async Task<EqoContract?> Get([FromRoute]long contractNumber)
+        {
+            var Result = await _context.EqoContract
+                .Where(
+                c => c.ContractNumber == contractNumber
+            ).FirstOrDefaultAsync();
+
+            return Result;
         }
 
         [HttpGet]
