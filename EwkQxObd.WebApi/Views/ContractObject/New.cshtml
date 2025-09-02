@@ -13,7 +13,7 @@
     <div class="row mb-3">
         <label class="col-sm-2 col-form-label">Contract Number</label>
         <div class="col-sm-3">
-            <input class="form-control" type="text" asp-for="Contract.ContractNumber" placeholder="i.e. 5432123" />
+            <input id="inpContract" class="form-control" type="text" asp-for="Contract.ContractNumber" placeholder="i.e. 5432123" />
         </div>
     </div>
 
@@ -21,21 +21,21 @@
     <div class="row mb-3">
         <label class="col-sm-2 col-form-label">Contract Description</label>
         <div class="col-sm-10">
-            <input class="form-control" type="text" asp-for="Contract.Description" placeholder="i.e. something to describe contract" />
+            <input id="inpCtrDescription"class="form-control" type="text" asp-for="Contract.Description" placeholder="i.e. something to describe contract" />
         </div>
     </div>
 
     <div class="row mb-3">
         <label class="col-sm-2 col-form-label">Contract Starts</label>
         <div class="col-sm-10">
-            <input class="form-control" type="date" asp-for="Contract.ValidFrom" placeholder="08/29/2025" />
+            <input id="inpCtrValidFrom" class="form-control" type="date" asp-for="Contract.ValidFrom" placeholder="08/29/2025" />
         </div>
     </div>
 
     <div class="row mb-3">
         <label class="col-sm-2 col-form-label">Contract Ends</label>
         <div class="col-sm-10">
-            <input class="form-control" type="date" asp-for="Contract.ValidTo" placeholder="09/29/2026" />
+            <input id="inpCtrValidTo" class="form-control" type="date" asp-for="Contract.ValidTo" placeholder="09/29/2026" />
         </div>
     </div>
 
@@ -102,3 +102,59 @@
         <div class="col-sm-2"></div>
     </div>
 </form>
+
+
+@section Scripts{
+    <script>
+        let debounceTimer;
+        $('#inpContract').on('input', function() {
+
+            console.log('010 input event launched.');
+            clearTimeout(debounceTimer);
+            console.log('011 what is this?', this);
+            const contractNum = $(this).val().trim();
+
+            console.log('020 contractNum', contractNum);
+            if(contractNum.length === 0) {
+                resetForm();
+                return;
+            }
+            console.log('030 Starting timer');
+            debounceTimer = setTimeout(function() {
+                checkContractNumber(contractNum);
+            }, 500);
+        });
+
+        function formatDate(date)
+        {
+            if(!date) return;
+            var d = new Date(date);
+            const yyyy = d.getFullYear().toString().padStart(4, "0");
+            const MM = (d.getMonth() + 1).toString().padStart(2, "0");
+            const dd = d.getDate().toString().padStart(2, "0");
+            return `${yyyy}-${MM}-${dd}`
+
+        }
+
+        function checkContractNumber(contractNumber)
+        {
+
+            if(!contractNumber) return;
+            fetch('/ewkiqxobd/api/contract/' + encodeURIComponent(contractNumber))
+                .then(response => response.json())
+                .then(data => {
+                    console.log('040 getting data.', data);
+                    if(data){
+                        console.log('050 data exists.');
+                        $('#inpCtrDescription').val(data.description);
+                        $('#inpCtrValidFrom').val(formatDate(data.validFrom));
+                        $('#inpCtrValidTo').val(formatDate(data.validTo));
+                    }
+                })
+                .catch(e => {
+                    console.error('Error:', e);
+                })
+        }
+
+    </script>
+}
