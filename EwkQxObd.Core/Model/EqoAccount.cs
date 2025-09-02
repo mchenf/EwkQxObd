@@ -22,5 +22,7 @@ namespace EwkQxObd.Core.Model
         public string Country { get; set; } = string.Empty;
         public string Region { get; set; } = string.Empty;
 
+        public List<EqoContactInfo>? OrgnisationAdmins { get; set; }
+
     }
 }
