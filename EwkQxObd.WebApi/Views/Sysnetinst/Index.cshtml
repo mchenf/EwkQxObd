@@ -17,7 +17,41 @@
             </h2>
             <div id="@system.SystemName" class="accordion-collapse collapse" data-bs-parent="#sysnetinst">
                 <div class="accordion-body">
-                    This is where the networks should go.
+                    
+                    @foreach (var network in system.Networks!)
+                    {
+                        <div id="nestedNetworks-@system.SystemName-@network.NetworkId" class="accordion">
+                            <div class="accordion-item">
+                                <h3 class="accordion-header">
+                                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#ntwk-@system.SystemName-@network.NetworkId">
+                                        @network.NetworkName
+                                    </button>
+                                </h3>
+
+                                <div id="ntwk-@system.SystemName-@network.NetworkId" class="accordion-collapse collapse" data-bs-parent="#nestedNetworks-@system.SystemName-@network.NetworkId">
+                                    <div class="accordion-body">
+                                        
+                                            @foreach (var instrument in network.Instruments!)
+                                            {
+                                                <div class="row">
+                                                    <div class="col-1">
+                                                    </div>
+                                                    <div class="col-3">
+                                                        @instrument.InstrumentGroup
+                                                    </div>
+                                                    <div class="col-2">
+                                                        @instrument.SerialNumber
+                                                    </div>
+                                                    <div class="col-4">
+                                                        @instrument.Name
+                                                    </div>
+                                                </div>
+                                            }
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    }
                 </div>
             </div>
         </div>

@@ -15,7 +15,7 @@ namespace EwkQxObd.Core.Model
         [Key]
         public long id { get; set; }
 
-        [Column("System", TypeName = "char(16)")]
+        [Column("System", TypeName = "nvarchar(16)")]
         public string System { get; set; } = string.Empty;
 
         [Column("QueryTimeStamp", TypeName = "datetime2")]

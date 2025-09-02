@@ -45,16 +45,24 @@ namespace EwkQxObd.WebApi.Controllers
                 var qryNetwork = (
                     from inst in qryInstruments
                     select KeyValuePair.Create(inst.NetworkId, inst.NetworkName)
-                ).ToList();
+                ).Distinct().ToList();
 
                 foreach (var netw in qryNetwork)
                 {
+
+                    string v = "Unassigned";
+                    if (netw.Key is not null)
+                    {
+                        v = netw.Value;
+                    }
                     systemToAdd.Networks.Add(
                         new GvsNetwork
                         {
                             NetworkId = netw.Key,
-                            NetworkName = netw.Value,
-                            Instruments = qryInstruments
+                            NetworkName = v,
+                            Instruments = [.. (from inst in qryInstruments
+                                           where inst.NetworkId == netw.Key
+                                           select inst)]
                         }
                     );
                 }
