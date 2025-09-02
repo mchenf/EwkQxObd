@@ -13,7 +13,7 @@
     <div class="row mb-3">
         <label class="col-sm-2 col-form-label">Contract Number</label>
         <div class="col-sm-3">
-            <input id="inpContract" class="form-control" type="text" asp-for="Contract.ContractNumber" placeholder="i.e. 5432123" />
+            <input id="inpContract" class="form-control" type="text" asp-for="Contract.ContractNumber" placeholder="Enter Contract Number, i.e. 5432123" />
         </div>
     </div>
 
@@ -21,21 +21,21 @@
     <div class="row mb-3">
         <label class="col-sm-2 col-form-label">Contract Description</label>
         <div class="col-sm-10">
-            <input id="inpCtrDescription"class="form-control" type="text" asp-for="Contract.Description" placeholder="i.e. something to describe contract" />
+            <input id="inpCtrDescription"class="form-control" type="text" asp-for="Contract.Description" placeholder="Say something to describe contract" />
         </div>
     </div>
 
     <div class="row mb-3">
         <label class="col-sm-2 col-form-label">Contract Starts</label>
         <div class="col-sm-10">
-            <input id="inpCtrValidFrom" class="form-control" type="date" asp-for="Contract.ValidFrom" placeholder="08/29/2025" />
+            <input id="inpCtrValidFrom" class="form-control" type="date" asp-for="Contract.ValidFrom" placeholder="Enter contract starts, i.e. 08/29/2025" />
         </div>
     </div>
 
     <div class="row mb-3">
         <label class="col-sm-2 col-form-label">Contract Ends</label>
         <div class="col-sm-10">
-            <input id="inpCtrValidTo" class="form-control" type="date" asp-for="Contract.ValidTo" placeholder="09/29/2026" />
+            <input id="inpCtrValidTo" class="form-control" type="date" asp-for="Contract.ValidTo" placeholder="Enter contract end, i.e. 09/29/2026" />
         </div>
     </div>
 
@@ -47,7 +47,7 @@
     <div class="row mb-3">
         <label class="col-sm-2 col-form-label">Serial Number</label>
         <div class="col-sm-3">
-            <input class="form-control" type="text" asp-for="SerialNumber" placeholder="i.e. 987654321" />
+            <input id="inpSerialNo" class="form-control" type="text" asp-for="SerialNumber" placeholder="Enter instrument S/N, i.e. 987654321" />
         </div>
         <button type="button" class="btn btn-outline-info col-sm-1">Verify</button>
     </div>
@@ -56,7 +56,7 @@
     <div class="row mb-3">
         <label class="col-sm-2 col-form-label">Instrument Type</label>
         <div class="col-sm-10">
-            <input class="form-control" type="text" asp-for="InstrumentType" placeholder="i.e. Base Unit NIRS DS DS2500" />
+            <input id="inpInstType" class="form-control" type="text" asp-for="InstrumentType" placeholder="Enter instrument Type, i.e. Base Unit NIRS DS DS2500" />
         </div>
     </div>
 
@@ -68,27 +68,27 @@
     <div class="row mb-3">
         <label class="col-sm-2 col-form-label">Partner ID</label>
         <div class="col-sm-10">
-            <input class="form-control" type="text" asp-for="ShipTo.PartnerId" placeholder="i.e. 123456" />
+            <input id="inpShpt" class="form-control" type="text" asp-for="ShipTo.PartnerId" placeholder="Enter partner account, i.e. 123456" />
         </div>
     </div>
 
     <div class="row mb-3">
         <label class="col-sm-2 col-form-label">Partner Name</label>
         <div class="col-sm-10">
-            <input class="form-control" type="text" asp-for="ShipTo.PartnerName" placeholder="i.e. Foss Analaytical A/S" />
+            <input id="inpShptPartnerName" class="form-control" type="text" asp-for="ShipTo.PartnerName" placeholder="Enter partner name, i.e. Foss Analaytical A/S" />
         </div>
     </div>
 
     <div class="row mb-3">
         <label class="col-sm-2 col-form-label">Region</label>
         <div class="col-sm-10">
-            <input class="form-control" type="text" asp-for="ShipTo.Region" placeholder="i.e. Asia Pacific" />
+            <input id="inpShptRegion" class="form-control" type="text" asp-for="ShipTo.Region" placeholder="Enter region, i.e. Asia Pacific" />
         </div>
     </div>
     <div class="row mb-3">
         <label class="col-sm-2 col-form-label">Country</label>
         <div class="col-sm-10">
-            <input class="form-control" type="text" asp-for="ShipTo.Country" placeholder="i.e. Japan" />
+            <input id="inpShptCountry" class="form-control" type="text" asp-for="ShipTo.Country" placeholder="Enter country, i.e. Japan" />
         </div>
     </div>
 
@@ -106,24 +106,32 @@
 
 @section Scripts{
     <script>
-        let debounceTimer;
-        $('#inpContract').on('input', function() {
 
-            console.log('010 input event launched.');
-            clearTimeout(debounceTimer);
-            console.log('011 what is this?', this);
-            const contractNum = $(this).val().trim();
+        setInputEvent($('#inpContract'), checkContractNumber);
+        setInputEvent($('#inpShpt'), checkShiptoAccount);
 
-            console.log('020 contractNum', contractNum);
-            if(contractNum.length === 0) {
-                resetForm();
-                return;
-            }
-            console.log('030 Starting timer');
-            debounceTimer = setTimeout(function() {
-                checkContractNumber(contractNum);
-            }, 500);
-        });
+        function setInputEvent(inputElement, checkObj)
+        {
+            let debounceTimer;
+            inputElement.on('input', function() {
+
+                clearTimeout(debounceTimer);
+
+                const identifier = $(this).val().trim();
+
+
+                if(identifier.length === 0) {
+                    resetForm();
+                    return;
+                }
+
+                debounceTimer = setTimeout(function() {
+                    checkObj(identifier)
+                }, 500);
+            });
+        }
+
+        
 
         function formatDate(date)
         {
@@ -136,24 +144,46 @@
 
         }
 
-        function checkContractNumber(contractNumber)
+        function checkObj(identifier, fetchUrl, fillAction)
         {
-
-            if(!contractNumber) return;
-            fetch('/ewkiqxobd/api/contract/' + encodeURIComponent(contractNumber))
+            if(!identifier) return;
+            fetch(fetchUrl)
                 .then(response => response.json())
                 .then(data => {
                     console.log('040 getting data.', data);
                     if(data){
                         console.log('050 data exists.');
-                        $('#inpCtrDescription').val(data.description);
-                        $('#inpCtrValidFrom').val(formatDate(data.validFrom));
-                        $('#inpCtrValidTo').val(formatDate(data.validTo));
+                        fillAction(data);
                     }
                 })
                 .catch(e => {
                     console.error('Error:', e);
                 })
+        }
+
+        function checkContractNumber(contractNumber)
+        {
+
+            checkObj(contractNumber, 
+                '/ewkiqxobd/api/contract/' + encodeURIComponent(contractNumber),
+                (data) => {
+                    $('#inpCtrDescription').val(data.description);
+                    $('#inpCtrValidFrom').val(formatDate(data.validFrom));
+                    $('#inpCtrValidTo').val(formatDate(data.validTo));
+                }
+            );
+        }
+
+        function checkShiptoAccount(shiptoNo)
+        {
+            checkObj(shiptoNo,
+                '/ewkiqxobd/api/account/' + encodeURIComponent(shiptoNo),
+                (data) => {
+                    $('#inpShptPartnerName').val(data.partnerName);
+                    $('#inpShptRegion').val(data.region);
+                    $('#inpShptCountry').val(data.country);
+                }
+            );
         }
 
     </script>

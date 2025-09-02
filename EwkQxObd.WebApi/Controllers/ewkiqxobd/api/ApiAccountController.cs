@@ -1,17 +1,18 @@
 ﻿using EwkQxObd.Core.Model;
 using EwkQxObd.WebApi.Data;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 
 namespace EwkQxObd.WebApi.Controllers.ewkiqxobd.api
 {
     [ApiController]
-    [Route("ewkiqxobd/api/[controller]")]
-    public class AccountController : Controller
+    [Route("ewkiqxobd/api/account")]
+    public class ApiAccountController : Controller
     {
-        private readonly ILogger<AccountController> _logger;
+        private readonly ILogger<ApiAccountController> _logger;
         private readonly EwkIqxObdContext _context;
 
-        public AccountController(ILogger<AccountController> logger, EwkIqxObdContext dataContext)
+        public ApiAccountController(ILogger<ApiAccountController> logger, EwkIqxObdContext dataContext)
         {
             _logger = logger;
             _context = dataContext;
@@ -21,6 +22,16 @@ namespace EwkQxObd.WebApi.Controllers.ewkiqxobd.api
         {
             return View();
         }
+
+        [HttpGet("{partnerId}")]
+        public async Task<EqoAccount?> Get([FromRoute] long partnerId)
+        {
+            var Result = await _context.EqoAccount
+                .Where(a => a.PartnerId == partnerId).FirstOrDefaultAsync();
+
+            return Result;
+        }
+
 
         [HttpGet]
         public IEnumerable<EqoAccount> Details()
