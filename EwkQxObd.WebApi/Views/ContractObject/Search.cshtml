@@ -64,11 +64,7 @@
                 { itemCount++; }
                 <tr>
                     <td scope="row">@itemCount</td>
-                    <td>@obj.Contract!.ContractNumber</td>
-                    <td>@obj.Contract.Description</td>
-                    <td>@obj.SerialNumber</td>
-                    <td>@obj.InstrumentType</td>
-                    <td>@obj.ShipTo!.PartnerId | @obj.ShipTo.PartnerName</td>
+                    @await Html.PartialAsync("ContractObjSingleLinePartial", obj);
                 </tr>
             }
         </tbody>
