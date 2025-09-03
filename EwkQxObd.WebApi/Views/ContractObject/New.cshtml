@@ -16,14 +16,39 @@
             <input id="inpContract" class="form-control" type="text" asp-for="Contract.ContractNumber" placeholder="Enter Contract Number, i.e. 5432123" />
         </div>
     </div>
-
-
     <div class="row mb-3">
         <label class="col-sm-2 col-form-label">Contract Description</label>
         <div class="col-sm-10">
             <input id="inpCtrDescription"class="form-control" type="text" asp-for="Contract.Description" placeholder="Say something to describe contract" />
         </div>
     </div>
+
+    <div class="row mb-1">
+        <label class="col-sm-2 col-form-label">Contact Person</label>
+     </div>
+    <div class="row mb-3">
+        <div class="col-sm-3">
+            <input class="form-control" type="email" asp-for="Contract.CustomerContact.EmailAddress" placeholder="Enter email, i.e. customer@company.com" />
+        </div>
+
+        <div class="col-sm-3">
+            <input class="form-control" type="text" asp-for="Contract.CustomerContact.FullName" placeholder="Enter name, i.e. Joe Doe" />
+        </div>
+    </div>
+
+    <div class="row mb-1">
+        <label class="col-sm-2 col-form-label">Employee Responsible</label>
+    </div>
+    <div class="row mb-3">
+        <div class="col-sm-3">
+            <input class="form-control" type="email" asp-for="Contract.EmployeeResponsible.EmailAddress" placeholder="Enter email, i.e. colleague@foss.dk" />
+        </div>
+
+        <div class="col-sm-3">
+            <input class="form-control" type="text" asp-for="Contract.EmployeeResponsible.FullName" placeholder="Enter name, i.e. Joe Doe" />
+        </div>
+    </div>
+
 
     <div class="row mb-3">
         <label class="col-sm-2 col-form-label">Contract Starts</label>
