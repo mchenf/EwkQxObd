@@ -20,7 +20,13 @@ namespace EwkQxObd.WebApi.Controllers
 
         public async Task<IActionResult> Index()
         {
-            return View(await _context.VwSysnetinstorg.ToListAsync());
+            var objFound = await _context.EqoContractObject
+                    .Include(co => co.Contract)
+                    .Include(co => co.ShipTo)
+                    .Include(co => co.Contract!.CustomerContact)
+                    .Include(co => co.Contract!.EmployeeResponsible)
+                    .ToListAsync();
+            return View(objFound);
         }
 
         [HttpGet()]
@@ -97,6 +103,20 @@ namespace EwkQxObd.WebApi.Controllers
             await _context.SaveChangesAsync();
 
             return RedirectToAction(nameof(New));
+        }
+
+        [HttpGet("")]
+        public async Task<IActionResult> ViewContractObject([FromQuery]long Id)
+        {
+            var objFound = await _context.EqoContractObject
+                    .Include(co => co.Contract)
+                    .Include(co => co.ShipTo)
+                    .Include(co => co.Contract!.CustomerContact)
+                    .Include(co => co.Contract!.EmployeeResponsible)
+                    .FirstOrDefaultAsync(o => o.id == Id);
+
+
+            return View("New", objFound);
         }
     }
 }

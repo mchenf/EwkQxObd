@@ -1,8 +1,12 @@
 ﻿@model EqoContractObject
 
 
-<td>@Model.Contract!.ContractNumber</td>
-<td>@Model.Contract.Description</td>
+<td>
+    <a asp-controller="ContractObject" asp-action="ViewContractObject" asp-route-Id="@Model.id">@Model.Contract!.ContractNumber</a>
+    
+
+</td>
+<td>@Model.Contract!.Description</td>
 <td>@Model.SerialNumber</td>
 <td>@Model.InstrumentType</td>
 <td>@Model.ShipTo!.PartnerId | @Model.ShipTo.PartnerName</td>

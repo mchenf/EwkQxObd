@@ -1,31 +1,29 @@
-﻿@model List<vwSysnetinstorg>
+﻿@model List<EqoContractObject>
+@{
 
+    int itemCount = 0;
+}
 
-<table>
-    <tr>
-        <th>System</th>
-        <th>Network</th>
-        <th>Group</th>
-        <th>Serial Number</th>
-        <th>Instrument Name</th>
-        <th>Linked Account</th>
-        <th>Account Name</th>
-        <th>City</th>
-        <th>Street</th>
-        <th>Options</th>
-    </tr>
-    @foreach (vwSysnetinstorg m in Model)
-    {
+<h1>All Contract Objects</h1>
+<table class="table">
+    <thead>
         <tr>
-            <td>@m.System</td>
-            <td>@m.NetworkName</td>
-            <td>@m.InstrumentGroup</td>
-            <td>@m.SerialNumber</td>
-            <td>@m.InstrumentName</td>
-            <td>@m.AccountNumber</td>
-            <td>@m.Name</td>
-            <td>@m.City</td>
-            <td>@m.Street</td>
+            <th scope="col">#</th>
+            <th scope="col">Contract Number</th>
+            <th scope="col">Contract Description</th>
+            <th scope="col">Serial Number</th>
+            <th scope="col">Instrument Type</th>
+            <th scope="col">ShipTo</th>
         </tr>
-    }
+    </thead>
+    <tbody>
+        @foreach (EqoContractObject obj in Model)
+        {
+            { itemCount++; }
+            <tr>
+                <td scope="row">@itemCount</td>
+                @await Html.PartialAsync("ContractObjSingleLinePartial", obj);
+            </tr>
+        }
+    </tbody>
 </table>
