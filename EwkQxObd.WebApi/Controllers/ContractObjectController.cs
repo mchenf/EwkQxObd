@@ -100,7 +100,7 @@ namespace EwkQxObd.WebApi.Controllers
                 else
                 {
                     contractObjToSync.ShipTo = shipTo;
-                    contractObjToSync.EqoAccountId = shipTo.Id;
+                    contractObjToSync.ShipToId = shipTo.Id;
                 }
             }
             else
@@ -120,7 +120,7 @@ namespace EwkQxObd.WebApi.Controllers
                 else
                 {
                     contractObjToSync.Contract = contract;
-                    contractObjToSync.EqoContractId = contract.Id;
+                    contractObjToSync.ContractId = contract.Id;
                 }
 
                 var empEmail = contractObj.Contract.EmployeeResponsible!.EmailAddress;

@@ -62,7 +62,7 @@ namespace EwkQxObd.WebApi.Controllers.ewkiqxobd.api
                 else
                 {
                     contractObjToSync.ShipTo = shipTo;
-                    contractObjToSync.EqoAccountId = shipTo.Id;
+                    contractObjToSync.ShipToId = shipTo.Id;
                 }
             }
             else
@@ -82,7 +82,7 @@ namespace EwkQxObd.WebApi.Controllers.ewkiqxobd.api
                 else
                 {
                     contractObjToSync.Contract = contract;
-                    contractObjToSync.EqoContractId = contract.Id;
+                    contractObjToSync.ContractId = contract.Id;
                 }
             }
             else
