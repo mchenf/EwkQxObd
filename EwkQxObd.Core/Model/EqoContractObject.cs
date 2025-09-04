@@ -21,9 +21,9 @@ namespace EwkQxObd.Core.Model
         public required string InstrumentType { get; set; }
 
         [Column("Contract")]
-        public long EqoContractId { get; set; }
+        public long ContractId { get; set; }
         [Column("ShipTo")]
-        public int EqoAccountId { get; set; }
+        public int ShipToId { get; set; }
 
         public EqoContract? Contract { get; set; }
         public EqoAccount? ShipTo { get; set; }

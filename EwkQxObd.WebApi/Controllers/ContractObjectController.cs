@@ -78,86 +78,25 @@ namespace EwkQxObd.WebApi.Controllers
             return View();
         }
 
+
+
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> New(EqoContractObject contractObj)
         {
-            var contractObjToSync = new EqoContractObject
-            {
-                SerialNumber = contractObj.SerialNumber,
-                InstrumentType = contractObj.InstrumentType
-            };
 
-            bool refuseSync = false;
-
-            if (contractObj.ShipTo != default)
-            {
-                var shipTo = await _context.EqoAccount.FirstOrDefaultAsync(acc => acc.PartnerId == contractObj.ShipTo.PartnerId);
-                if (shipTo == default)
-                {
-                    contractObjToSync.ShipTo = contractObj.ShipTo;
-                }
-                else
-                {
-                    contractObjToSync.ShipTo = shipTo;
-                    contractObjToSync.ShipToId = shipTo.Id;
-                }
-            }
-            else
-            {
-                refuseSync = true;
-            }
-
-
-            if (contractObj.Contract != default)
-            {
-                var contract = await _context.EqoContract.FirstOrDefaultAsync(con => con.ContractNumber == contractObj.Contract.ContractNumber);
-
-                if (contract == default)
-                {
-                    contractObjToSync.Contract = contractObj.Contract;
-                }
-                else
-                {
-                    contractObjToSync.Contract = contract;
-                    contractObjToSync.ContractId = contract.Id;
-                }
-
-                var empEmail = contractObj.Contract.EmployeeResponsible!.EmailAddress;
-
-                if (!string.IsNullOrEmpty(empEmail))
-                {
-                    var employeResponsible = await _context.EqoContactInfo.FirstOrDefaultAsync(
-                        emp => emp.EmailAddress == empEmail
-                    );
-
-                    if (employeResponsible == default)
-                    {
-                        contractObjToSync.Contract.EmployeeResponsible = contractObj.Contract.EmployeeResponsible;
-                    }
-                    else
-                    {
-                        contractObjToSync.Contract.EmployeeResponsible = default;
-                        contractObjToSync.Contract.EmployeeResponsibleId = employeResponsible.Id;
-
-                    }
-                }
-            }
-            else
-            {
-                refuseSync = true;
-            }
-
-            if (refuseSync)
+            var dataSync = new ContractObjectDataSync();
+            var dataSyncResult = await dataSync.SyncSingle(_context, contractObj);
+            if (dataSyncResult.MissingState > ContractObjectDataMissing.AllGreen)
             {
                 return BadRequest("Contract object must have a linking contract and a ship-to account.");
             }
 
-            await _context.EqoContractObject.AddAsync(contractObjToSync);
+            await _context.EqoContractObject.AddAsync(contractObj);
 
             await _context.SaveChangesAsync();
 
-            return RedirectToAction(nameof(Index));
+            return RedirectToAction(nameof(New));
         }
     }
 }
