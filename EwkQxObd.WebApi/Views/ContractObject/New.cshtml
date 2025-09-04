@@ -27,16 +27,16 @@
         <label class="col-sm-2 col-form-label">Contact Person</label>
      </div>
     <div class="row mb-3">
-        <input type="hidden" asp-for="Contract.CustomerContactId" />
+        <input id="iptUserId-1" type="hidden" asp-for="Contract.CustomerContactId" />
         <div class="col-sm-1">
 
         </div>
         <div class="col-sm-3">
-            <input class="form-control" type="email" asp-for="Contract.CustomerContact.EmailAddress" placeholder="Enter email, i.e. customer@company.com" />
+            <input id="iptUserEmail-1" class="form-control" type="email" asp-for="Contract.CustomerContact.EmailAddress" placeholder="Enter email, i.e. customer@company.com" />
         </div>
 
         <div class="col-sm-3">
-            <input class="form-control" type="text" asp-for="Contract.CustomerContact.FullName" placeholder="Enter name, i.e. Joe Doe" />
+            <input id="iptUserFullName-1" class="form-control" type="text" asp-for="Contract.CustomerContact.FullName" placeholder="Enter name, i.e. Joe Doe" />
         </div>
     </div>
 

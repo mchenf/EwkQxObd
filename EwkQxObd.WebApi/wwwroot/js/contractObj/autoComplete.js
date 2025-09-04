@@ -7,9 +7,10 @@
 
 setInputEvent($('#inpContract'), checkContractNumber);
 setInputEvent($('#inpShpt'), checkShiptoAccount);
-setInputEvent($('#iptUserEmail-2'), checkUser2);
+setInputEvent($('#iptUserEmail-1'), checkUser, 1);
+setInputEvent($('#iptUserEmail-2'), checkUser, 2);
 
-function setInputEvent(inputElement, checkObj) {
+function setInputEvent(inputElement, checkObj, num) {
     let debounceTimer;
     inputElement.on('input', function () {
 
@@ -24,7 +25,7 @@ function setInputEvent(inputElement, checkObj) {
         }
 
         debounceTimer = setTimeout(function () {
-            checkObj(identifier)
+            checkObj(identifier, num)
         }, 500);
     });
 }
@@ -81,12 +82,16 @@ function checkShiptoAccount(shiptoNo) {
     );
 }
 
-function checkUser2(email) {
+function checkUser(email, num) {
+
+    const userId = `#iptUserId-${num}`
+    const userName = `#iptUserFullName-${num}`
+
     checkObj(email,
         '/ewkiqxobd/api/contactinfo/byemail/' + email,
         (data) => {
-            $('#iptUserId-2').val(data.id);
-            $('#iptUserFullName-2').val(data.fullName);
+            $(userId).val(data.id);
+            $(userName).val(data.fullName);
         }
     );
 }
