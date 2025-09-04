@@ -105,7 +105,7 @@ namespace EwkQxObd.WebApi.Controllers
             return RedirectToAction(nameof(New));
         }
 
-        [HttpGet("")]
+        [HttpGet]
         public async Task<IActionResult> ViewContractObject([FromQuery]long Id)
         {
             var objFound = await _context.EqoContractObject
@@ -116,7 +116,7 @@ namespace EwkQxObd.WebApi.Controllers
                     .FirstOrDefaultAsync(o => o.id == Id);
 
 
-            return View("New", objFound);
+            return View(objFound);
         }
     }
 }

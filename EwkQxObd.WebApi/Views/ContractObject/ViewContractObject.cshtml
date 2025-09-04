@@ -1,9 +1,9 @@
 ﻿@model EqoContractObject
 @{
-    ViewData["Title"] = "New Contract Object";
+    ViewData["Title"] = "View Contract Object";
 }
 
-<form method="post" asp-controller="ContractObject" asp-action="New">
+<form>
 
     <div class="row mb-3">
         <div class="col-sm-1"></div>
@@ -13,42 +13,44 @@
     <div class="row mb-3">
         <label class="col-sm-2 col-form-label">Contract Number</label>
         <div class="col-sm-3">
-            <input id="inpContract" class="form-control" type="text" asp-for="Contract.ContractNumber" placeholder="Enter Contract Number, i.e. 5432123" />
+            <input id="inpContract" class="form-control" type="text" asp-for="Contract.ContractNumber" placeholder="Enter Contract Number, i.e. 5432123" disabled/>
         </div>
     </div>
-    <div class="row mb-4">
+    <div class="row mb-3">
         <label class="col-sm-2 col-form-label">Contract Description</label>
         <div class="col-sm-10">
-            <input id="inpCtrDescription"class="form-control" type="text" asp-for="Contract.Description" placeholder="Say something to describe contract" />
+            <input id="inpCtrDescription" class="form-control" type="text" asp-for="Contract.Description" placeholder="Say something to describe contract" disabled/>
         </div>
     </div>
 
     <div class="row mb-1">
         <label class="col-sm-2 col-form-label">Contact Person</label>
-
-        <input id="iptUserId-1" type="hidden" asp-for="Contract.CustomerContactId" />
-        <div class="col-sm-4">
-            <input id="iptUserEmail-1" class="form-control" type="email" asp-for="Contract.CustomerContact.EmailAddress" placeholder="Enter email, i.e. customer@company.com" />
-         </div>
     </div>
-    <div class="row mb-4">
-        <div class="col-sm-2"></div>
+    <div class="row mb-3">
+        <input id="iptUserId-1" type="hidden" asp-for="Contract.CustomerContactId" disabled/>
+        <div class="col-sm-1">
+        </div>
+        <div class="col-sm-3">
+            <input id="iptUserEmail-1" class="form-control" type="email" asp-for="Contract.CustomerContact.EmailAddress" placeholder="Enter email, i.e. customer@company.com" />
+        </div>
 
-        <div class="col-sm-4">
+        <div class="col-sm-3">
             <input id="iptUserFullName-1" class="form-control" type="text" asp-for="Contract.CustomerContact.FullName" placeholder="Enter name, i.e. Joe Doe" />
         </div>
     </div>
 
     <div class="row mb-1">
         <label class="col-sm-2 col-form-label">Employee Responsible</label>
+    </div>
+    <div class="row mb-3">
         <input id="iptUserId-2" class="form-control" type="hidden" asp-for="Contract.EmployeeResponsibleId" />
-        <div class="col-sm-4">
+        <div class="col-sm-1">
+        </div>
+        <div class="col-sm-3">
             <input id="iptUserEmail-2" class="form-control" type="email" asp-for="Contract.EmployeeResponsible.EmailAddress" placeholder="Enter email, i.e. colleague@foss.dk" />
         </div>
-    </div>
-    <div class="row mb-4">
-        <div class="col-sm-2"></div>
-        <div class="col-sm-4">
+
+        <div class="col-sm-3">
             <input id="iptUserFullName-2" class="form-control" type="text" asp-for="Contract.EmployeeResponsible.FullName" placeholder="Enter name, i.e. Joe Doe" />
         </div>
     </div>
@@ -56,14 +58,14 @@
 
     <div class="row mb-3">
         <label class="col-sm-2 col-form-label">Contract Starts</label>
-        <div class="col-sm-5">
+        <div class="col-sm-10">
             <input id="inpCtrValidFrom" class="form-control" type="date" asp-for="Contract.ValidFrom" placeholder="Enter contract starts, i.e. 08/29/2025" />
         </div>
     </div>
 
     <div class="row mb-3">
         <label class="col-sm-2 col-form-label">Contract Ends</label>
-        <div class="col-sm-5">
+        <div class="col-sm-10">
             <input id="inpCtrValidTo" class="form-control" type="date" asp-for="Contract.ValidTo" placeholder="Enter contract end, i.e. 09/29/2026" />
         </div>
     </div>
@@ -120,19 +122,5 @@
             <input id="inpShptCountry" class="form-control" type="text" asp-for="ShipTo.Country" placeholder="Enter country, i.e. Japan" />
         </div>
     </div>
-
-
-    <div class="row mt-5 mb-lg-5">
-        <div class="col-sm-1"></div>
-        <button type="submit" class="btn btn-primary col-sm-2">Submit</button>
-        <div class="col-sm-1"></div>
-        <button type="reset" class="btn btn-warning col-sm-1">Reset</button>
-
-        <div class="col-sm-2"></div>
-    </div>
 </form>
 
-
-@section Scripts{
-    <script src="~/js/contractobj/autocomplete.js" asp-append-version="true"></script>
-}
