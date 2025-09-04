@@ -7,6 +7,7 @@
 
 setInputEvent($('#inpContract'), checkContractNumber);
 setInputEvent($('#inpShpt'), checkShiptoAccount);
+setInputEvent($('#iptUserEmail-2'), checkUser2);
 
 function setInputEvent(inputElement, checkObj) {
     let debounceTimer;
@@ -42,6 +43,7 @@ function formatDate(date) {
 
 function checkObj(identifier, fetchUrl, fillAction) {
     if (!identifier) return;
+    console.log("033 the url is", fetchUrl)
     fetch(fetchUrl)
         .then(response => response.json())
         .then(data => {
@@ -75,6 +77,16 @@ function checkShiptoAccount(shiptoNo) {
             $('#inpShptPartnerName').val(data.partnerName);
             $('#inpShptRegion').val(data.region);
             $('#inpShptCountry').val(data.country);
+        }
+    );
+}
+
+function checkUser2(email) {
+    checkObj(email,
+        '/ewkiqxobd/api/contactinfo/byemail/' + email,
+        (data) => {
+            $('#iptUserId-2').val(data.id);
+            $('#iptUserFullName-2').val(data.fullName);
         }
     );
 }

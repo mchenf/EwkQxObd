@@ -122,6 +122,26 @@ namespace EwkQxObd.WebApi.Controllers
                     contractObjToSync.Contract = contract;
                     contractObjToSync.EqoContractId = contract.Id;
                 }
+
+                var empEmail = contractObj.Contract.EmployeeResponsible!.EmailAddress;
+
+                if (!string.IsNullOrEmpty(empEmail))
+                {
+                    var employeResponsible = await _context.EqoContactInfo.FirstOrDefaultAsync(
+                        emp => emp.EmailAddress == empEmail
+                    );
+
+                    if (employeResponsible == default)
+                    {
+                        contractObjToSync.Contract.EmployeeResponsible = contractObj.Contract.EmployeeResponsible;
+                    }
+                    else
+                    {
+                        contractObjToSync.Contract.EmployeeResponsible = default;
+                        contractObjToSync.Contract.EmployeeResponsibleId = employeResponsible.Id;
+
+                    }
+                }
             }
             else
             {
