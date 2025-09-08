@@ -40,7 +40,9 @@
                                                         @instrument.InstrumentGroup
                                                     </div>
                                                     <div class="col-2">
-                                                        @instrument.SerialNumber
+                                                        <a asp-action="Details" asp-route-id="@instrument.id">
+                                                            @instrument.SerialNumber
+                                                        </a>
                                                     </div>
                                                     <div class="col-4">
                                                         @instrument.Name

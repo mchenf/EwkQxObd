@@ -98,5 +98,24 @@ namespace EwkQxObd.WebApi.Controllers
 
             return Ok(result);
         }
+
+        [Route("[Action]/{id}")]
+        public async Task<IActionResult> Details([FromRoute] long id)
+        {
+            var inst = await (
+                from i in _context.VwSysnetinstorg
+                where i.id == id
+                select i
+            ).FirstOrDefaultAsync();
+
+            if (inst is null)
+            {
+
+                return NoContent();
+
+            }
+
+            return View(inst);
+        }
     }
 }
