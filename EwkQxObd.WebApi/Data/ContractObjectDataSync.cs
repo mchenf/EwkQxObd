@@ -70,10 +70,13 @@ namespace EwkQxObd.WebApi.Data
 
                 if (contract != default)
                 {
+                    contractObject.Contract = default;
                     contractObject.ContractId = contract.Id;
                 }
-
-                await createOrFetchPerson(context, contractObject.Contract);
+                else
+                {
+                    await createOrFetchPerson(context, contractObject.Contract);
+                }
             }
             else
             {

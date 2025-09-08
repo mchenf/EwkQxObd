@@ -67,7 +67,12 @@ function checkContractNumber(contractNumber) {
             $('#inpCtrDescription').val(data.description);
 
             $('#iptUserEmail-1').val(data.customerContact.emailAddress)
+            $('#iptUserFullName-1').val(data.customerContact.fullName)
+
+
+
             $('#iptUserEmail-2').val(data.employeeResponsible.emailAddress)
+            $('#iptUserFullName-2').val(data.employeeResponsible.fullName)
 
             $('#inpCtrValidFrom').val(formatDate(data.validFrom));
             $('#inpCtrValidTo').val(formatDate(data.validTo));
