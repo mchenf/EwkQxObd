@@ -1,0 +1,6 @@
+﻿@model EqoContractObject
+
+<label for="coj-text-area" class="form-label">Condensed Text</label>
+<textarea class="form-control" id="coj-text-area" rows="24">
+    @Html.Raw(Json.Serialize(Model))
+</textarea>

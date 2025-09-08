@@ -117,5 +117,30 @@ namespace EwkQxObd.WebApi.Controllers
 
             return View(inst);
         }
+
+
+        [Route("[Action]")]
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> Search(vwSysnetinstorg search)
+        {
+            var inst = await (
+                from i in _context.VwSysnetinstorg
+                where i.SerialNumber == search.SerialNumber
+                select i
+            ).FirstOrDefaultAsync();
+
+
+            return View(nameof(Details), inst);
+        }
+
+        [Route("[Action]")]
+        [HttpGet]
+        public IActionResult Search()
+        {
+            return View();
+        }
+
+
     }
 }

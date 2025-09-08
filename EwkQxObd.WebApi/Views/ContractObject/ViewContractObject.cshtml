@@ -5,6 +5,8 @@
 
 @await Html.PartialAsync("ContractObjFormPartial", Model)
 
+@await Html.PartialAsync("ContractObjTextPartial", Model)
+
 @section Scripts {
     <script>
         const CurrentDisplayMode = @Html.Raw(Json.Serialize(ViewData["DisplayMode"] as string))
