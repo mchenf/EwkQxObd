@@ -102,7 +102,7 @@ namespace EwkQxObd.WebApi.Controllers
 
             await _context.SaveChangesAsync();
 
-            return RedirectToAction(nameof(New));
+            return View(nameof(ViewContractObject), contractObj);
         }
 
         [HttpGet]

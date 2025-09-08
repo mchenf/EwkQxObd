@@ -65,6 +65,10 @@ function checkContractNumber(contractNumber) {
         '/ewkiqxobd/api/contract/' + encodeURIComponent(contractNumber),
         (data) => {
             $('#inpCtrDescription').val(data.description);
+
+            $('#iptUserEmail-1').val(data.customerContact.emailAddress)
+            $('#iptUserEmail-2').val(data.employeeResponsible.emailAddress)
+
             $('#inpCtrValidFrom').val(formatDate(data.validFrom));
             $('#inpCtrValidTo').val(formatDate(data.validTo));
         }

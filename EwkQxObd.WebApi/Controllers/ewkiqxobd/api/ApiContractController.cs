@@ -27,9 +27,10 @@ namespace EwkQxObd.WebApi.Controllers.ewkiqxobd.api
         public async Task<EqoContract?> Get([FromRoute]long contractNumber)
         {
             var Result = await _context.EqoContract
-                .Where(
-                c => c.ContractNumber == contractNumber
-            ).FirstOrDefaultAsync();
+                .Where(c => c.ContractNumber == contractNumber)
+                .Include(c => c.CustomerContact)
+                .Include(c => c.EmployeeResponsible)
+            .FirstOrDefaultAsync();
 
             return Result;
         }
