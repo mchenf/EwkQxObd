@@ -7,10 +7,10 @@ using System.Threading.Tasks;
 
 namespace EwkQxObd.Core.Model.Views
 {
-    public class vwSysnetinst
+    public class VwSysnetinst
     {
         [Column("InstrumentId")]
-        public long id { get; set; }
+        public long Id { get; set; }
 
         [Column("System", TypeName = "char(16)")]
         public string System { get; set; } = string.Empty;

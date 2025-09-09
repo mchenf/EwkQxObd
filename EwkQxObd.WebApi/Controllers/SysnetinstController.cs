@@ -104,7 +104,7 @@ namespace EwkQxObd.WebApi.Controllers
         {
             var inst = await (
                 from i in _context.VwSysnetinstorg
-                where i.id == id
+                where i.Id == id
                 select i
             ).FirstOrDefaultAsync();
 
@@ -122,7 +122,7 @@ namespace EwkQxObd.WebApi.Controllers
         [Route("[Action]")]
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Search(vwSysnetinstorg search)
+        public async Task<IActionResult> Search(VwSysnetinstorg search)
         {
             var inst = await (
                 from i in _context.VwSysnetinstorg

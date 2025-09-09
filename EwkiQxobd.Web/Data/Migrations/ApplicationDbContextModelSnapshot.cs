@@ -55,21 +55,29 @@ namespace EwkiQxobd.Web.Data.Migrations
 
             modelBuilder.Entity("EwkQxObd.Core.Model.EqoContactInfo", b =>
                 {
-                    b.Property<long>("ID")
+                    b.Property<long>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("bigint");
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<long>("ID"));
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<long>("Id"));
 
                     b.Property<string>("EmailAddress")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnType("nvarchar(450)");
+
+                    b.Property<int?>("EqoAccountId")
+                        .HasColumnType("int");
 
                     b.Property<string>("FullName")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.HasKey("ID");
+                    b.HasKey("Id");
+
+                    b.HasIndex("EmailAddress")
+                        .IsUnique()
+                        .HasFilter("[EmailAddress] IS NOT NULL");
+
+                    b.HasIndex("EqoAccountId");
 
                     b.ToTable("ContactInfo", "eqo");
                 });
@@ -85,9 +93,17 @@ namespace EwkiQxobd.Web.Data.Migrations
                     b.Property<long>("ContractNumber")
                         .HasColumnType("bigint");
 
+                    b.Property<long?>("CustomerContactId")
+                        .HasColumnType("bigint")
+                        .HasColumnName("CustomerContact");
+
                     b.Property<string>("Description")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
+
+                    b.Property<long?>("EmployeeResponsibleId")
+                        .HasColumnType("bigint")
+                        .HasColumnName("EmployeeResponsible");
 
                     b.Property<long?>("EqoTicketSourceid")
                         .HasColumnType("bigint");
@@ -103,6 +119,10 @@ namespace EwkiQxobd.Web.Data.Migrations
                     b.HasIndex("ContractNumber")
                         .IsUnique();
 
+                    b.HasIndex("CustomerContactId");
+
+                    b.HasIndex("EmployeeResponsibleId");
+
                     b.HasIndex("EqoTicketSourceid");
 
                     b.ToTable("Contract", "eqo");
@@ -110,17 +130,13 @@ namespace EwkiQxobd.Web.Data.Migrations
 
             modelBuilder.Entity("EwkQxObd.Core.Model.EqoContractObject", b =>
                 {
-                    b.Property<long>("id")
+                    b.Property<long>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("bigint");
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<long>("id"));
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<long>("Id"));
 
-                    b.Property<int>("EqoAccountId")
-                        .HasColumnType("int")
-                        .HasColumnName("ShipTo");
-
-                    b.Property<long>("EqoContractId")
+                    b.Property<long>("ContractId")
                         .HasColumnType("bigint")
                         .HasColumnName("Contract");
 
@@ -132,11 +148,15 @@ namespace EwkiQxobd.Web.Data.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.HasKey("id");
+                    b.Property<int>("ShipToId")
+                        .HasColumnType("int")
+                        .HasColumnName("ShipTo");
 
-                    b.HasIndex("EqoAccountId");
+                    b.HasKey("Id");
 
-                    b.HasIndex("EqoContractId");
+                    b.HasIndex("ContractId");
+
+                    b.HasIndex("ShipToId");
 
                     b.ToTable("ContractObject", "eqo");
                 });
@@ -205,7 +225,7 @@ namespace EwkiQxobd.Web.Data.Migrations
 
                     b.Property<string>("System")
                         .IsRequired()
-                        .HasColumnType("char(16)")
+                        .HasColumnType("nvarchar(16)")
                         .HasColumnName("System");
 
                     b.HasKey("id");
@@ -279,8 +299,12 @@ namespace EwkiQxobd.Web.Data.Migrations
                     b.ToTable("IqxSystem");
                 });
 
-            modelBuilder.Entity("EwkQxObd.Core.Model.Views.vwSysnetinst", b =>
+            modelBuilder.Entity("EwkQxObd.Core.Model.Views.VwSysnetinst", b =>
                 {
+                    b.Property<long>("Id")
+                        .HasColumnType("bigint")
+                        .HasColumnName("InstrumentId");
+
                     b.Property<string>("InstrumentGroup")
                         .HasColumnType("nvarchar(64)")
                         .HasColumnName("InstrumentGroup");
@@ -316,16 +340,12 @@ namespace EwkiQxobd.Web.Data.Migrations
                         .HasColumnType("char(16)")
                         .HasColumnName("System");
 
-                    b.Property<long>("id")
-                        .HasColumnType("bigint")
-                        .HasColumnName("InstrumentId");
-
                     b.ToTable((string)null);
 
                     b.ToView("vw_LatestSysnetinst", (string)null);
                 });
 
-            modelBuilder.Entity("EwkQxObd.Core.Model.Views.vwSysnetinstorg", b =>
+            modelBuilder.Entity("EwkQxObd.Core.Model.Views.VwSysnetinstorg", b =>
                 {
                     b.Property<string>("AccountNumber")
                         .HasColumnType("nvarchar")
@@ -334,6 +354,10 @@ namespace EwkiQxobd.Web.Data.Migrations
                     b.Property<string>("City")
                         .HasColumnType("nvarchar")
                         .HasColumnName("City");
+
+                    b.Property<long>("Id")
+                        .HasColumnType("bigint")
+                        .HasColumnName("InstrumentId");
 
                     b.Property<string>("InstrumentGroup")
                         .HasColumnType("nvarchar(64)")
@@ -377,10 +401,6 @@ namespace EwkiQxobd.Web.Data.Migrations
                         .IsRequired()
                         .HasColumnType("char(16)")
                         .HasColumnName("System");
-
-                    b.Property<long>("id")
-                        .HasColumnType("bigint")
-                        .HasColumnName("InstrumentId");
 
                     b.ToTable((string)null);
 
@@ -551,24 +571,43 @@ namespace EwkiQxobd.Web.Data.Migrations
                     b.ToTable("UserTokens");
                 });
 
+            modelBuilder.Entity("EwkQxObd.Core.Model.EqoContactInfo", b =>
+                {
+                    b.HasOne("EwkQxObd.Core.Model.EqoAccount", null)
+                        .WithMany("OrgnisationAdmins")
+                        .HasForeignKey("EqoAccountId");
+                });
+
             modelBuilder.Entity("EwkQxObd.Core.Model.EqoContract", b =>
                 {
+                    b.HasOne("EwkQxObd.Core.Model.EqoContactInfo", "CustomerContact")
+                        .WithMany()
+                        .HasForeignKey("CustomerContactId");
+
+                    b.HasOne("EwkQxObd.Core.Model.EqoContactInfo", "EmployeeResponsible")
+                        .WithMany()
+                        .HasForeignKey("EmployeeResponsibleId");
+
                     b.HasOne("EwkQxObd.Core.Model.EqoTicketSource", null)
                         .WithMany("IqxContracts")
                         .HasForeignKey("EqoTicketSourceid");
+
+                    b.Navigation("CustomerContact");
+
+                    b.Navigation("EmployeeResponsible");
                 });
 
             modelBuilder.Entity("EwkQxObd.Core.Model.EqoContractObject", b =>
                 {
-                    b.HasOne("EwkQxObd.Core.Model.EqoAccount", "ShipTo")
+                    b.HasOne("EwkQxObd.Core.Model.EqoContract", "Contract")
                         .WithMany()
-                        .HasForeignKey("EqoAccountId")
+                        .HasForeignKey("ContractId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("EwkQxObd.Core.Model.EqoContract", "Contract")
+                    b.HasOne("EwkQxObd.Core.Model.EqoAccount", "ShipTo")
                         .WithMany()
-                        .HasForeignKey("EqoContractId")
+                        .HasForeignKey("ShipToId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
@@ -584,6 +623,11 @@ namespace EwkiQxobd.Web.Data.Migrations
                         .HasForeignKey("LinkedAccountId");
 
                     b.Navigation("LinkedAccount");
+                });
+
+            modelBuilder.Entity("EwkQxObd.Core.Model.EqoAccount", b =>
+                {
+                    b.Navigation("OrgnisationAdmins");
                 });
 
             modelBuilder.Entity("EwkQxObd.Core.Model.EqoTicketSource", b =>

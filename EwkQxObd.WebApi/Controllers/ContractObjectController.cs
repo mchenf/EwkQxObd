@@ -113,7 +113,7 @@ namespace EwkQxObd.WebApi.Controllers
                     .Include(co => co.ShipTo)
                     .Include(co => co.Contract!.CustomerContact)
                     .Include(co => co.Contract!.EmployeeResponsible)
-                    .FirstOrDefaultAsync(o => o.id == Id);
+                    .FirstOrDefaultAsync(o => o.Id == Id);
 
 
             return View(objFound);

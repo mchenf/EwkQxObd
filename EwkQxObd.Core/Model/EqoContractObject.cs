@@ -15,7 +15,7 @@ namespace EwkQxObd.Core.Model
     public class EqoContractObject
     {
 
-        public long id { get; set; }
+        public long Id { get; set; }
         public required string SerialNumber { get; set; }
 
         public required string InstrumentType { get; set; }
