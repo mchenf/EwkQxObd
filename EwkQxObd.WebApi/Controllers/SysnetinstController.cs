@@ -122,7 +122,7 @@ namespace EwkQxObd.WebApi.Controllers
         [Route("[Action]")]
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Search(VwSysnetinstorg search)
+        public async Task<IActionResult> SearchPost(VwSysnetinstorg search)
         {
             var inst = await (
                 from i in _context.VwSysnetinstorg
@@ -131,14 +131,14 @@ namespace EwkQxObd.WebApi.Controllers
             ).FirstOrDefaultAsync();
 
 
-            return View(nameof(Details), inst);
+            return View(nameof(Search), inst);
         }
 
         [Route("[Action]")]
         [HttpGet]
-        public IActionResult Search()
+        public IActionResult Search(VwSysnetinstorg search)
         {
-            return View();
+            return View(search);
         }
 
 

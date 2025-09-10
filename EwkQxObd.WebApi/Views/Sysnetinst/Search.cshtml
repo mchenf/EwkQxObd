@@ -3,7 +3,7 @@
 <h1>Search Instrument IQX Readiness</h1>
 
 
-<form method="post" asp-controller="Sysnetinst" asp-action="Search">
+<form method="post" asp-controller="Sysnetinst" asp-action="SearchPost">
 
     <div class="row mb-3">
         <label class="col-sm-3 col-form-label">Serial Number</label>
@@ -23,3 +23,9 @@
         <div class="col-sm-2"></div>
     </div>
 </form>
+
+@if (Model != null && !string.IsNullOrEmpty(Model.SerialNumber))
+{
+    @await Html.PartialAsync("SysnetinstorgDetailsPartial", Model)
+    
+}
