@@ -27,6 +27,8 @@ namespace EwkQxObd.WebApi.Data
         public DbSet<VwSysnetinst> VwSysnetinst { get; set; }
         public DbSet<VwSysnetinstorg> VwSysnetinstorg { get; set; }
 
+        public DbSet<RelTicketSourceContract> RelTicketSourceContracts { get; set; }
+
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             foreach (var rel in modelBuilder.Model.GetEntityTypes().SelectMany(e => e.GetForeignKeys()))
