@@ -2,68 +2,131 @@
 
 <form>
     <div class="row mb-3">
-        <div class="col-sm-1"></div>
-        <h3 class="col-sm-8">Instrument Information</h3>
+
+        <div class="col-sm"></div>
+        <div class="col-sm-7">
+            <h3>Instrument Information</h3>
+        </div>
+
+        <div class="col-sm"></div>
     </div>
 
     <div class="row mb-3">
-        <label class="col-sm-2 col-form-label">System</label>
-        <div class="col-sm-3">
+        <div class="col-sm"></div>
+        <div class="col-sm-2">
+            <label class="col-form-label">System</label>
+        </div>
+        <div class="col-sm-5">
             <input class="form-control" type="text" asp-for="System" placeholder="...No system found." readonly />
         </div>
+        <div class="col-sm"></div>
     </div>
     <div class="row mb-3">
-        <label class="col-sm-2 col-form-label">Network</label>
-        <div class="col-sm-10">
+        <div class="col-sm"></div>
+        <div class="col-sm-2">
+            <label class="col-form-label">Network</label>
+        </div>
+        <div class="col-sm-1">
+            <input class="form-control" type="text" asp-for="NetworkId" placeholder="NULL" readonly />
+        </div>
+        <div class="col-sm-4">
             <input class="form-control" type="text" asp-for="NetworkName" placeholder="...No network found." readonly />
         </div>
+        <div class="col-sm"></div>
     </div>
+
     <div class="row mb-3">
-        <label class="col-sm-2 col-form-label">Inst. Group</label>
-        <div class="col-sm-10">
+
+        <div class="col-sm"></div>
+        <div class="col-sm-2">
+            <label class="col-form-label">Inst. Group</label>
+        </div>
+        <div class="col-sm-5">
             <input class="form-control" type="text" asp-for="InstrumentGroup" placeholder="...No instrument group found." readonly />
         </div>
+
+        <div class="col-sm"></div>
     </div>
+
     <div class="row mb-3">
-        <label class="col-sm-2 col-form-label">Serial Number</label>
-        <div class="col-sm-10">
+
+        <div class="col-sm"></div>
+        <div class="col-sm-2">
+            <label class="col-form-label">Serial Number</label>
+        </div>
+        <div class="col-sm-5">
             <input class="form-control" type="text" asp-for="SerialNumber" placeholder="Required. Must have a SN" readonly />
         </div>
+
+        <div class="col-sm"></div>
     </div>
 
     <div class="row mb-3">
-        <div class="col-sm-1"></div>
-        <h3 class="col-sm-8">Organization Connected</h3>
+
+        <div class="col-sm"></div>
+        <div class="col-sm-7">
+            <h3>Organization Connected</h3>
+        </div>
+
+        <div class="col-sm"></div>
     </div>
+
     <div class="row mb-3">
-        <label class="col-sm-2 col-form-label">Linked to</label>
-        <div class="col-sm-10">
+
+        <div class="col-sm"></div>
+        <div class="col-sm-2">
+            <label class="col-form-label">Linked to</label>
+        </div>
+        <div class="col-sm-5">
             <input class="form-control" type="text" asp-for="LinkedAccountGuid" placeholder="...No account connected." readonly />
         </div>
-    </div>
-    <div class="row mb-3">
-        <label class="col-sm-2 col-form-label">Account No.</label>
-        <div class="col-sm-10">
-            <input class="form-control" type="text" asp-for="AccountNumber" placeholder="...No account connected." readonly />
-        </div>
-    </div>
-    <div class="row mb-3">
-        <label class="col-sm-2 col-form-label">Account Name</label>
-        <div class="col-sm-10">
-            <input class="form-control" type="text" asp-for="Name" placeholder="...No account connected." readonly />
-        </div>
+
+        <div class="col-sm"></div>
+
     </div>
 
     <div class="row mb-3">
-        <label class="col-sm-2 col-form-label">Street</label>
-        <div class="col-sm-10">
-            <input class="form-control" type="text" asp-for="Street" placeholder="...No account connected." readonly />
+        <div class="col-sm"></div>
+        <div class="col-sm-2">
+            <label class="col-form-label">Account No.</label>
         </div>
+        <div class="col-sm-5">
+            <input class="form-control" type="text" asp-for="AccountNumber" placeholder="...No account connected." readonly />
+        </div>
+        <div class="col-sm"></div>
+
     </div>
     <div class="row mb-3">
-        <label class="col-sm-2 col-form-label">City</label>
-        <div class="col-sm-10">
+        <div class="col-sm"></div>
+        <div class="col-sm-2">
+            <label class="col-form-label">Account Name</label>
+        </div>
+        <div class="col-sm-5">
+            <input class="form-control" type="text" asp-for="Name" placeholder="...No account connected." readonly />
+        </div>
+        <div class="col-sm"></div>
+
+    </div>
+
+    <div class="row mb-3">
+        <div class="col-sm"></div>
+        <div class="col-sm-2">
+            <label class="col-form-label">Street</label>
+        </div>
+        <div class="col-sm-5">
+            <input class="form-control" type="text" asp-for="Street" placeholder="...No account connected." readonly />
+        </div>
+        <div class="col-sm"></div>
+    </div>
+
+    <div class="row mb-3">
+        <div class="col-sm"></div>
+        <div class="col-sm-2">
+            <label class="col-form-label">City</label>
+        </div>
+        <div class="col-sm-5">
             <input class="form-control" type="text" asp-for="City" placeholder="...No account connected." readonly />
         </div>
+        <div class="col-sm"></div>
     </div>
 </form>
