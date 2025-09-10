@@ -18,11 +18,11 @@ namespace EwkQxObd.Core.Model
         public long Id { get; set; }
 
         [Required]
-        [Column("CustomerContact", TypeName = "nvarchar(16)")]
+        [Column(nameof(TicketNumber), TypeName = "nvarchar(16)")]
         public string TicketNumber { get; set; } = string.Empty;
 
         [Required]
-        [Column("CustomerContact", TypeName = "nvarchar(255)")]
+        [Column(nameof(Description), TypeName = "nvarchar(255)")]
         public string Description { get; set; } = string.Empty;
 
         [Column(nameof(Requester))]
