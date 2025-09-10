@@ -37,6 +37,7 @@ namespace EwkQxObd.WebApi.Controllers
         
 
         [HttpPost()]
+        [ValidateAntiForgeryToken]
         public async Task<IActionResult> SearchPost(ContractObjSearchPageModel model)
         {
 
