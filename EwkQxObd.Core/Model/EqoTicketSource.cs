@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Text;
@@ -13,11 +14,24 @@ namespace EwkQxObd.Core.Model
     [Table("TicketSource", Schema = "eqo")]
     public class EqoTicketSource
     {
-        public long id { get; set; }
+        [Key]
+        public long Id { get; set; }
+
+        [Required]
+        [Column("CustomerContact", TypeName = "nvarchar(16)")]
         public string TicketNumber { get; set; } = string.Empty;
-        public string TicketDescription { get; set; } = string.Empty;
-        
-        public IEnumerable<EqoContract>? IqxContracts { get; set; }
+
+        [Required]
+        [Column("CustomerContact", TypeName = "nvarchar(255)")]
+        public string Description { get; set; } = string.Empty;
+
+        [Column(nameof(Requester))]
+        public long RequesterId { get; set; }
+        public EqoContactInfo? Requester { get; set; }
+
+        [Column(nameof(Operations))]
+        public long OperationsId { get; set; }
+        public EqoContactInfo? Operations { get; set; }
 
 
     }
