@@ -4,7 +4,7 @@
 //released: 9/9/2025
 
 
-$('#btnCopy2clipB').click(() => {
+$('#btnCopy2clipB').on('click', () => {
     copToClipboard();
 });
 
