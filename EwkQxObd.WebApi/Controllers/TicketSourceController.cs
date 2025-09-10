@@ -1,12 +1,37 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using EwkQxObd.Core.Model;
+using EwkQxObd.WebApi.Data;
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 
 namespace EwkQxObd.WebApi.Controllers
 {
+
+    [Route("[controller]/[action]")]
     public class TicketSourceController : Controller
     {
-        public IActionResult Index()
+        private EwkIqxObdContext _context;
+
+
+        public TicketSourceController(EwkIqxObdContext ctx)
         {
-            return View();
+            _context = ctx;
+        }
+
+
+        [HttpGet]
+        public async Task<IActionResult> Index()
+        {
+            var results = await _context.EqoTicketSource.ToListAsync();
+            return View(results);
+        }
+
+
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> Create(EqoTicketSource ticket)
+        {
+            throw new NotImplementedException();
         }
     }
 }

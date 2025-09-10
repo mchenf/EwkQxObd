@@ -25,6 +25,7 @@ namespace EwkQxObd.Core.Model
         [Column(nameof(Description), TypeName = "nvarchar(255)")]
         public string Description { get; set; } = string.Empty;
 
+        /*
         [Column(nameof(Requester))]
         public long RequesterId { get; set; }
         public EqoContactInfo? Requester { get; set; }
@@ -32,7 +33,7 @@ namespace EwkQxObd.Core.Model
         [Column(nameof(Operations))]
         public long OperationsId { get; set; }
         public EqoContactInfo? Operations { get; set; }
-
+        */
 
     }
 }
