@@ -1,0 +1,65 @@
+﻿@model RelTicketSourceContract
+
+@{
+    if (Model is null || Model.Contract is null)
+    {
+        ViewData["DisplayMode"] = "Edit";
+        ViewData["Title"] = "Create";
+    }
+    else
+    {
+        ViewData["DisplayMode"] = "View";
+        ViewData["Title"] = "Ticket";
+    }
+}
+
+<form method="post" asp-controller="TicketSource" asp-action="Create">
+
+    <input class="form-control" type="hidden" asp-for="Id" />
+
+    <div class="row mb-3">
+        <div class="col-sm"></div>
+        <div class="col-sm-7">
+            <h3>Ticket Information</h3>
+        </div>
+        <div class="col-sm"></div>
+    </div>
+
+    <input class="form-control" type="hidden" asp-for="Ticket.Id" />
+    <div class="row mb-3">
+        <div class="col-sm"></div>
+        <div class="col-sm-2">
+            <label class="col-form-label">Ticket Number</label>
+        </div>
+        <div class="col-sm-3">
+            <input id="inpTicketNo" class="form-control" type="text" asp-for="Ticket.TicketNumber" placeholder="Enter Ticket Number, i.e. 1000001234" />
+        </div>
+        <div class="col-sm-2"></div>
+        <div class="col-sm"></div>
+    </div>
+    <div class="row mb-3">
+        <div class="col-sm"></div>
+        <div class="col-sm-2">
+            <label class="col-form-label">Description</label>
+        </div>
+        <div class="col-sm-5">
+            <input id="inpTicketNo" class="form-control" type="text" asp-for="Ticket.Description" placeholder="Ticket Description or Subject" />
+        </div>
+        <div class="col-sm"></div>
+    </div>
+
+    @if (ViewData["DisplayMode"] as string == "Edit")
+    {
+        <div class="row mt-5 mb-lg-5">
+            <div class="col-sm"></div>
+            <div class="col-sm-4">
+                <button type="submit" class="btn btn-primary">Submit</button>
+            </div>
+            <div class="col-sm-2">
+                <button type="reset" class="btn btn-warning">Reset</button>
+            </div>
+            <div class="col-sm-1"></div>
+            <div class="col-sm"></div>
+        </div>
+    }
+</form>

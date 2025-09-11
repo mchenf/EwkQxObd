@@ -25,7 +25,11 @@ namespace EwkQxObd.WebApi.Controllers
             return View(results);
         }
 
-
+        [HttpGet]
+        public IActionResult Create()
+        {
+            return View();
+        }
 
         [HttpPost]
         [ValidateAntiForgeryToken]
