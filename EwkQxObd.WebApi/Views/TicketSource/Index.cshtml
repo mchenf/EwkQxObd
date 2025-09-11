@@ -5,16 +5,15 @@
     int itemCount = 0;
 }
 
-<h1>All Contract Objects</h1>
+<h1>All Tickets</h1>
 <table class="table">
     <thead>
         <tr>
             <th scope="col">#</th>
-            <th scope="col">Contract Number</th>
-            <th scope="col">Contract Description</th>
-            <th scope="col">Serial Number</th>
-            <th scope="col">Instrument Type</th>
-            <th scope="col">ShipTo</th>
+            <th scope="col">Ticket Number</th>
+            <th scope="col">Description</th>
+            <th scope="col">Requester</th>
+            <th scope="col">Operations</th>
         </tr>
     </thead>
     <tbody>
@@ -23,7 +22,7 @@
             { itemCount++; }
             <tr>
                 <td scope="row">@itemCount</td>
-                @await Html.PartialAsync("ContractObjSingleLinePartial", obj)
+                @await Html.PartialAsync("TicketSourceSingleLinePartial", obj)
             </tr>
         }
     </tbody>

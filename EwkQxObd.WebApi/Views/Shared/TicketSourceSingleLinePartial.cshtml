@@ -2,11 +2,8 @@
 
 
 <td>
-    <a asp-controller="ContractObject" asp-action="ViewContractObject" asp-route-Id="@Model.Id">@Model.Contract!.ContractNumber</a>
-
-
+    <a asp-controller="TicketSource" asp-action="Details" asp-route-Id="@Model.Id">@Model.TicketNumber</a>
 </td>
-<td>@Model.Contract!.Description</td>
-<td>@Model.SerialNumber</td>
-<td>@Model.InstrumentType</td>
-<td>@Model.ShipTo!.PartnerId | @Model.ShipTo.PartnerName</td>
+<td>@Model.Description</td>
+<td>@Model.Requester?.EmailAddress</td>
+<td>@Model.Operations?.EmailAddress</td>
