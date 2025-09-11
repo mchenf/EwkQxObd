@@ -40,5 +40,18 @@ namespace EwkQxObd.WebApi.Controllers
         {
             throw new NotImplementedException();
         }
+
+        [HttpDelete]
+        public async Task<IActionResult> Delete()
+        {
+            throw new NotImplementedException();
+        }
+
+        [HttpPatch]
+        public async Task<IActionResult> Patch()
+        {
+            throw new NotImplementedException();
+
+        }
     }
 }
