@@ -33,5 +33,12 @@ namespace EwkQxObd.WebApi.Controllers
         {
             throw new NotImplementedException();
         }
+
+
+        [HttpGet]
+        public async Task<IActionResult> Details()
+        {
+            throw new NotImplementedException();
+        }
     }
 }
