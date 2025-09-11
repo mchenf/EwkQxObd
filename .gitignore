@@ -6,6 +6,7 @@
 
 # Custom Non-Sync Folders
 EwkQxObd.WebApi/Migrations/
+EwkQxObd.WebApi/wwwroot/lib/
 EwkiQxobd.Web/Data/Migrations/
 
 # User-specific files
