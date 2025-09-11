@@ -1,5 +1,12 @@
-﻿@*
-    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
-*@
-@{
-}
+﻿@model EqoTicketSource
+
+
+<td>
+    <a asp-controller="ContractObject" asp-action="ViewContractObject" asp-route-Id="@Model.Id">@Model.Contract!.ContractNumber</a>
+
+
+</td>
+<td>@Model.Contract!.Description</td>
+<td>@Model.SerialNumber</td>
+<td>@Model.InstrumentType</td>
+<td>@Model.ShipTo!.PartnerId | @Model.ShipTo.PartnerName</td>

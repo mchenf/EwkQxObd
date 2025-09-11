@@ -1,5 +1,30 @@
-﻿@*
-    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
-*@
+﻿@model List<EqoTicketSource>
+
 @{
+
+    int itemCount = 0;
 }
+
+<h1>All Contract Objects</h1>
+<table class="table">
+    <thead>
+        <tr>
+            <th scope="col">#</th>
+            <th scope="col">Contract Number</th>
+            <th scope="col">Contract Description</th>
+            <th scope="col">Serial Number</th>
+            <th scope="col">Instrument Type</th>
+            <th scope="col">ShipTo</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (EqoTicketSource obj in Model)
+        {
+            { itemCount++; }
+            <tr>
+                <td scope="row">@itemCount</td>
+                @await Html.PartialAsync("ContractObjSingleLinePartial", obj)
+            </tr>
+        }
+    </tbody>
+</table>
