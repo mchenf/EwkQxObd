@@ -34,43 +34,8 @@
     <div class="col-sm"></div>
 </div>
 
-<div class="row mb-1">
-
-    <input id="iptUserId-1" type="hidden" asp-for="CustomerContactId" />
-    <div class="col-sm"></div>
-    <div class="col-sm-2">
-        <label class="col-form-label">Contact Person</label>
-    </div>
-    <div class="col-sm-5">
-        <input id="iptUserEmail-1" class="form-control" type="email" asp-for="CustomerContact.EmailAddress" placeholder="Enter email, i.e. customer@company.com" />
-    </div>
-
-    <div class="col-sm"></div>
-</div>
-
-<div class="row mb-4">
-    <div class="col-sm-2"></div>
-
-    <div class="col-sm-4">
-        <input id="iptUserFullName-1" class="form-control" type="text" asp-for="CustomerContact.FullName" placeholder="Enter name, i.e. Joe Doe" />
-    </div>
-</div>
-
-
-
-<div class="row mb-1">
-    <label class="col-sm-2 col-form-label">Emp. Resp.</label>
-    <input id="iptUserId-2" class="form-control" type="hidden" asp-for="EmployeeResponsibleId" />
-    <div class="col-sm-4">
-        <input id="iptUserEmail-2" class="form-control" type="email" asp-for="EmployeeResponsible.EmailAddress" placeholder="Enter email, i.e. colleague@foss.dk" />
-    </div>
-</div>
-<div class="row mb-4">
-    <div class="col-sm-2"></div>
-    <div class="col-sm-4">
-        <input id="iptUserFullName-2" class="form-control" type="text" asp-for="EmployeeResponsible.FullName" placeholder="Enter name, i.e. Joe Doe" />
-    </div>
-</div>
+<vc:contact-input contact="@Model?.CustomerContact" tag-id="1"></vc:contact-input>
+<vc:contact-input contact="@Model?.EmployeeResponsible" tag-id="2"></vc:contact-input>
 
 
 <div class="row mb-3">

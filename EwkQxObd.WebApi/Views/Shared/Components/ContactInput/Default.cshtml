@@ -1,0 +1,27 @@
+﻿@model EqoContactInfo
+
+<div class="row mb-1">
+
+    <input id="iptUserId-@ViewBag.TagId" type="hidden" asp-for="Id" />
+    <div class="col-sm"></div>
+    <div class="col-sm-2">
+        <label class="col-form-label">Contact Person</label>
+    </div>
+    <div class="col-sm-4">
+        <input id="iptUserEmail-@ViewBag.TagId" class="form-control" type="email" asp-for="EmailAddress" placeholder="i.e. user@company.co" />
+    </div>
+
+    <div class="col-sm-1"></div>
+    <div class="col-sm"></div>
+</div>
+
+<div class="row mb-4">
+
+    <div class="col-sm"></div>
+    <div class="col-sm-2"></div>
+
+    <div class="col-sm-5">
+        <input id="iptUserFullName-@ViewBag.TagId" class="form-control" type="text" asp-for="FullName" placeholder="i.e. Joe Doe" />
+    </div>
+    <div class="col-sm"></div>
+</div>

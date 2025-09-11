@@ -56,8 +56,8 @@
         <div class="col-sm"></div>
     </div>
 
-    @await Html.PartialAsync("ContractFormPartial", Model?.Contract);
 
+    <partial name="ContractFormPartial" model="Model?.Contract"></partial>
 
     @if (ViewData["DisplayMode"] as string == "Edit")
     {
