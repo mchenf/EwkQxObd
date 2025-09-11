@@ -1,0 +1,88 @@
+﻿@model EqoContract
+
+@{
+    if (Model is null)
+    {
+        ViewData["DisplayMode"] = "Edit";
+    }
+    else
+    {
+        ViewData["DisplayMode"] = "View";
+    }
+}
+
+<input class="form-control" type="hidden" asp-for="Id" />
+<div class="row mb-3">
+    <div class="col-sm"></div>
+    <div class="col-sm-2">
+        <label class="col-form-label">Contract Number</label>
+    </div>
+    <div class="col-sm-3">
+        <input id="inpTicketNo" class="form-control" type="text" asp-for="ContractNumber" placeholder="Enter Ticket Number, i.e. 1000001234" />
+    </div>
+    <div class="col-sm-2"></div>
+    <div class="col-sm"></div>
+</div>
+<div class="row mb-3">
+    <div class="col-sm"></div>
+    <div class="col-sm-2">
+        <label class="col-form-label">Description</label>
+    </div>
+    <div class="col-sm-5">
+        <input id="inpTicketNo" class="form-control" type="text" asp-for="Description" placeholder="Ticket Description or Subject" />
+    </div>
+    <div class="col-sm"></div>
+</div>
+
+<div class="row mb-1">
+
+    <input id="iptUserId-1" type="hidden" asp-for="CustomerContactId" />
+    <div class="col-sm"></div>
+    <div class="col-sm-2">
+        <label class="col-form-label">Contact Person</label>
+    </div>
+    <div class="col-sm-5">
+        <input id="iptUserEmail-1" class="form-control" type="email" asp-for="CustomerContact.EmailAddress" placeholder="Enter email, i.e. customer@company.com" />
+    </div>
+
+    <div class="col-sm"></div>
+</div>
+
+<div class="row mb-4">
+    <div class="col-sm-2"></div>
+
+    <div class="col-sm-4">
+        <input id="iptUserFullName-1" class="form-control" type="text" asp-for="CustomerContact.FullName" placeholder="Enter name, i.e. Joe Doe" />
+    </div>
+</div>
+
+
+
+<div class="row mb-1">
+    <label class="col-sm-2 col-form-label">Emp. Resp.</label>
+    <input id="iptUserId-2" class="form-control" type="hidden" asp-for="EmployeeResponsibleId" />
+    <div class="col-sm-4">
+        <input id="iptUserEmail-2" class="form-control" type="email" asp-for="EmployeeResponsible.EmailAddress" placeholder="Enter email, i.e. colleague@foss.dk" />
+    </div>
+</div>
+<div class="row mb-4">
+    <div class="col-sm-2"></div>
+    <div class="col-sm-4">
+        <input id="iptUserFullName-2" class="form-control" type="text" asp-for="EmployeeResponsible.FullName" placeholder="Enter name, i.e. Joe Doe" />
+    </div>
+</div>
+
+
+<div class="row mb-3">
+    <label class="col-sm-2 col-form-label">Contract Starts</label>
+    <div class="col-sm-5">
+        <input id="inpCtrValidFrom" class="form-control" type="date" asp-for="ValidFrom" placeholder="Date starts, i.e. 08/29/2025" />
+    </div>
+</div>
+
+<div class="row mb-3">
+    <label class="col-sm-2 col-form-label">Contract Ends</label>
+    <div class="col-sm-5">
+        <input id="inpCtrValidTo" class="form-control disabled" type="date" asp-for="ValidTo" placeholder="Date ends, i.e. 09/29/2026" />
+    </div>
+</div>

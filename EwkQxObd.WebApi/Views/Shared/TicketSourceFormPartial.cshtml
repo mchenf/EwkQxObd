@@ -56,33 +56,12 @@
         <div class="col-sm"></div>
     </div>
 
-    <input class="form-control" type="hidden" asp-for="ContractId" />
-    <div class="row mb-3">
-        <div class="col-sm"></div>
-        <div class="col-sm-2">
-            <label class="col-form-label">xxxxxx</label>
-        </div>
-        <div class="col-sm-3">
-            <input id="inpTicketNo" class="form-control" type="text" asp-for="Ticket.TicketNumber" placeholder="Enter Ticket Number, i.e. 1000001234" />
-        </div>
-        <div class="col-sm-2"></div>
-        <div class="col-sm"></div>
-    </div>
-    <div class="row mb-3">
-        <div class="col-sm"></div>
-        <div class="col-sm-2">
-            <label class="col-form-label">xxxxxxxxx</label>
-        </div>
-        <div class="col-sm-5">
-            <input id="inpTicketNo" class="form-control" type="text" asp-for="Ticket.Description" placeholder="Ticket Description or Subject" />
-        </div>
-        <div class="col-sm"></div>
-    </div>
+    @await Html.PartialAsync("ContractFormPartial", Model?.Contract);
 
 
     @if (ViewData["DisplayMode"] as string == "Edit")
     {
-        <div class="row mt-5 mb-lg-5">
+        <div class="row mt-lg-5 mb-lg-5">
             <div class="col-sm"></div>
             <div class="col-sm-4">
                 <button type="submit" class="btn btn-primary w-100">Submit</button>
