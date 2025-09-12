@@ -13,64 +13,60 @@
     }
 }
 
-<form method="post" asp-controller="TicketSource" asp-action="Create">
+<div class="row mb-lg-5">
+    <div class="col"></div>
+    <div class="col-10">
 
-    <input class="form-control" type="hidden" asp-for="Id" />
+        <form method="post" asp-controller="TicketSource" asp-action="Create">
 
-    <div class="row mb-3">
-        <div class="col-sm"></div>
-        <div class="col-sm-7">
-            <h3>Ticket Information</h3>
-        </div>
-        <div class="col-sm"></div>
-    </div>
+            <input class="form-control" type="hidden" asp-for="Id" />
 
-    <input class="form-control" type="hidden" asp-for="TicketId" />
-    <div class="row mb-3">
-        <div class="col-sm"></div>
-        <div class="col-sm-2">
-            <label class="col-form-label">Ticket Number</label>
-        </div>
-        <div class="col-sm-3">
-            <input id="inpTicketNo" class="form-control" type="text" asp-for="Ticket.TicketNumber" placeholder="Enter Ticket Number, i.e. 1000001234" />
-        </div>
-        <div class="col-sm-2"></div>
-        <div class="col-sm"></div>
-    </div>
-    <div class="row mb-3">
-        <div class="col-sm"></div>
-        <div class="col-sm-2">
-            <label class="col-form-label">Description</label>
-        </div>
-        <div class="col-sm-5">
-            <input id="inpTicketNo" class="form-control" type="text" asp-for="Ticket.Description" placeholder="Ticket Description or Subject" />
-        </div>
-        <div class="col-sm"></div>
-    </div>
-
-    <div class="row mb-3">
-        <div class="col-sm"></div>
-        <div class="col-sm-7">
-            <h3>Contract</h3>
-        </div>
-        <div class="col-sm"></div>
-    </div>
-
-
-    <partial name="ContractFormPartial" model="Model?.Contract"></partial>
-
-    @if (ViewData["DisplayMode"] as string == "Edit")
-    {
-        <div class="row mt-lg-5 mb-lg-5">
-            <div class="col-sm"></div>
-            <div class="col-sm-4">
-                <button type="submit" class="btn btn-primary w-100">Submit</button>
+            <div class="row mb-3">
+                <div class="col-sm-7">
+                    <h3 class="ps-2">Ticket Information</h3>
+                </div>
             </div>
-            <div class="col-sm-2">
-                <button type="reset" class="btn btn-warning w-100">Reset</button>
+
+            <input class="form-control" type="hidden" asp-for="TicketId" />
+            <div class="row mb-3">
+                <div class="col-sm-3">
+                    <label class="col-form-label">Ticket Number</label>
+                </div>
+                <div class="col-sm-6">
+                    <input id="inpTicketNo" class="form-control" type="text" asp-for="Ticket.TicketNumber" placeholder="Enter Ticket Number, i.e. 1000001234" />
+                </div>
+                <div class="col-sm"></div>
             </div>
-            <div class="col-sm-1"></div>
-            <div class="col-sm"></div>
-        </div>
-    }
-</form>
+            <div class="row mb-3">
+                <div class="col-sm-3">
+                    <label class="col-form-label">Description</label>
+                </div>
+                <div class="col-sm-8">
+                    <input id="inpTicketNo" class="form-control" type="text" asp-for="Ticket.Description" placeholder="Ticket Description or Subject" />
+                </div>
+            </div>
+
+            <div class="row mb-3">
+                <div class="col-sm-7">
+                    <h3 class="ps-2">Contract</h3>
+                </div>
+            </div>
+
+
+            <partial name="ContractFormPartial" model="Model?.Contract"></partial>
+
+            @if (ViewData["DisplayMode"] as string == "Edit")
+            {
+                <div class="row mt-lg-5 mb-lg-5 justify-content-center">
+                    <div class="col-sm-4">
+                        <button type="submit" class="btn btn-primary w-100">Submit</button>
+                    </div>
+                    <div class="col-sm-2">
+                        <button type="reset" class="btn btn-warning w-100">Reset</button>
+                    </div>
+                </div>
+            }
+        </form>
+    </div>
+    <div class="col"></div>
+</div>
