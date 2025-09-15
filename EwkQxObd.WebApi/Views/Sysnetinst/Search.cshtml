@@ -27,5 +27,5 @@
 @if (Model != null && !string.IsNullOrEmpty(Model.SerialNumber))
 {
     @await Html.PartialAsync("SysnetinstorgDetailsPartial", Model)
-    
+    <partial name="SysnetinstTextPartial" model="Model"></partial>
 }
