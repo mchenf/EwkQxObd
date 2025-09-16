@@ -17,7 +17,7 @@
         <label class="col-form-label">Contract Number</label>
     </div>
     <div class="col-sm-6">
-        <input id="inpTicketNo" class="form-control" type="text" asp-for="ContractNumber" placeholder="Enter Ticket Number, i.e. 1000001234" />
+        <input id="inpContract" class="form-control" type="text" asp-for="ContractNumber" placeholder="Enter Ticket Number, i.e. 1000001234" />
     </div>
 </div>
 <div class="row mb-3">
@@ -25,7 +25,7 @@
         <label class="col-form-label">Description</label>
     </div>
     <div class="col-sm-8">
-        <input id="inpTicketNo" class="form-control" type="text" asp-for="Description" placeholder="Ticket Description or Subject" />
+        <input id="inpCtrDescription" class="form-control" type="text" asp-for="Description" placeholder="Ticket Description or Subject" />
     </div>
 </div>
 
@@ -47,11 +47,11 @@
     <div class="col-sm-3">
         <label class="col-form-label">Valid For</label>
     </div>
-    <div class="col-sm-4">
+    <div class="col-sm-3">
         <input id="inpCtrValidFrom" class="form-control" type="date" asp-for="ValidFrom" placeholder="Date starts, i.e. 08/29/2025" />
     </div>
-    <div class="col-sm-4">
-        <input id="inpCtrValidTo" class="form-control disabled" type="date" asp-for="ValidTo" placeholder="Date ends, i.e. 09/29/2026" />
+    <div class="col-sm-3">
+        <input id="inpCtrValidTo" class="form-control" type="date" asp-for="ValidTo" placeholder="Date ends, i.e. 09/29/2026" />
     </div>
 </div>
 
@@ -60,6 +60,6 @@
         <label class="col-form-label">Recorded</label>
     </div>
     <div class="col-sm-4">
-        <input class="form-control" type="datetime-local" asp-for="RecordedAt" value="@DateTime.Now.ToString("yyyy-MM-ddTHH:mm")" readonly/>
+        <input id="inpTimeRecorded" class="form-control" type="datetime" asp-for="RecordedAt" value="@DateTime.Now.ToString("yyyy-MM-ddTHH:mm")" />
     </div>
 </div>
