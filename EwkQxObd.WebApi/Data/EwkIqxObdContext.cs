@@ -29,6 +29,8 @@ namespace EwkQxObd.WebApi.Data
 
         public DbSet<RelTicketSourceContract> RelTicketSourceContracts { get; set; }
 
+        public DbSet<FscEnterpriseInstance> FscEnterpriseInstance { get; set; }
+
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             foreach (var rel in modelBuilder.Model.GetEntityTypes().SelectMany(e => e.GetForeignKeys()))
