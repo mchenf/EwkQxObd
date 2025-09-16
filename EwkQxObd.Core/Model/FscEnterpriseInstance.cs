@@ -18,6 +18,8 @@ namespace EwkQxObd.Core.Model
         public required Uri ServerAddress { get; set; }
         public required string InstanceName { get; set; }
 
+        public required string Version { get; set; }
+
         public int PortTcp { get; set; }
         public int PortHttp { get; set; }
         public int PortHttps { get; set; }
