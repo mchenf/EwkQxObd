@@ -42,7 +42,7 @@
                     <label class="col-form-label">Description</label>
                 </div>
                 <div class="col-sm-8">
-                    <input id="inpTicketNo" class="form-control" type="text" asp-for="Ticket.Description" placeholder="Ticket Description or Subject" />
+                    <input id="inpTicketDesc" class="form-control" type="text" asp-for="Ticket.Description" placeholder="Ticket Description or Subject" />
                 </div>
             </div>
 
@@ -60,6 +60,9 @@
                 <div class="row mt-lg-5 mb-lg-5 justify-content-center">
                     <div class="col-sm-4">
                         <button type="submit" class="btn btn-primary w-100">Submit</button>
+                    </div>
+                    <div class="col-sm-2">
+                        <button type="button" class="btn btn-outline-success w-100">Add On</button>
                     </div>
                     <div class="col-sm-2">
                         <button type="reset" class="btn btn-warning w-100">Reset</button>
