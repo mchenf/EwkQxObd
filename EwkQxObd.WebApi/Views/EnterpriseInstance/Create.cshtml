@@ -2,9 +2,17 @@
 
 @{
     ViewData["Title"] = "New Instance";
+    if (Model is null)
+    {
+        ViewData["DisplayMode"] = "Edit";
+    }
+    else
+    {
+        ViewData["DisplayMode"] = "View";
+    }
 }
 
-<h1 class="text-center">Enterprise Instances</h1>
+<h1 class="text-center">New Enterprise Instance</h1>
 
 <div class="row mt-3 mb-lg-5">
     <div class="col"></div>
@@ -25,13 +33,16 @@
 
             @if (ViewData["DisplayMode"] as string == "Edit")
             {
-                <div class="row mt-5 mb-lg-5">
-                    <div class="col-sm-1"></div>
-                    <button type="submit" class="btn btn-primary col-sm-2">Submit</button>
-                    <div class="col-sm-1"></div>
-                    <button type="reset" class="btn btn-warning col-sm-1">Reset</button>
-
-                    <div class="col-sm-2"></div>
+                <div class="row mt-lg-5 mb-lg-5 justify-content-center">
+                    <div class="col-sm-4">
+                        <button type="submit" class="btn btn-primary w-100">Submit</button>
+                    </div>
+                    <div class="col-sm-2">
+                        <button type="button" class="btn btn-outline-success w-100">Add On</button>
+                    </div>
+                    <div class="col-sm-2">
+                        <button type="reset" class="btn btn-warning w-100">Reset</button>
+                    </div>
                 </div>
             }
         </form>

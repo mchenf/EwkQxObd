@@ -1,13 +1,17 @@
 ﻿@model EqoContract
 
 @{
+    DateTime timeRecorded = default;
+
     if (Model is null)
     {
         ViewData["DisplayMode"] = "Edit";
+        timeRecorded = DateTime.Now;
     }
     else
     {
         ViewData["DisplayMode"] = "View";
+        timeRecorded = Model.RecordedAt ?? default;
     }
 }
 
@@ -47,10 +51,10 @@
     <div class="col-sm-3">
         <label class="col-form-label">Valid For</label>
     </div>
-    <div class="col-sm-3">
+    <div class="col-sm-2">
         <input id="inpCtrValidFrom" class="form-control" type="date" asp-for="ValidFrom" placeholder="Date starts, i.e. 08/29/2025" />
     </div>
-    <div class="col-sm-3">
+    <div class="col-sm-2">
         <input id="inpCtrValidTo" class="form-control" type="date" asp-for="ValidTo" placeholder="Date ends, i.e. 09/29/2026" />
     </div>
 </div>
@@ -59,7 +63,9 @@
     <div class="col-sm-3">
         <label class="col-form-label">Recorded</label>
     </div>
-    <div class="col-sm-4">
-        <input id="inpTimeRecorded" class="form-control" type="datetime" asp-for="RecordedAt" value="@DateTime.Now.ToString("yyyy-MM-ddTHH:mm")" />
+
+
+    <div class="col-sm-3">
+        <input id="inpTimeRecorded" class="form-control" type="datetime" asp-for="RecordedAt" value="@timeRecorded.ToString("yyyy-MM-dd HH:mm")" />
     </div>
 </div>
