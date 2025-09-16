@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Http;
+﻿using EwkQxObd.Core.Model;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
 namespace EwkQxObd.WebApi.Controllers
@@ -26,7 +27,7 @@ namespace EwkQxObd.WebApi.Controllers
         // POST: EnterpriseInstanceController/Create
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create(IFormCollection collection)
+        public ActionResult Create(FscEnterpriseInstance System)
         {
             try
             {

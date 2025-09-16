@@ -34,7 +34,6 @@
 
   <ItemGroup>
     <Folder Include="ViewComponents\" />
-    <Folder Include="Views\EnterpriseInstance\" />
     <Folder Include="Views\Shared\Components\" />
     <Folder Include="wwwroot\images\" />
   </ItemGroup>
