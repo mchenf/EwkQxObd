@@ -29,8 +29,19 @@
     </div>
 </div>
 
-<vc:contact-input contact="@Model?.CustomerContact" label="Customer Contact" tag-id="1"></vc:contact-input>
-<vc:contact-input contact="@Model?.EmployeeResponsible" label="Employee Responsible" tag-id="2"></vc:contact-input>
+
+@{
+    ViewBag.TagId = 1;
+    ViewBag.Label = "Customer Contact";
+}
+<partial name="ContactInputPartial" for="CustomerContact"/>
+
+@{
+    ViewBag.TagId = 2;
+    ViewBag.Label = "Employee Responsible";
+}
+<partial name="ContactInputPartial" for="EmployeeResponsible" />
+
 
 <div class="row mb-3">
     <div class="col-sm-3">
@@ -41,5 +52,14 @@
     </div>
     <div class="col-sm-4">
         <input id="inpCtrValidTo" class="form-control disabled" type="date" asp-for="ValidTo" placeholder="Date ends, i.e. 09/29/2026" />
+    </div>
+</div>
+
+<div class="row mb-3">
+    <div class="col-sm-3">
+        <label class="col-form-label">Recorded</label>
+    </div>
+    <div class="col-sm-4">
+        <input class="form-control" type="datetime-local" asp-for="RecordedAt" value="@DateTime.Now.ToString("yyyy-MM-ddTHH:mm")" readonly/>
     </div>
 </div>

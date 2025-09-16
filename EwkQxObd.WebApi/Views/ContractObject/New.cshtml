@@ -3,7 +3,13 @@
     ViewData["Title"] = "New Contract Object";
 }
 
-@await Html.PartialAsync("ContractObjFormPartial", Model)
+<div class="row mt-3 mb-lg-5">
+    <div class="col"></div>
+    <div class="col-10">
+        <partial name="ContractObjFormPartial" model="Model" />
+    </div>
+    <div class="col"></div>
+</div>
 
 @section Scripts{
     <script src="~/js/contractobj/autocomplete.js" asp-append-version="true"></script>

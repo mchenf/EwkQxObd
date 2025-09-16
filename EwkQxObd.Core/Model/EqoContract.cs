@@ -1,6 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Text;
@@ -29,5 +30,8 @@ namespace EwkQxObd.Core.Model
         public EqoContactInfo? EmployeeResponsible { get; set; }
         [Column("EmployeeResponsible")]
         public long? EmployeeResponsibleId { get; set; }
+
+
+        public DateTime? RecordedAt { get; set; }
     }
 }

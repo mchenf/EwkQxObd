@@ -14,68 +14,10 @@
 <form method="post" asp-controller="ContractObject" asp-action="New">
 
     <div class="row mb-3">
-        <div class="col-sm-1"></div>
-        <h3 class="col-sm-8">Contract</h3>
+        <h3 class="col-sm-8">IQX Contract</h3>
     </div>
 
-    <div class="row mb-3">
-        <label class="col-sm-2 col-form-label">Contract Number</label>
-        <div class="col-sm-3">
-            <input id="inpContract" class="form-control" type="text" asp-for="Contract.ContractNumber" placeholder="Enter Contract Number, i.e. 5432123" />
-        </div>
-    </div>
-    <div class="row mb-4">
-        <label class="col-sm-2 col-form-label">Description</label>
-        <div class="col-sm-10">
-            <input id="inpCtrDescription" class="form-control" type="text" asp-for="Contract.Description" placeholder="Say something to describe contract" />
-        </div>
-    </div>
-
-    <div class="row mb-1">
-        <label class="col-sm-2 col-form-label">Contact Person</label>
-        <input id="iptUserId-1" type="hidden" asp-for="Contract.CustomerContactId" />
-        <div class="col-sm-4">
-            <input id="iptUserEmail-1" class="form-control" type="email" asp-for="Contract.CustomerContact.EmailAddress" placeholder="Enter email, i.e. customer@company.com" />
-        </div>
-    </div>
-    <div class="row mb-4">
-        <div class="col-sm-2"></div>
-
-        <div class="col-sm-4">
-            <input id="iptUserFullName-1" class="form-control" type="text" asp-for="Contract.CustomerContact.FullName" placeholder="Enter name, i.e. Joe Doe" />
-        </div>
-    </div>
-
-        
-
-    <div class="row mb-1">
-        <label class="col-sm-2 col-form-label">Emp. Resp.</label>
-        <input id="iptUserId-2" class="form-control" type="hidden" asp-for="Contract.EmployeeResponsibleId" />
-        <div class="col-sm-4">
-            <input id="iptUserEmail-2" class="form-control" type="email" asp-for="Contract.EmployeeResponsible.EmailAddress" placeholder="Enter email, i.e. colleague@foss.dk" />
-        </div>
-    </div>
-    <div class="row mb-4">
-        <div class="col-sm-2"></div>
-        <div class="col-sm-4">
-            <input id="iptUserFullName-2" class="form-control" type="text" asp-for="Contract.EmployeeResponsible.FullName" placeholder="Enter name, i.e. Joe Doe" />
-        </div>
-    </div>
-
-
-    <div class="row mb-3">
-        <label class="col-sm-2 col-form-label">Contract Starts</label>
-        <div class="col-sm-5">
-            <input id="inpCtrValidFrom" class="form-control" type="date" asp-for="Contract.ValidFrom" placeholder="Enter contract starts, i.e. 08/29/2025" />
-        </div>
-    </div>
-
-    <div class="row mb-3">
-        <label class="col-sm-2 col-form-label">Contract Ends</label>
-        <div class="col-sm-5">
-            <input id="inpCtrValidTo" class="form-control disabled" type="date" asp-for="Contract.ValidTo" placeholder="Enter contract end, i.e. 09/29/2026" />
-        </div>
-    </div>
+    <partial name="ContractFormPartial" for="Contract"/>
 
     <div class="row mb-3 mt-5">
         <div class="col-sm-1"></div>
