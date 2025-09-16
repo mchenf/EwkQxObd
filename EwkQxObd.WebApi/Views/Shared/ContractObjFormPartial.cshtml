@@ -44,32 +44,7 @@
         <h3 class="col-sm-8">Ship-To</h3>
     </div>
 
-    <div class="row mb-3">
-        <label class="col-sm-2 col-form-label">Partner ID</label>
-        <div class="col-sm-10">
-            <input id="inpShpt" class="form-control" type="text" asp-for="ShipTo.PartnerId" placeholder="Enter partner account, i.e. 123456" />
-        </div>
-    </div>
-
-    <div class="row mb-3">
-        <label class="col-sm-2 col-form-label">Partner Name</label>
-        <div class="col-sm-10">
-            <input id="inpShptPartnerName" class="form-control" type="text" asp-for="ShipTo.PartnerName" placeholder="Enter partner name, i.e. Foss Analaytical A/S" />
-        </div>
-    </div>
-
-    <div class="row mb-3">
-        <label class="col-sm-2 col-form-label">Region</label>
-        <div class="col-sm-10">
-            <input id="inpShptRegion" class="form-control" type="text" asp-for="ShipTo.Region" placeholder="Enter region, i.e. Asia Pacific" />
-        </div>
-    </div>
-    <div class="row mb-3">
-        <label class="col-sm-2 col-form-label">Country</label>
-        <div class="col-sm-10">
-            <input id="inpShptCountry" class="form-control" type="text" asp-for="ShipTo.Country" placeholder="Enter country, i.e. Japan" />
-        </div>
-    </div>
+    <partial name="AccountFormPartial" for="ShipTo" />
 
     @if (ViewData["DisplayMode"] as string == "Edit")
     {
