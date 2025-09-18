@@ -91,6 +91,10 @@ namespace EwkQxObd.WebApi.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> New(EqoContractObject contractObj)
         {
+            if (!ModelState.IsValid)
+            {
+                return View(contractObj);
+            }
 
             var dataSync = new ContractObjectDataSync();
             var dataSyncResult = await dataSync.SyncSingle(_context, contractObj);

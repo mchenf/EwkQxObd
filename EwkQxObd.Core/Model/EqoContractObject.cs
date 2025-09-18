@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Text;
@@ -16,6 +17,9 @@ namespace EwkQxObd.Core.Model
     {
 
         public long Id { get; set; }
+
+        [Required]
+        [StringLength(16, ErrorMessage = "{0} length must be between {2} and {1}.", MinimumLength = 3)]
         public required string SerialNumber { get; set; }
 
         public required string InstrumentType { get; set; }
