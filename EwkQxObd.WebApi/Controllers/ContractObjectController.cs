@@ -116,7 +116,14 @@ namespace EwkQxObd.WebApi.Controllers
                     .Include(co => co.Contract!.CustomerContact)
                     .Include(co => co.Contract!.EmployeeResponsible)
                     .FirstOrDefaultAsync(o => o.Id == Id);
+            if (objFound == default)
+            {
+                return NoContent();
+            }
 
+            objFound.InstrumentConnected = await _context.Syngio.FirstOrDefaultAsync(
+                o => o.SerialNumber == objFound.SerialNumber
+            );
 
             return View(objFound);
         }

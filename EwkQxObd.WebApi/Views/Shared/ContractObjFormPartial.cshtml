@@ -3,14 +3,18 @@
 @{
     
 }
-
-
     <div class="row mb-3">
         <h3 class="col-8 pe-3">IQX Contract</h3>
     </div>
 
     <partial name="ContractFormPartial" for="Contract"/>
 
+    @if (Model.InstrumentConnected is not null)
+{
+    <partial name="SyngioDetailsPartial" model="Model.InstrumentConnected" />
+} 
+    else
+{
     <div class="row mb-3 mt-5">
         <h3 class="col-8 me-5">Instrument</h3>
     </div>
@@ -34,7 +38,7 @@
 
     <div class="row mb-3">
         <div class="col-3">
-        <label class="form-label">Instrument Type</label>
+            <label class="form-label">Instrument Type</label>
         </div>
         <div class="col-9">
             <input id="inpInstType" class="form-control" type="text" asp-for="InstrumentType" placeholder="Enter instrument Type, i.e. Base Unit NIRS DS DS2500" />
@@ -47,4 +51,6 @@
     </div>
 
     <partial name="AccountFormPartial" for="ShipTo" />
+}
+
 
