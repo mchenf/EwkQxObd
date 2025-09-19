@@ -3,7 +3,7 @@
 <form>
     <div class="row mb-3">
         <div class="col-sm-7">
-            <h3>Instrument Information</h3>
+            <h3>Linked IQX Instrument</h3>
         </div>
     </div>
 
@@ -47,16 +47,22 @@
 
     <div class="row mb-3">
         <div class="col-sm-7">
-            <h3>Organization Connected</h3>
+            <h3>Linked Organization</h3>
         </div>
     </div>
+
+    @{
+        string placeHolder = Model.LinkedAccountGuid == default ?
+            "... not IQX onboarded." :
+            "... linked to unknown";
+    }
 
     <div class="row mb-3">
         <div class="col-sm-2">
             <label class="col-form-label">Linked to</label>
         </div>
         <div class="col-sm-5">
-            <input class="form-control" type="text" asp-for="LinkedAccountGuid" placeholder="...No account connected." readonly />
+            <input class="form-control" type="text" asp-for="LinkedAccountGuid" placeholder="@placeHolder" readonly />
         </div>
 
     </div>
@@ -66,7 +72,7 @@
             <label class="col-form-label">Account No.</label>
         </div>
         <div class="col-sm-3">
-            <input class="form-control" type="text" asp-for="AccountNumber" placeholder="...No account connected." readonly />
+            <input class="form-control" type="text" asp-for="AccountNumber" placeholder="@placeHolder" readonly />
         </div>
 
     </div>
@@ -75,7 +81,7 @@
             <label class="col-form-label">Account Name</label>
         </div>
         <div class="col-sm-7">
-            <input class="form-control" type="text" asp-for="Name" placeholder="...No account connected." readonly />
+            <input class="form-control" type="text" asp-for="Name" placeholder="@placeHolder" readonly />
         </div>
 
     </div>
@@ -85,7 +91,7 @@
             <label class="col-form-label">Street</label>
         </div>
         <div class="col-sm-5">
-            <input class="form-control" type="text" asp-for="Street" placeholder="...No account connected." readonly />
+            <input class="form-control" type="text" asp-for="Street" placeholder="@placeHolder" readonly />
         </div>
     </div>
 
@@ -94,7 +100,7 @@
             <label class="col-form-label">City</label>
         </div>
         <div class="col-sm-5">
-            <input class="form-control" type="text" asp-for="City" placeholder="...No account connected." readonly />
+            <input class="form-control" type="text" asp-for="City" placeholder="@placeHolder" readonly />
         </div>
     </div>
 </form>

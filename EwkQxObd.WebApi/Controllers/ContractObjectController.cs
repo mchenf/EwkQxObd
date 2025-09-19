@@ -26,7 +26,26 @@ namespace EwkQxObd.WebApi.Controllers
                     .Include(co => co.Contract!.CustomerContact)
                     .Include(co => co.Contract!.EmployeeResponsible)
                     .ToListAsync();
-            return View(objFound);
+
+            var query = _context.EqoContractObject.Join(
+                _context.Syngio,
+                obj => obj.SerialNumber,
+                syngio => syngio.SerialNumber,
+                (obj, syngio) =>
+                new
+                {
+                    ContractObject = obj,
+                    Syngio = syngio
+                })
+                .AsEnumerable()
+                .Select(resul =>
+                {
+                    resul.ContractObject.InstrumentConnected = resul.Syngio;
+                    return resul.ContractObject;
+                });
+
+
+            return View(query.ToList());
         }
 
         [HttpGet()]
