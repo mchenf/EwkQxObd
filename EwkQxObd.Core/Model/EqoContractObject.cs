@@ -1,4 +1,5 @@
-﻿using System;
+﻿using EwkQxObd.Core.Model.Views;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
@@ -36,6 +37,9 @@ namespace EwkQxObd.Core.Model
         public string PartnerName { get => ShipTo == default ? string.Empty : ShipTo.PartnerName; }
 
         public long ContractNumber { get => Contract == default ? -1 : Contract.ContractNumber; }
+
+        [NotMapped]
+        public Syngio? InstrumentConnected { get; set; }
 
     }
 }
