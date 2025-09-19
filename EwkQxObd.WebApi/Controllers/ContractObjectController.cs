@@ -104,11 +104,11 @@ namespace EwkQxObd.WebApi.Controllers
 
             await _context.SaveChangesAsync();
 
-            return View(nameof(ViewContractObject), contractObj);
+            return View(nameof(Detail), contractObj);
         }
 
         [HttpGet]
-        public async Task<IActionResult> ViewContractObject([FromQuery]long Id)
+        public async Task<IActionResult> Detail([FromQuery]long Id)
         {
             var objFound = await _context.EqoContractObject
                     .Include(co => co.Contract)
