@@ -15,9 +15,9 @@ namespace EwkQxObd.WebApi.Controllers
             _logger = lgr;
 
         }
-        public async Task<IActionResult> Index()
+        public IActionResult Index()
         {
-            return View(await _context.VwSysnetinstorg.ToListAsync());
+            return View();
         }
     }
 }
