@@ -8,11 +8,11 @@ using System.IO.Enumeration;
 namespace EwkQxObd.WebApi.Controllers
 {
     [Route("[Controller]")]
-    public class SysnetinstController : Controller
+    public class SyngioController : Controller
     {
         private EwkIqxObdContext _context;
 
-        public SysnetinstController(EwkIqxObdContext ctx)
+        public SyngioController(EwkIqxObdContext ctx)
         {
             _context = ctx;
         }
@@ -24,7 +24,7 @@ namespace EwkQxObd.WebApi.Controllers
             };
 
             var qrySystem = await (
-                from inst in _context.VwSysnetinstorg
+                from inst in _context.Syngio
                 select inst.System
             ).Distinct().ToListAsync();
 
@@ -37,7 +37,7 @@ namespace EwkQxObd.WebApi.Controllers
                 };
 
                 var qryInstruments = await (
-                    from inst in _context.VwSysnetinstorg
+                    from inst in _context.Syngio
                     where inst.System == sys
                     select inst
                 ).ToListAsync();
@@ -78,7 +78,7 @@ namespace EwkQxObd.WebApi.Controllers
         public async Task<IActionResult> GetByInstrumentSN([FromRoute] string SerialNumber)
         {
             var network = await (
-                from a in _context.VwSysnetinstorg
+                from a in _context.Syngio
                 where a.SerialNumber == SerialNumber
                 select a
             ).FirstOrDefaultAsync();
@@ -91,7 +91,7 @@ namespace EwkQxObd.WebApi.Controllers
 
 
             var result = await (
-                from a in _context.VwSysnetinstorg
+                from a in _context.Syngio
                 where a.NetworkId == network.NetworkId && a.System == network.System
                 select a
             ).ToListAsync();
@@ -103,7 +103,7 @@ namespace EwkQxObd.WebApi.Controllers
         public async Task<IActionResult> Details([FromRoute] long id)
         {
             var inst = await (
-                from i in _context.VwSysnetinstorg
+                from i in _context.Syngio
                 where i.Id == id
                 select i
             ).FirstOrDefaultAsync();
@@ -122,10 +122,10 @@ namespace EwkQxObd.WebApi.Controllers
         [Route("[Action]")]
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> SearchPost(VwSysnetinstorg search)
+        public async Task<IActionResult> SearchPost(Syngio search)
         {
             var inst = await (
-                from i in _context.VwSysnetinstorg
+                from i in _context.Syngio
                 where i.SerialNumber == search.SerialNumber
                 select i
             ).FirstOrDefaultAsync();
@@ -136,7 +136,7 @@ namespace EwkQxObd.WebApi.Controllers
 
         [Route("[Action]")]
         [HttpGet]
-        public IActionResult Search(VwSysnetinstorg search)
+        public IActionResult Search(Syngio search)
         {
             return View(search);
         }

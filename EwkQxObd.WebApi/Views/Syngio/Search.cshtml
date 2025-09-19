@@ -1,9 +1,9 @@
-﻿@model VwSysnetinstorg
+﻿@model Syngio
 
 <h1>Search Instrument IQX Readiness</h1>
 
 
-<form method="post" asp-controller="Sysnetinst" asp-action="SearchPost">
+<form method="post" asp-controller="Syngio" asp-action="SearchPost">
 
     <div class="row mb-3">
         <label class="col-sm-3 col-form-label">Serial Number</label>
@@ -26,6 +26,6 @@
 
 @if (Model != null && !string.IsNullOrEmpty(Model.SerialNumber))
 {
-    @await Html.PartialAsync("SysnetinstorgDetailsPartial", Model)
-    <partial name="SysnetinstTextPartial" model="Model"></partial>
+    <partial name="SyngioDetailsPartial" model="Model"></partial>
+    <partial name="SyngioTextPartial" model="Model"></partial>
 }

@@ -21,7 +21,7 @@ City: {9}
 ";
 
 
-        public static string ToFlatText(this VwSysnetinstorg obj)
+        public static string ToFlatText(this Syngio obj)
         {
             
             string result = string.Format(format1,

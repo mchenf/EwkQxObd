@@ -41,7 +41,7 @@ namespace EwkQxObd.WebApi.Controllers.ewkiqxobd.api
             }
             else if (includeOrg)
             {
-                var result = await _context.VwSysnetinstorg
+                var result = await _context.Syngio
                     .Where(sni => sni.SerialNumber == sn)
                     .FirstOrDefaultAsync();
                 if (result != default)
@@ -51,7 +51,7 @@ namespace EwkQxObd.WebApi.Controllers.ewkiqxobd.api
             }
             else
             {
-                var result = await _context.VwSysnetinst
+                var result = await _context.Syngi
                     .Where(sni => sni.SerialNumber == sn)
                     .FirstOrDefaultAsync();
                 if (result != default)
@@ -71,7 +71,7 @@ namespace EwkQxObd.WebApi.Controllers.ewkiqxobd.api
             if (IncludeOrg)
             {
                 _logger.LogDebug("Starting GetLatest IncludeOrg = true");
-                var result = await _context.VwSysnetinstorg
+                var result = await _context.Syngio
                     .ToListAsync();
 
 
@@ -86,7 +86,7 @@ namespace EwkQxObd.WebApi.Controllers.ewkiqxobd.api
             }
             else
             {
-                var result = await _context.VwSysnetinst
+                var result = await _context.Syngi
                     .ToListAsync();
                 if (result != default)
                 {

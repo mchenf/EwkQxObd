@@ -6,6 +6,6 @@ namespace EwkQxObd.WebApi.Models
     {
         public long? NetworkId { get; set; }
         public string NetworkName { get; set; } = string.Empty;
-        public List<VwSysnetinstorg>? Instruments { get; set; }
+        public List<Syngio>? Instruments { get; set; }
     }
 }
