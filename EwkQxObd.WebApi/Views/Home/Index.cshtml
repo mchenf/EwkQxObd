@@ -3,74 +3,72 @@
     ViewData["Title"] = "Home";
 }
 
-<h1>E-Workspace FOSS IQX™ Onboarding & Other Tasks</h1>
-<h2>IQX Onboarding Task</h2>
-<div>
-    <h3>Contract</h3>
-    <ul>
-        <li>
-            <a asp-controller="Contract" asp-action="Index">View Contracts</a>
-        </li>
-        <li>
-            <a asp-controller="Contract" asp-action="SingleRead">Search Contracts</a>
-        </li>
-    </ul>
+<h1 class="text-center">Digital Workspace <br /> FOSS IQX™ Onboarding</h1>
+
+
+<div class="row justify-content-evenly mt-3">
+    <div class="col-5">
+        <div class="card w-100 g-3">
+            <img src="~/images/business-contract_960_720.jpg" class="card-img-top" alt="Bussine Contract Signed" />
+            <div class="card-body">
+                <h3 class="card-title">Contract Objects</h3>
+                <p class="card-text">
+                    A contrat object represents a combination between a contract and an object (or an Instrument), which is bind to an account.
+                    The contract object enables IQX to be active for accounts.
+                </p>
+
+                <a class="btn btn-primary w-100 mb-3" asp-controller="ContractObject" asp-action="New">Create</a>
+                <a class="btn btn-outline-success w-100 mb-3" asp-controller="ContractObject" asp-action="Index">List All</a>
+                <a class="btn btn-warning w-100" asp-controller="ContractObject" asp-action="Search">Search</a>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-5">
+        <div class="card w-100 g-3">
+            <img src="~/images/laptop-6087062_640.png" class="card-img-top" alt="Laptop Showing Business Logic" />
+            <div class="card-body">
+                <h3 class="card-title">S. N. G. I. O.</h3>
+                <p class="card-text">
+                    "System, Network, Group, Instrument, & Organisation"
+                </p>
+
+                <a class="btn btn-outline-success w-100 mb-3" asp-controller="Sysnetinst" asp-action="Index">List All</a>
+                <a class="btn btn-warning w-100" asp-controller="Sysnetinst" asp-action="Search">Search</a>
+            </div>
+        </div>
+    </div>
+
 </div>
 
-<div>
-    <h3>Contract Objects</h3>
-    <ul>
+<div class="row justify-content-evenly mt-3">
+    <div class="col-5">
+        <div class="card w-100 g-3">
+            <img src="~/images/business-discussion_640.jpg" class="card-img-top" alt="Bussine Discussion" />
+            <div class="card-body">
+                <h3 class="card-title">Ticket Handling</h3>
+                <h5 class="card-subtitle">SAP CRM, Salesforce, etc.</h5>
+                <p class="card-text">
+                    The ticket related to the requests, contracts, & requirements.
+                </p>
 
-        <li>
-            <a asp-controller="ContractObject" asp-action="New">New Contract Object</a>
-        </li>
-        <li>
-            <a asp-controller="ContractObject" asp-action="Index">View Contract Objects</a>
-        </li>
-        <li>
-            <a asp-controller="ContractObject" asp-action="Search">Search for Contract Objects</a>
-        </li>
-    </ul>
-</div>
+                <a class="btn btn-outline-success w-100 mb-3" asp-controller="TicketSource" asp-action="Index">List All</a>
+            </div>
+        </div>
+    </div>
+    <div class="col-5">
+        <div class="card w-100 g-3">
+            <img src="~/images/logo-gunmetal-green-iqx.png" class="card-img-top" alt="Foss IQX Logo" />
+            <div class="card-body">
+                <h3 class="card-title">FossConnect™ Enterprise</h3>
+                <h5 class="card-subtitle">SAP CRM, Salesforce, etc.</h5>
+                <p class="card-text">
+                    The ticket related to the requests, contracts, & requirements.
+                </p>
 
-<div>
-    <h3>Network</h3>
-    <ul>
-        <li>
-            <a asp-controller="Network" asp-action="Index">View instrument & their networks</a>
-        </li>
-    </ul>
-</div>
-
-<div>
-    <h3>System, Network, &amp; Instruments</h3>
-    <ul>
-        <li>
-            <a asp-controller="Sysnetinst" asp-action="Index">View systems, networks, and instruments</a>
-        </li>
-        <li>
-            <a asp-controller="Sysnetinst" asp-action="Search">Search by instrument SN</a>
-        </li>
-    </ul>
-</div>
-
-<div>
-    <h3>Tickets (SAP CRM &amp; Salesforce, etc.)</h3>
-    <ul>
-        <li>
-            <a asp-controller="TicketSource" asp-action="Index">View All Tickets</a>
-        </li>
-    </ul>
-</div>
-
-<div>
-    <h3>FossConnect™ Enterprise</h3>
-    <ul>
-        <li>
-            <a asp-controller="EnterpriseInstance" asp-action="Index">View All Systems</a>
-        </li>
-        <li>
-            <a asp-controller="EnterpriseInstance" asp-action="Create">Create</a>
-        </li>
-    </ul>
+                <a class="btn btn-primary w-100 mb-3" asp-controller="EnterpriseInstance" asp-action="Create">Create</a>
+                <a class="btn btn-outline-success w-100 mb-3" asp-controller="EnterpriseInstance" asp-action="Index">List All</a>
+            </div>
+        </div>
+    </div>
 </div>
