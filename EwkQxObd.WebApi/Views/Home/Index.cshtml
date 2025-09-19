@@ -17,9 +17,39 @@
                     The contract object enables IQX to be active for accounts.
                 </p>
 
-                <a class="btn btn-primary w-100 mb-3" asp-controller="ContractObject" asp-action="New">Create</a>
-                <a class="btn btn-outline-success w-100 mb-3" asp-controller="ContractObject" asp-action="Index">List All</a>
-                <a class="btn btn-warning w-100" asp-controller="ContractObject" asp-action="Search">Search</a>
+                <a class="btn btn-outline-primary w-100 mb-2" asp-controller="ContractObject" asp-action="New">
+                    <div class="row">
+                        <div class="col-1">
+
+                            <i class="fa fa-solid fa-square-plus fa-xl"></i>
+                        </div>
+                        <div class="col-10">
+                            <span>Create</span>
+                        </div>
+                    </div>
+                </a>
+                <a class="btn btn-outline-success w-100 mb-2" asp-controller="ContractObject" asp-action="Index">
+                    <div class="row">
+                        <div class="col-1">
+
+                            <i class="fa fa-solid fa-list fa-xl"></i>
+                        </div>
+                        <div class="col-10">
+                            <span>List All</span>
+                        </div>
+                    </div>
+                </a>
+                <a class="btn btn-outline-danger w-100 mb-2" asp-controller="ContractObject" asp-action="Search">
+                    <div class="row">
+                        <div class="col-1">
+
+                            <i class="fa fa-solid fa-magnifying-glass fa-xl"></i>
+                        </div>
+                        <div class="col-10">
+                            <span>Search</span>
+                        </div>
+                    </div>
+                </a>
             </div>
         </div>
     </div>
