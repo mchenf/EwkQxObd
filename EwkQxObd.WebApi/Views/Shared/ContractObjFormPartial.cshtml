@@ -9,7 +9,7 @@
 
     <partial name="ContractFormPartial" for="Contract"/>
 
-    @if (Model.InstrumentConnected is not null)
+    @if (Model is not null && Model.InstrumentConnected is not null)
 {
     <partial name="SyngioDetailsPartial" model="Model.InstrumentConnected" />
 } 
