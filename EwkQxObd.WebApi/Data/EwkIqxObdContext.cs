@@ -49,6 +49,11 @@ namespace EwkQxObd.WebApi.Data
                 ent.HasNoKey();
             });
 
+            modelBuilder.Entity<EqoContractObject>()
+                .HasIndex(eco =>
+                new { eco.ContractId, eco.SerialNumber }
+            ).IsUnique();
+
         }
     }
 }

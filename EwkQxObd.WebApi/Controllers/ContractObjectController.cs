@@ -25,6 +25,7 @@ namespace EwkQxObd.WebApi.Controllers
                     .Include(co => co.ShipTo)
                     .Include(co => co.Contract!.CustomerContact)
                     .Include(co => co.Contract!.EmployeeResponsible)
+                    .OrderBy(co => co.Contract!.RecordedAt)
                     .ToListAsync();
 
             var query = _context.EqoContractObject.Join(
