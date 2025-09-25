@@ -1,4 +1,5 @@
-﻿using System;
+﻿using EwkQxObd.Core.Abstraction;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
@@ -8,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace EwkQxObd.Core.Model.Views
 {
-    public partial class Syngio
+    public partial class Syngio : ITextFlattable
     {
         private const string format1 = @"
 ==== Instrument Info ====

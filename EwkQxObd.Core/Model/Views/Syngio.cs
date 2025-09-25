@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace EwkQxObd.Core.Model.Views
 {
-    public partial class Syngio : ITextFlattable
+    public partial class Syngio
     {
         [Column("InstrumentId", TypeName = "bigint")]
         public long Id { get; set; }

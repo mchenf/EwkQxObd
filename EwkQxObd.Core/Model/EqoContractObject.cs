@@ -15,7 +15,7 @@ namespace EwkQxObd.Core.Model
     /// </summary>
     /// 
     [Table("ContractObject", Schema = "eqo")]
-    public partial class EqoContractObject : ITextFlattable
+    public partial class EqoContractObject
     {
 
         public long Id { get; set; }
