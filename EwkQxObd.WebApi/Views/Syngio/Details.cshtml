@@ -1,3 +1,8 @@
 ﻿@model Syngio
 
-@await Html.PartialAsync("SyngioDetailsPartial", Model)
+<partial name="SyngioDetailsPartial" model="Model" />
+<partial name="CopyToTextPartial" model="Model" />
+
+@section Scripts {
+    <script src="~/js/contractobj/copyToClipb.js" asp-append-version="true"></script>
+}

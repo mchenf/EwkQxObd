@@ -4,6 +4,7 @@ using System.Text;
 
 namespace EwkQxObd.WebApi.Models.Serialization
 {
+    [Obsolete]
     public static class ContractObjSerializer
     {
         private const string format1 = @"

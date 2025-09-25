@@ -2,6 +2,7 @@
 
 namespace EwkQxObd.WebApi.Models.Serialization
 {
+    [Obsolete]
     public static class SysnetinstorgSerializer
     {
         private const string format1 = @"
