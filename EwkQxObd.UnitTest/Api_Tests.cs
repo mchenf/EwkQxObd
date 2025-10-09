@@ -1,4 +1,5 @@
 ﻿using EwkQxObd.Api;
+using EwkQxObd.Api.Authentication;
 using EwkQxObd.Pwsh.IqxOrganization;
 using Microsoft.Extensions.Configuration;
 using NUnit.Framework.Constraints;
@@ -6,6 +7,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Text.Json;
 using System.Threading.Tasks;
 
 namespace EwkQxObd.UnitTest
@@ -56,7 +58,7 @@ namespace EwkQxObd.UnitTest
                 Assert.Fail();
                 return;
             }
-            var client = new ClientAuth();
+            var client = new Client();
 
             
 
@@ -73,7 +75,16 @@ namespace EwkQxObd.UnitTest
 
             await client.Authenticate(config["username"], config["password"]);
 
+            Assert.Multiple(() =>
+            {
+                Assert.That(client.HasResponse, Is.True);
+                Assert.That(client.IsNotExpired, Is.True);
+                Assert.That(client.IsAuthenticated, Is.True);
+            });
 
+            string resp = JsonSerializer.Serialize(client.Response);
+
+            await Console.Out.WriteLineAsync(resp);
         }
 
     }
