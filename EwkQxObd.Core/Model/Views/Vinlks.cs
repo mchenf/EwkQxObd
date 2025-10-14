@@ -39,13 +39,13 @@ public class Vinlks
 
     public DateTime? QueryTimeStamp { get; set; }
 
-    public int IsMissingContract { get; set; }
+    public bool IsMissingContract { get; set; }
 
-    public int IsMissingDblink { get; set; }
+    public bool IsMissingDblink { get; set; }
 
-    public int IsMissingSystem { get; set; }
+    public bool IsMissingSystem { get; set; }
 
-    public int IsMissingNetwork { get; set; }
+    public bool IsMissingNetwork { get; set; }
 
     public long? ContractId { get; set; }
 

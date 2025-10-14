@@ -1,4 +1,5 @@
 ﻿using EwkQxObd.Core.Model;
+using EwkQxObd.Core.Model.Views;
 using EwkQxObd.WebApi.Data;
 using EwkQxObd.WebApi.Models;
 using Microsoft.AspNetCore.Mvc;
@@ -45,21 +46,19 @@ namespace EwkQxObd.WebApi.Controllers
                 return RedirectToAction(nameof(Search));
             }
 
-            IQueryable<EqoContractObject> iqy = _context.EqoContractObject
-                    .Include(co => co.Contract)
-                    .Include(co => co.ShipTo);
+            IQueryable<Vinlks> iqy = _context.Vinlks;
 
             var filter = model.FilterApplied;
 
 
             if (ContractObjSearchTermLoadState.ContractNumber == (filter.LoadState & ContractObjSearchTermLoadState.ContractNumber))
             {
-                iqy = iqy.Where(co => co.Contract!.ContractNumber == filter.ContractNumber);
+                iqy = iqy.Where(co => co.ContractNumber == filter.ContractNumber);
             }
 
             if (ContractObjSearchTermLoadState.PartnerAccountNumber == (filter.LoadState & ContractObjSearchTermLoadState.PartnerAccountNumber))
             {
-                iqy = iqy.Where(co => co.ShipTo!.PartnerId == filter.PartnerAccountNumber);
+                iqy = iqy.Where(co => co.PartnerId == filter.PartnerAccountNumber);
             }
 
             if (ContractObjSearchTermLoadState.SerialNumber == (filter.LoadState & ContractObjSearchTermLoadState.SerialNumber))
