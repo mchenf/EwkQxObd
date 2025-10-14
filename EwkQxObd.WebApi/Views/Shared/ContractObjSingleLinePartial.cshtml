@@ -7,7 +7,8 @@
         string networkId = Model.NetworkId == null ? "???" : Model.NetworkId.Value.ToString();
         string IqxSys = Model.System ?? "???";
     }
-    <a class="btn @btnColor font-monospace w-100">
+    <a class="btn @btnColor font-monospace w-100" asp-controller="Syngio" asp-action="GetByInstrumentSN"
+       asp-route-id="@Model.SerialNumber">
         <div class="col text-start">
             <i class="fa-solid @linkIcon"></i>
             @IqxSys-@networkId
