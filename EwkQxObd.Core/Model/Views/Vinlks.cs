@@ -47,6 +47,8 @@ public class Vinlks
 
     public bool IsMissingNetwork { get; set; }
 
+    public bool IsMissingOrgSync { get; set; }
+
     public long? ContractObjId { get; set; }
 
     public string? Description { get; set; }

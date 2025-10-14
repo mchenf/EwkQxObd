@@ -39,10 +39,22 @@
 <td>@Model.InstrumentType</td>
 
 <td>
-    @if (true)
+    @if (Model.IsMissingDblink)
     {
-        
+        <div class="w-100 text-danger text-center">
+            <i class="fa-solid fa-link-slash fa-2xl"></i>
+        </div>
     }
-    
-    @Model.AccountNumber | @Model.OrgName</td>
+    else if (Model.IsMissingOrgSync)
+    {
+        <a class="btn btn-outline-dark border-danger border-2 font-monospace w-100">@Model.LinkedAccount</a>
+    }
+    else
+    {
+
+        <a class="btn btn-outline-dark border-2 font-monospace w-100">
+            @Model.AccountNumber | @Model.OrgName
+        </a>
+    }
+    </td>
 

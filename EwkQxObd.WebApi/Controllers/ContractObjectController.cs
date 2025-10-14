@@ -21,7 +21,10 @@ namespace EwkQxObd.WebApi.Controllers
 
         public async Task<IActionResult> Index()
         {
-            var vinlks = await _context.Vinlks.ToListAsync();
+            var vinlks = await _context.Vinlks
+                .Where(v => !v.IsMissingContract)
+                .OrderByDescending(v => v.RecordedAt)
+                .Take(16).ToListAsync();
 
 
             return View(vinlks);
