@@ -30,6 +30,7 @@ namespace EwkQxObd.WebApi.Data
         public DbSet<RelTicketSourceContract> RelTicketSourceContracts { get; set; }
 
         public DbSet<FscEnterpriseInstance> FscEnterpriseInstance { get; set; }
+        public DbSet<Vinlks> Vinlks { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
@@ -48,6 +49,13 @@ namespace EwkQxObd.WebApi.Data
                 ent.ToView("vw_LatestSysnetinstorg");
                 ent.HasNoKey();
             });
+
+            modelBuilder.Entity<Vinlks>(ent => {
+                ent.ToView("vwInstrumentLinkStatus");
+                ent.HasNoKey();
+            });
+
+
 
             modelBuilder.Entity<EqoContractObject>()
                 .HasIndex(eco =>

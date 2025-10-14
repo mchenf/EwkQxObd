@@ -1,23 +1,23 @@
-﻿@model EqoContractObject
+﻿@model Vinlks
 
 
 <td>
-    <a class="btn btn-outline-dark border-2 font-monospace w-100" asp-controller="ContractObject" asp-action="Detail" asp-route-Id="@Model.Id">@Model.Contract!.ContractNumber</a>
+    <a class="btn btn-outline-dark border-2 font-monospace w-100" asp-controller="ContractObject" asp-action="Detail" asp-route-Id="@Model.ContractId">@Model.ContractNumber</a>
     
 
 </td>
-<td>@Model.Contract!.Description</td>
+<td>@Model.Description</td>
 <td>
     @{
-        string linkIcon = Model.InstrumentConnected?.NetworkId == null ? "fa-link-slash" : "fa-link";
-        string btnColor = Model.InstrumentConnected?.NetworkId == null ? "btn-danger" : "btn-primary";
+        string linkIcon = Model.NetworkId == null ? "fa-link-slash" : "fa-link";
+        string btnColor = Model.NetworkId == null ? "btn-danger" : "btn-primary";
     }
     <a class="btn @btnColor font-monospace w-100">
         <span>
             
-            <i class="fa-solid @linkIcon">&nbsp;@Model.InstrumentConnected?.NetworkId</i>@Model.SerialNumber
+            <i class="fa-solid @linkIcon">&nbsp;@Model.NetworkId</i>@Model.SerialNumber
         </span>
     </a>
 </td>
 <td>@Model.InstrumentType</td>
-<td>@Model.ShipTo!.PartnerId | @Model.ShipTo.PartnerName</td>
+<td>@Model.AccountNumber | @Model.OrgName</td>

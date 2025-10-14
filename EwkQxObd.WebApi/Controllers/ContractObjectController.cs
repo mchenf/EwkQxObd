@@ -20,33 +20,10 @@ namespace EwkQxObd.WebApi.Controllers
 
         public async Task<IActionResult> Index()
         {
-            var objFound = await _context.EqoContractObject
-                    .Include(co => co.Contract)
-                    .Include(co => co.ShipTo)
-                    .Include(co => co.Contract!.CustomerContact)
-                    .Include(co => co.Contract!.EmployeeResponsible)
-                    .OrderBy(co => co.Contract!.RecordedAt)
-                    .ToListAsync();
-
-            var query = _context.EqoContractObject.Join(
-                _context.Syngio,
-                obj => obj.SerialNumber,
-                syngio => syngio.SerialNumber,
-                (obj, syngio) =>
-                new
-                {
-                    ContractObject = obj,
-                    Syngio = syngio
-                })
-                .AsEnumerable()
-                .Select(resul =>
-                {
-                    resul.ContractObject.InstrumentConnected = resul.Syngio;
-                    return resul.ContractObject;
-                });
+            var vinlks = await _context.Vinlks.ToListAsync();
 
 
-            return View(query.ToList());
+            return View(vinlks);
         }
 
         [HttpGet()]
