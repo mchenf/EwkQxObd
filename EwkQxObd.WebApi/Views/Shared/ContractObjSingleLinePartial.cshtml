@@ -19,11 +19,30 @@
 </td>
 
 <td>
-    <a class="btn btn-outline-dark border-2 font-monospace w-100" asp-controller="ContractObject" asp-action="Detail" asp-route-Id="@Model.ContractId">@Model.ContractNumber</a>
+    @if (Model.IsMissingContract)
+    {
+        <div class="align-content-center text-start">
+
+            <i class="fa-solid fa-file-contract fa-2xl"></i>
+            <span class="text-danger"><i class="fa-solid fa-ban"></i></span>
+        </div>
+    }
+    else
+    {
+        <a class="btn btn-outline-dark border-2 font-monospace w-100" asp-controller="ContractObject" asp-action="Detail" asp-route-Id="@Model.ContractObjId">@Model.ContractNumber</a>
+    }
     
 
 </td>
 <td>@Model.Description</td>
 
 <td>@Model.InstrumentType</td>
-<td>@Model.AccountNumber | @Model.OrgName</td>
+
+<td>
+    @if (true)
+    {
+        
+    }
+    
+    @Model.AccountNumber | @Model.OrgName</td>
+

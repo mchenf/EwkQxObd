@@ -47,7 +47,7 @@ public class Vinlks
 
     public bool IsMissingNetwork { get; set; }
 
-    public long? ContractId { get; set; }
+    public long? ContractObjId { get; set; }
 
     public string? Description { get; set; }
     public string? InstrumentType { get; set; }
