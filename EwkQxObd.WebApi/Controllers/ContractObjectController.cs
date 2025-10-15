@@ -18,12 +18,17 @@ namespace EwkQxObd.WebApi.Controllers
             _context = ctx;
         }
 
+        private readonly int itemsPerPage = 16;
 
-        public async Task<IActionResult> Index()
+        [HttpGet()]
+        [Route("{Page:int?}")]
+        public async Task<IActionResult> Index([FromRoute]int Page = 1)
         {
+            int ItemsToSkip = (Page - 1) * itemsPerPage;
             var vinlks = await _context.Vinlks
                 .Where(v => !v.IsMissingContract)
                 .OrderByDescending(v => v.RecordedAt)
+                .Skip(ItemsToSkip)
                 .Take(16).ToListAsync();
 
 
