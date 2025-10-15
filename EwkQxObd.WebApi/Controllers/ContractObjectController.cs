@@ -24,13 +24,25 @@ namespace EwkQxObd.WebApi.Controllers
         [Route("{Page:int?}")]
         public async Task<IActionResult> Index([FromRoute]int Page = 1)
         {
-            int ItemsToSkip = (Page - 1) * itemsPerPage;
-            var vinlks = await _context.Vinlks
+
+            var initQuery = _context.Vinlks
                 .Where(v => !v.IsMissingContract)
-                .OrderByDescending(v => v.RecordedAt)
+                .OrderByDescending(v => v.RecordedAt);
+
+
+
+            int totalRows = await initQuery.CountAsync();
+
+            int ItemsToSkip = (Page - 1) * itemsPerPage;
+
+            var vinlks = await initQuery
                 .Skip(ItemsToSkip)
                 .Take(16).ToListAsync();
 
+
+            ViewBag.TotalRows = totalRows;
+            ViewBag.TotalPages = (totalRows + itemsPerPage) / itemsPerPage;
+            ViewBag.CurrPage = Page;
 
             return View(vinlks);
         }

@@ -1,7 +1,7 @@
 ﻿@model List<Vinlks>
 @{
 
-    int itemCount = 0;
+    int itemCount = (ViewBag.CurrPage - 1) * 16;
 }
 
 <h1 class="text-center">All Contract Objects</h1>
@@ -9,7 +9,7 @@
     <thead class="position-sticky">
         <tr>
             <th scope="col">#</th>
-            <th class="col-2" scope="col">Network &amp; Serial Number</th>
+            <th class="col-3" scope="col">Network &amp; Serial Number</th>
             <th scope="col">Contract Number</th>
             <th scope="col">Contract Description</th>
             <th scope="col">Instrument Type</th>
@@ -28,3 +28,48 @@
         }
     </tbody>
 </table>
+
+<div class="col-10 d-flex justify-content-center">
+    <div class="btn-group" role="group" aria-label="Pagination Button Group">
+
+        @{
+            string falBtnToggle = ViewBag.CurrPage == 1 ? "disabled" : string.Empty;
+            int prevPage = Math.Max(ViewBag.CurrPage - 1, 1);
+        }
+        <a role="button" class="btn btn-outline-dark @falBtnToggle" asp-route-page="1">
+            <i class="fa-solid fa-angles-left"></i>
+        </a>
+
+        <a role="button" class="btn btn-outline-dark @falBtnToggle" asp-route-page="@prevPage">
+            <i class="fa-solid fa-angle-left"></i>
+        </a>
+        @{
+            int cappedStartPage = 
+                Math.Min(
+                    Math.Max(ViewBag.CurrPage, 4)
+                    , ViewBag.TotalPages - 3
+                ) - 3;
+        }
+        @for (int i =
+                cappedStartPage, j = 0; j < 7; i++, j++)
+        {
+            string btnStyle = ViewBag.CurrPage == i ? "btn-dark" : "btn-outline-dark";
+            string btnToggle = ViewBag.CurrPage == i ? "disabled" : string.Empty;
+            <a role="button" class="btn @btnStyle @btnToggle" asp-route-page="@i">
+                <span class="fw-bold fs-6">@i</span>
+            </a>
+        }
+
+        @{
+            string farBtnToggle = ViewBag.CurrPage == ViewBag.TotalPages ? "disabled" : string.Empty;
+            int nextPage = Math.Min(ViewBag.CurrPage + 1, ViewBag.TotalPages);
+        }
+
+        <a role="button" class="btn btn-outline-dark @farBtnToggle" asp-route-page="@nextPage">
+            <i class="fa-solid fa-angle-right"></i>
+        </a>
+        <a role="button" class="btn btn-outline-dark @farBtnToggle" asp-route-page="ViewBag.TotalPages">
+            <i class="fa-solid fa-angles-right"></i>
+        </a>
+    </div>
+</div>
