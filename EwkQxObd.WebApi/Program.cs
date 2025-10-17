@@ -22,6 +22,7 @@ namespace EwkQxObd.WebApi
                 options.UseSqlServer(builder.Configuration.GetConnectionString("EwkQxObd"));
 #if true
                 Debug.WriteLine($"Connection String is: \r\n${builder.Configuration.GetConnectionString("EwkQxObd")}");
+                options.EnableSensitiveDataLogging();
 #endif
             });
 
