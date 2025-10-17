@@ -11,5 +11,11 @@
       "library": "font-awesome@7.0.1",
       "destination": "wwwroot/lib/font-awesome/"
     }
-  ]
+  ,
+{
+  "provider": "cdnjs",
+  "library": "jquery@3.7.1",
+  "destination": "wwwroot/lib/jquery"
+}
+]
 }
