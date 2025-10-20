@@ -19,9 +19,9 @@ namespace EwkQxObd.WebApi
 
             builder.Services.AddDbContext<EwkIqxObdContext>(options =>
             {
-                options.UseSqlServer(builder.Configuration.GetConnectionString("EwkQxObd"));
+                options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection"));
 #if true
-                Debug.WriteLine($"Connection String is: \r\n${builder.Configuration.GetConnectionString("EwkQxObd")}");
+                Debug.WriteLine($"Connection String is: \r\n${builder.Configuration.GetConnectionString("DefaultConnection")}");
                 options.EnableSensitiveDataLogging();
 #endif
             });
