@@ -62,6 +62,9 @@ namespace EwkQxObd.WebApi.Data
                 new { eco.ContractId, eco.SerialNumber }
             ).IsUnique();
 
+            modelBuilder.Entity<IqxOrganization>()
+                .ToTable(tb => tb.HasTrigger("trg_SyncAccountGuid"));
+
         }
     }
 }
