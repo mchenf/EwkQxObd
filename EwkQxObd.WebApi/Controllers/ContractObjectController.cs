@@ -10,12 +10,14 @@ namespace EwkQxObd.WebApi.Controllers
     [Route("[controller]/[action]")]
     public class ContractObjectController : Controller
     {
+
+        private readonly ILogger<ContractObjectController> _logger;
         private EwkIqxObdContext _context;
 
-
-        public ContractObjectController(EwkIqxObdContext ctx)
+        public ContractObjectController(EwkIqxObdContext ctx, ILogger<ContractObjectController> logger)
         {
             _context = ctx;
+            _logger = logger;
         }
 
         private readonly int itemsPerPage = 16;
@@ -102,15 +104,19 @@ namespace EwkQxObd.WebApi.Controllers
         }
 
 
-
+        private const string debugMessage = "[{0}] {1}";
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> New(EqoContractObject contractObj)
         {
-            
+            _logger.BeginScope(nameof(New));
+            _logger.LogDebug(debugMessage, "Step 010", "Starting Sync of New Contract Object");
 
-            var dataSync = new ContractObjectDataSync();
-            var dataSyncResult = await dataSync.SyncSingle(_context, contractObj);
+            var DataSynker = new ContractObjectDataSynker(_context, contractObj);
+
+            var dataSyncResult = await DataSynker.SyncSingleCobj();
+
+
             if (dataSyncResult.MissingState > ContractObjectDataMissing.AllGreen)
             {
                 return BadRequest("Contract object must have a linking contract and a ship-to account.");
@@ -120,7 +126,7 @@ namespace EwkQxObd.WebApi.Controllers
 
             await _context.SaveChangesAsync();
 
-            return View(nameof(Detail), contractObj);
+            return RedirectToAction(nameof(Index), new {Id = contractObj.Id});
         }
 
         [HttpGet]
