@@ -72,34 +72,26 @@ namespace EwkQxObd.WebApi.Data
                 c => c.CustomerContact,
                 c => c.CustomerContactId);
 
-            if (_contract.EmployeeResponsible != null)
+            if (_contract.EmployeeResponsible != null && _contract.EmployeeResponsible.Id > 0)
             {
-                if (_contract.EmployeeResponsible.Id > 0)
-                {
                     _contract.EmployeeResponsibleId = _contract.EmployeeResponsible.Id;
                     _contract.EmployeeResponsible = null;
-                }
-
-                if (string.IsNullOrEmpty(_contract.EmployeeResponsible.FullName))
-                {
-                    _contract.EmployeeResponsible = null;
-                }
+            }
+            if (_contract.EmployeeResponsible != null && string.IsNullOrEmpty(_contract.EmployeeResponsible.FullName))
+            {
+                _contract.EmployeeResponsibleId = null;
+                _contract.EmployeeResponsible = null;
             }
 
-
-
-            if (_contract.CustomerContact != null)
+            if (_contract.CustomerContact != null && _contract.CustomerContact.Id > 0)
             {
-                if (_contract.CustomerContact.Id > 0)
-                {
-                    _contract.CustomerContactId = _contract.CustomerContact.Id;
-                    _contract.CustomerContact = null;
-                }
-
-                if (string.IsNullOrEmpty(_contract.CustomerContact.FullName))
-                {
-                    _contract.CustomerContact = null;
-                }
+                _contract.CustomerContactId = _contract.CustomerContact.Id;
+                _contract.CustomerContact = null;
+            }
+            if (_contract.CustomerContact != null && string.IsNullOrEmpty(_contract.CustomerContact.FullName))
+            {
+                _contract.CustomerContactId = null;
+                _contract.CustomerContact = null;
             }
         }
 
