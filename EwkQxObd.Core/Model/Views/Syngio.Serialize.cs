@@ -26,18 +26,27 @@ Account Name: {7}
 Street: {8}
 City: {9}
 ";
-
+        private const string GuidMask = "****-****-****-****-********";
 
         public string ToFlatText()
         {
+
+            string obfuscatedGuid = LinkedAccountGuid.ToString();
+
+            string obfuscatedGuid_head = obfuscatedGuid[..4];
+            string obfuscatedGuid_tail = obfuscatedGuid[^4..];
+
+            obfuscatedGuid = obfuscatedGuid_head + GuidMask + obfuscatedGuid_tail;
+
+
+
             string result = string.Format(format1,
                 System,
                 NetworkId,
                 NetworkName,
                 InstrumentGroup,
                 SerialNumber,
-
-                LinkedAccountGuid,
+                obfuscatedGuid,
                 AccountNumber,
                 Name,
                 Street,

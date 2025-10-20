@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 
 namespace EwkQxObd.Core.Serialization
 {
+    [Obsolete]
     public static class IqxNetworkInstrumenSerializer
     {
         private const string ignore = "System,Query Timestamp,Network Name,NetworkID,GEIS GUID,Instrument Group,Instrument SN,Instrument Name";
