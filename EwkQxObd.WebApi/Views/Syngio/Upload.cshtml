@@ -52,7 +52,7 @@ Invoke-Sqlcmd `
 -Database Pacific `
 -InputFile .\SELECT_INST_IQX_GEIS.sql | `
 Export-Csv `
--Path Exported_Iqx_Network_Pacific_$(Get-Date -Format "yyyyMMdd_hhmmss").csv `
+-Path Exported_Iqx_Network_Pacific_$(Get-Date -Format "yyyyMMdd_HHmmss").csv `
 -Encoding UTF8 `
 -NoTypeInformation
         </code>
