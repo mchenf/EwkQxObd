@@ -2,7 +2,7 @@
 {
     public class NetworkCsvUploadViewModel
     {
-        public bool FromWebCall { get; set; } = true;
+        public bool FromWebCall { get; set; } = false;
         public IFormFileCollection? Files { get; set; }
     }
 }
