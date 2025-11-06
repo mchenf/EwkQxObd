@@ -1,6 +1,7 @@
 ﻿using EwkQxObd.Core.Model;
 using EwkQxObd.Core.Serialization;
 using EwkQxObd.WebApi.Data;
+using EwkQxObd.WebApi.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using System.Text;
@@ -102,10 +103,15 @@ namespace EwkQxObd.WebApi.Controllers.ewkiqxobd.api
         [HttpPost("csv/upload")]
         [Consumes("multipart/form-data")]
         [Produces("application/json")]
-        public async Task<IActionResult> UploadCsv(IFormFileCollection csvFiles)
+        public async Task<IActionResult> UploadCsv(NetworkCsvUploadViewModel csvUploadVW)
         {
+            if (csvUploadVW.Files == null)
+            {
+                return BadRequest("No file uploaded or file is empty.");
+            }
             Dictionary<string, int> report = [];
-            foreach (var csvFile in csvFiles)
+
+            foreach (var csvFile in csvUploadVW.Files)
             {
 
                 if (csvFile == default || csvFile.Length == 0)

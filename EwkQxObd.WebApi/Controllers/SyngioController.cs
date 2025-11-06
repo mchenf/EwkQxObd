@@ -145,7 +145,7 @@ namespace EwkQxObd.WebApi.Controllers
         [HttpGet]
         public IActionResult Upload()
         {
-            return View();
+            return View(new NetworkCsvUploadViewModel());
         }
 
     }

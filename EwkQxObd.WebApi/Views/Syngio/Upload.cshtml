@@ -2,4 +2,76 @@
     For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 *@
 @{
+    ViewData["Title"] = "Syngio Upload";
 }
+@model NetworkCsvUploadViewModel
+<div class="container">
+
+    <h1 class="text-center">Upload Syngio Binary Files</h1>
+
+    <div class="col col-8 justify-content-center">
+        Login to IQX backend server and make sure the file <i>SELECT_INST_GEIS.sql</i> exists.
+    </div>
+
+    <div class="bg-dark text-white pt-1 ps-5">
+        <pre>
+        <code>
+SELECT
+    DB_NAME() AS [System],
+    GETDATE() AS [Query Timestamp],
+    [NTWK].[Name] AS [Network Name],
+    [NTWK].[NetworkID],
+    LOWER([NTWK].[OrganisationID]) AS [GEIS GUID],
+    [GRUP].[Name] AS [Instrument Group],
+    [INST].[SerialNumber] AS [Instrument SN],
+    [INST].[Name] AS [Instrument Name]
+FROM
+    [tblMfCdInstrument] AS [INST]
+    FULL OUTER JOIN [tblMfCdInstrumentGroup] AS [GRUP]
+                ON [INST].[InstrumentGroupLogicalID] = [GRUP].[InstrumentGroupLogicalID]
+    FULL OUTER JOIN [tblMfCdNetwork] AS [NTWK]
+                ON [NTWK].[NetworkID] = [GRUP].[NetworkID]
+WHERE
+    ([INST].[Obsolete] = 0 OR [INST].[Obsolete] IS NULL)
+    AND ([NTWK].[Obsolete] = 0 OR [NTWK].[Obsolete] IS NULL)
+    AND ([GRUP].[Obsolete] = 0 OR [GRUP].[Obsolete] IS NULL)
+ORDER BY
+        [NTWK].[Name], [GRUP].[Name]
+        </code>
+    </pre>
+    </div>
+
+    <div class="col col-8 justify-content-center">
+        Now execute the below command:
+    </div>
+    <div class="bg-dark text-white pt-1 ps-5">
+        <pre>
+        <code>
+Invoke-Sqlcmd `
+-ServerInstance localhost `
+-Database Pacific `
+-InputFile .\SELECT_INST_IQX_GEIS.sql | `
+Export-Csv `
+-Path Exported_Iqx_Network_Pacific_$(Get-Date -Format "yyyyMMdd_hhmmss").csv `
+-Encoding UTF8 `
+-NoTypeInformation
+        </code>
+    </pre>
+    </div>
+
+    <div>
+        This procedure runs for some time depending on the size of the query. Once it's done, look for the exported file. It should be ready to upload.
+    </div>
+
+    <form class="mt-4 ms-3" asp-controller="ApiNetwork" asp-action="UploadCsv" enctype="multipart/form-data">
+
+        <div class="input-group">
+            <input asp-for="Files" type="file" class="form-control" id="inputGroupFile01" accept=".csv" multiple>
+            <label class="input-group-text" for="inputGroupFile01">to upload</label>
+        </div>
+        <div class="m-3">
+            <button type="submit" class="btn btn-primary col-sm-2">Upload</button>
+        </div>
+    </form>
+</div>
+<div style="height:300px"></div>
