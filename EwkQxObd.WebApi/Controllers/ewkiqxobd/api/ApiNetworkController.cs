@@ -102,7 +102,6 @@ namespace EwkQxObd.WebApi.Controllers.ewkiqxobd.api
 
         [HttpPost("csv/upload")]
         [Consumes("multipart/form-data")]
-        [Produces("application/json")]
         public async Task<IActionResult> UploadCsv(NetworkCsvUploadViewModel csvUploadVW)
         {
             if (csvUploadVW.Files == null)
@@ -181,8 +180,15 @@ namespace EwkQxObd.WebApi.Controllers.ewkiqxobd.api
                 await _context.IqxInstrument.AddRangeAsync(results);
                 await _context.SaveChangesAsync();
             }
-
-            return Ok(report);
+            if (csvUploadVW.FromWebCall)
+            {
+                //TODO: Create a good page for syngio
+                return RedirectToAction("Index", "Home");
+            }
+            else
+            {
+                return Ok(report);
+            }
         }
 
     }
