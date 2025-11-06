@@ -141,6 +141,12 @@ namespace EwkQxObd.WebApi.Controllers
             return View(search);
         }
 
+        [Route("[Action]")]
+        [HttpGet]
+        public IActionResult Upload()
+        {
+            return View();
+        }
 
     }
 }
