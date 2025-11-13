@@ -1,7 +1,8 @@
-﻿using Microsoft.AspNetCore.Mvc;
-using EwkQxObd.Api.Authentication;
+﻿using EwkQxObd.Api.Authentication;
 using EwkQxObd.Api.Authentication.ObjectModel;
 using EwkQxObd.WebApi.Models.IqxApi;
+using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Mvc;
 
 namespace EwkQxObd.WebApi.Controllers.IqxApi
 {
@@ -28,11 +29,17 @@ namespace EwkQxObd.WebApi.Controllers.IqxApi
 
             _authClient.AttachRequestBody(requestBody);
 
+            
+
 
             var Result = await _authClient.Authenticate();
 
+            if (Result.LoginSuccess)
+            {
+                HttpContext.Session.SetString("AccessToken", _authClient.AccessToken);
+            }
 
-            return RedirectToAction("LoginResult", Result);
+            return RedirectToAction(nameof(LoginResult), Result);
         }
 
         [HttpGet]
