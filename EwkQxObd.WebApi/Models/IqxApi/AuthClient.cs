@@ -8,6 +8,8 @@ namespace EwkQxObd.WebApi.Models.IqxApi
         private IConfiguration Configuration { get; set; }
         private Client AuthenticationClient { get; set; } = new();
 
+        public string AccessToken { get => AuthenticationClient.Response!.AccessToken; }
+
         public AuthClient(IConfiguration Config)
         {
             Configuration = Config;
