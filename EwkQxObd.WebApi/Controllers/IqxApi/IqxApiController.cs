@@ -8,6 +8,14 @@ namespace EwkQxObd.WebApi.Controllers.IqxApi
     
     public class IqxApiController : Controller
     {
+        private readonly AuthClient _authClient;
+
+        public IqxApiController(AuthClient AuthClient)
+        {
+            _authClient = AuthClient;
+        }
+
+
         public IActionResult Login()
         {
             return View();
@@ -15,17 +23,22 @@ namespace EwkQxObd.WebApi.Controllers.IqxApi
 
 
         [HttpPost]
-        public IActionResult SendRequest(AuthRequestBody requestBody)
+        public async Task<IActionResult> SendRequest(AuthRequestBody requestBody)
         {
 
+            _authClient.AttachRequestBody(requestBody);
 
-            return RedirectToAction("LoginResult");
+
+            var Result = await _authClient.Authenticate();
+
+
+            return RedirectToAction("LoginResult", Result);
         }
 
         [HttpGet]
-        public IActionResult LoginResult()
+        public IActionResult LoginResult(LoginResultPageModel Result)
         {
-            return View(new LoginResultPageModel());
+            return View(Result);
 
         }
     }

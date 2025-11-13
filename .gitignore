@@ -405,3 +405,4 @@ FodyWeavers.xsd
 # JetBrains Rider
 *.sln.iml
 /EwkQxObd.UnitTest/Core_Model_Tests.cs
+/EwkQxObd.WebApi/appsettings.json

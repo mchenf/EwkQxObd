@@ -1,4 +1,5 @@
 using EwkQxObd.WebApi.Data;
+using EwkQxObd.WebApi.Models.IqxApi;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using System.Diagnostics;
@@ -21,7 +22,7 @@ namespace EwkQxObd.WebApi
                 opts.Cookie.IsEssential = true;
             });
 
-
+            builder.Services.AddSingleton<AuthClient>();
 
             builder.Services.AddControllers();
             builder.Services.AddControllersWithViews();

@@ -29,13 +29,13 @@ namespace EwkQxObd.Api.Authentication
         public bool IsNotExpired { get => ExpiresOn > DateTime.Now; }
         public bool IsAuthenticated { get => HasResponse && IsNotExpired; }
 
-        public async Task Authenticate(string User, string Password)
+        public async Task Authenticate()
         {
             using var clientAlt = new HttpClient();
             using var request = new HttpRequestMessage(HttpMethod.Post, AuthUrl);
 
 
-            request.Content = ComposeContent(User, Password);
+            request.Content = ComposeContent();
 
             using var response = await clientAlt.SendAsync(request);
 
@@ -52,14 +52,12 @@ namespace EwkQxObd.Api.Authentication
 
         public AuthRequestBody Request { get; set; } = new();
         private List<KeyValuePair<string, string>> Collection { get; set; } = [];
-        private FormUrlEncodedContent ComposeContent(string user, string pass)
+        private FormUrlEncodedContent ComposeContent()
         {
             
             TypeInfo t = typeof(AuthRequestBody).GetTypeInfo();
 
             var props = t.GetProperties();
-            Request.UserName = user;
-            Request.Password = pass;
 
             foreach (var p in props)
             {
