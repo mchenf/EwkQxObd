@@ -13,6 +13,16 @@ namespace EwkQxObd.WebApi
 
             // Add services to the container.
 
+            builder.Services.AddDistributedMemoryCache();
+            builder.Services.AddSession(opts =>
+            {
+                opts.IdleTimeout = TimeSpan.FromSeconds(10);
+                opts.Cookie.HttpOnly = true;
+                opts.Cookie.IsEssential = true;
+            });
+
+
+
             builder.Services.AddControllers();
             builder.Services.AddControllersWithViews();
             builder.Services.AddMvc();
@@ -37,8 +47,11 @@ namespace EwkQxObd.WebApi
 
             );
 
+            app.UseSession();
+
             app.UseStaticFiles();
             app.MapControllers();
+
 
             app.Run();
         }

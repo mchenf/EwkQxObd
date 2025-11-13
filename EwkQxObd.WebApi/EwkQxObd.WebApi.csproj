@@ -30,6 +30,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\EwkQxObd.Api\EwkQxObd.Api.csproj" />
     <ProjectReference Include="..\EwkQxObd.Core\EwkQxObd.Core.csproj" />
   </ItemGroup>
 
