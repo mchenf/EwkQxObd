@@ -1,0 +1,30 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+}
+
+
+<div class="row justify-content-center">
+    <div class="col-10">
+        <h2> Login to IQX API</h2>
+    </div>
+</div>
+
+<div class="row justify-content-center">
+    <div class="col-10">
+        <form>
+            <div class="mb-3 align-content-center">
+                <label for="userEmailInput" class="form-label">User Name</label>
+                <input type="email" class="form-control" id="userEmailInput" aria-describedby="emailHelp"/>
+                <div id="emailHelp" class="form-text">Enter your user name here</div>
+            </div>
+            <div class="mb-3">
+                <label for="userPassInput" class="form-label">Password</label>
+                <input type="password" class="form-control" id="userPassInput"  />
+            </div>
+            <button type="submit" class="btn btn-primary w-25">Login</button>
+            <button type="button" class="btn btn-warning w-25" asp-controller="Home" asp-action="Index">Cancel</button>
+        </form>
+    </div>
+</div>
