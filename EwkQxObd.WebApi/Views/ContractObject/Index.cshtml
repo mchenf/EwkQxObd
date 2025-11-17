@@ -1,6 +1,6 @@
 ﻿@model List<Vinlks>
 @{
-
+    ViewData["Title"] = "List Contract Obj";
     int itemCount = (ViewBag.CurrPage - 1) * 16;
 }
 
@@ -8,12 +8,12 @@
 <table class="table">
     <thead class="position-sticky">
         <tr>
-            <th scope="col">#</th>
-            <th class="col-3" scope="col">Network &amp; Serial Number</th>
-            <th scope="col">Contract Number</th>
-            <th scope="col">Contract Description</th>
-            <th scope="col">Instrument Type</th>
-            <th scope="col">ShipTo</th>
+            <th class="w-20" scope="col">#</th>
+            <th class="col-2" scope="col">Network &amp; Serial Number</th>
+            <th class="col-1" scope="col">Contract Number</th>
+            <th class="col-4" scope="col">Contract Description</th>
+            <th class="col-2" scope="col">Instrument Type</th>
+            <th class="col-3" scope="col">ShipTo</th>
         </tr>
     </thead>
     <tbody>
