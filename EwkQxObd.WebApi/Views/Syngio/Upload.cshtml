@@ -103,7 +103,7 @@ ORDER BY
                         if(this.checked)
                         {
                             const selectedSys = this.value;
-                            txbox.innerText = 'Invoke-Sqlcmd `\r\n  -ServerInstance localhost `\r\n  -Database ' + selectedSys + ' `\r\n  -InputFile .\SELECT_INST_IQX_GEIS.sql | `\r\n  Export-Csv ` \r\n  -Path Exported_Iqx_Network_' + selectedSys +'_$(Get-Date -Format "yyyyMMdd_HHmmss").csv `\r\n  -Encoding UTF8 ` \r\n  -NoTypeInformation';
+                            txbox.innerText = 'Invoke-Sqlcmd `\n  -ServerInstance localhost `\n  -Database ' + selectedSys + ' `\n  -InputFile .\\SELECT_INST_IQX_GEIS.sql | `\nExport-Csv `\n  -Path Exported_Iqx_Network_' + selectedSys +'_$(Get-Date -Format "yyyyMMdd_HHmmss").csv `\n  -Encoding UTF8 `\n  -NoTypeInformation';
                         }
                         
 
