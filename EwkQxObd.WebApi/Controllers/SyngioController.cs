@@ -145,7 +145,7 @@ namespace EwkQxObd.WebApi.Controllers
         [HttpGet]
         public IActionResult Upload()
         {
-            return View(new NetworkCsvUploadViewModel { FromWebCall = true });
+            return View(new NetworkCsvUploadViewModel { FromWebCall = true, SelectedSystem = "Pacific" });
         }
 
     }

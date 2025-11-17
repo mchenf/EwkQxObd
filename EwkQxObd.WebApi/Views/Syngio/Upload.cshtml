@@ -3,6 +3,7 @@
 *@
 @{
     ViewData["Title"] = "Syngio Upload";
+    string[] SystemsToChoose = { "Pacific", "China", "Pacific02" };
 }
 @model NetworkCsvUploadViewModel
 <div class="container">
@@ -44,19 +45,33 @@ ORDER BY
     <div class="col col-8 justify-content-center">
         Now execute the below command:
     </div>
+
+    <div class="row">
+        <h3>Select Database Region:</h3>
+    </div>
+
+    <div class="row mb-3">
+        @for(int i = 0; i < SystemsToChoose.Length; i++)
+        {
+            string eid = "opt-stc-" + i;
+            string strOptLabel = SystemsToChoose[i];
+            <div class="col-2">
+                @if(i == 0)
+                {
+                    <input type="radio" class="btn-check" name="opt-sys-sel" id="@eid" autocomplete="off" value="@strOptLabel">
+                }
+                else
+                {
+
+                    <input type="radio" class="btn-check" name="opt-sys-sel" id="@eid" autocomplete="off" value="@strOptLabel">
+                }
+                <label class="btn w-100" for="@eid">@strOptLabel</label>
+            </div>
+        }
+    </div>
+
     <div class="bg-dark text-white pt-1 ps-5">
-        <pre>
-        <code>
-Invoke-Sqlcmd `
--ServerInstance localhost `
--Database Pacific `
--InputFile .\SELECT_INST_IQX_GEIS.sql | `
-Export-Csv `
--Path Exported_Iqx_Network_Pacific_$(Get-Date -Format "yyyyMMdd_HHmmss").csv `
--Encoding UTF8 `
--NoTypeInformation
-        </code>
-    </pre>
+        <pre><code id="pre-cod-sqlcmd"></code></pre>
     </div>
 
     <div>
@@ -75,3 +90,29 @@ Export-Csv `
     </form>
 </div>
 <div style="height:300px"></div>
+
+    @section Scripts{
+        <script>
+            document.addEventListener('DOMContentLoaded', function() {
+                const rbtns = document.querySelectorAll('input[name="opt-sys-sel"]');
+                const txbox = document.getElementById('pre-cod-sqlcmd');
+
+                rbtns.forEach(radio => {
+                    radio.addEventListener('change', function() {
+                        console.log(this);
+                        if(this.checked)
+                        {
+                            const selectedSys = this.value;
+                            txbox.innerText = 'Invoke-Sqlcmd `\r\n  -ServerInstance localhost `\r\n  -Database ' + selectedSys + ' `\r\n  -InputFile .\SELECT_INST_IQX_GEIS.sql | `\r\n  Export-Csv ` \r\n  -Path Exported_Iqx_Network_' + selectedSys +'_$(Get-Date -Format "yyyyMMdd_HHmmss").csv `\r\n  -Encoding UTF8 ` \r\n  -NoTypeInformation';
+                        }
+                        
+
+
+                    });
+                });
+            });
+        </script>
+
+
+
+    }
