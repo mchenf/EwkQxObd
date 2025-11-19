@@ -5,6 +5,8 @@
         public long ContractNumber { get; set; } = long.MinValue;
         public long PartnerAccountNumber { get; set; } = long.MinValue;
         public string SerialNumber { get; set; } = string.Empty;
+        public string System { get; set; } = "Pacific";
+        public long NetworkID { get; set; } = long.MinValue;
 
         public ContractObjSearchTermLoadState LoadState
         {
@@ -24,7 +26,14 @@
                 {
                     ls |= ContractObjSearchTermLoadState.SerialNumber;
                 }
-
+                if (NetworkID != long.MinValue)
+                {
+                    ls |= ContractObjSearchTermLoadState.NetworkID;
+                }
+                if (!string.IsNullOrEmpty(System))
+                {
+                    ls |= ContractObjSearchTermLoadState.System;
+                }
                 return ls;
             }
         }

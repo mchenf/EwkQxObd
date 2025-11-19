@@ -26,13 +26,27 @@
         </div>
     </div>
 
-    <div class="row mb-3">
+    <div class="row mb-5">
         <label class="col-sm-3 col-form-label">Partner Account Number</label>
         <div class="col-sm-6">
             <input class="form-control" type="text" asp-for="FilterApplied.PartnerAccountNumber" placeholder="i.e. 123456" />
         </div>
     </div>
+    <div class="row mb-3">
+        <label class="col-sm-1 col-form-label">System</label>
+        <div class="col-sm-3">
+            <select class="form-select" aria-label="Select FossConnect System" asp-for="FilterApplied.System">
+                <option selected>Pacific</option>
+                <option>Pacific02</option>
+                <option>China</option>
+            </select>
 
+        </div>
+        <label class="col-sm-1 col-form-label">Network</label>
+        <div class="col-sm-3">
+            <input class="form-control" type="text" asp-for="FilterApplied.NetworkID" placeholder="i.e. 321" />
+        </div>
+    </div>
     <div class="row mt-5 mb-lg-5">
         <div class="col-sm-1"></div>
         <button type="submit" class="btn btn-primary col-sm-2">Submit</button>

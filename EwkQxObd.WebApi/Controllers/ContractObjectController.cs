@@ -88,6 +88,12 @@ namespace EwkQxObd.WebApi.Controllers
                 iqy = iqy.Where(co => co.SerialNumber == filter.SerialNumber);
             }
 
+            if (ContractObjSearchTermLoadState.System == (filter.LoadState & ContractObjSearchTermLoadState.System) &&
+                ContractObjSearchTermLoadState.NetworkID == (filter.LoadState & ContractObjSearchTermLoadState.NetworkID))
+            {
+                iqy = iqy.Where(co => co.System == filter.System && co.NetworkId == filter.NetworkID);
+            }
+
             var result = await iqy
                 .ToListAsync();
 
