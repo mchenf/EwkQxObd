@@ -7,18 +7,18 @@
 @model AuthRequestBody
 
 <div class="row justify-content-center">
-    <div class="col-10">
-        <h2> Login to IQX API</h2>
+    <div class="col-4">
+        <h2 class="text-center"> Login to IQX API</h2>
     </div>
 </div>
 
 <div class="row justify-content-center">
-    <div class="col-10 g-3">
+    <div class="col-4 g-3">
         <form asp-action="SendRequest">
             <div class="mb-3">
                 <label for="userEmailInput" class="form-label">User Name</label>
                 <input type="email" class="form-control" id="userEmailInput" asp-for="UserName" aria-describedby="emailHelp"/>
-                <div id="emailHelp" class="form-text">Enter your user name here</div>
+                <div id="emailHelp" class="form-text text-end">Enter your user name here</div>
             </div>
             <div class="mb-lg-5">
                 <label for="userPassInput" class="form-label">Password</label>
