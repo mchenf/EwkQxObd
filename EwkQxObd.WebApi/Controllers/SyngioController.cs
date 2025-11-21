@@ -18,10 +18,25 @@ namespace EwkQxObd.WebApi.Controllers
         }
         public async Task<IActionResult> Index()
         {
-            var systems = await _context.syngioViewSystems.ToListAsync();
+            var systems = await _context.SyngioViewSystems.ToListAsync();
 
             return View(systems);
         }
+
+
+
+        [Route("[Action]/{SystemToFind}")]
+        public async Task<IActionResult> ListNetworks([FromRoute] string SystemToFind)
+        {
+            var networks = await _context.SyngioViewNetworks.Where((n) =>
+                    n.System == SystemToFind
+                ).ToListAsync();
+
+            return View(networks);
+
+        }
+
+
 
         [Route("[Action]/{SerialNumber}")]
         public async Task<IActionResult> GetByInstrumentSN([FromRoute] string SerialNumber)
@@ -94,7 +109,7 @@ namespace EwkQxObd.WebApi.Controllers
         [HttpGet]
         public IActionResult Upload()
         {
-            return View(new NetworkCsvUploadViewModel { FromWebCall = true, SelectedSystem = "Pacific" });
+            return View(new NetworkCsvUploadViewModel { FromWebCall = false, SelectedSystem = "Pacific" });
         }
 
     }

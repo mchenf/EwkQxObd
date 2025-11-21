@@ -1,0 +1,31 @@
+﻿
+@{
+    ViewData["Title"] = "Syngio Networks";
+}
+
+
+@model List<SyngioViewNetwork>
+
+
+<h2>@Model[0].System</h2>
+
+<div class="container align-content-center">
+    <div class="row">
+        @foreach (var network in Model)
+        {
+            <div class="col-4">
+                <div class="card w-100 mb-3">
+                    <div class="card-body">
+                        <h5 class="card-title">@network.System / @network.NetworkName</h5>
+                        <p class="card-text">@network.Instruments / @network.Instrument_Linked</p>
+                        <div class="progress bg-warning" role="progressbar">
+
+                            <div class="progress-bar" style="width: @network.Progress_Instrument"></div>
+                        </div>
+                        <button class="btn btn-secondary w-100 mt-5 mb-5">View Network</button>
+                    </div>
+                </div>
+            </div>
+        }
+    </div>
+</div>
