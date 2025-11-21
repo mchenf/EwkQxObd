@@ -73,7 +73,7 @@ namespace EwkQxObd.UnitTest
 
             client.Request.Scope = @"openid profile address email offline_access FossAPI GlobalPublicKeyInfrastructureService";
 
-            await client.Authenticate(config["username"], config["password"]);
+            await client.Authenticate();
 
             Assert.Multiple(() =>
             {

@@ -16,8 +16,17 @@
                         <h5 class="card-title">@sys.System</h5>
                         <h6 class="card-subtitle">Networks</h6>
                         <p class="card-text">@sys.Network_Linked / @sys.Networks</p>
-                        <h6 class="card-subtitle">Instruments</h6>
+                        <div class="progress bg-warning" role="progressbar">
+
+                            <div class="progress-bar" style="width: @sys.Progress_Network"></div>
+                        </div>
+
+                        <h6 class="card-subtitle mt-3">Instruments</h6>
                         <p class="card-text">@sys.Instrument_Linked / @sys.Instruments</p>
+                        <div class="progress bg-warning" role="progressbar">
+
+                            <div class="progress-bar" style="width: @sys.Progress_Instrument"></div>
+                        </div>
                     </div>
                 </div>
             </div>
