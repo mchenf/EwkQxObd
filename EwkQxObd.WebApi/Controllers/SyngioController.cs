@@ -18,60 +18,9 @@ namespace EwkQxObd.WebApi.Controllers
         }
         public async Task<IActionResult> Index()
         {
-            GrouppedVwSysnetinstorg groupped = new()
-            {
-                Systems = []
-            };
+            var systems = await _context.syngioViewSystems.ToListAsync();
 
-            var qrySystem = await (
-                from inst in _context.Syngio
-                select inst.System
-            ).Distinct().ToListAsync();
-
-            foreach (var sys in qrySystem)
-            {
-                var systemToAdd = new GvsSystem
-                {
-                    SystemName = sys,
-                    Networks = []
-                };
-
-                var qryInstruments = await (
-                    from inst in _context.Syngio
-                    where inst.System == sys
-                    select inst
-                ).ToListAsync();
-
-                var qryNetwork = (
-                    from inst in qryInstruments
-                    select KeyValuePair.Create(inst.NetworkId, inst.NetworkName)
-                ).Distinct().ToList();
-
-                foreach (var netw in qryNetwork)
-                {
-
-                    string v = "Unassigned";
-                    if (netw.Key is not null)
-                    {
-                        v = netw.Value;
-                    }
-                    systemToAdd.Networks.Add(
-                        new GvsNetwork
-                        {
-                            NetworkId = netw.Key,
-                            NetworkName = v,
-                            Instruments = [.. (from inst in qryInstruments
-                                           where inst.NetworkId == netw.Key
-                                           select inst)]
-                        }
-                    );
-                }
-
-
-                groupped.Systems.Add(systemToAdd);
-            }
-
-            return View(groupped);
+            return View(systems);
         }
 
         [Route("[Action]/{SerialNumber}")]

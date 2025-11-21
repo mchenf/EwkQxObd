@@ -32,6 +32,8 @@ namespace EwkQxObd.WebApi.Data
         public DbSet<FscEnterpriseInstance> FscEnterpriseInstance { get; set; }
         public DbSet<Vinlks> Vinlks { get; set; }
 
+        public DbSet<SyngioViewSystem> syngioViewSystems { get; set; }
+
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             foreach (var rel in modelBuilder.Model.GetEntityTypes().SelectMany(e => e.GetForeignKeys()))
@@ -55,6 +57,11 @@ namespace EwkQxObd.WebApi.Data
                 ent.HasNoKey();
             });
 
+            modelBuilder.Entity<SyngioViewSystem>(ent =>
+            {
+                ent.ToView("vw_Syngoi_Index_viewmodel");
+                ent.HasNoKey();
+            });
 
 
             modelBuilder.Entity<EqoContractObject>()

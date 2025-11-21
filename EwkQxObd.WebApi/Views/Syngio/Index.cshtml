@@ -2,60 +2,25 @@
     ViewData["Title"] = "Sy.N.G.I.O";
 }
 
-@model GrouppedVwSysnetinstorg
+@model List<SyngioViewSystem>
 
 <h2>System, Network, Group, Instrument, &amp; Organization</h2>
 
-<div id="sysnetinst" class="accordion">
-    @foreach (var system in Model.Systems!)
-    {
-        <div class="accordion-item">
-            <h2 class="accordion-header">
-                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#@system.SystemName">
-                    @system.SystemName
-                </button>
-            </h2>
-            <div id="@system.SystemName" class="accordion-collapse collapse" data-bs-parent="#sysnetinst">
-                <div class="accordion-body">
-                    
-                    @foreach (var network in system.Networks!)
-                    {
-                        <div id="nestedNetworks-@system.SystemName-@network.NetworkId" class="accordion">
-                            <div class="accordion-item">
-                                <h3 class="accordion-header">
-                                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#ntwk-@system.SystemName-@network.NetworkId">
-                                        @network.NetworkName
-                                    </button>
-                                </h3>
-
-                                <div id="ntwk-@system.SystemName-@network.NetworkId" class="accordion-collapse collapse" data-bs-parent="#nestedNetworks-@system.SystemName-@network.NetworkId">
-                                    <div class="accordion-body">
-                                        
-                                            @foreach (var instrument in network.Instruments!)
-                                            {
-                                                <div class="row">
-                                                    <div class="col-1">
-                                                    </div>
-                                                    <div class="col-3">
-                                                        @instrument.InstrumentGroup
-                                                    </div>
-                                                    <div class="col-2">
-                                                        <a asp-action="Details" asp-route-id="@instrument.Id">
-                                                            @instrument.SerialNumber
-                                                        </a>
-                                                    </div>
-                                                    <div class="col-4">
-                                                        @instrument.Name
-                                                    </div>
-                                                </div>
-                                            }
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    }
+<div class="container align-content-center">
+    <div class="row">
+        @foreach (var sys in Model)
+        {
+            <div class="col-3">
+                <div class="card w-100">
+                    <div class="card-body">
+                        <h5 class="card-title">@sys.System</h5>
+                        <h6 class="card-subtitle">Networks</h6>
+                        <p class="card-text">@sys.Network_Linked / @sys.Networks</p>
+                        <h6 class="card-subtitle">Instruments</h6>
+                        <p class="card-text">@sys.Instrument_Linked / @sys.Instruments</p>
+                    </div>
                 </div>
             </div>
-        </div>
-    }
+        }
+    </div>
 </div>
