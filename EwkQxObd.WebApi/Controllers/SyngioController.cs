@@ -30,9 +30,18 @@ namespace EwkQxObd.WebApi.Controllers
                 n.System == SystemToFind
             );
 
-            var networks = await PreQuery.ToListAsync();
+            var Networks = await PreQuery.ToListAsync();
 
-            return View(networks);
+            var SearchAlpha = await _context.SyngioSearchAlpha
+                .Where(n => n.System == SystemToFind)
+                .OrderBy(n => n.Initial)
+                .ToListAsync();
+
+            return View(new SyngioListNetworkViewModel
+            {
+                Networks = Networks,
+                SearchAlpha = SearchAlpha
+            });
         }
 
 
@@ -51,9 +60,18 @@ namespace EwkQxObd.WebApi.Controllers
                 );
             }
 
-            var networks = await PreQuery.ToListAsync();
+            var Networks = await PreQuery.ToListAsync();
 
-            return View(networks);
+            var SearchAlpha = await _context.SyngioSearchAlpha
+                .Where(n => n.System == SystemToFind)
+                .OrderBy(n => n.Initial)
+                .ToListAsync();
+
+            return View(new SyngioListNetworkViewModel
+            {
+                Networks = Networks,
+                SearchAlpha = SearchAlpha
+            });
 
         }
 

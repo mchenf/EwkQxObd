@@ -4,30 +4,25 @@
 }
 
 
-@model List<SyngioViewNetwork>
+@model SyngioListNetworkViewModel
 
 
 
 
 <div class="container align-content-center">
     <div class="row mb-3">
-        <h1>@Model[0].System</h1>
+        <h1>@Model.SearchAlpha[0].System</h1>
     </div>
     <div class="row mb-3 border-2">
-        <div class="col-2">
-            <a class="btn btn-outline-info w-100 mb-1" asp-action="ListNetworks" asp-route-SearchText="">All</a>
-        </div>
-        @for(int a = 65; a <= 90; a++)
+        @foreach (SyngioSearchAlpha a in Model.SearchAlpha)
         {
-            char c = (char)a;
             <div class="col-1">
-                <a class="btn btn-outline-info w-100 mb-1" asp-action="ListNetworks" asp-route-SearchText="@c">@c</a>
+                <a class="btn btn-outline-info w-100 mb-1" asp-action="ListNetworks" asp-route-SearchText="@a.Initial">@a.Initial</a>
             </div>
-
         }
     </div>
     <div class="row">
-        @foreach (var network in Model)
+        @foreach (var network in Model.Networks)
         {
             <div class="col-4">
                 <div class="card w-100 mb-3">

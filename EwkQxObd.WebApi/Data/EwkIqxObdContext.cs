@@ -35,6 +35,8 @@ namespace EwkQxObd.WebApi.Data
         public DbSet<SyngioViewSystem> SyngioViewSystems { get; set; }
         public DbSet<SyngioViewNetwork> SyngioViewNetworks { get; set; }
 
+        public DbSet<SyngioSearchAlpha> SyngioSearchAlpha { get; set; }
+
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             foreach (var rel in modelBuilder.Model.GetEntityTypes().SelectMany(e => e.GetForeignKeys()))
@@ -67,6 +69,12 @@ namespace EwkQxObd.WebApi.Data
             modelBuilder.Entity<SyngioViewNetwork>(ent =>
             {
                 ent.ToView("vw_Syngio_Network_Index_viewmodel");
+                ent.HasNoKey();
+            });
+
+            modelBuilder.Entity<SyngioSearchAlpha>(ent =>
+            {
+                ent.ToView("vw_Syngio_Search_Alpha");
                 ent.HasNoKey();
             });
 
