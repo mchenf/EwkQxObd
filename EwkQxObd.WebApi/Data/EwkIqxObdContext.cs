@@ -60,13 +60,13 @@ namespace EwkQxObd.WebApi.Data
 
             modelBuilder.Entity<SyngioViewSystem>(ent =>
             {
-                ent.ToView("vw_Syngoi_Index_viewmodel");
+                ent.ToView("vw_Syngio_Index_viewmodel");
                 ent.HasNoKey();
             });
 
             modelBuilder.Entity<SyngioViewNetwork>(ent =>
             {
-                ent.ToView("vw_Syngtio_Network_Index_viewmodel");
+                ent.ToView("vw_Syngio_Network_Index_viewmodel");
                 ent.HasNoKey();
             });
 
