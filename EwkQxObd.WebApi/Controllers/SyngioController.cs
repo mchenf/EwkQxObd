@@ -23,14 +23,35 @@ namespace EwkQxObd.WebApi.Controllers
             return View(systems);
         }
 
-
-
         [Route("[Action]/{SystemToFind}")]
         public async Task<IActionResult> ListNetworks([FromRoute] string SystemToFind)
         {
-            var networks = await _context.SyngioViewNetworks.Where((n) =>
-                    n.System == SystemToFind
-                ).ToListAsync();
+            var PreQuery = _context.SyngioViewNetworks.Where((n) =>
+                n.System == SystemToFind
+            );
+
+            var networks = await PreQuery.ToListAsync();
+
+            return View(networks);
+        }
+
+
+            [Route("[Action]/{SystemToFind}/{SearchText}")]
+        public async Task<IActionResult> ListNetworks([FromRoute] string SystemToFind, [FromRoute] string SearchText)
+        {
+
+            var PreQuery = _context.SyngioViewNetworks.Where((n) =>
+                n.System == SystemToFind
+            );
+
+            if (!string.IsNullOrEmpty(SearchText))
+            {
+                PreQuery = PreQuery.Where((n) =>
+                    n.NetworkName.StartsWith(SearchText)
+                );
+            }
+
+            var networks = await PreQuery.ToListAsync();
 
             return View(networks);
 
@@ -109,7 +130,7 @@ namespace EwkQxObd.WebApi.Controllers
         [HttpGet]
         public IActionResult Upload()
         {
-            return View(new NetworkCsvUploadViewModel { FromWebCall = false, SelectedSystem = "Pacific" });
+            return View(new NetworkCsvUploadViewModel { FromWebCall = true, SelectedSystem = "Pacific" });
         }
 
     }
