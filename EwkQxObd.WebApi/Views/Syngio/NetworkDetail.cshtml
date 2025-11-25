@@ -1,0 +1,36 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+}
+@model List<Syngio>
+
+
+<table>
+    <tr>
+        <th>System</th>
+        <th>Network</th>
+        <th>Group</th>
+        <th>Serial Number</th>
+        <th>Instrument Name</th>
+        <th>Linked Account</th>
+        <th>Account Name</th>
+        <th>City</th>
+        <th>Street</th>
+        <th>Options</th>
+    </tr>
+    @foreach (Syngio m in Model)
+    {
+        <tr>
+            <td>@m.System</td>
+            <td>@m.NetworkName</td>
+            <td>@m.InstrumentGroup</td>
+            <td>@m.SerialNumber</td>
+            <td>@m.InstrumentName</td>
+            <td>@m.AccountNumber</td>
+            <td>@m.Name</td>
+            <td>@m.City</td>
+            <td>@m.Street</td>
+        </tr>
+    }
+</table>

@@ -60,6 +60,22 @@ namespace EwkQxObd.WebApi.Controllers
 
         }
 
+        [Route("[Action]/{System}/{NetworkId}")]
+        public async Task<IActionResult> NetworkDetail(
+            [FromRoute] string System, 
+            [FromRoute] long NetworkId)
+        {
+            var Network = await _context.Syngio
+                .Where(s => s.NetworkId == NetworkId &&
+                s.System == System)
+                .ToListAsync();
+            if (Network is null)
+            {
+                return NotFound();
+            }
+            return View(Network);
+        }
+
 
 
         [Route("[Action]/{SerialNumber}")]
