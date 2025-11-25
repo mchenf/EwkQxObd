@@ -26,22 +26,7 @@ namespace EwkQxObd.WebApi.Controllers
         [Route("[Action]/{SystemToFind}")]
         public async Task<IActionResult> ListNetworks([FromRoute] string SystemToFind)
         {
-            var PreQuery = _context.SyngioViewNetworks.Where((n) =>
-                n.System == SystemToFind
-            );
-
-            var Networks = await PreQuery.ToListAsync();
-
-            var SearchAlpha = await _context.SyngioSearchAlpha
-                .Where(n => n.System == SystemToFind)
-                .OrderBy(n => n.Initial)
-                .ToListAsync();
-
-            return View(new SyngioListNetworkViewModel
-            {
-                Networks = Networks,
-                SearchAlpha = SearchAlpha
-            });
+            return await ListNetworks(SystemToFind, string.Empty);
         }
 
 
