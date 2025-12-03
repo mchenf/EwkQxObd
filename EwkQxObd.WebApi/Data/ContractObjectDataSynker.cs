@@ -21,7 +21,7 @@ namespace EwkQxObd.WebApi.Data
 
         private async Task CreateOrFetchPerson( 
             Func<EqoContract, EqoContactInfo?> EntitySelector,
-            Func<EqoContract, long?> IdSelector)
+            Func<EqoContract, int?> IdSelector)
         {
             if (_contract == default)
             {

@@ -40,7 +40,7 @@ namespace EwkQxObd.WebApi.Controllers
 
 
         [HttpGet]
-        public async Task<IActionResult> Details([FromQuery]long Id)
+        public async Task<IActionResult> Details([FromQuery]int Id)
         {
             throw new NotImplementedException();
         }

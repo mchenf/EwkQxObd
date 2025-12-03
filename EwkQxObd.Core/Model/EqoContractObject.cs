@@ -17,13 +17,15 @@ namespace EwkQxObd.Core.Model
     [Table("ContractObject", Schema = "eqo")]
     public partial class EqoContractObject
     {
-
+        [Key]
         public int Id { get; set; }
 
         [Required]
         [StringLength(16, ErrorMessage = "{0} length must be between {2} and {1}.", MinimumLength = 3)]
         public required string SerialNumber { get; set; }
 
+        [Required]
+        [StringLength(32, ErrorMessage = "{0} length must be between {2} and {1}.", MinimumLength = 3)]
         public required string InstrumentType { get; set; }
 
         [Column("Contract")]
@@ -34,10 +36,10 @@ namespace EwkQxObd.Core.Model
         public EqoContract? Contract { get; set; }
         public EqoAccount? ShipTo { get; set; }
 
-        public long AccountNumber { get => ShipTo == default ? -1 : ShipTo.PartnerId; }
+        public int AccountNumber { get => ShipTo == default ? -1 : ShipTo.PartnerId; }
         public string PartnerName { get => ShipTo == default ? string.Empty : ShipTo.PartnerName; }
 
-        public long ContractNumber { get => Contract == default ? -1 : Contract.ContractNumber; }
+        public int ContractNumber { get => Contract == default ? -1 : Contract.ContractNumber; }
 
         [NotMapped]
         public Syngio? InstrumentConnected { get; set; }

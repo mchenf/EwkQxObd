@@ -24,7 +24,7 @@ namespace EwkQxObd.WebApi.Controllers.ewkiqxobd.api
         }
 
         [HttpGet("{partnerId}")]
-        public async Task<EqoAccount?> Get([FromRoute] long partnerId)
+        public async Task<EqoAccount?> Get([FromRoute] int partnerId)
         {
             var Result = await _context.EqoAccount
                 .Where(a => a.PartnerId == partnerId).FirstOrDefaultAsync();

@@ -66,7 +66,7 @@ namespace EwkQxObd.Core.Serialization
 
             result.NetworkName = fields[2] == NULL ? null : fields[2];
 
-            if (long.TryParse(fields[3], out long f3Result))
+            if (int.TryParse(fields[3], out int f3Result))
             {
                 result.NetworkId = f3Result;
             }

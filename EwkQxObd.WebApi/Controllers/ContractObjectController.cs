@@ -136,7 +136,7 @@ namespace EwkQxObd.WebApi.Controllers
         }
 
         [HttpGet]
-        public async Task<IActionResult> Detail([FromQuery]long Id)
+        public async Task<IActionResult> Detail([FromQuery]int Id)
         {
             var objFound = await _context.EqoContractObject
                     .Include(co => co.Contract)

@@ -15,7 +15,7 @@ namespace EwkQxObd.Core.Model
     public class EqoTicketSource
     {
         [Key]
-        public long Id { get; set; }
+        public int Id { get; set; }
 
         [Required]
         [Column(nameof(TicketNumber), TypeName = "nvarchar(16)")]
@@ -26,11 +26,11 @@ namespace EwkQxObd.Core.Model
         public string Description { get; set; } = string.Empty;
 
         [Column(nameof(Requester))]
-        public long? RequesterId { get; set; }
+        public int? RequesterId { get; set; }
         public EqoContactInfo? Requester { get; set; }
 
         [Column(nameof(Operations))]
-        public long? OperationsId { get; set; }
+        public int? OperationsId { get; set; }
         public EqoContactInfo? Operations { get; set; }
 
     }

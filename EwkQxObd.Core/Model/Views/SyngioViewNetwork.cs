@@ -11,7 +11,7 @@ namespace EwkQxObd.Core.Model.Views
     public class SyngioViewNetwork
     {
         public string System { get; set; } = string.Empty;
-        public long NetworkId { get; set; } = 0;
+        public int NetworkId { get; set; } = 0;
         public string NetworkName { get; set; } = string.Empty;
 
 

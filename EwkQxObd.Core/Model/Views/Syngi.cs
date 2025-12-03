@@ -10,7 +10,7 @@ namespace EwkQxObd.Core.Model.Views
     public class Syngi
     {
         [Column("InstrumentId")]
-        public long Id { get; set; }
+        public int Id { get; set; }
 
         [Column("System", TypeName = "char(16)")]
         public string System { get; set; } = string.Empty;
@@ -22,7 +22,7 @@ namespace EwkQxObd.Core.Model.Views
         public string? NetworkName { get; set; } = string.Empty;
 
         [Column("NetworkId", TypeName = "bigint")]
-        public long? NetworkId { get; set; }
+        public int? NetworkId { get; set; }
 
         [Column("LinkedAccount", TypeName = "uniqueidentifier")]
         public Guid LinkedAccountGuid { get; set; }

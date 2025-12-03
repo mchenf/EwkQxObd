@@ -63,7 +63,7 @@ namespace EwkQxObd.WebApi.Controllers
         [Route("[Action]/{System}/{NetworkId}")]
         public async Task<IActionResult> NetworkDetail(
             [FromRoute] string System, 
-            [FromRoute] long NetworkId)
+            [FromRoute] int NetworkId)
         {
             var Network = await _context.Syngio
                 .Where(s => s.NetworkId == NetworkId &&
@@ -104,7 +104,7 @@ namespace EwkQxObd.WebApi.Controllers
         }
 
         [Route("[Action]/{id}")]
-        public async Task<IActionResult> Details([FromRoute] long id)
+        public async Task<IActionResult> Details([FromRoute] int id)
         {
             var inst = await (
                 from i in _context.Syngio

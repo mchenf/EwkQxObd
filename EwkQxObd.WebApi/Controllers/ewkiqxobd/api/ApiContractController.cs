@@ -24,7 +24,7 @@ namespace EwkQxObd.WebApi.Controllers.ewkiqxobd.api
         }
 
         [HttpGet("{contractNumber}")]
-        public async Task<EqoContract?> Get([FromRoute]long contractNumber)
+        public async Task<EqoContract?> Get([FromRoute] int contractNumber)
         {
             var Result = await _context.EqoContract
                 .Where(c => c.ContractNumber == contractNumber)

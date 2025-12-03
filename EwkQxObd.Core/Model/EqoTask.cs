@@ -24,11 +24,11 @@ namespace EwkQxObd.Core.Model
 
         [Required]
         [Column(nameof(WorkFlow), TypeName = "int")]
-        public long WorkFlowId { get; set; }
+        public int WorkFlowId { get; set; }
         public EqoTaskWorkflow? WorkFlow { get; set; }
 
         [Column(nameof(Prerequisite), TypeName = "int")]
-        public long? PrerequisiteId { get; set; }
+        public int? PrerequisiteId { get; set; }
         public EqoTask? Prerequisite { get; set; }
 
     }

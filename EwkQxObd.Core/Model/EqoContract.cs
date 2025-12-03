@@ -17,9 +17,19 @@ namespace EwkQxObd.Core.Model
     [Index(nameof(ContractNumber), IsUnique = true)]
     public class EqoContract
     {
+        [Key]
         public int Id { get; set; }
+
+        [Required]
+        [Column(nameof(ContractNumber), TypeName = "int")]
         public int ContractNumber { get; set; }
+
+        [Required]
+        [Column(nameof(Description), TypeName = "nvarchar(255)")]
+        [StringLength(255, ErrorMessage = "{0} length must be between {2} and {1}.", MinimumLength = 1)]
         public string Description { get; set; } = string.Empty;
+
+
         public DateTime ValidFrom { get; set; }
         public DateTime ValidTo { get; set; }
 

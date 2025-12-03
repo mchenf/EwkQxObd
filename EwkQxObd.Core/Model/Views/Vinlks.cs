@@ -7,7 +7,7 @@ public class Vinlks
 {
     public string? SerialNumber { get; set; }
 
-    public long? ContractNumber { get; set; }
+    public int? ContractNumber { get; set; }
 
     public DateTime? RecordedAt { get; set; }
 
@@ -15,7 +15,7 @@ public class Vinlks
 
     public string? Region { get; set; }
 
-    public long? PartnerId { get; set; }
+    public int? PartnerId { get; set; }
 
     public string? OrgName { get; set; }
 
@@ -35,7 +35,7 @@ public class Vinlks
 
     public string? NetworkName { get; set; }
 
-    public long? NetworkId { get; set; }
+    public int? NetworkId { get; set; }
 
     public DateTime? QueryTimeStamp { get; set; }
 
@@ -49,7 +49,7 @@ public class Vinlks
 
     public bool IsMissingOrgSync { get; set; }
 
-    public long? ContractObjId { get; set; }
+    public int? ContractObjId { get; set; }
 
     public string? Description { get; set; }
     public string? InstrumentType { get; set; }

@@ -2,11 +2,11 @@
 {
     public class ContractObjSearchFilter
     {
-        public long ContractNumber { get; set; } = long.MinValue;
-        public long PartnerAccountNumber { get; set; } = long.MinValue;
+        public int ContractNumber { get; set; } = int.MinValue;
+        public int PartnerAccountNumber { get; set; } = int.MinValue;
         public string SerialNumber { get; set; } = string.Empty;
         public string System { get; set; } = "Pacific";
-        public long NetworkID { get; set; } = long.MinValue;
+        public int NetworkID { get; set; } = int.MinValue;
 
         public ContractObjSearchTermLoadState LoadState
         {
@@ -14,11 +14,11 @@
             {
                 ContractObjSearchTermLoadState ls = ContractObjSearchTermLoadState.None;
 
-                if (ContractNumber != long.MinValue)
+                if (ContractNumber != int.MinValue)
                 {
                     ls |= ContractObjSearchTermLoadState.ContractNumber;
                 }
-                if (PartnerAccountNumber != long.MinValue)
+                if (PartnerAccountNumber != int.MinValue)
                 {
                     ls |= ContractObjSearchTermLoadState.PartnerAccountNumber;
                 }
@@ -26,7 +26,7 @@
                 {
                     ls |= ContractObjSearchTermLoadState.SerialNumber;
                 }
-                if (NetworkID != long.MinValue)
+                if (NetworkID != int.MinValue)
                 {
                     ls |= ContractObjSearchTermLoadState.NetworkID;
                 }

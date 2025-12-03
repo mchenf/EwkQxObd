@@ -18,6 +18,5 @@ namespace EwkQxObd.Core.Model
         public int? TaskId { get; set; }
         public EqoTask? Task { get; set; }
 
-
     }
 }
