@@ -15,7 +15,7 @@ namespace EwkQxObd.Core.Model
     public class EqoAccount
     {
         public int Id { get; set; }
-        public long PartnerId { get; set; } = long.MinValue;
+        public int PartnerId { get; set; } = int.MinValue;
         public string PartnerName { get; set; } = string.Empty;
         public Guid GeisID { get; set; }
 

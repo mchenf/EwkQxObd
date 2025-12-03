@@ -18,7 +18,7 @@ namespace EwkQxObd.Core.Model
     public partial class EqoContractObject
     {
 
-        public long Id { get; set; }
+        public int Id { get; set; }
 
         [Required]
         [StringLength(16, ErrorMessage = "{0} length must be between {2} and {1}.", MinimumLength = 3)]
@@ -27,7 +27,7 @@ namespace EwkQxObd.Core.Model
         public required string InstrumentType { get; set; }
 
         [Column("Contract")]
-        public long ContractId { get; set; }
+        public int ContractId { get; set; }
         [Column("ShipTo")]
         public int ShipToId { get; set; }
 

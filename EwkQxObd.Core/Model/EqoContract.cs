@@ -17,19 +17,19 @@ namespace EwkQxObd.Core.Model
     [Index(nameof(ContractNumber), IsUnique = true)]
     public class EqoContract
     {
-        public long Id { get; set; }
-        public long ContractNumber { get; set; }
+        public int Id { get; set; }
+        public int ContractNumber { get; set; }
         public string Description { get; set; } = string.Empty;
         public DateTime ValidFrom { get; set; }
         public DateTime ValidTo { get; set; }
 
         public EqoContactInfo? CustomerContact { get; set; }
         [Column("CustomerContact")]
-        public long? CustomerContactId { get; set; }
+        public int? CustomerContactId { get; set; }
 
         public EqoContactInfo? EmployeeResponsible { get; set; }
         [Column("EmployeeResponsible")]
-        public long? EmployeeResponsibleId { get; set; }
+        public int? EmployeeResponsibleId { get; set; }
 
 
         public DateTime? RecordedAt { get; set; }

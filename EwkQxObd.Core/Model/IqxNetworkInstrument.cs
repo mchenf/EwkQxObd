@@ -13,7 +13,7 @@ namespace EwkQxObd.Core.Model
     {
 
         [Key]
-        public long id { get; set; }
+        public int id { get; set; }
 
         [Column("System", TypeName = "nvarchar(16)")]
         public string System { get; set; } = string.Empty;
@@ -25,7 +25,7 @@ namespace EwkQxObd.Core.Model
         public string? NetworkName { get; set; } = string.Empty;
 
         [Column("NetworkId", TypeName = "bigint")]
-        public long? NetworkId { get; set; }
+        public int? NetworkId { get; set; }
 
         [Column("LinkedAccount", TypeName = "uniqueidentifier")]
         public Guid LinkedAccountGuid { get; set; }

@@ -14,7 +14,7 @@ namespace EwkQxObd.Core.Model
     public class IqxOrganization
     {
         [JsonIgnore]
-        public long id { get; set; }
+        public int id { get; set; }
         [JsonPropertyName("id")]
         public Guid GeisGuid { get; set; }
         [JsonPropertyName("name")]

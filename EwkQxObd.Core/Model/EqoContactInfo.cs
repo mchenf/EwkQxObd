@@ -13,7 +13,7 @@ namespace EwkQxObd.Core.Model
     [Index(nameof(EmailAddress), IsUnique = true)]
     public class EqoContactInfo
     {
-        public long Id { get; set; }
+        public int Id { get; set; }
         public string FullName { get; set; } = string.Empty;
         public string? EmailAddress { get; set; } = string.Empty;
     }

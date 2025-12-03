@@ -14,12 +14,12 @@ namespace EwkQxObd.Core.Model
     public class RelTicketSourceContract
     {
         [Key]
-        public long Id { get; set; }
+        public int Id { get; set; }
 
-        public long TicketId { get; set; }
+        public int TicketId { get; set; }
         public required EqoTicketSource Ticket { get; set; }
 
-        public long ContractId { get; set; }
+        public int ContractId { get; set; }
         public required EqoContract Contract { get; set; }
 
     }
