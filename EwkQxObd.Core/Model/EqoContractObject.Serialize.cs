@@ -10,8 +10,8 @@ namespace EwkQxObd.Core.Model
     public partial class EqoContractObject : ITextFlattable
     {
 
-        private const string format1 = @"
-==== Contract ====
+        private const string format1 = 
+@"==== Contract ====
 Contract Number: {0}
 Description: {1}
 Customer Contact: {2}
@@ -25,10 +25,12 @@ Account Name: {7}
 Region: {8}
 Country: {9}
 
-==== Instrument ====
-Serial Number: {10}
-Instrument Type: {11}
-";
+{10}";
+
+        private const string format2 = 
+@"==== Instrument NOT On IQX ====
+Serial Number: {0}
+Instrument Type: {1}";
 
         public string ToFlatText()
         {
@@ -44,6 +46,20 @@ Instrument Type: {11}
                     Contract.EmployeeResponsible.EmailAddress ?? "email@not.exist"
                 );
 
+            string syngio = string.Empty;
+
+            if (InstrumentConnected is null)
+            {
+                syngio = string.Format(format2,
+                    SerialNumber,
+                    InstrumentType
+                );
+            }
+            else
+            {
+                syngio = InstrumentConnected.ToFlatText();
+            }
+
             string result = string.Format(format1,
                 Contract.ContractNumber,
                 Contract.Description,
@@ -55,8 +71,7 @@ Instrument Type: {11}
                 ShipTo!.PartnerName,
                 ShipTo!.Region,
                 ShipTo!.Country,
-                SerialNumber,
-                InstrumentType
+                syngio
             );
 
 
