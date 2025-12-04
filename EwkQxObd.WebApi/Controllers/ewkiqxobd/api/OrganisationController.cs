@@ -35,8 +35,8 @@ namespace EwkQxObd.WebApi.Controllers.ewkiqxobd.api
         [Consumes("application/json")]
         public async Task<IActionResult> AddBulk(IEnumerable<IqxOrganization> orgs)
         {
-            List<IqxOrganization> dups = new();
-            List<IqxOrganization> added = new();
+            List<IqxOrganization> dups = [];
+            List<IqxOrganization> added = [];
 
             foreach (var org in orgs)
             {
