@@ -11,7 +11,7 @@ namespace EwkQxObd.Core.Model.Views
 {
     public partial class Syngio
     {
-        [Column("InstrumentId", TypeName = "bigint")]
+        [Column("InstrumentId", TypeName = "int")]
         public int Id { get; set; }
 
         [Column("System", TypeName = "char(16)")]
@@ -23,7 +23,7 @@ namespace EwkQxObd.Core.Model.Views
         [Column("NetworkName", TypeName = "nvarchar(64)")]
         public string? NetworkName { get; set; } = string.Empty;
 
-        [Column("NetworkId", TypeName = "bigint")]
+        [Column("NetworkId", TypeName = "int")]
         public int? NetworkId { get; set; }
 
         [Column("InstrumentGroup", TypeName = "nvarchar(64)")]
