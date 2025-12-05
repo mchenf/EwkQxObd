@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace EwkQxObd.Core.Model
 {
-    [Table("TaskWorkflow", Schema = "eqo")]
+    [Table("TtsTaskWorkflow", Schema = "eqo")]
     public class EqoTaskWorkflow
     {
         [Key]
