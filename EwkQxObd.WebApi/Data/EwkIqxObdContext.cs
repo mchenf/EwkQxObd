@@ -37,6 +37,10 @@ namespace EwkQxObd.WebApi.Data
 
         public DbSet<SyngioSearchAlpha> SyngioSearchAlpha { get; set; }
 
+        public DbSet<EqoTaskWorkflow> TaskWorkFlow { get; set; }
+        public DbSet<EqoTask> Task { get; set; }
+        public DbSet<EqoTaskItem> TaskItem { get; set; }
+
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             foreach (var rel in modelBuilder.Model.GetEntityTypes().SelectMany(e => e.GetForeignKeys()))
