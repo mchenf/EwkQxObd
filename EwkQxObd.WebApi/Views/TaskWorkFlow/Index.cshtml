@@ -5,12 +5,39 @@
     ViewData["Title"] = "Task Work Flow";
 }
 
+@model List<EqoTaskWorkflow>
+
 <h1>Task Work Flow</h1>
 
 <div class="container shadow p-3 mb-5 rounded">
-
     <a class="btn btn-outline-success" asp-action="Create">
         <i class="fa fa-solid fa-square-plus fa-xl"></i>
         <span>New</span>
     </a>
 </div>
+
+<table class="table">
+    <thead class="position-sticky">
+        <tr>
+            <th class="col-1" scope="col">#</th>
+            <th class="col-2" scope="col">Workflow Name</th>
+            <th class="col" scope="col">Workflow Description</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (EqoTaskWorkflow twf in Model)
+        {
+            <tr>
+                <td>
+                    @twf.Id
+                </td>
+                <td>
+                    @twf.Name
+                </td>
+                <td>
+                    @twf.Description
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
