@@ -15,9 +15,7 @@
     </div>
 
     <div class="bg-dark text-white pt-1 ps-5">
-        <pre>
-        <code>
-SELECT
+        <pre><code>SELECT
     DB_NAME() AS [System],
     GETDATE() AS [Query Timestamp],
     [NTWK].[Name] AS [Network Name],
@@ -37,9 +35,7 @@ WHERE
     AND ([NTWK].[Obsolete] = 0 OR [NTWK].[Obsolete] IS NULL)
     AND ([GRUP].[Obsolete] = 0 OR [GRUP].[Obsolete] IS NULL)
 ORDER BY
-        [NTWK].[Name], [GRUP].[Name]
-        </code>
-    </pre>
+        [NTWK].[Name], [GRUP].[Name]</code></pre>
     </div>
 
     <div class="col col-8 justify-content-center">
@@ -103,7 +99,17 @@ ORDER BY
                         if(this.checked)
                         {
                             const selectedSys = this.value;
-                            txbox.innerText = 'Invoke-Sqlcmd `\n  -ServerInstance localhost `\n  -Database ' + selectedSys + ' `\n  -InputFile .\\SELECT_INST_IQX_GEIS.sql | `\nExport-Csv `\n  -Path Exported_Iqx_Network_' + selectedSys +'_$(Get-Date -Format "yyyyMMdd_HHmmss").csv `\n  -Encoding UTF8 `\n  -NoTypeInformation';
+                            txbox.innerText =
+                            '$ExportFileName = \"Exported_Iqx_Network_' + selectedSys +'_$(Get-Date -Format \'yyyyMMdd_HHmmss\').csv\" \n' +
+                            'Invoke-Sqlcmd `\n' +
+                            '   -ServerInstance localhost `\n' +
+                            '   -Database ' + selectedSys + ' `\n' + 
+                            '   -InputFile .\\SELECT_INST_IQX_GEIS.sql | `\n'+
+                            'Export-Csv `\n' +
+                            '   -Path $ExportFileName `\n' +
+                            '   -Encoding UTF8 `\n' + 
+                            '   -NoTypeInformation \n' +
+                            'Set-Clipboard -Path $ExportFileName';
                         }
                         
 
