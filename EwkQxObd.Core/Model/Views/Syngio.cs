@@ -49,6 +49,7 @@ namespace EwkQxObd.Core.Model.Views
         [Column("Street", TypeName = "nvarchar")]
         public string? Street { get; set; } = string.Empty;
 
-
+        [Column(nameof(ContractNumber), TypeName = "int")]
+        public int? ContractNumber { get; set; } 
     }
 }

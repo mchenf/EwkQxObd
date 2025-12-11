@@ -155,5 +155,21 @@ namespace EwkQxObd.WebApi.Controllers
 
             return View(objFound);
         }
+
+        [HttpGet]
+        [Route("{ContractNumber:int}")]
+        public async Task<IActionResult> ByContract([FromRoute]int ContractNumber)
+        {
+            var contractFound = await _context.Syngio.Where(
+                o => o.ContractNumber != null && o.ContractNumber == ContractNumber
+            ).ToListAsync();
+
+            if (contractFound == default)
+            {
+                return NoContent();
+            }
+            
+            return View(contractFound);
+        }
     }
 }

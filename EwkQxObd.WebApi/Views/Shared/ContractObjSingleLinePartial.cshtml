@@ -30,7 +30,7 @@
     }
     else
     {
-        <a class="btn btn-outline-dark border-2 font-monospace w-100" asp-controller="ContractObject" asp-action="Detail" asp-route-Id="@Model.ContractObjId">@Model.ContractNumber</a>
+        <a class="btn btn-outline-dark border-2 font-monospace w-100" asp-controller="ContractObject" asp-action="ByContract" asp-route-ContractNumber="@Model.ContractNumber">@Model.ContractNumber</a>
     }
     
 
