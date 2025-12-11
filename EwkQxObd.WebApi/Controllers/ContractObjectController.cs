@@ -136,14 +136,15 @@ namespace EwkQxObd.WebApi.Controllers
         }
 
         [HttpGet]
-        public async Task<IActionResult> Detail([FromQuery]int Id)
+        [Route("{ContractObjectId}")]
+        public async Task<IActionResult> Detail([FromRoute] int ContractObjectId)
         {
             var objFound = await _context.EqoContractObject
                     .Include(co => co.Contract)
                     .Include(co => co.ShipTo)
                     .Include(co => co.Contract!.CustomerContact)
                     .Include(co => co.Contract!.EmployeeResponsible)
-                    .FirstOrDefaultAsync(o => o.Id == Id);
+                    .FirstOrDefaultAsync(o => o.Id == ContractObjectId);
             if (objFound == default)
             {
                 return NoContent();
