@@ -67,7 +67,8 @@ namespace EwkQxObd.WebApi.Controllers
         {
             var Network = await _context.Syngio
                 .Where(s => s.NetworkId == NetworkId &&
-                s.System == System)
+                    s.System == System)
+                .OrderBy(s => s.InstrumentGroup)
                 .ToListAsync();
             if (Network is null)
             {
