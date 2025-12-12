@@ -22,11 +22,12 @@ namespace EwkQxObd.Core.Model
 
         [Required]
         [Column(nameof(ContractNumber), TypeName = "int")]
+        [Range(999, 99999999, ErrorMessage = "Not a valid contract number")]
         public int ContractNumber { get; set; }
 
         [Required]
         [Column(nameof(Description), TypeName = "nvarchar(255)")]
-        [StringLength(255, ErrorMessage = "{0} length must be between {2} and {1}.", MinimumLength = 1)]
+        [StringLength(255, ErrorMessage = "{0} length must be between {2} and {1}.", MinimumLength = 3)]
         public string Description { get; set; } = string.Empty;
 
 

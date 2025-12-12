@@ -1,0 +1,41 @@
+﻿@{
+    ViewData["Title"] = "New Contract";
+}
+@model EqoContract
+
+<div class="container align-content-center">
+    <h1 class="w-100 text-center bg-warning text-primary display-2 pb-3">New Contract</h1>
+</div>
+
+<form asp-action="Create" method="post">
+    <div class="container mt-4 justify-content-around">
+        <input type="hidden" class="form-control" id="iptContractId" asp-for="Id"/>
+        <div class="row">
+            <div class="col-2">
+                <label for="iptContractNumber" class="col-form-label w-100 text-end">
+                    Contract Number
+                </label>
+            </div>
+            <div class="col-3">
+                <input type="text" class="form-control" id="iptContractNumber" asp-for="ContractNumber"/>
+                <span asp-validation-for="ContractNumber" class="text-danger"></span>
+            </div>
+
+            <div class="col-2">
+                <label for="iptContractDescription" class="col-form-label w-100 text-end">
+                    Description
+                </label>
+            </div>
+            <div class="col-5">
+                <input type="text" class="form-control" id="iptContractDescription" asp-for="Description"/>
+                <span asp-validation-for="Description" class="text-danger"></span>
+            </div>
+        </div>
+
+        <div class="row mt-3 justify-content-center">
+            <div class="col-2">
+                <button class="btn btn-primary w-100" type="submit">Submit</button>
+            </div>
+        </div>
+    </div>
+</form>
