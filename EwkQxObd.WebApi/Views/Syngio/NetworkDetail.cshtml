@@ -46,10 +46,10 @@
 
 <table class="table mt-5">
     <tr>
-        <th>Group</th>
-        <th>Serial Number</th>
-        <th>Instrument Name</th>
-        <th>Options</th>
+        <th class="col-3">Group</th>
+        <th class="col-2">Serial Number</th>
+        <th class="col-3">Instrument Name</th>
+        <th class="col-4">Options</th>
     </tr>
     @foreach (Syngio m in Model)
     {
@@ -57,6 +57,10 @@
             <td>@m.InstrumentGroup</td>
             <td>@m.SerialNumber</td>
             <td>@m.InstrumentName</td>
+            <td>
+                <a><i class="fa-solid fa-circle-question text-primary"></i>Investigate</a>
+                <a><i class="fa-solid fa-circle-info text-info"></i>Details</a>
+            </td>
         </tr>
     }
 </table>
