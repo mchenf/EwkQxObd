@@ -1,12 +1,26 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using EwkQxObd.WebApi.Data;
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 
 namespace EwkQxObd.WebApi.Controllers
 {
-    public class OrganizationController : Controller
+    [Route("[controller]")]
+    public class OrganizationController(
+        EwkIqxObdContext ctx, 
+        ILogger<OrganizationController> logger
+        ) : Controller
     {
-        public IActionResult Index()
+        private readonly EwkIqxObdContext _context = ctx;
+        private readonly ILogger<OrganizationController> _logger = logger;
+
+
+        [Route("")]
+        [Route("[action]")]
+        [HttpGet]
+        public async Task<IActionResult> Index()
         {
-            return View();
+            var orgs = await _context.IqxOrganisation.ToListAsync();
+            return View(orgs);
         }
     }
 }

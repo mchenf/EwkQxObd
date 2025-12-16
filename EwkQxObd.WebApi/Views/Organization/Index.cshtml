@@ -1,0 +1,32 @@
+﻿@{
+    ViewData["Title"] = "Organization";
+
+}
+
+@model List<IqxOrganization>
+
+
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>Name</th>
+            <th>Account Number</th>
+            <th>GEIS guid</th>
+            <th>Address</th>
+        </tr>
+    </thead>
+    <tbody>
+            @foreach (IqxOrganization o in Model)
+            {
+                <tr>
+                    <td>@o.Name</td>
+                    <td>@o.AccountNumber</td>
+                    <td><code>@o.GeisGuid</code></td>
+                    <td>@o.City,<br>@o.Street</td>
+                </tr>
+            }
+    </tbody>
+</table>
+
+
