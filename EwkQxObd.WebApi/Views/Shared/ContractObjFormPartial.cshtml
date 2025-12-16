@@ -5,26 +5,26 @@
 }
 
 
-<div class="row mb-3">
-    <h3 class="col-8 pe-3">IQX Contract</h3>
-</div>
+    <div class="row mb-3">
+        <h3 class="col-8 pe-3">IQX Contract</h3>
+    </div>
 
-<partial name="ContractFormPartial" for="Contract"/>
-
-
-
-<div class="row mb-3 mt-5">
-    <h3 class="col-sm-8">Ship-To</h3>
-</div>
+    <partial name="ContractFormPartial" for="Contract"/>
 
 
-<partial name="AccountFormPartial" for="ShipTo" />
 
-    @if (Model is not null && Model.InstrumentConnected is not null)
+    <div class="row mb-3 mt-5">
+        <h3 class="col-sm-8">Ship-To</h3>
+    </div>
+
+
+    <partial name="AccountFormPartial" for="ShipTo" />
+
+@if (Model is not null && Model.InstrumentConnected is not null)
 {
     <partial name="SyngioDetailsPartial" model="Model.InstrumentConnected" />
 } 
-    else
+else
 {
     <div class="row mb-3 mt-5">
         <h3 class="col-8 me-5">Instrument</h3>
