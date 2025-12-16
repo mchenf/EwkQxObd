@@ -3,6 +3,7 @@ using EwkQxObd.Core.Model.Views;
 using EwkQxObd.WebApi.Data;
 using EwkQxObd.WebApi.Models;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Infrastructure;
 using Microsoft.EntityFrameworkCore;
 
 namespace EwkQxObd.WebApi.Controllers
@@ -101,6 +102,38 @@ namespace EwkQxObd.WebApi.Controllers
             model.Results = result;
 
             return View(nameof(Search), model);
+        }
+
+        [HttpGet]
+        public async Task<IActionResult> AddOn([FromQuery]int ContractId, [FromQuery]int ShipToId = 0)
+        {
+            EqoContract? contract = null;
+            EqoAccount? shipTo = null;
+            if (ShipToId > 0)
+            {
+                shipTo = 
+                    await _context.EqoAccount
+                    .FirstOrDefaultAsync(c => c.Id == ShipToId);
+            }
+
+            contract =
+                await _context.EqoContract
+                .Include(c => c.EmployeeResponsible)
+                .Include(c => c.CustomerContact)
+                .FirstOrDefaultAsync(c => c.Id == ContractId);
+
+            if (contract == null)
+            {
+                return BadRequest($"Contract ID Not Found for {ContractId}");
+            }
+
+            EqoContractObject obj = new()
+            {
+                Contract = contract,
+                ShipTo = shipTo
+            };
+
+            return View(nameof(New), obj);
         }
 
         [HttpGet]

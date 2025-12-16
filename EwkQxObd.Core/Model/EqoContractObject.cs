@@ -20,13 +20,11 @@ namespace EwkQxObd.Core.Model
         [Key]
         public int Id { get; set; }
 
-        [Required]
         [StringLength(16, ErrorMessage = "{0} length must be between {2} and {1}.", MinimumLength = 3)]
-        public required string SerialNumber { get; set; }
+        public string SerialNumber { get; set; } = string.Empty;
 
-        [Required]
         [StringLength(32, ErrorMessage = "{0} length must be between {2} and {1}.", MinimumLength = 3)]
-        public required string InstrumentType { get; set; }
+        public string InstrumentType { get; set; } = string.Empty;
 
         [Column("Contract")]
         public int ContractId { get; set; }
