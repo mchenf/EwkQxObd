@@ -9,18 +9,11 @@ using Microsoft.EntityFrameworkCore;
 namespace EwkQxObd.WebApi.Controllers
 {
     [Route("[controller]/[action]")]
-    public class ContractObjectController : Controller
+    public class ContractObjectController(EwkIqxObdContext ctx, ILogger<ContractObjectController> logger) : Controller
     {
 
-        private readonly ILogger<ContractObjectController> _logger;
-        private EwkIqxObdContext _context;
-
-        public ContractObjectController(EwkIqxObdContext ctx, ILogger<ContractObjectController> logger)
-        {
-            _context = ctx;
-            _logger = logger;
-        }
-
+        private readonly ILogger<ContractObjectController> _logger = logger;
+        private readonly EwkIqxObdContext _context = ctx;
         private readonly int itemsPerPage = 16;
 
         [HttpGet()]
