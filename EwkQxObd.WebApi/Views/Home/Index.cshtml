@@ -53,7 +53,6 @@
                 <a class="btn btn-outline-primary w-100 mb-2" asp-controller="Contract" asp-action="Create">
                     <div class="row">
                         <div class="col-1">
-
                             <i class="fa fa-solid fa-square-plus fa-xl"></i>
                         </div>
                         <div class="col-10">
@@ -73,10 +72,46 @@
                 <p class="card-text">
                     "System, Network, Group, Instrument, & Organisation"
                 </p>
-
-                <a class="btn btn-outline-success w-100 mb-3" asp-controller="Syngio" asp-action="Index">List All</a>
-                <a class="btn btn-outline-danger w-100 mb-3" asp-controller="Syngio" asp-action="Upload">Upload Csv Files</a>
-                <a class="btn btn-warning w-100" asp-controller="Syngio" asp-action="Search">Search</a>
+                <a class="btn btn-outline-success w-100 mb-3" asp-controller="Syngio" asp-action="Index">
+                    <div class="row">
+                        <div class="col-1">
+                            <i class="fa fa-solid fa-chart-diagram fa-xl"></i>
+                        </div>
+                        <div class="col-10">
+                            <span>Systems, Network, Instruments</span>
+                        </div>
+                    </div>
+                </a>
+                <a class="btn btn-outline-danger w-100 mb-3" asp-controller="Syngio" asp-action="Upload">
+                    <div class="row">
+                        <div class="col-1">
+                            <i class="fa fa-solid fa-upload fa-xl"></i>
+                        </div>
+                        <div class="col-10">
+                            <span>Upload Csv Files</span>
+                        </div>
+                    </div>
+                </a>
+                <a class="btn btn-outline-dark w-100 mb-3" asp-controller="Syngio" asp-action="Search">
+                    <div class="row">
+                        <div class="col-1">
+                            <i class="fa fa-solid fa-search fa-xl"></i>
+                        </div>
+                        <div class="col-10">
+                            <span>Search</span>
+                        </div>
+                    </div>
+                </a>
+                <a class="btn btn-outline-primary w-100 mb-3" asp-controller="Organization" asp-action="Index">
+                    <div class="row">
+                        <div class="col-1">
+                            <i class="fa fa-solid fa-list fa-xl"></i>
+                        </div>
+                        <div class="col-10">
+                            <span>List Organizations</span>
+                        </div>
+                    </div>
+                </a>
             </div>
         </div>
     </div>
