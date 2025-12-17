@@ -19,7 +19,7 @@ public class Vinlks
 
     public string? OrgName { get; set; }
 
-    public string? AccountNumber { get; set; }
+    public int? AccountNumber { get; set; }
 
     public string? City { get; set; }
 
