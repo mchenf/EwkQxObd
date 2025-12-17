@@ -3,27 +3,41 @@
 
 }
 
-@model List<IqxOrganization>
+@model List<Vorlks>
 
 
 
 <table class="table">
     <thead>
         <tr>
-            <th>Name</th>
-            <th>Account Number</th>
+            <th>ID</th>
+            <th>Account Name</th>
             <th>GEIS guid</th>
-            <th>Address</th>
+            <th></th>
+            <th>#</th>
+            <th>IQX Network</th>
         </tr>
     </thead>
     <tbody>
-            @foreach (IqxOrganization o in Model)
+            @foreach (Vorlks o in Model)
             {
                 <tr>
-                    <td>@o.Name</td>
                     <td>@o.AccountNumber</td>
-                    <td><code>@o.GeisGuid</code></td>
-                    <td>@o.City,<br>@o.Street</td>
+                    <td>@o.AccountName</td>
+                    <td><code>@o.GEIS_Guid</code></td>
+                @if (o.NetworkId is null)
+                {
+                    <td><i class="fa fa-ban text-danger"></i></td>
+                    <td></td>
+                    <td></td>
+                }
+                else
+                {
+
+                    <td><i class="fa fa-arrows-left-right"></i></td>
+                    <td>@o.NetworkId</td>
+                    <td><i class="fa fa-network-wired me-2"></i>@o.System \ @o.NetworkName</td>
+                }
                 </tr>
             }
     </tbody>

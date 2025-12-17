@@ -19,7 +19,7 @@ namespace EwkQxObd.WebApi.Controllers
         [HttpGet]
         public async Task<IActionResult> Index()
         {
-            var orgs = await _context.IqxOrganisation.ToListAsync();
+            var orgs = await _context.Vorlks.ToListAsync();
             return View(orgs);
         }
     }
