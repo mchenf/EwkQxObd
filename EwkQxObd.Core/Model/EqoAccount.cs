@@ -25,7 +25,7 @@ namespace EwkQxObd.Core.Model
         public string PartnerName { get; set; } = string.Empty;
 
         [Column(nameof(GeisID), TypeName = "uniquidentifier")]
-        public Guid GeisID { get; set; }
+        public Guid? GeisID { get; set; }
 
 
         [Column(nameof(Country), TypeName = "nvarchar(16)")]
