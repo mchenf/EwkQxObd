@@ -31,6 +31,7 @@ namespace EwkQxObd.WebApi.Data
 
         public DbSet<FscEnterpriseInstance> FscEnterpriseInstance { get; set; }
         public DbSet<Vinlks> Vinlks { get; set; }
+        public DbSet<Vorlks> Vorlks { get; set; }
 
         public DbSet<SyngioViewSystem> SyngioViewSystems { get; set; }
         public DbSet<SyngioViewNetwork> SyngioViewNetworks { get; set; }
@@ -56,6 +57,11 @@ namespace EwkQxObd.WebApi.Data
 
             modelBuilder.Entity<Syngio>(ent => {
                 ent.ToView("vw_LatestSysnetinstorg");
+                ent.HasNoKey();
+            });
+
+            modelBuilder.Entity<Vorlks>(ent => {
+                ent.ToView("vw_OrganizationLinkStatus");
                 ent.HasNoKey();
             });
 
