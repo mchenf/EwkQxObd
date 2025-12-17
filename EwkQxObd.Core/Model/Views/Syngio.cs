@@ -41,8 +41,8 @@ namespace EwkQxObd.Core.Model.Views
         [Column("OrgName", TypeName = "nvarchar")]
         public string? Name { get; set; } = string.Empty;
 
-        [Column("AccountNumber", TypeName = "nvarchar")]
-        public string? AccountNumber { get; set; } = string.Empty;
+        [Column("AccountNumber", TypeName = "int")]
+        public int? AccountNumber { get; set; }
 
         [Column("City", TypeName = "nvarchar")]
         public string? City { get; set; } = string.Empty;
