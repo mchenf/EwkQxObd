@@ -46,10 +46,11 @@
 
 <table class="table mt-5">
     <tr>
-        <th class="col-3">Group</th>
+        <th class="col-2">Instrument Group</th>
         <th class="col-2">Serial Number</th>
         <th class="col-3">Instrument Name</th>
-        <th class="col-4">Options</th>
+        <th class="col-2">IQX Contract</th>
+        <th class="col-3">Options</th>
     </tr>
     @foreach (Syngio m in Model)
     {
@@ -58,7 +59,14 @@
             <td>@m.SerialNumber</td>
             <td>@m.InstrumentName</td>
             <td>
-                <a><i class="fa-solid fa-circle-question text-primary"></i>Investigate</a>
+                @if (@m.ContractNumber != null)
+                {
+                    <a role="button" asp-controller="ContractObject" asp-action="ByContract" asp-route-ContractNumber="@m.ContractNumber"><i class="fa-solid fa-file-contract text-black"></i></a>
+                    @m.ContractNumber
+                }
+            </td>
+            <td>
+                <a><i class="fa-solid fa-circle-question text-primary"></i>Check</a>
                 <a><i class="fa-solid fa-circle-info text-info"></i>Details</a>
             </td>
         </tr>
