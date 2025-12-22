@@ -18,12 +18,12 @@ namespace EwkQxObd.Core.Model
     public class EqoContract
     {
         [Key]
-        public int Id { get; set; }
+        public int? Id { get; set; }
 
         [Required]
         [Column(nameof(ContractNumber), TypeName = "int")]
         [Range(999, 99999999, ErrorMessage = "Not a valid contract number")]
-        public int ContractNumber { get; set; }
+        public int? ContractNumber { get; set; }
 
         [Required]
         [Column(nameof(Description), TypeName = "nvarchar(255)")]

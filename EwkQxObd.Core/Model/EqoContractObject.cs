@@ -18,7 +18,7 @@ namespace EwkQxObd.Core.Model
     public partial class EqoContractObject
     {
         [Key]
-        public int Id { get; set; }
+        public int? Id { get; set; }
 
         [StringLength(16, ErrorMessage = "{0} length must be between {2} and {1}.", MinimumLength = 3)]
         public string SerialNumber { get; set; } = string.Empty;
@@ -27,7 +27,7 @@ namespace EwkQxObd.Core.Model
         public string InstrumentType { get; set; } = string.Empty;
 
         [Column("Contract")]
-        public int ContractId { get; set; }
+        public int? ContractId { get; set; }
         [Column("ShipTo")]
         public int ShipToId { get; set; }
 
@@ -37,7 +37,7 @@ namespace EwkQxObd.Core.Model
         public int AccountNumber { get => ShipTo == default ? -1 : ShipTo.PartnerId; }
         public string PartnerName { get => ShipTo == default ? string.Empty : ShipTo.PartnerName; }
 
-        public int ContractNumber { get => Contract == default ? -1 : Contract.ContractNumber; }
+        public int? ContractNumber { get => Contract == default ? -1 : Contract.ContractNumber; }
 
         [NotMapped]
         public Syngio? InstrumentConnected { get; set; }

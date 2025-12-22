@@ -98,7 +98,7 @@ namespace EwkQxObd.WebApi.Controllers
         }
 
         [HttpGet]
-        public async Task<IActionResult> AddOn([FromQuery]int ContractId, [FromQuery]int ShipToId = 0)
+        public async Task<IActionResult> AddOn([FromQuery]int ContractId, [FromQuery]int ShipToId = 0, [FromQuery]bool AsTemplate = false)
         {
             EqoContract? contract = null;
             EqoAccount? shipTo = null;
@@ -125,6 +125,13 @@ namespace EwkQxObd.WebApi.Controllers
                 Contract = contract,
                 ShipTo = shipTo
             };
+
+            if (AsTemplate)
+            {
+                obj.Contract.Id = null;
+                obj.Contract.ContractNumber = null;
+                obj.Contract.Description = string.Empty;
+            }
 
             return View(nameof(New), obj);
         }
