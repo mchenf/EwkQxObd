@@ -1,5 +1,6 @@
 ﻿@model Vinlks
 
+
 <td>
     @{
         string linkIcon = Model.NetworkId == null ? "fa-link-slash" : "fa-link";
@@ -13,6 +14,13 @@
             <i class="fa-solid @linkIcon"></i>
             @IqxSys-@networkId
         </div>
+    </a>
+</td>
+
+
+<td>
+    <a class="btn @btnColor font-monospace w-100" asp-controller="ContractObject" asp-action="Detail"
+       asp-route-ContractObjectId="@Model.ContractObjId">
         <div class="col text-center">
             @Model.SerialNumber
         </div>
