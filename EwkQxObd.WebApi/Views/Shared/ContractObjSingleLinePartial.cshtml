@@ -8,8 +8,8 @@
         string networkId = Model.NetworkId == null ? "???" : Model.NetworkId.Value.ToString();
         string IqxSys = Model.System ?? "???";
     }
-    <a class="btn @btnColor font-monospace w-100" asp-controller="ContractObject" asp-action="Detail"
-       asp-route-ContractObjectId="@Model.ContractObjId">
+    <a class="btn @btnColor font-monospace w-100" asp-controller="Syngio" asp-action="NetworkDetail"
+       asp-route-System="@Model.System" asp-route-NetworkId="@Model.NetworkId">
         <div class="col text-start">
             <i class="fa-solid @linkIcon"></i>
             @IqxSys-@networkId
