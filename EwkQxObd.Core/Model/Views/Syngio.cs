@@ -38,8 +38,8 @@ namespace EwkQxObd.Core.Model.Views
         [Column("InstrumentName", TypeName = "nvarchar(64)")]
         public string InstrumentName { get; set; } = string.Empty;
 
-        [Column("OrgName", TypeName = "nvarchar")]
-        public string? Name { get; set; } = string.Empty;
+        [Column(nameof(AccountName), TypeName = "nvarchar")]
+        public string? AccountName { get; set; } = string.Empty;
 
         [Column("AccountNumber", TypeName = "int")]
         public int? AccountNumber { get; set; }
@@ -48,6 +48,12 @@ namespace EwkQxObd.Core.Model.Views
         public string? City { get; set; } = string.Empty;
         [Column("Street", TypeName = "nvarchar")]
         public string? Street { get; set; } = string.Empty;
+
+        [Column(nameof(Region), TypeName = "nvarchar")]
+        public string? Region { get; set; } = string.Empty;
+
+        [Column(nameof(Country), TypeName = "nvarchar")]
+        public string? Country { get; set; } = string.Empty;
 
         [Column(nameof(ContractNumber), TypeName = "int")]
         public int? ContractNumber { get; set; } 

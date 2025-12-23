@@ -25,24 +25,36 @@ Account Number: {6}
 Account Name: {7}
 Street: {8}
 City: {9}";
-        private const string GuidMask = "****-****-****-****-********";
+        //private const string GuidMask = "****-****-****-****-********";
+        private const string GuidMask = "████-████-████-████-████████";
+
+
+        public string ObfuscatedGeis
+        {
+            get
+            {
+                if (LinkedAccountGuid == Guid.Empty)
+                {
+                    return "** IQX NOT LINKED **";
+                }
+                else
+                {
+                    string obfuscatedGuid = LinkedAccountGuid.ToString();
+
+                    string obfuscatedGuid_head = obfuscatedGuid[..4];
+                    string obfuscatedGuid_tail = obfuscatedGuid[^4..];
+
+                    obfuscatedGuid = obfuscatedGuid_head + GuidMask + obfuscatedGuid_tail;
+
+                    return obfuscatedGuid;
+                }
+            }
+        }
 
         public string ToFlatText()
         {
             string obfuscatedGuid = string.Empty;
-            if (LinkedAccountGuid == Guid.Empty)
-            {
-                obfuscatedGuid =  "** IQX NOT LINKED **";
-            }
-            else
-            {
-                obfuscatedGuid = LinkedAccountGuid.ToString();
-
-                string obfuscatedGuid_head = obfuscatedGuid[..4];
-                string obfuscatedGuid_tail = obfuscatedGuid[^4..];
-
-                obfuscatedGuid = obfuscatedGuid_head + GuidMask + obfuscatedGuid_tail;
-            }
+            
 
 
 
@@ -52,9 +64,9 @@ City: {9}";
                 NetworkName,
                 InstrumentGroup,
                 SerialNumber,
-                obfuscatedGuid,
+                ObfuscatedGeis,
                 AccountNumber,
-                Name,
+                AccountName,
                 Street,
                 City
             );

@@ -17,7 +17,7 @@ public class Vinlks
 
     public int? PartnerId { get; set; }
 
-    public string? OrgName { get; set; }
+    public string? AccountName { get; set; }
 
     public int? AccountNumber { get; set; }
 
