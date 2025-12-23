@@ -33,7 +33,6 @@ namespace EwkQxObd.WebApi.Controllers.ewkiqxobd.api
             if (string.IsNullOrEmpty(sn))
             {
                 var result = await _context.IqxInstrument
-                .Include(c => c.LinkedAccount)
                 .ToListAsync();
                 if (result != default)
                 {

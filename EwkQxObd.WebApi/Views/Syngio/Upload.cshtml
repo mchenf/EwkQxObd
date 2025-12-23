@@ -75,7 +75,7 @@ ORDER BY
     </div>
 
     <form class="mt-4 ms-3" asp-controller="ApiNetwork" asp-action="UploadCsv" enctype="multipart/form-data">
-
+        <input type="hidden" asp-for="FromWebCall" value="true" />
         <div class="input-group">
             <input asp-for="Files" type="file" class="form-control" id="inputGroupFile01" accept=".csv" multiple>
             <label class="input-group-text" for="inputGroupFile01">to upload</label>

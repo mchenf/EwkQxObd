@@ -40,6 +40,5 @@ namespace EwkQxObd.Core.Model
         public string InstrumentName { get; set; } = string.Empty;
 
 
-        public EqoAccount? LinkedAccount { get; set; }
     }
 }
