@@ -6,9 +6,10 @@
         string linkIcon = Model.NetworkId == null ? "fa-link-slash" : "fa-link";
         string btnColor = Model.NetworkId == null ? "btn-danger" : "btn-primary";
         string networkId = Model.NetworkId == null ? "???" : Model.NetworkId.Value.ToString();
+        string disabled = Model.NetworkId == null ? "disabled" : string.Empty;
         string IqxSys = Model.System ?? "???";
     }
-    <a class="btn @btnColor font-monospace w-100" asp-controller="Syngio" asp-action="NetworkDetail"
+    <a class="btn @btnColor font-monospace w-100 @disabled" asp-controller="Syngio" asp-action="NetworkDetail"
        asp-route-System="@Model.System" asp-route-NetworkId="@Model.NetworkId">
         <div class="col text-start">
             <i class="fa-solid @linkIcon"></i>
@@ -43,14 +44,58 @@
     
 
 </td>
+
+<td>
+    @if (Model.IsMissingOrgSync)
+    {
+        <i class="fa fa-square text-danger"></i>
+    }
+    else
+    {
+        <i class="fa fa-square-check"></i>
+    }
+    @if (Model.IsMissingSystem)
+    {
+        <i class="fa fa-square text-danger"></i>
+    }
+    else
+    {
+        <i class="fa fa-square-check"></i>
+    }
+    @if (Model.IsMissingNetwork)
+    {
+        <i class="fa fa-square text-danger"></i>
+    }
+    else
+    {
+        <i class="fa fa-square-check"></i>
+    }
+     <br />
+    @if (Model.IsMissingContract)
+    {
+        <i class="fa fa-square text-danger"></i>
+    }
+    else
+    {
+        <i class="fa fa-square-check"></i>
+    }
+    @if (Model.IsMissingDblink)
+    {
+        <i class="fa fa-square text-danger"></i>
+    }
+    else
+    {
+        <i class="fa fa-square-check"></i>
+    }
+</td>
 <td>@Model.Description</td>
 
 <td>@Model.InstrumentType</td>
 
-<td class="align-content-center">
+<td class="align-content-start">
     @if (Model.IsMissingDblink)
     {
-        <div class="w-100 text-danger text-center">
+        <div class="w-100 text-danger text-start">
             <i class="fa-solid fa-link-slash fa-2xl"></i>
         </div>
     }
@@ -61,7 +106,7 @@
     else
     {
 
-        <a class="btn btn-outline-dark border-2 font-monospace w-100">
+        <a class="btn btn-outline-dark border-2 font-monospace w-100 text-start">
             @Model.AccountNumber | @Model.AccountName
         </a>
     }
