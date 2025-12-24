@@ -8,6 +8,7 @@ public class Vinlks
     public string? SerialNumber { get; set; }
 
     public int? ContractNumber { get; set; }
+    public int? SiteContract { get; set; }
 
     public DateTime? RecordedAt { get; set; }
 

@@ -56,6 +56,10 @@ namespace EwkQxObd.Core.Model.Views
         public string? Country { get; set; } = string.Empty;
 
         [Column(nameof(ContractNumber), TypeName = "int")]
-        public int? ContractNumber { get; set; } 
+        public int? ContractNumber { get; set; }
+
+        [Column(nameof(SiteContract), TypeName = "int")]
+        public int? SiteContract { get; set; }
+
     }
 }
