@@ -5,16 +5,11 @@ using Microsoft.EntityFrameworkCore;
 
 namespace EwkQxObd.WebApi.Controllers
 {
-    public class HomeController : Controller
+    public class HomeController(EwkIqxObdContext ctx, ILogger<HomeController> lgr) : Controller
     {
-        private readonly ILogger<HomeController> _logger;
-        private readonly EwkIqxObdContext _context;
-        public HomeController(EwkIqxObdContext ctx, ILogger<HomeController> lgr)
-        {
-            _context = ctx;
-            _logger = lgr;
+        private readonly ILogger<HomeController> _logger = lgr;
+        private readonly EwkIqxObdContext _context = ctx;
 
-        }
         public IActionResult Index()
         {
             return View();

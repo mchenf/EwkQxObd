@@ -1,0 +1,33 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+    ViewData["Title"] = "Email Contact";
+}
+@model List<EqoContactInfo>
+
+<h1>Email Contacts</h1>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>#</th>
+            <th>Contact Name</th>
+            <th>Mail Address</th>
+            <th>Search Term</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (EqoContactInfo em in Model)
+        {
+            <tr>
+
+                <td>@em.Id</td>
+                <td>@em.FullName</td>
+                <td>@em.EmailAddress</td>
+                <td></td>
+
+            </tr>
+        }
+    </tbody>
+</table>
