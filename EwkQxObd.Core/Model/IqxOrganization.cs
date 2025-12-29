@@ -37,7 +37,7 @@ namespace EwkQxObd.Core.Model
         public string City { get; set; } = string.Empty;
 
         [JsonPropertyName("street")]
-        [Column(nameof(Street), TypeName = "nvarchar(64)")]
+        [Column(nameof(Street), TypeName = "nvarchar(128)")]
         public string? Street { get; set; } = string.Empty;
 
     }
