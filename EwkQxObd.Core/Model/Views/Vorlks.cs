@@ -10,10 +10,10 @@ namespace EwkQxObd.Core.Model.Views
     public class Vorlks
     {
         [Column(nameof(AccountNumber), TypeName = "int")]
-        public int AccountNumber { get; set; }
+        public int? AccountNumber { get; set; }
 
         [Column(nameof(AccountName), TypeName = "nvarchar(64)")]
-        public string AccountName { get; set; } = string.Empty;
+        public string? AccountName { get; set; } = string.Empty;
 
         [Column(nameof(Region), TypeName = "nvarchar(16)")]
         public string? Region { get; set; } = string.Empty;
@@ -46,5 +46,8 @@ namespace EwkQxObd.Core.Model.Views
 
         [Column(nameof(Instruments_Linked), TypeName = "int")]
         public int? Instruments_Linked { get; set; }
+
+        [Column("Organization Linked", TypeName = "nvarchar(80)")]
+        public Guid? Organization_Linked { get; set; }
     }
 }

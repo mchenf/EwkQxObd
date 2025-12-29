@@ -22,9 +22,29 @@
     {
         <tr>
             <td>@o.AccountNumber</td>
-            <td>@o.AccountName<br />
-            <code>@o.GEIS_Guid</code>
-        </td>
+            @if (o.AccountName is null)
+                {
+                    if (o.Organization_Linked == Guid.Empty)
+                    {
+                        <td>
+                            IQX Not Connected.
+                        </td>
+                    }
+                    else
+                    {
+                        <td class="text-danger">
+                            UNKNOWN<br />
+                            <code>@o.Organization_Linked</code>
+                        </td>
+                    }
+                }
+                else
+                {
+                    <td>
+                        @o.AccountName<br />
+                        <code>@o.GEIS_Guid</code>
+                    </td>
+                }
         @if (o.NetworkId is null)
         {
             <td><i class="fa fa-ban text-danger"></i></td>
