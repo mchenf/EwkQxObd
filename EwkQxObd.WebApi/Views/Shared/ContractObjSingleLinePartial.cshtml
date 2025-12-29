@@ -96,7 +96,8 @@
     @if (Model.IsMissingDblink)
     {
         <div class="w-100 text-danger text-start">
-            <i class="fa-solid fa-link-slash fa-2xl"></i>
+            <i class="fa-solid fa-link-slash"></i>
+            @Model.ShipToId | @Model.ShipToName
         </div>
     }
     else if (Model.IsMissingOrgSync)
@@ -110,5 +111,5 @@
             @Model.AccountNumber | @Model.AccountName
         </a>
     }
-    </td>
+</td>
 

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace EwkQxObd.Core.Model.Views;
 
@@ -15,8 +16,6 @@ public class Vinlks
     public string? Country { get; set; }
 
     public string? Region { get; set; }
-
-    public int? PartnerId { get; set; }
 
     public string? AccountName { get; set; }
 
@@ -54,4 +53,10 @@ public class Vinlks
 
     public string? Description { get; set; }
     public string? InstrumentType { get; set; }
+
+    [Column(nameof(ShipToId), TypeName = "int")]
+    public int? ShipToId { get; set; } = int.MinValue;
+
+    [Column(nameof(ShipToName), TypeName = "nvarchar(64)")]
+    public string? ShipToName { get; set; } = string.Empty;
 }

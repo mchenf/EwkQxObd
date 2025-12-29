@@ -74,7 +74,7 @@ namespace EwkQxObd.WebApi.Controllers
 
             if (ContractObjSearchTermLoadState.PartnerAccountNumber == (filter.LoadState & ContractObjSearchTermLoadState.PartnerAccountNumber))
             {
-                iqy = iqy.Where(co => co.PartnerId == filter.PartnerAccountNumber);
+                iqy = iqy.Where(co => co.AccountNumber == filter.PartnerAccountNumber);
             }
 
             if (ContractObjSearchTermLoadState.SerialNumber == (filter.LoadState & ContractObjSearchTermLoadState.SerialNumber))
