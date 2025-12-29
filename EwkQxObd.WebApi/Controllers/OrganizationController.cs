@@ -22,5 +22,15 @@ namespace EwkQxObd.WebApi.Controllers
             var orgs = await _context.Vorlks.ToListAsync();
             return View(orgs);
         }
+
+        [Route("[action]")]
+        [HttpGet]
+        public async Task<IActionResult> UnkownOnly()
+        {
+            var orgs = await _context.Vorlks.
+                Where(vo => vo.GEIS_Guid == null && vo.Organization_Linked != Guid.Empty && vo.NetworkId != null)
+                .ToListAsync();
+            return View(nameof(Index), orgs);
+        }
     }
 }
