@@ -48,9 +48,23 @@ namespace EwkQxObd.WebApi.Controllers
         {
             return View(model);
         }
-        
 
-        [HttpPost()]
+        [HttpGet]
+        public async Task<IActionResult> SearchShipTo([FromQuery] string TextToSearch)
+        {
+            var vinklks = await _context.Vinlks
+                .Where(v => v.ShipToName!.Contains(TextToSearch) || v.AccountName!.Contains(TextToSearch))
+                .ToListAsync();
+
+
+
+            ViewBag.TotalRows = vinklks.Count;
+            ViewBag.TotalPages = (vinklks.Count + itemsPerPage) / itemsPerPage;
+            ViewBag.CurrPage = 1;
+            return View(nameof(Index), vinklks);
+        }
+
+        [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> SearchPost(ContractObjSearchPageModel model)
         {
