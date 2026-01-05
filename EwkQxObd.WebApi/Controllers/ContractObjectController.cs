@@ -64,6 +64,22 @@ namespace EwkQxObd.WebApi.Controllers
             return View(nameof(Index), vinklks);
         }
 
+        [HttpGet]
+        public async Task<IActionResult> FilterIndex([FromQuery] bool HideOnboarded = false)
+        {
+            if (!HideOnboarded)
+            {
+                return await Index();
+            }
+            var vinklks = await _context.Vinlks
+                .Where(v => v.IsMissingContract | v.IsMissingDblink | v.IsMissingOrgSync | v.IsMissingSystem | v.IsMissingNetwork == false)
+                .ToListAsync();
+            ViewBag.TotalRows = vinklks.Count;
+            ViewBag.TotalPages = (vinklks.Count + itemsPerPage) / itemsPerPage;
+            ViewBag.CurrPage = 1;
+            return View(nameof(Index), vinklks);
+        }
+
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> SearchPost(ContractObjSearchPageModel model)
