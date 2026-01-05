@@ -16,8 +16,14 @@
     <div class="row mb-3 border-2">
         @foreach (SyngioSearchAlpha a in Model.SearchAlpha)
         {
+            
+            string btnStyle = "btn-outline-info";
+            @if (a.IsSelected)
+            {
+                btnStyle = "btn-info";
+            }
             <div class="col-1">
-                <a class="btn btn-outline-info w-100 mb-1" asp-action="ListNetworks" asp-route-SearchText="@a.Initial">@a.Initial</a>
+                <a class="btn @btnStyle w-100 mb-1" asp-action="ListNetworks" asp-route-SearchText="@a.Initial">@a.Initial</a>
             </div>
         }
     </div>

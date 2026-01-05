@@ -33,6 +33,10 @@ namespace EwkQxObd.WebApi.Controllers
             [Route("[Action]/{SystemToFind}/{SearchText}")]
         public async Task<IActionResult> ListNetworks([FromRoute] string SystemToFind, [FromRoute] string SearchText)
         {
+            var SearchAlpha = await _context.SyngioSearchAlpha
+                .Where(n => n.System == SystemToFind)
+                .OrderBy(n => n.Initial)
+                .ToListAsync();
 
             var PreQuery = _context.SyngioViewNetworks.Where((n) =>
                 n.System == SystemToFind
@@ -43,15 +47,15 @@ namespace EwkQxObd.WebApi.Controllers
                 PreQuery = PreQuery.Where((n) =>
                     n.NetworkName.StartsWith(SearchText)
                 );
+                foreach (var item in SearchAlpha)
+                {
+                    if (item.Initial == SearchText[0])
+                    {
+                        item.IsSelected = true;
+                    }
+                }
             }
-
             var Networks = await PreQuery.ToListAsync();
-
-            var SearchAlpha = await _context.SyngioSearchAlpha
-                .Where(n => n.System == SystemToFind)
-                .OrderBy(n => n.Initial)
-                .ToListAsync();
-
             return View(new SyngioListNetworkViewModel
             {
                 Networks = Networks,
