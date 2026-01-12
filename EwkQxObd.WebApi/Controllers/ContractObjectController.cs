@@ -2,6 +2,7 @@
 using EwkQxObd.Core.Model.Views;
 using EwkQxObd.WebApi.Data;
 using EwkQxObd.WebApi.Models;
+using EwkQxObd.WebApi.ModelsPage.ContractObject;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Infrastructure;
 using Microsoft.EntityFrameworkCore;
@@ -9,32 +10,39 @@ using Microsoft.EntityFrameworkCore;
 namespace EwkQxObd.WebApi.Controllers
 {
     [Route("[controller]/[action]")]
-    public class ContractObjectController(EwkIqxObdContext ctx, ILogger<ContractObjectController> logger) : Controller
+    public class ContractObjectController : Controller
     {
 
-        private readonly ILogger<ContractObjectController> _logger = logger;
-        private readonly EwkIqxObdContext _context = ctx;
+        private readonly ILogger<ContractObjectController> _logger;
+        private readonly EwkIqxObdContext _context;
         private readonly int itemsPerPage = 16;
+
+        private readonly CojtIndexFilter Filter = new();
+
+        private IQueryable<Vinlks> VinlkQuery { get; set; }
+
+        public ContractObjectController(
+            EwkIqxObdContext ctx, 
+            ILogger<ContractObjectController> logger)
+        {
+            _logger = logger;
+            _context = ctx;
+
+            VinlkQuery = _context.Vinlks
+                .Where(v => !v.IsMissingContract)
+                .OrderByDescending(v => v.RecordedAt);
+        }
 
         [HttpGet()]
         [Route("{Page:int?}")]
         public async Task<IActionResult> Index([FromRoute]int Page = 1)
         {
 
-            var initQuery = _context.Vinlks
-                .Where(v => !v.IsMissingContract)
-                .OrderByDescending(v => v.RecordedAt);
-
-
-
-            int totalRows = await initQuery.CountAsync();
-
+            int totalRows = await VinlkQuery.CountAsync();
             int ItemsToSkip = (Page - 1) * itemsPerPage;
-
-            var vinlks = await initQuery
+            var vinlks = await VinlkQuery
                 .Skip(ItemsToSkip)
                 .Take(16).ToListAsync();
-
 
             ViewBag.TotalRows = totalRows;
             ViewBag.TotalPages = (totalRows + itemsPerPage) / itemsPerPage;
