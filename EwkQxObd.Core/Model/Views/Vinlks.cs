@@ -59,4 +59,51 @@ public class Vinlks
 
     [Column(nameof(ShipToName), TypeName = "nvarchar(64)")]
     public string? ShipToName { get; set; } = string.Empty;
+
+    [Column(nameof(ValidTo), TypeName = "datetime2(7)")]
+    public DateTime? ValidTo { get; set; }
+
+    [NotMapped]
+    public int? ExpiresIn
+    {
+        get
+        {
+            if (ValidTo == null)
+            {
+                return null;
+            }
+            var d = ValidTo - DateTime.Today;
+            int di = d.Value.Days;
+
+            di = di > 100 ? 99 : di;
+            di = di < -100 ? -99 : di;
+
+            return di;
+        }
+    }
+
+
+    public int? ExpireStyle
+    {
+        get
+        {
+            if (ExpiresIn == null)
+            {
+                return null;
+            }
+            if (ExpiresIn == 99)
+            {
+                return 3;
+            }
+            if (ExpiresIn > 30)
+            {
+                return 2;
+            }
+            if (ExpiresIn >= 0)
+            {
+                return 1;
+            }
+            return 0;
+        }
+    }
 }

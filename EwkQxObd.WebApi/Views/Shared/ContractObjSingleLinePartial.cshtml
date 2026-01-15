@@ -46,6 +46,31 @@
 </td>
 
 <td>
+    @{
+        string fa_icon = Model.ExpireStyle > 0 ? "fa-check-circle" : "fa-circle-exclamation";
+        string text_bg = string.Empty;
+
+        switch (Model.ExpireStyle)
+        {
+            case 0:
+                text_bg = "text-bg-danger";
+                break;
+            case 1:
+                text_bg = "text-warning-emphasis";
+                break;
+            case 2:
+                text_bg = "text-bg-warning";
+                break;
+            case 3:
+                text_bg = "text-bg-success";
+                break;
+        }
+
+    }
+    <p class="@text_bg text-center rounded-5"><i class="fa @fa_icon"></i> @Model.ExpiresIn</p>
+</td>
+
+<td>
     @if (Model.IsMissingOrgSync)
     {
         <i class="fa fa-square text-danger"></i>
