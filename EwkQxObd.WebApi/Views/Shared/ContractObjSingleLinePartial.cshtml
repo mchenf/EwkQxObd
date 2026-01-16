@@ -118,7 +118,7 @@
 <td>@Model.InstrumentType</td>
 
 <td class="align-content-start">
-    @if (Model.IsMissingDblink)
+    @if (Model.IsMissingDblink || Model.IsMissingSystem)
     {
         <div class="w-100 text-danger text-start">
             <i class="fa-solid fa-link-slash"></i>
