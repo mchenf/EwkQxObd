@@ -42,6 +42,8 @@ namespace EwkQxObd.WebApi.Data
         public DbSet<EqoTask> Task { get; set; }
         public DbSet<EqoTaskItem> TaskItem { get; set; }
 
+        public DbSet<EwkxInstrumentType> InstrumentTypes { get; set; }
+
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             foreach (var rel in modelBuilder.Model.GetEntityTypes().SelectMany(e => e.GetForeignKeys()))

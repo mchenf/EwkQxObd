@@ -157,5 +157,12 @@ namespace EwkQxObd.WebApi.Controllers
             return View(new NetworkCsvUploadViewModel { FromWebCall = true, SelectedSystem = "Pacific" });
         }
 
+        [Route("[Action]")]
+        [HttpGet]
+        public async Task<IActionResult> InstrumentType()
+        {
+            var q = await _context.InstrumentTypes.ToListAsync();
+            return View(q);
+        }
     }
 }

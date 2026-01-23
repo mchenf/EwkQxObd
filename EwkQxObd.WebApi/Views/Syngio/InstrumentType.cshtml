@@ -1,0 +1,13 @@
+﻿@model List<EwkxInstrumentType>
+
+<div class="row mb-2 g-2">
+    @foreach (var item in Model)
+    {
+        <div class="col-3 position-relative align-self-center">
+            <img src="https://app.iqx.net/device-management/scripts/assets/images/instruments/@(item.InstrumentTypeID).jpg" class="img-thumbnail border-2" alt="Image for Foss Instrument @item.Name" />
+            <div class="position-absolute top-0 start-0 bg-black w-75 opacity-50">
+                <h6 class="ps-3 pt-2 text-white">@item.Name</h6>
+            </div>
+        </div>
+    }
+</div>
