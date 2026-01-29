@@ -10,12 +10,12 @@
         <div class="col-4">
             <a class="btn btn-outline-primary w-100 mb-2 text-start" asp-controller="ContractObject" asp-action="AddOn" asp-route-ContractId="@Model.ContractId">
                 <div class="row">
-                    <div class="col-1">
+                    <div class="col-2">
 
                         <i class="fa fa-solid fa-square-plus fa-xl"></i>
                     </div>
-                    <div class="col-10">
-                        <span>Add To This Contract</span>
+                    <div class="col-9">
+                        <span>Add Contract</span>
                     </div>
                 </div>
             </a>
@@ -23,12 +23,12 @@
         <div class="col-4">
             <a class="btn btn-outline-primary w-100 mb-2 text-start" asp-controller="ContractObject" asp-action="AddOn" asp-route-ContractId="@Model.ContractId" asp-route-AsTemplate="true">
                 <div class="row">
-                    <div class="col-1">
+                    <div class="col-2">
 
                         <i class="fa fa-solid fa-book fa-xl"></i>
                     </div>
-                    <div class="col-10">
-                        <span>Create New from Template:<br /> This Contract</span>
+                    <div class="col-9">
+                        <span>Use Template: Contract</span>
                     </div>
                 </div>
             </a>
@@ -38,12 +38,12 @@
         <div class="col-4">
             <a class="btn btn-outline-danger w-100 mb-2 text-start" asp-controller="ContractObject" asp-action="AddOn" asp-route-ContractId="@Model.ContractId" asp-route-ShipToId="@Model.ShipToId">
                 <div class="row">
-                    <div class="col-1">
+                    <div class="col-2">
 
                         <i class="fa fa-solid fa-square-plus fa-xl"></i>
                     </div>
-                    <div class="col-10">
-                        <span>Add To This Contract & Ship-To</span>
+                    <div class="col-9">
+                        <span>Add Contract & Ship-To</span>
                     </div>
                 </div>
             </a>
@@ -51,12 +51,12 @@
         <div class="col-4">
             <a class="btn btn-outline-danger w-100 mb-2 text-start" asp-controller="ContractObject" asp-action="AddOn" asp-route-ContractId="@Model.ContractId" asp-route-AsTemplate="true">
                 <div class="row">
-                    <div class="col-1">
+                    <div class="col-2">
 
                         <i class="fa fa-solid fa-book fa-xl"></i>
                     </div>
-                    <div class="col-10">
-                        <span>Create New from Template: <br /> This Contract & Ship-To</span>
+                    <div class="col-9">
+                        <span>Use Template: & Ship-To</span>
                     </div>
                 </div>
             </a>
