@@ -10,31 +10,35 @@ using System.Threading.Tasks;
 
 namespace EwkQxObd.Core.Model
 {
-    [Table("Organization", Schema = "iqx")]
+    [Table("Org", Schema = "iqx")]
     [Index(nameof(GeisGuid), IsUnique = true)]
     public class IqxOrganization
     {
         [Key]
-        [JsonIgnore]
-        public int id { get; set; }
-
-
-        [JsonPropertyName("id")]
-        [Column(nameof(GeisGuid), TypeName = "uniqueidentifier")]
-        public Guid GeisGuid { get; set; }
-
-        [JsonPropertyName("name")]
-        [Column(nameof(Name), TypeName = "nvarchar(64)")]
-        public string Name { get; set; } = string.Empty;
-
-
         [JsonPropertyName("accountNumber")]
         [Column(nameof(AccountNumber), TypeName = "int")]
         public int AccountNumber { get; set; } = int.MinValue;
 
+        [JsonPropertyName("id")]
+        [Column(nameof(GeisGuid), TypeName = "uniqueidentifier")]
+        public Guid? GeisGuid { get; set; }
+
+        [JsonPropertyName("name")]
+        [Column(nameof(Name), TypeName = "nvarchar(64)")]
+        public string? Name { get; set; } = string.Empty;
+
+
+        [JsonIgnore]
+        [Column(nameof(Region), TypeName = "nvarchar(16)")]
+        public string? Region { get; set; } = string.Empty;
+
+        [JsonIgnore]
+        [Column(nameof(Country), TypeName = "nvarchar(16)")]
+        public string? Country { get; set; } = string.Empty;
+
         [JsonPropertyName("city")]
         [Column(nameof(City), TypeName = "nvarchar(64)")]
-        public string City { get; set; } = string.Empty;
+        public string? City { get; set; } = string.Empty;
 
         [JsonPropertyName("street")]
         [Column(nameof(Street), TypeName = "nvarchar(128)")]

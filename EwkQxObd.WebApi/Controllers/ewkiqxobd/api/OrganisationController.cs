@@ -45,7 +45,7 @@ namespace EwkQxObd.WebApi.Controllers.ewkiqxobd.api
                     continue;
                 }
                 var found = await _context.IqxOrganisation
-                    .FirstOrDefaultAsync(a => a.GeisGuid == org.GeisGuid);
+                    .FirstOrDefaultAsync(a => a.AccountNumber == org.AccountNumber);
 
                 if (found == default)
                 {
@@ -54,6 +54,11 @@ namespace EwkQxObd.WebApi.Controllers.ewkiqxobd.api
                 }
                 else
                 {
+                    found.GeisGuid = org.GeisGuid;
+                    found.Country = org.Country;
+                    found.City = org.City;
+                    found.Street = org.Street;
+
                     dups.Add(org);
                 }
             }
