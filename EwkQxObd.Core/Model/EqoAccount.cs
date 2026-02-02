@@ -12,6 +12,7 @@ namespace EwkQxObd.Core.Model
     /// Represent an Account
     /// </summary>
     /// 
+    [Obsolete("Use IqxOrganization Instead.")]
     [Table("Account", Schema = "eqo")]
     public class EqoAccount
     {
