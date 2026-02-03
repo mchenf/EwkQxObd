@@ -1,4 +1,4 @@
-﻿@model List<Vinlks>
+﻿@model List<InstrumentLinkStatus>
 @{
     ViewData["Title"] = "List Contract Obj";
     int itemCount = (ViewBag.CurrPage - 1) * 16;
@@ -68,7 +68,7 @@
         </tr>
     </thead>
     <tbody>
-        @foreach (Vinlks obj in Model)
+        @foreach (InstrumentLinkStatus obj in Model)
         {
             { itemCount++; }
             <tr>

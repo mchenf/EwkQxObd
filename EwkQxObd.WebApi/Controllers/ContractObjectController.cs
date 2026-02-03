@@ -19,7 +19,7 @@ namespace EwkQxObd.WebApi.Controllers
 
         private readonly CojtIndexFilter Filter = new();
 
-        private IQueryable<Vinlks> VinlkQuery { get; set; }
+        private IQueryable<InstrumentLinkStatus> VinlkQuery { get; set; }
 
         public ContractObjectController(
             EwkIqxObdContext ctx, 
@@ -100,7 +100,7 @@ namespace EwkQxObd.WebApi.Controllers
                 return RedirectToAction(nameof(Search));
             }
 
-            IQueryable<Vinlks> iqy = _context.Vinlks;
+            IQueryable<InstrumentLinkStatus> iqy = _context.Vinlks;
 
             var filter = model.FilterApplied;
 

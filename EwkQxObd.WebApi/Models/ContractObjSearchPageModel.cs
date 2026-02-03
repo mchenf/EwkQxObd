@@ -6,6 +6,6 @@ namespace EwkQxObd.WebApi.Models
     public class ContractObjSearchPageModel
     {
         public ContractObjSearchFilter? FilterApplied { get; set; } = null;
-        public List<Vinlks>? Results { get; set; } = null;
+        public List<InstrumentLinkStatus>? Results { get; set; } = null;
     }
 }

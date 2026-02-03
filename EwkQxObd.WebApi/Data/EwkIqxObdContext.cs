@@ -30,7 +30,7 @@ namespace EwkQxObd.WebApi.Data
         public DbSet<RelTicketSourceContract> RelTicketSourceContracts { get; set; }
 
         public DbSet<FscEnterpriseInstance> FscEnterpriseInstance { get; set; }
-        public DbSet<Vinlks> Vinlks { get; set; }
+        public DbSet<InstrumentLinkStatus> Vinlks { get; set; }
         public DbSet<Vorlks> Vorlks { get; set; }
 
         public DbSet<SyngioViewSystem> SyngioViewSystems { get; set; }
@@ -67,7 +67,7 @@ namespace EwkQxObd.WebApi.Data
                 ent.HasNoKey();
             });
 
-            modelBuilder.Entity<Vinlks>(ent => {
+            modelBuilder.Entity<InstrumentLinkStatus>(ent => {
                 ent.ToView("vwInstrumentLinkStatus");
                 ent.HasNoKey();
             });
