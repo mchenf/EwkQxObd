@@ -276,3 +276,53 @@ FROM
 
 
 
+The Link Status is optimized without middle tables now:
+
+```sql
+SELECT
+	COALESCE (O.SerialNumber, C.SerialNumber) AS SerialNumber,
+
+    C.ContractNumber,
+    C.RecordedAt,
+    
+	C.AccountNumber,
+    
+    O.LinkedAccount, 
+
+    TRIM(O.System) AS System,
+	O.NetworkId,
+    O.NetworkName,
+    O.InstrumentGroup,
+    O.InstrumentName,
+    O.QueryTimeStamp,
+    C.Description,
+    C.InstrumentType,
+    C.ContractObjId,
+
+    C.IsSite,
+
+    C.ValidTo,
+
+	DATEDIFF(DAY, GETDATE(), C.ValidTo) AS Valid,
+
+	CASE WHEN C.ContractNumber IS NULL THEN 1 ELSE 0 END | 
+	CASE WHEN O.System IS NULL THEN 2 ELSE 0 END |
+	CASE WHEN O.NetworkId IS NULL THEN 4 ELSE 0 END |
+	CASE WHEN LinkedAccount = 0x0 THEN 8 ELSE 0 END |
+	CASE WHEN LinkedAccount IS NULL THEN 16 ELSE 0 END |
+	CASE WHEN AccountNumber IS NULL THEN 32 ELSE 0 END
+	AS StatusFlag
+
+
+
+
+FROM
+    dbo.LatestSyngio AS O 
+FULL OUTER JOIN 
+	dbo.vwFlatContractObject AS C 
+ON 
+	O.SerialNumber = C.SerialNumber
+
+ORDER BY RecordedAt DESC
+```
+
