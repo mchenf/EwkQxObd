@@ -4,7 +4,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace EwkQxObd.Core.Model.Views;
 
-public class Vinlks
+public class InstrumentLinkStatus
 {
     public string? SerialNumber { get; set; }
 
