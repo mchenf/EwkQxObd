@@ -191,20 +191,12 @@ namespace EwkQxObd.WebApi.Controllers
         [Route("{ContractObjectId}")]
         public async Task<IActionResult> Detail([FromRoute] int ContractObjectId)
         {
-            var objFound = await _context.EqoContractObject
-                    .Include(co => co.Contract)
-                    .Include(co => co.ShipTo)
-                    .Include(co => co.Contract!.CustomerContact)
-                    .Include(co => co.Contract!.EmployeeResponsible)
-                    .FirstOrDefaultAsync(o => o.Id == ContractObjectId);
+            var objFound = await _context.InstrumentLinkStatus
+                    .FirstOrDefaultAsync(o => o.ContractObjId == ContractObjectId);
             if (objFound == default)
             {
                 return NoContent();
             }
-
-            objFound.InstrumentConnected = await _context.Syngio.FirstOrDefaultAsync(
-                o => o.SerialNumber == objFound.SerialNumber
-            );
 
             return View(objFound);
         }

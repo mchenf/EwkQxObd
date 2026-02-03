@@ -1,94 +1,71 @@
-﻿@model EqoContractObject
+﻿@model InstrumentLinkStatus
 @{
     ViewData["Title"] = "View Contract Object";
     ViewData["DisplayMode"] = "View";
 }
 
-
-<div class="container">
-    <div class="row">
-        <div class="col-4">
-            <a class="btn btn-outline-primary w-100 mb-2 text-start" asp-controller="ContractObject" asp-action="AddOn" asp-route-ContractId="@Model.ContractId">
-                <div class="row">
-                    <div class="col-2">
-
-                        <i class="fa fa-solid fa-square-plus fa-xl"></i>
-                    </div>
-                    <div class="col-9">
-                        <span>Add Contract</span>
-                    </div>
-                </div>
-            </a>
-        </div>
-        <div class="col-4">
-            <a class="btn btn-outline-primary w-100 mb-2 text-start" asp-controller="ContractObject" asp-action="AddOn" asp-route-ContractId="@Model.ContractId" asp-route-AsTemplate="true">
-                <div class="row">
-                    <div class="col-2">
-
-                        <i class="fa fa-solid fa-book fa-xl"></i>
-                    </div>
-                    <div class="col-9">
-                        <span>Use Template: Contract</span>
-                    </div>
-                </div>
-            </a>
-        </div>
-    </div>
-    <div class="row">
-        <div class="col-4">
-            <a class="btn btn-outline-danger w-100 mb-2 text-start" asp-controller="ContractObject" asp-action="AddOn" asp-route-ContractId="@Model.ContractId" asp-route-ShipToId="@Model.ShipToId">
-                <div class="row">
-                    <div class="col-2">
-
-                        <i class="fa fa-solid fa-square-plus fa-xl"></i>
-                    </div>
-                    <div class="col-9">
-                        <span>Add Contract & Ship-To</span>
-                    </div>
-                </div>
-            </a>
-        </div>
-        <div class="col-4">
-            <a class="btn btn-outline-danger w-100 mb-2 text-start" asp-controller="ContractObject" asp-action="AddOn" asp-route-ContractId="@Model.ContractId" asp-route-AsTemplate="true">
-                <div class="row">
-                    <div class="col-2">
-
-                        <i class="fa fa-solid fa-book fa-xl"></i>
-                    </div>
-                    <div class="col-9">
-                        <span>Use Template: & Ship-To</span>
-                    </div>
-                </div>
-            </a>
-        </div>
-    </div>
-
+<div class="row mb-3">
+    <h3>Instrument Link Status</h3>
 </div>
+<div class="row mb-3">
+    <div class="col-2">
+        <label class="col-form-label">Serial No.</label>
+    </div>
+    <div class="col-3">
+        <input class="form-control" type="text" asp-for="SerialNumber"/>
+    </div>
+    <div class="col-2">
+        <label class="col-form-label">Contract</label>
+    </div>
+    <div class="col-3">
+        <input class="form-control" type="text" asp-for="ContractNumber" />
+    </div>
+</div>
+<div class="row mb-3">
+    <div class="col-2">
+        <label class="col-form-label">IQX System</label>
+    </div>
+    <div class="col-3">
+        <input class="form-control" type="text" asp-for="System" />
+    </div>
 
-<div class="row mt-3 mb-lg-5">
-    <div class="col">
-        
-        <partial name="ContractObjFormPartial" model="Model" />
-        <partial name="CopyToTextPartial" model="Model" />
+    <div class="col-2">
+        <label class="col-form-label">IQX Network</label>
+    </div>
+    <div class="col-4">
+        <input class="form-control" type="text" asp-for="NetworkName" />
     </div>
 </div>
 
+<div class="row mb-3">
+    <div class="col-2">
+        <label class="col-form-label">Account No.</label>
+    </div>
+    <div class="col-3">
+        <input class="form-control" type="text" asp-for="AccountNumber" />
+    </div>
 
+    <div class="col-2">
+        <label class="col-form-label">GEIS</label>
+    </div>
+    <div class="col-4">
+        <input class="form-control" type="text" asp-for="LinkedAccount" />
+    </div>
+</div>
 
-@section Scripts {
-    <script>
-        const CurrentDisplayMode = @Html.Raw(Json.Serialize(ViewData["DisplayMode"] as string))
-        console.log(CurrentDisplayMode);
-        console.log(CurrentDisplayMode === "View");
-        $("document").ready(
-            () =>
-            {
-                console.log("This is supposed to change all props with input to disabled.");
-                $("input").prop("disabled", true);
-            }
-        );
-    </script>
-    
-    <script src="~/js/contractobj/copyToClipb.js" asp-append-version="true"></script>
+<div class="row mb-3">
 
-}
+    <div class="col-2">
+        <label class="col-form-label">Instrument Type</label>
+    </div>
+    <div class="col-3">
+        <input class="form-control" type="text" asp-for="InstrumentType" />
+    </div>
+
+    <div class="col-2">
+        <label class="col-form-label">Link Status</label>
+    </div>
+    <div class="col-4">
+        <input class="form-control" type="text" asp-for="StatusFlag" />
+    </div>
+</div>
