@@ -30,7 +30,7 @@ namespace EwkQxObd.WebApi.Data
         public DbSet<RelTicketSourceContract> RelTicketSourceContracts { get; set; }
 
         public DbSet<FscEnterpriseInstance> FscEnterpriseInstance { get; set; }
-        public DbSet<InstrumentLinkStatus> Vinlks { get; set; }
+        public DbSet<InstrumentLinkStatus> InstrumentLinkStatus { get; set; }
         public DbSet<Vorlks> Vorlks { get; set; }
 
         public DbSet<SyngioViewSystem> SyngioViewSystems { get; set; }

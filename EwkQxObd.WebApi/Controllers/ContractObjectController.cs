@@ -28,8 +28,8 @@ namespace EwkQxObd.WebApi.Controllers
             _logger = logger;
             _context = ctx;
 
-            VinlkQuery = _context.Vinlks
-                .Where(v => !v.IsMissingContract)
+            VinlkQuery = _context.InstrumentLinkStatus
+                .Where(v => 0 == (v.StatusFlag & VinlkStatus.MissContract))
                 .OrderByDescending(v => v.RecordedAt);
         }
 
@@ -60,32 +60,13 @@ namespace EwkQxObd.WebApi.Controllers
         [HttpGet]
         public async Task<IActionResult> SearchShipTo([FromQuery] string TextToSearch)
         {
-            var vinklks = await _context.Vinlks
-                .Where(v => v.ShipToName!.Contains(TextToSearch) || v.AccountName!.Contains(TextToSearch))
-                .ToListAsync();
-
-
-
-            ViewBag.TotalRows = vinklks.Count;
-            ViewBag.TotalPages = (vinklks.Count + itemsPerPage) / itemsPerPage;
-            ViewBag.CurrPage = 1;
-            return View(nameof(Index), vinklks);
+            throw new NotImplementedException();
         }
 
         [HttpGet]
         public async Task<IActionResult> FilterIndex([FromQuery] bool HideOnboarded = false)
         {
-            if (!HideOnboarded)
-            {
-                return await Index();
-            }
-            var vinklks = await _context.Vinlks
-                .Where(v => v.IsMissingContract | v.IsMissingDblink | v.IsMissingOrgSync | v.IsMissingSystem | v.IsMissingNetwork == false)
-                .ToListAsync();
-            ViewBag.TotalRows = vinklks.Count;
-            ViewBag.TotalPages = (vinklks.Count + itemsPerPage) / itemsPerPage;
-            ViewBag.CurrPage = 1;
-            return View(nameof(Index), vinklks);
+            throw new NotImplementedException();
         }
 
         [HttpPost]
@@ -100,7 +81,7 @@ namespace EwkQxObd.WebApi.Controllers
                 return RedirectToAction(nameof(Search));
             }
 
-            IQueryable<InstrumentLinkStatus> iqy = _context.Vinlks;
+            IQueryable<InstrumentLinkStatus> iqy = _context.InstrumentLinkStatus;
 
             var filter = model.FilterApplied;
 

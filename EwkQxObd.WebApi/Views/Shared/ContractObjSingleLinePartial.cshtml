@@ -29,7 +29,7 @@
 </td>
 
 <td>
-    @if (Model.IsMissingContract)
+    @if (0 < (Model.StatusFlag & VinlkStatus.MissContract))
     {
         <div class="align-content-center text-start">
 
@@ -71,7 +71,7 @@
 </td>
 
 <td>
-    @if (Model.IsMissingOrgSync)
+    @if (0 < (Model.StatusFlag & VinlkStatus.MissGeis))
     {
         <i class="fa fa-square text-danger"></i>
     }
@@ -79,7 +79,7 @@
     {
         <i class="fa fa-square-check"></i>
     }
-    @if (Model.IsMissingSystem)
+    @if (0 < (Model.StatusFlag & VinlkStatus.MissSystem))
     {
         <i class="fa fa-square text-danger"></i>
     }
@@ -87,7 +87,7 @@
     {
         <i class="fa fa-square-check"></i>
     }
-    @if (Model.IsMissingNetwork)
+    @if (0 < (Model.StatusFlag & VinlkStatus.MissNetwork))
     {
         <i class="fa fa-square text-danger"></i>
     }
@@ -96,7 +96,7 @@
         <i class="fa fa-square-check"></i>
     }
      <br />
-    @if (Model.IsMissingContract)
+    @if (0 < (Model.StatusFlag & VinlkStatus.MissContract))
     {
         <i class="fa fa-square text-danger"></i>
     }
@@ -104,7 +104,7 @@
     {
         <i class="fa fa-square-check"></i>
     }
-    @if (Model.IsMissingDblink)
+    @if (0 < (Model.StatusFlag & VinlkStatus.GeisNotLinked))
     {
         <i class="fa fa-square text-danger"></i>
     }
@@ -118,23 +118,10 @@
 <td>@Model.InstrumentType</td>
 
 <td class="align-content-start">
-    @if (Model.IsMissingDblink || Model.IsMissingSystem)
-    {
-        <div class="w-100 text-danger text-start">
-            <i class="fa-solid fa-link-slash"></i>
-            @Model.ShipToId | @Model.ShipToName
-        </div>
-    }
-    else if (Model.IsMissingOrgSync)
-    {
-        <a class="btn btn-danger border-warning border-2 font-monospace w-100">@Model.LinkedAccount</a>
-    }
-    else
-    {
+    
 
-        <a class="btn btn-outline-dark border-2 font-monospace w-100 text-start">
-            @Model.AccountNumber | @Model.AccountName
-        </a>
-    }
+    <a class="btn btn-outline-dark border-2 font-monospace w-100 text-start">
+        @Model.AccountNumber
+    </a>
 </td>
 
