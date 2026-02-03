@@ -40,14 +40,19 @@ namespace EwkQxObd.WebApi.Controllers
 
             int totalRows = await VinlkQuery.CountAsync();
             int ItemsToSkip = (Page - 1) * itemsPerPage;
-            var vinlks = await VinlkQuery
+            var vinlks = VinlkQuery
                 .Skip(ItemsToSkip)
-                .Take(16).ToListAsync();
+                .Take(16);
+
+            vinlks = vinlks.Include(v => v.ConnectedTo)
+            .Include(v => v.ShippedTo);
+
 
             ViewBag.TotalRows = totalRows;
             ViewBag.TotalPages = (totalRows + itemsPerPage) / itemsPerPage;
             ViewBag.CurrPage = Page;
 
+            var v = await vinlks.ToListAsync();
             return View(vinlks);
         }
 

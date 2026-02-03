@@ -43,6 +43,11 @@ public class InstrumentLinkStatus
     [Column(nameof(Valid), TypeName = "int")]
     public int? Valid { get; set; }
 
+    
+    public IqxOrganization ConnectedTo { get; set; }
+    
+    public IqxOrganization ShippedTo { get; set; }
+
     [NotMapped]
     public int? ExpiresIn
     {
