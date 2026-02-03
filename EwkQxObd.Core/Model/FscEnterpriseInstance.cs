@@ -31,7 +31,7 @@ namespace EwkQxObd.Core.Model
 
         [Column("Customer")]
         public int CustomerId { get; set; }
-        public required EqoAccount Customer { get; set; }
+        public required IqxOrganization Customer { get; set; }
 
 
         public IEnumerable<EqoContract>? EnterpriseContracts { get; set; }

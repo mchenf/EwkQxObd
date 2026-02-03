@@ -24,29 +24,29 @@ namespace EwkQxObd.WebApi.Controllers.ewkiqxobd.api
         }
 
         [HttpGet("{partnerId}")]
-        public async Task<EqoAccount?> Get([FromRoute] int partnerId)
+        public async Task<IqxOrganization?> Get([FromRoute] int partnerId)
         {
-            var Result = await _context.EqoAccount
-                .Where(a => a.PartnerId == partnerId).FirstOrDefaultAsync();
+            var Result = await _context.IqxOrganisation
+                .Where(a => a.AccountNumber == partnerId).FirstOrDefaultAsync();
 
             return Result;
         }
 
 
         [HttpGet]
-        public IEnumerable<EqoAccount> Details()
+        public IEnumerable<IqxOrganization> Details()
         {
-            return _context.EqoAccount;
+            return _context.IqxOrganisation;
 
         }
 
 
         [HttpPost]
         [Consumes("application/json")]
-        public async Task<IActionResult> NewAccountSingle(EqoAccount Account)
+        public async Task<IActionResult> NewAccountSingle(IqxOrganization Account)
         {
 
-            await _context.EqoAccount.AddAsync(Account);
+            await _context.IqxOrganisation.AddAsync(Account);
 
             await _context.SaveChangesAsync();
 

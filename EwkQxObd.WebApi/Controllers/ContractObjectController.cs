@@ -120,12 +120,12 @@ namespace EwkQxObd.WebApi.Controllers
         public async Task<IActionResult> AddOn([FromQuery]int ContractId, [FromQuery]int ShipToId = 0, [FromQuery]bool AsTemplate = false)
         {
             EqoContract? contract = null;
-            EqoAccount? shipTo = null;
+            IqxOrganization? shipTo = null;
             if (ShipToId > 0)
             {
                 shipTo = 
-                    await _context.EqoAccount
-                    .FirstOrDefaultAsync(c => c.Id == ShipToId);
+                    await _context.IqxOrganisation
+                    .FirstOrDefaultAsync(c => c.AccountNumber == ShipToId);
             }
 
             contract =

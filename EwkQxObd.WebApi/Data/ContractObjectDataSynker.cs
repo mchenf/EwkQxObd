@@ -102,11 +102,11 @@ namespace EwkQxObd.WebApi.Data
             var syncResult = new ContractObjectDataSyncResult();
             if (_contractObj.ShipTo != default)
             {
-                var shipTo = await _context.EqoAccount.FirstOrDefaultAsync(acc => acc.PartnerId == _contractObj.ShipTo.PartnerId);
+                var shipTo = await _context.IqxOrganisation.FirstOrDefaultAsync(acc => acc.AccountNumber == _contractObj.ShipTo.AccountNumber);
                 if (shipTo != default)
                 {
                     _contractObj.ShipTo = default;
-                    _contractObj.ShipToId = shipTo.Id;
+                    _contractObj.ShipToId = shipTo.AccountNumber;
                 }
             }
             else

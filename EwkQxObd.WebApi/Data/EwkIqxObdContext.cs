@@ -19,6 +19,7 @@ namespace EwkQxObd.WebApi.Data
         public DbSet<EqoContractObject> EqoContractObject { get; set; }
         public DbSet<EqoContract> EqoContract { get; set; }
         public DbSet<EqoContactInfo> EqoContactInfo { get; set; }
+        [Obsolete("Use IQX Organization")]
         public DbSet<EqoAccount> EqoAccount { get; set; }
 
 

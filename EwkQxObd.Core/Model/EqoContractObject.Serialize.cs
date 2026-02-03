@@ -67,8 +67,8 @@ Instrument Type: {1}";
                 emailEmployee,
                 Contract.ValidFrom.ToString("MM/dd/yyyy"),
                 Contract.ValidTo.ToString("MM/dd/yyyy"),
-                ShipTo!.PartnerId,
-                ShipTo!.PartnerName,
+                ShipTo!.AccountNumber,
+                ShipTo!.Name,
                 ShipTo!.Region,
                 ShipTo!.Country,
                 syngio

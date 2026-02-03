@@ -1,11 +1,11 @@
-﻿@model EqoAccount
+﻿@model IqxOrganization
 
 <div class="row mb-3">
     <div class="col-2">
         <label class="form-label">Partner ID</label>
     </div>
     <div class="col-4">
-        <input id="inpShpt" class="form-control" type="text" asp-for="PartnerId" placeholder="i.e. 123456" />
+        <input id="inpShpt" class="form-control" type="text" asp-for="AccountNumber" placeholder="i.e. 123456" />
     </div>
 </div>
 
@@ -15,7 +15,7 @@
     </div>
 
     <div class="col">
-        <input id="inpShptPartnerName" class="form-control" type="text" asp-for="PartnerName" placeholder="Enter partner name, i.e. Foss Analaytical A/S" />
+        <input id="inpShptPartnerName" class="form-control" type="text" asp-for="Name" placeholder="Enter partner name, i.e. Foss Analaytical A/S" />
     </div>
 </div>
 

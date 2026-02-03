@@ -32,10 +32,10 @@ namespace EwkQxObd.Core.Model
         public int ShipToId { get; set; }
 
         public EqoContract? Contract { get; set; }
-        public EqoAccount? ShipTo { get; set; }
+        public IqxOrganization? ShipTo { get; set; }
 
-        public int AccountNumber { get => ShipTo == default ? -1 : ShipTo.PartnerId; }
-        public string PartnerName { get => ShipTo == default ? string.Empty : ShipTo.PartnerName; }
+        public int AccountNumber { get => ShipTo == default ? -1 : ShipTo.AccountNumber; }
+        public string? PartnerName { get => ShipTo == default ? null : ShipTo.Name; }
 
         public int? ContractNumber { get => Contract == default ? -1 : Contract.ContractNumber; }
 

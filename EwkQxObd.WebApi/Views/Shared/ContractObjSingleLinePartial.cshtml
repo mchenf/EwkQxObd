@@ -112,6 +112,14 @@
     {
         <i class="fa fa-square-check"></i>
     }
+    @if (0 < (Model.StatusFlag & VinlkStatus.MissAccount))
+    {
+        <i class="fa fa-square text-danger"></i>
+    }
+    else
+    {
+        <i class="fa fa-square-check"></i>
+    }
 </td>
 <td>@Model.Description</td>
 

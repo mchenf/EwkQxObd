@@ -54,7 +54,7 @@ namespace EwkQxObd.WebApi.Controllers.ewkiqxobd.api
 
             if (contractObj.ShipTo != default)
             {
-                var shipTo = await _context.EqoAccount.FirstOrDefaultAsync(acc => acc.PartnerId == contractObj.ShipTo.PartnerId);
+                var shipTo = await _context.IqxOrganisation.FirstOrDefaultAsync(acc => acc.AccountNumber == contractObj.ShipTo.AccountNumber);
                 if (shipTo == default)
                 {
                     contractObjToSync.ShipTo = contractObj.ShipTo;
@@ -62,7 +62,7 @@ namespace EwkQxObd.WebApi.Controllers.ewkiqxobd.api
                 else
                 {
                     contractObjToSync.ShipTo = shipTo;
-                    contractObjToSync.ShipToId = shipTo.Id;
+                    contractObjToSync.ShipToId = shipTo.AccountNumber;
                 }
             }
             else
