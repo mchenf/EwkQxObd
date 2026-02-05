@@ -210,7 +210,7 @@ namespace EwkQxObd.WebApi.Controllers
         [Route("{ContractNumber:int}")]
         public async Task<IActionResult> ByContract([FromRoute]int ContractNumber)
         {
-            var contractFound = await _context.Syngio.Where(
+            var contractFound = await _context.InstrumentLinkStatus.Where(
                 o => o.ContractNumber != null && o.ContractNumber == ContractNumber
             ).ToListAsync();
 

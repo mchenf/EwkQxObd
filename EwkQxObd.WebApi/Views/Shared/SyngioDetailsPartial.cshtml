@@ -52,9 +52,16 @@
     </div>
 
     @{
-        string placeHolder = Model.LinkedAccountGuid == default ?
-            "... not IQX onboarded." :
-            "... linked to unknown";
+        string placeHolder = string.Empty;
+
+        if (Model.ConnectedTo is null)
+        {
+            placeHolder = "... not IQX onboarded.";
+        }
+        else if (Model.ConnectedTo.GeisGuid == default)
+        {
+            placeHolder = "... linked to unknown";
+        }
     }
 
     <div class="row mb-3">
@@ -62,7 +69,7 @@
             <label class="col-form-label">Linked to</label>
         </div>
         <div class="col-sm-5">
-            <input class="form-control" type="text" asp-for="LinkedAccountGuid" placeholder="@placeHolder" readonly />
+            <input class="form-control" type="text" asp-for="ConnectedTo.GeisGuid" placeholder="@placeHolder" readonly />
         </div>
 
     </div>
@@ -72,7 +79,7 @@
             <label class="col-form-label">Account No.</label>
         </div>
         <div class="col-sm-3">
-            <input class="form-control" type="text" asp-for="AccountNumber" placeholder="@placeHolder" readonly />
+            <input class="form-control" type="text" asp-for="ConnectedTo.AccountNumber" placeholder="@placeHolder" readonly />
         </div>
 
     </div>
@@ -81,7 +88,7 @@
             <label class="col-form-label">Account Name</label>
         </div>
         <div class="col-sm-7">
-            <input class="form-control" type="text" asp-for="AccountName" placeholder="@placeHolder" readonly />
+            <input class="form-control" type="text" asp-for="ConnectedTo.Name" placeholder="@placeHolder" readonly />
         </div>
 
     </div>
@@ -91,7 +98,7 @@
             <label class="col-form-label">Street</label>
         </div>
         <div class="col-sm-5">
-            <input class="form-control" type="text" asp-for="Street" placeholder="@placeHolder" readonly />
+            <input class="form-control" type="text" asp-for="ConnectedTo.Street" placeholder="@placeHolder" readonly />
         </div>
     </div>
 
@@ -100,7 +107,7 @@
             <label class="col-form-label">City</label>
         </div>
         <div class="col-sm-5">
-            <input class="form-control" type="text" asp-for="City" placeholder="@placeHolder" readonly />
+            <input class="form-control" type="text" asp-for="ConnectedTo.City" placeholder="@placeHolder" readonly />
         </div>
     </div>
 </form>

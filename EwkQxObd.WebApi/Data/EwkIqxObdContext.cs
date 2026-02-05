@@ -59,7 +59,7 @@ namespace EwkQxObd.WebApi.Data
             });
 
             modelBuilder.Entity<Syngio>(ent => {
-                ent.ToView("vw_LatestSysnetinstorg");
+                ent.ToView("LatestSyngio");
                 ent.HasNoKey();
             });
 

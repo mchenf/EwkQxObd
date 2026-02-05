@@ -13,18 +13,18 @@ namespace EwkQxObd.Core.Model.Views
     {
         private const string format1 = 
 @"==== Instrument Info ====
-System: {0}
-Network Id: {1}
-Network Name: {2}
-Inst. Group: {3}
-Serial Number: {4}
+System:             {0}
+Network Id:         {1}
+Network Name:       {2}
+Inst. Group:        {3}
+Serial Number:      {4}
 
 ==== Linked on IQX ====
-Linked To: {5}
-Account Number: {6}
-Account Name: {7}
-Street: {8}
-City: {9}";
+Linked To:          {5}
+Account Number:     {6}
+Account Name:       {7}
+Street:             {8}
+City:               {9}";
         //private const string GuidMask = "****-****-****-****-********";
         private const string GuidMask = "████-████-████-████-████████";
 
@@ -33,13 +33,13 @@ City: {9}";
         {
             get
             {
-                if (LinkedAccountGuid == Guid.Empty)
+                if (ConnectedTo is null)
                 {
                     return "** IQX NOT LINKED **";
                 }
                 else
                 {
-                    string obfuscatedGuid = LinkedAccountGuid.ToString();
+                    string obfuscatedGuid = ConnectedTo.GeisGuid.ToString();
 
                     string obfuscatedGuid_head = obfuscatedGuid[..4];
                     string obfuscatedGuid_tail = obfuscatedGuid[^4..];
@@ -65,10 +65,10 @@ City: {9}";
                 InstrumentGroup,
                 SerialNumber,
                 ObfuscatedGeis,
-                AccountNumber,
-                AccountName,
-                Street,
-                City
+                ConnectedTo.AccountNumber,
+                ConnectedTo.Name,
+                ConnectedTo.Street,
+                ConnectedTo.City
             );
             return result;
         }
