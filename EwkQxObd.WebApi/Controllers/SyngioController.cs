@@ -69,10 +69,11 @@ namespace EwkQxObd.WebApi.Controllers
             [FromRoute] string System, 
             [FromRoute] int NetworkId)
         {
-            var Network = await _context.Syngio
+            var Network = await _context.InstrumentLinkStatus
                 .Where(s => s.NetworkId == NetworkId &&
                     s.System == System)
                 .Include(s => s.ConnectedTo)
+                .Include(s => s.ShippedTo)
                 .OrderBy(s => s.InstrumentGroup)
                 .ToListAsync();
             if (Network is null)

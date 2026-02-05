@@ -4,7 +4,7 @@
 @{
     ViewData["Title"] = "Network Details";
 }
-@model List<Syngio>
+@model List<InstrumentLinkStatus>
 
 
 @{
@@ -37,7 +37,7 @@
         <div class="col-2">Account Number:</div>
         <div class="col-4">@NetworkInfo.ConnectedTo.AccountNumber</div>
         <div class="col-2">Account GEIS:</div>
-        <div class="col-4">@NetworkInfo.ObfuscatedGeis</div>
+        <div class="col-4"><code>@NetworkInfo.ConnectedTo.GeisGuid</code></div>
     </div>
     <div class="row">
         <div class="col-2">Street:</div>
@@ -61,17 +61,17 @@
         <th class="col-2">IQX Contract</th>
         <th class="col-3">Options</th>
     </tr>
-    @foreach (Syngio m in Model)
+    @foreach (InstrumentLinkStatus m in Model)
     {
         <tr>
             <td>@m.InstrumentGroup</td>
             <td>@m.SerialNumber</td>
             <td>@m.InstrumentName</td>
             <td>
-                @if (@m.ConnectedTo.GeisGuid != null)
+                @if (@m.ConnectedTo != null)
                 {
-                    <a role="button" asp-controller="ContractObject" asp-action="ByContract" asp-route-ContractNumber="@m.ConnectedTo.Name"><i class="fa-solid fa-file-contract text-black"></i></a>
-                    @m.ConnectedTo
+                    <a role="button" asp-controller="ContractObject" asp-action="ByContract" asp-route-ContractNumber="@m.ContractNumber"><i class="fa-solid fa-file-contract text-black"></i></a>
+                    @m.ContractNumber
                 }
             </td>
             <td>
