@@ -4,73 +4,136 @@
     ViewData["DisplayMode"] = "View";
 }
 
-<div class="row mb-3">
-    <h3>Instrument Link Status</h3>
+<div class="row mb-5 border-bottom border-3">
+    <h3 class="text-center">Instrument Link Status Report</h3>
 </div>
 <div class="row mb-3">
-    <div class="col-2">
+    <div class="col-1">
         <label class="col-form-label">Serial No.</label>
     </div>
-    <div class="col-3">
-        <input class="form-control" type="text" asp-for="SerialNumber"/>
+    <div class="col-4">
+        <input class="form-control" type="text" asp-for="SerialNumber" readonly/>
     </div>
+
     <div class="col-2">
-        <label class="col-form-label">Contract</label>
+        <label class="col-form-label">Instrument Type</label>
     </div>
     <div class="col-3">
-        <input class="form-control" type="text" asp-for="ContractNumber" />
+        <input class="form-control" type="text" asp-for="InstrumentType" readonly />
     </div>
 </div>
 <div class="row mb-3">
     <div class="col-1">
         <label class="col-form-label">IQX System</label>
     </div>
-    <div class="col-1">
-        <input class="form-control" type="text" asp-for="System" />
+    <div class="col-2">
+        <input class="form-control" type="text" asp-for="System" readonly />
     </div>
     <div class="col-1">
         <label class="col-form-label">Network Id</label>
     </div>
-    <div class="col-2">
-        <input class="form-control" type="text" asp-for="NetworkId" />
+    <div class="col-1">
+        <input class="form-control" type="text" asp-for="NetworkId" readonly />
     </div>
     <div class="col-2">
         <label class="col-form-label">IQX Network</label>
     </div>
     <div class="col-4">
-        <input class="form-control" type="text" asp-for="NetworkName" />
+        <input class="form-control" type="text" asp-for="NetworkName" readonly />
     </div>
 </div>
 
-<div class="row mb-3">
-    <div class="col-2">
-        <label class="col-form-label">Account No.</label>
+<div class="row mb-3 g-2">
+    @{
+
+        string Cls_Stat_On = "border-dark bg-success-subtle ";
+        string Cls_Stat_Off = "border-danger bg-warning ";
+
+
+    <div class="col-1">
+        <code>
+            <input class="form-control text-center p-2 border-2 @(0 == (Model.StatusFlag & VinlkStatus.MissContract) ? Cls_Stat_On : Cls_Stat_Off))" type="text" value="CONTRACT" readonly />
+        </code>
     </div>
-    <div class="col-3">
-        <input class="form-control" type="text" asp-for="ShippedToAccountNumber" />
+    <div class="col-1">
+        <code>
+            <input class="form-control text-center p-2 border-2 @(0 == (Model.StatusFlag & VinlkStatus.MissSystem) ? Cls_Stat_On : Cls_Stat_Off))" type="text" value="SYSTEM" readonly />
+        </code>
+    </div>
+    <div class="col-1">
+        <code>
+            <input class="form-control text-center p-2 border-2 @(0 == (Model.StatusFlag & VinlkStatus.MissNetwork) ? Cls_Stat_On : Cls_Stat_Off))" type="text" value="NETWORK" readonly />
+        </code>
+    </div>
+    <div class="col-9"></div>
+    <div class="col-1">
+        <code>
+            <input class="form-control text-center p-2 border-2 @(0 == (Model.StatusFlag & VinlkStatus.LinkedToZero) ? Cls_Stat_On : Cls_Stat_Off))" type="text" value="LINKZERO" readonly />
+        </code>
+    </div>
+    <div class="col-1">
+        <code>
+            <input class="form-control text-center p-2 border-2 @(0 == (Model.StatusFlag & VinlkStatus.LinkedToNull) ? Cls_Stat_On : Cls_Stat_Off))" type="text" value="LINKNULL" readonly />
+        </code>
+    </div>
+
+    <div class="col-1">
+        <code>
+            <input class="form-control text-center p-2 border-2 @(0 == (Model.StatusFlag & VinlkStatus.MissAccount) ? Cls_Stat_On : Cls_Stat_Off))" type="text" value="ACCOUNT" readonly />
+        </code>
+    </div>
+    }
+</div>
+<div class="row mb-3 mt-5">
+    <h4>
+        Contract Status
+    </h4>
+</div>
+<div class="row mb-3">
+    <div class="col-1">
+        <label class="col-form-label">Contract</label>
+    </div>
+    <div class="col-2">
+        <input class="form-control" type="text" asp-for="ContractNumber" readonly />
+    </div>
+
+    <div class="col-1">
     </div>
 
     <div class="col-2">
+        <label class="col-form-label text-end w-100">Contract Description</label>
+    </div>
+    <div class="col-5">
+        <input class="form-control" type="text" asp-for="Description" readonly />
+    </div>
+</div>
+<div class="row mb-3">
+    <div class="col-1">
+        <label class="col-form-label">Ship-To</label>
+    </div>
+    <div class="col-2">
+        <input class="form-control" type="text" asp-for="ShippedToAccountNumber" readonly />
+    </div>
+    <div class="col-3">
+        @if (Model.ShippedTo is null)
+        {
+            <input class="form-control text-bg-light text-danger border-danger" type="text" value="#N/A" readonly />
+        }
+        else
+        {
+            <input class="form-control" type="text" asp-for="ShippedTo.Name" readonly />
+        }
+    </div>
+
+</div>
+<div class="row mb-3">
+
+    <div class="col-1">
         <label class="col-form-label">GEIS</label>
     </div>
-    <div class="col-4">
-        <input class="form-control" type="text" asp-for="LinkedAccount" />
-    </div>
-</div>
-
-<div class="row mb-3">
-
-    <div class="col-2">
-        <label class="col-form-label">Instrument Type</label>
-    </div>
-    <div class="col-3">
-        <input class="form-control" type="text" asp-for="InstrumentType" />
-    </div>
-
-    <div class="col-2">
-        <label class="col-form-label">Link Status</label>
-    </div>
-    <div class="col-4">
-        <input class="form-control" type="text" asp-for="StatusFlag" />
+    <div class="col-5">
+        <code>
+            <input class="form-control" type="text" asp-for="LinkedAccount" readonly />
+        </code>
     </div>
 </div>

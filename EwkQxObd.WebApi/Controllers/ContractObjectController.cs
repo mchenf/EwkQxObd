@@ -197,6 +197,7 @@ namespace EwkQxObd.WebApi.Controllers
         public async Task<IActionResult> Detail([FromRoute] int ContractObjectId)
         {
             var objFound = await _context.InstrumentLinkStatus
+                    .Include(i => i.ShippedTo)
                     .FirstOrDefaultAsync(o => o.ContractObjId == ContractObjectId);
             if (objFound == default)
             {
