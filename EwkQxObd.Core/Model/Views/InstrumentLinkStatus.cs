@@ -17,11 +17,8 @@ public class InstrumentLinkStatus
     [Column(nameof(RecordedAt), TypeName = "datetime2(7)")]
     public DateTime? RecordedAt { get; set; }
 
-    [Column(nameof(AccountNumber), TypeName = "int")]
-    public int? AccountNumber { get; set; }
-
-    [Column(nameof(LinkedAccount), TypeName = "uniqueidentifier")]
-    public Guid? LinkedAccount { get; set; }
+    
+    
 
     public string? System { get; set; }
     public string? InstrumentName { get; set; }
@@ -43,10 +40,16 @@ public class InstrumentLinkStatus
     [Column(nameof(Valid), TypeName = "int")]
     public int? Valid { get; set; }
 
+
+    [Column(nameof(LinkedAccount), TypeName = "uniqueidentifier")]
+    public Guid? LinkedAccount { get; set; }
+
+    [Column(nameof(ShippedToAccountNumber), TypeName = "int")]
+    public int? ShippedToAccountNumber { get; set; }
+
+    public IqxOrganization? ConnectedTo { get; set; }
     
-    public IqxOrganization ConnectedTo { get; set; }
-    
-    public IqxOrganization ShippedTo { get; set; }
+    public IqxOrganization? ShippedTo { get; set; }
 
     [NotMapped]
     public int? ExpiresIn

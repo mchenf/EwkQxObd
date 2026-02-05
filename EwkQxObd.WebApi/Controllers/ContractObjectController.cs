@@ -53,7 +53,7 @@ namespace EwkQxObd.WebApi.Controllers
             ViewBag.CurrPage = Page;
 
             var v = await vinlks.ToListAsync();
-            return View(vinlks);
+            return View(v);
         }
 
         [HttpGet()]
@@ -98,7 +98,7 @@ namespace EwkQxObd.WebApi.Controllers
 
             if (ContractObjSearchTermLoadState.PartnerAccountNumber == (filter.LoadState & ContractObjSearchTermLoadState.PartnerAccountNumber))
             {
-                iqy = iqy.Where(co => co.AccountNumber == filter.PartnerAccountNumber);
+                iqy = iqy.Where(co => co.ShippedToAccountNumber == filter.PartnerAccountNumber);
             }
 
             if (ContractObjSearchTermLoadState.SerialNumber == (filter.LoadState & ContractObjSearchTermLoadState.SerialNumber))

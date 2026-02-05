@@ -126,10 +126,32 @@
 <td>@Model.InstrumentType</td>
 
 <td class="align-content-start">
-    
+    @if (@Model.ShippedTo is null)
+    {
+        <a class="btn btn-warning font-monospace w-100 text-start">
+            Missing Ship-To
+        </a>
+    } 
+    else
+    {
+        <a class="btn btn-outline-dark font-monospace w-100 text-start">
+            @Model.ShippedTo.AccountNumber | @Model.ShippedTo.Name
+        </a>
+        
+    }
 
-    <a class="btn btn-outline-dark border-2 font-monospace w-100 text-start">
-        @Model.AccountNumber
-    </a>
+    @if (@Model.ConnectedTo is null)
+    {
+        <a class="btn btn-danger font-monospace w-100 text-start mt-2">
+            Missing Connected-To
+        </a>
+    }
+    else
+    {
+        <a class="btn btn-outline-dark font-monospace w-100 text-start mt-2">
+            @Model.ConnectedTo.AccountNumber | @Model.ConnectedTo.Name
+        </a>
+
+    }
 </td>
 
