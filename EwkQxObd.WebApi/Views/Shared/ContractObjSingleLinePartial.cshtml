@@ -75,7 +75,7 @@
 </td>
 
 <td>
-    @if (0 < (Model.StatusFlag & VinlkStatus.MissGeis))
+    @if (0 < (Model.StatusFlag & VinlkStatus.LinkedToNull))
     {
         <i class="fa fa-square text-danger"></i>
     }
@@ -108,7 +108,7 @@
     {
         <i class="fa fa-square-check"></i>
     }
-    @if (0 < (Model.StatusFlag & VinlkStatus.GeisNotLinked))
+    @if (0 < (Model.StatusFlag & VinlkStatus.LinkedToZero))
     {
         <i class="fa fa-square text-danger"></i>
     }
