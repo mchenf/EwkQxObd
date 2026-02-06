@@ -104,7 +104,7 @@ function checkShiptoAccount(shiptoNo) {
     checkObj(shiptoNo,
         '/ewkiqxobd/api/account/' + encodeURIComponent(shiptoNo),
         (data) => {
-            $('#inpShptPartnerName').val(data.partnerName);
+            $('#inpShptPartnerName').val(data.name);
             $('#inpShptRegion').val(data.region);
             $('#inpShptCountry').val(data.country);
         }

@@ -28,11 +28,12 @@ namespace EwkQxObd.Core.Model
         public string? Name { get; set; } = string.Empty;
 
 
-        [JsonIgnore]
+        [JsonPropertyName("region")]
         [Column(nameof(Region), TypeName = "nvarchar(16)")]
         public string? Region { get; set; } = string.Empty;
 
-        [JsonIgnore]
+
+        [JsonPropertyName("country")]
         [Column(nameof(Country), TypeName = "nvarchar(16)")]
         public string? Country { get; set; } = string.Empty;
 
