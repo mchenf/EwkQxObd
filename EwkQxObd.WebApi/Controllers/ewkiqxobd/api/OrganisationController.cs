@@ -55,7 +55,6 @@ namespace EwkQxObd.WebApi.Controllers.ewkiqxobd.api
                 else
                 {
                     found.GeisGuid = org.GeisGuid;
-                    found.Country = org.Country;
                     found.City = org.City;
                     found.Street = org.Street;
 
