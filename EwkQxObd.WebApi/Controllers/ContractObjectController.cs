@@ -198,6 +198,7 @@ namespace EwkQxObd.WebApi.Controllers
         {
             var objFound = await _context.InstrumentLinkStatus
                     .Include(i => i.ShippedTo)
+                    .Include(i => i.ConnectedTo)
                     .FirstOrDefaultAsync(o => o.ContractObjId == ContractObjectId);
             if (objFound == default)
             {

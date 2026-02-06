@@ -109,12 +109,12 @@
 </div>
 <div class="row mb-3">
     <div class="col-1">
-        <label class="col-form-label">Ship-To</label>
+        <label class="col-form-label">Shipped-To</label>
     </div>
     <div class="col-2">
         <input class="form-control" type="text" asp-for="ShippedToAccountNumber" readonly />
     </div>
-    <div class="col-3">
+    <div class="col-4">
         @if (Model.ShippedTo is null)
         {
             <input class="form-control text-bg-light text-danger border-danger" type="text" value="#N/A" readonly />
@@ -124,12 +124,53 @@
             <input class="form-control" type="text" asp-for="ShippedTo.Name" readonly />
         }
     </div>
-
 </div>
+
 <div class="row mb-3">
 
+    <div class="col-2">
+        <label class="col-form-label">Shipped-To GEIS Guid</label>
+    </div>
+    <div class="col-5">
+        <code>
+            <input class="form-control" type="text" asp-for="ShippedTo.GeisGuid" readonly />
+        </code>
+    </div>
+</div>
+
+<div class="row mb-3">
     <div class="col-1">
-        <label class="col-form-label">GEIS</label>
+        <label class="col-form-label">Connect-To</label>
+    </div>
+    <div class="col-2">
+        @if (Model.ConnectedTo is null)
+        {
+            <input class="form-control text-bg-light text-danger border-danger" type="text" value="#N/A" readonly />
+        }
+        else
+        {
+            <input class="form-control" type="text" asp-for="ConnectedTo.AccountNumber" readonly />
+        }
+    </div>
+    <div class="col-4">
+        @if (Model.ConnectedTo is null)
+        {
+            <input class="form-control text-bg-light text-danger border-danger" type="text" value="#N/A" readonly />
+        }
+        else
+        {
+            <input class="form-control" type="text" asp-for="ConnectedTo.Name" readonly />
+        }
+    </div>
+
+</div>
+
+
+
+<div class="row mb-3">
+
+    <div class="col-2">
+        <label class="col-form-label">Connect-To GEIS Guid</label>
     </div>
     <div class="col-5">
         <code>
