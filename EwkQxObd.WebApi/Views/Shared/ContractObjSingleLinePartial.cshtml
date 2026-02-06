@@ -130,31 +130,41 @@
 <td>@Model.InstrumentType</td>
 
 <td class="align-content-start">
-    @if (@Model.ShippedTo is null)
-    {
-        <a class="btn btn-warning font-monospace w-100 text-start">
-            Missing Ship-To
-        </a>
-    } 
-    else
+    @if (Model.ConnectedTo is not null && Model.ShippedTo is not null && Model.ShippedToAccountNumber == Model.ConnectedTo.AccountNumber)
     {
         <a class="btn btn-outline-dark font-monospace w-100 text-start">
-            @Model.ShippedTo.AccountNumber | @Model.ShippedTo.Name
+            <i class="fa fa-layer-group"></i> @Model.ShippedTo.AccountNumber | @Model.ShippedTo.Name
         </a>
+    } else
+    {
         
-    }
+        @if (@Model.ShippedTo is null)
+        {
+            <a class="btn btn-warning font-monospace w-100 text-start">
+                Missing Ship-To
+            </a>
+        } 
+        else
+        {
+            <a class="btn btn-outline-dark font-monospace w-100 text-start">
+                @Model.ShippedTo.AccountNumber | @Model.ShippedTo.Name
+            </a>
+        
+        }
 
-    @if (@Model.ConnectedTo is null)
-    {
-        <a class="btn btn-danger font-monospace w-100 text-start mt-2">
-            Missing Connected-To
-        </a>
-    }
-    else
-    {
-        <a class="btn btn-outline-dark font-monospace w-100 text-start mt-2">
-            @Model.ConnectedTo.AccountNumber | @Model.ConnectedTo.Name
-        </a>
+        @if (@Model.ConnectedTo is null)
+        {
+            <a class="btn btn-danger font-monospace w-100 text-start mt-2">
+                Missing Connected-To
+            </a>
+        }
+        else
+        {
+            <a class="btn btn-outline-dark font-monospace w-100 text-start mt-2">
+                @Model.ConnectedTo.AccountNumber | @Model.ConnectedTo.Name
+            </a>
+
+        }
 
     }
 </td>
