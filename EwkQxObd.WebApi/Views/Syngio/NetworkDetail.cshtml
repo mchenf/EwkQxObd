@@ -1,4 +1,5 @@
-﻿@{
+﻿@using System.Text
+@{
     ViewData["Title"] = "Network Details";
 }
 @model List<InstrumentLinkStatus>
@@ -10,7 +11,7 @@
 <!--Display Single Network Info-->
 <div class="container shadow p-3 g-3">
     <div class="row">
-        <div class="col-6">
+        <div class="col-7">
             <h4>
                 <i class="fa fa-globe"></i>
                 @NetworkInfo.System
@@ -22,6 +23,60 @@
                 @NetworkInfo.NetworkName
 
             </h4>
+        </div>
+        <div class="col-3">
+            <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#networkShare">
+                <i class="fa fa-share"></i>
+            </button>
+
+            <!-- Modal -->
+            <div class="modal fade" id="networkShare" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h1 class="modal-title fs-5" id="exampleModalLabel">Share Network Info</h1>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body font-monospace">
+
+<pre>@NetworkInfo.System \ [@NetworkInfo.NetworkId] @NetworkInfo.NetworkName</pre>
+                            @if (NetworkInfo.ConnectedTo is null)
+                            {
+<pre>[WARNING] IQX NOT CONNECTED</pre>                                
+                            }
+                            else
+                            {
+<pre>&nbsp;- Connected To:
+&lt;@NetworkInfo.ConnectedTo.AccountNumber&gt; @NetworkInfo.ConnectedTo.Name
+ Street: @NetworkInfo.ConnectedTo.Street
+   City: @NetworkInfo.ConnectedTo.City
+Country: @NetworkInfo.ConnectedTo.Country</pre>
+                            }
+<pre>Instruments:</pre>
+                            @{
+                                StringBuilder NetworkInstListSb = new();
+                            }
+                            @foreach (InstrumentLinkStatus item in Model)
+                            {
+                                if (string.IsNullOrEmpty(item.SerialNumber))
+                                {
+                                    NetworkInstListSb.AppendLine(string.Format("{0,-16} {1}",
+                                        "<Empty Group>", item.InstrumentGroup));
+                                }
+                                else
+                                {
+                                    NetworkInstListSb.AppendLine(string.Format("{0,-16} {1}", item.SerialNumber,        item.InstrumentGroup));
+                                }
+                            }
+                            <pre>@NetworkInstListSb.ToString()</pre>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                            <button type="button" class="btn btn-primary">Save changes</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
     <div class="row mt-4">
