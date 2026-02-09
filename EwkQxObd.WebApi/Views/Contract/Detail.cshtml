@@ -1,0 +1,70 @@
+﻿
+@model List<InstrumentLinkStatus>
+@{
+    ViewData["Title"] = "Detail, Contract";
+    InstrumentLinkStatus ContractInfo = Model[0];
+}
+
+<table class="table mt-3">
+    <tr>
+        <th colspan="2">
+            Contract Detail
+        </th>
+    </tr>
+    <tr>
+        <th class="col-3">Contract No.</th>
+        <th>@ContractInfo.ContractNumber</th>
+    </tr>
+    <tr>
+        <th>Description</th>
+        <td>@ContractInfo.Description</td>
+    </tr>
+    <tr>
+        <th>Valid To</th>
+        <td>@ContractInfo.ValidTo?.ToString("MM/dd/yyyy")</td>
+    </tr>
+    <tr>
+        <th>Expires</th>
+        <td>@ContractInfo.ExpiresIn Days</td>
+    </tr>
+    <tr>
+        <th>Recorded At</th>
+        <td>@ContractInfo.RecordedAt</td>
+    </tr>
+</table>
+<table class="table mt-3">
+    <thead>
+        <tr>
+            <th scope="col">Serial No</th>
+            <th scope="col">Instrument Type</th>
+            <th scope="col">Ship To</th>
+            <th scope="col">Connected To</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (InstrumentLinkStatus item in Model)
+        {
+            <tr>
+                <td>@item.SerialNumber</td>
+                <td>@item.InstrumentType</td>
+                @if (item.ShippedTo is null)
+                {
+                    <td class="font-monospace text-danger">&lt;SHIP-TO MISSING&gt;</td>
+                }
+                else
+                {
+                    <td>@item.ShippedTo.AccountNumber | @item.ShippedTo.Name</td>
+                }
+
+                @if (item.ConnectedTo is null)
+                {
+                    <td class="font-monospace text-danger">&lt;NOT CONNECTED&gt;</td>
+                }
+                else
+                {
+                    <td>@item.ConnectedTo.AccountNumber | @item.ConnectedTo.Name</td>
+                }
+            </tr>
+        }
+    </tbody>
+</table>
