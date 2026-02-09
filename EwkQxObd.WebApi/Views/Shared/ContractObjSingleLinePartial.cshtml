@@ -10,7 +10,7 @@
         string IqxSys = Model.System ?? "???";
     }
     <a class="btn @btnColor font-monospace w-100 @disabled" asp-controller="Syngio" asp-action="NetworkDetail"
-       asp-route-System="@Model.System" asp-route-NetworkId="@Model.System">
+       asp-route-System="@Model.System" asp-route-NetworkId="@Model.NetworkId">
         <div class="col text-start">
             <i class="fa-solid @linkIcon"></i>
             @IqxSys-@networkId
