@@ -27,9 +27,6 @@ namespace EwkQxObd.Core.Model.Views
         [Column(nameof(Street), TypeName = "nvarchar(64)")]
         public string? Street { get; set; } = string.Empty;
 
-        [Column(nameof(GEIS_Guid), TypeName = "nvarchar(80)")]
-        public Guid? GEIS_Guid { get; set; }
-
 
 
         [Column(nameof(System), TypeName = "nvarchar(16)")]
