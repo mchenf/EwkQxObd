@@ -65,7 +65,7 @@ Country: @NetworkInfo.ConnectedTo.Country</pre>
                                 }
                                 else
                                 {
-                                    NetworkInstListSb.AppendLine(string.Format("{0,-16} {1}", item.SerialNumber,        item.InstrumentGroup));
+                                    NetworkInstListSb.AppendLine(string.Format("{0,-16} {1, -32} {2}", item.SerialNumber,        item.InstrumentGroup, item.ContractNumber));
                                 }
                             }
                             <pre>@NetworkInstListSb.ToString()</pre>
