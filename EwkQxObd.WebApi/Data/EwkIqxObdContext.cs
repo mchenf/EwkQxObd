@@ -43,7 +43,7 @@ namespace EwkQxObd.WebApi.Data
         public DbSet<EqoTask> Task { get; set; }
         public DbSet<EqoTaskItem> TaskItem { get; set; }
 
-        public DbSet<EwkxInstrumentType> InstrumentTypes { get; set; }
+        public DbSet<IqxInstrumentType> InstrumentTypes { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {

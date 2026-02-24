@@ -23,8 +23,8 @@ namespace EwkQxObd.Core.Model
         [StringLength(16, ErrorMessage = "{0} length must be between {2} and {1}.", MinimumLength = 3)]
         public string SerialNumber { get; set; } = string.Empty;
 
-        [StringLength(32, ErrorMessage = "{0} length must be between {2} and {1}.", MinimumLength = 3)]
-        public string InstrumentType { get; set; } = string.Empty;
+        [Column("InstrumentTypeId")]
+        public int? InstrumentType { get; set; }
 
         [Column("Contract")]
         public int? ContractId { get; set; }

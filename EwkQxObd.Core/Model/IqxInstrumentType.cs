@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 namespace EwkQxObd.Core.Model
 {
     [Table("InstrumentType", Schema = "iqx")]
-    public class EwkxInstrumentType
+    public class IqxInstrumentType
     {
         [Key]
         [Column(nameof(InstrumentTypeID), TypeName = "int")]
