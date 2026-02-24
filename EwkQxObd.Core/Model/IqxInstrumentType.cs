@@ -24,5 +24,8 @@ namespace EwkQxObd.Core.Model
 
         [Column(nameof(Description), TypeName = "ntext")]
         public string Description { get; set; } = string.Empty;
+
+        [Column(nameof(BU), TypeName = "nvarchar(20)")]
+        public string BU { get; set; } = string.Empty;
     }
 }
