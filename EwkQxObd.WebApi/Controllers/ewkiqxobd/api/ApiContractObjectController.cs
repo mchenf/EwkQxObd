@@ -48,13 +48,22 @@ namespace EwkQxObd.WebApi.Controllers.ewkiqxobd.api
                 .ToListAsync();
             return Ok(new { contentType = "application/json", values = BU });
         }
+        [Route("{BusinessUnit}")]
         [HttpGet]
         [Produces("application/json")]
-        public async Task<IActionResult> InstrumentType()
+        public async Task<IActionResult> InstrumentType([FromRoute]string BusinessUnit)
         {
+            if (string.IsNullOrEmpty(BusinessUnit))
+            {
+                return BadRequest();
+            }
             var InstType = await _context.InstrumentTypes
+                .Where(t => t.BU == BusinessUnit)
                 .ToListAsync();
-            return Ok(new { contentType = "application/json", values = InstType });
+            if (!InstType.Any())
+                return NoContent();
+            else
+                return Ok(new { contentType = "application/json", values = InstType });
         }
 
 
