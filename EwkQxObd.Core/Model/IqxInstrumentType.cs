@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace EwkQxObd.Core.Model
 {
-    [Table("EwkxInstrumentType", Schema = "dbo")]
+    [Table("InstrumentType", Schema = "iqx")]
     public class EwkxInstrumentType
     {
         [Key]
