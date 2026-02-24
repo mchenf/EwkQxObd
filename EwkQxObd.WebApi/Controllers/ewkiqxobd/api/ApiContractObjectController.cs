@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 namespace EwkQxObd.WebApi.Controllers.ewkiqxobd.api
 {
     [ApiController]
-    [Route("ewkiqxobd/api/ContractObject")]
+    [Route("ewkiqxobd/api/ContractObject/[Action]")]
     public class ApiContractObjectController : Controller
     {
         private readonly ILogger<ApiContractObjectController> _logger;
@@ -33,9 +33,28 @@ namespace EwkQxObd.WebApi.Controllers.ewkiqxobd.api
                 .ToListAsync();
             if (result != default)
             {
-                return Ok( new {ContentType = "application/json", Values = result });
+                return Ok( new {contentType = "application/json", values = result });
             }
             return NoContent();
+        }
+
+        [HttpGet]
+        [Produces("application/json")]
+        public async Task<IActionResult> BusinessUnits()
+        {
+            var BU = await _context.InstrumentTypes
+                .Select(c => c.BU)
+                .Distinct()
+                .ToListAsync();
+            return Ok(new { contentType = "application/json", values = BU });
+        }
+        [HttpGet]
+        [Produces("application/json")]
+        public async Task<IActionResult> InstrumentType()
+        {
+            var InstType = await _context.InstrumentTypes
+                .ToListAsync();
+            return Ok(new { contentType = "application/json", values = InstType });
         }
 
 
