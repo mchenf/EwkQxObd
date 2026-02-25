@@ -1,8 +1,11 @@
 ﻿
 const buUrl = '/ewkiqxobd/api/ContractObject/BusinessUnits';
 const instTypeUrlBase = '/ewkiqxobd/api/ContractObject/InstrumentType';
+const topTypeUrlBase = '/ewkiqxobd/api/ContractObject/TopInstTypes';
 
 fillData();
+
+fillTopInstTable();
 
 
 $('#sltInstFamily').on('change',
@@ -27,7 +30,30 @@ $('#sltInstFamily').on('change',
     }
 )
 
+async function fillTopInstTable() {
+    let topInsts = await getData(topTypeUrlBase);
 
+    console.log("082 Getting topTypeUrlBase: ", topTypeUrlBase)
+    console.log("083 Getting TopInstrumentData: ", topInsts)
+    for (let i = 0; i < topInsts.length && i < 5; i++) {
+
+        $('#tblTopUsedInst').append(
+            $('<tr>').append(
+                $('<td>').append(
+                    $('<img>', {
+                        src: 'https://app.iqx.net/device-management/scripts/assets/images/instruments/' + topInsts[i].instrumentTypeID + '.jpg',
+                        alt: "Image for Foss Instrument " + topInsts[i].name,
+                        class: 'img-thumbnail border-2 h-100',
+                        width: '80',
+                        height: '80'
+                    })
+                ),
+                $('<td>').text(topInsts[i].name),
+                $('<td>').text(topInsts[i].usage)
+            )
+        );
+    }
+}
 
 
 

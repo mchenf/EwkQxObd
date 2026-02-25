@@ -48,6 +48,19 @@ namespace EwkQxObd.WebApi.Controllers.ewkiqxobd.api
                 .ToListAsync();
             return Ok(new { contentType = "application/json", values = BU });
         }
+
+        [HttpGet]
+        [Produces("application/json")]
+        public async Task<IActionResult> TopInstTypes()
+        {
+            var INST = await _context.VwTopInstrumentTypes
+                .FromSqlRaw("" +
+                "SELECT T.InstrumentTypeID, T.Name, T.BU, T.ShortName, COUNT(C.Id) AS Usage\r\nFROM         Eqo.ContractObject AS C LEFT OUTER JOIN\r\n                         iqx.InstrumentType AS T ON C.InstrumentTypeId = T.InstrumentTypeID\r\nWHERE     (T.InstrumentTypeID IS NOT NULL)\r\nGROUP BY T.InstrumentTypeID, T.Name, T.BU, T.ShortName\r\n")
+                .ToListAsync();
+            var OrderedInst = INST.OrderByDescending(T => T.Usage);
+            return Ok(new { contentType = "application/json", values = OrderedInst });
+        }
+
         [Route("{BusinessUnit}")]
         [HttpGet]
         [Produces("application/json")]

@@ -45,13 +45,14 @@ namespace EwkQxObd.WebApi.Data
 
         public DbSet<IqxInstrumentType> InstrumentTypes { get; set; }
 
+        public DbSet<VwTopInstrumentType> VwTopInstrumentTypes { get; set; }
+
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             foreach (var rel in modelBuilder.Model.GetEntityTypes().SelectMany(e => e.GetForeignKeys()))
             {
                 rel.DeleteBehavior = DeleteBehavior.ClientSetNull;
             }
-
 
             modelBuilder.Entity<Syngi>(ent => {
                 ent.ToView("vw_LatestSysnetinst");
@@ -90,6 +91,8 @@ namespace EwkQxObd.WebApi.Data
                 ent.ToView("vw_Syngio_Search_Alpha");
                 ent.HasNoKey();
             });
+
+
 
             modelBuilder.Entity<EqoContractObject>()
                 .HasIndex(eco =>
