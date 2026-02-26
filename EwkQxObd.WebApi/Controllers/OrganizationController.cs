@@ -32,5 +32,20 @@ namespace EwkQxObd.WebApi.Controllers
                 .ToListAsync();
             return View(nameof(Index), orgs);
         }
+
+        [Route("[action]/{Orgid}")]
+        [HttpGet]
+        public async Task<IActionResult> Details([FromRoute] int AccountNo)
+        {
+            var orgs = await _context.IqxOrganisation
+                .FindAsync(AccountNo);
+
+            if (orgs is null)
+            {
+                return NoContent();
+            }
+
+            return View(orgs);
+        }
     }
 }
