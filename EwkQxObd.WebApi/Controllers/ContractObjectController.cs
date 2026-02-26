@@ -200,13 +200,22 @@ namespace EwkQxObd.WebApi.Controllers
         }
 
         [HttpGet]
-        [Route("{ContractObjectId}")]
-        public async Task<IActionResult> Detail([FromRoute] int ContractObjectId)
+        [Route("{ContractObjectId}/{System}")]
+        public async Task<IActionResult> Detail(
+            [FromRoute] int ContractObjectId, 
+            [FromRoute] string System = "")
         {
-            var objFound = await _context.InstrumentLinkStatus
+            var query = _context.InstrumentLinkStatus
                     .Include(i => i.ShippedTo)
                     .Include(i => i.ConnectedTo)
-                    .FirstOrDefaultAsync(o => o.ContractObjId == ContractObjectId);
+                    .Where(o => o.ContractObjId == ContractObjectId);
+
+            if (!string.IsNullOrEmpty(System))
+            {
+                query = query.Where(o => o.System == System);
+            }
+                var objFound = await query
+                        .FirstOrDefaultAsync();
             if (objFound == default)
             {
                 return NoContent();
