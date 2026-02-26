@@ -12,7 +12,7 @@ namespace EwkQxObd.WebApi.Controllers
     [Route("[controller]/[action]")]
     public class ContractObjectController : Controller
     {
-
+        //TODO: Pagination is very messed up, please fix
         private readonly ILogger<ContractObjectController> _logger;
         private readonly EwkIqxObdContext _context;
         private readonly int itemsPerPage = 16;
@@ -65,7 +65,14 @@ namespace EwkQxObd.WebApi.Controllers
         [HttpGet]
         public async Task<IActionResult> SearchShipTo([FromQuery] string TextToSearch)
         {
-            throw new NotImplementedException();
+            var filtered = VinlkQuery
+                .Where(v => 
+                v.ConnectedTo!.Name!.Contains(TextToSearch) || 
+                v.ShippedTo!.Name!.Contains(TextToSearch));
+            ViewBag.TotalRows = 10;
+            ViewBag.TotalPages = 1;
+            ViewBag.CurrPage = 1;
+            return View(nameof(Index), await filtered.ToListAsync());
         }
 
         [HttpGet]
