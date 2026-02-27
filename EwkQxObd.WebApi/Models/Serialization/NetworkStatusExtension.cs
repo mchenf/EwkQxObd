@@ -1,7 +1,7 @@
 ﻿using EwkQxObd.Core.Model.Views;
 using System.Text;
 
-namespace EwkQxObd.WebApi.Models
+namespace EwkQxObd.WebApi.Models.Serialization
 {
     public static class NetworkStatusExtension
     {
