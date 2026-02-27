@@ -38,37 +38,34 @@
 
 
 <div class="row mb-3">
-    <div class="col-1">
+    <div class="col-lg-2">
         <label class="col-form-label">Serial No.</label>
     </div>
-    <div class="col-4">
+    <div class="col-lg-4">
         <input class="form-control" type="text" asp-for="SerialNumber" readonly/>
     </div>
 
-    <div class="col-2">
+    <div class="col-lg-2">
         <label class="col-form-label">Instrument Type</label>
     </div>
-    <div class="col-3">
+    <div class="col-lg-4">
         <input class="form-control" type="text" asp-for="InstrumentType" readonly />
     </div>
 </div>
 <div class="row mb-3">
-    <div class="col-1">
-        <label class="col-form-label">IQX System</label>
+    <div class="col-lg-1">
+        <label class="col-form-label">System</label>
     </div>
-    <div class="col-2">
+    <div class="col-lg-2">
         <input class="form-control" type="text" asp-for="System" readonly />
     </div>
-    <div class="col-1">
-        <label class="col-form-label">Network Id</label>
+    <div class="col-lg-2">
+        <label class="col-form-label">Network</label>
     </div>
-    <div class="col-1">
+    <div class="col-lg-2">
         <input class="form-control" type="text" asp-for="NetworkId" readonly />
     </div>
-    <div class="col-2">
-        <label class="col-form-label">IQX Network</label>
-    </div>
-    <div class="col-4">
+    <div class="col-lg-5">
         <input class="form-control" type="text" asp-for="NetworkName" readonly />
     </div>
 </div>
@@ -113,6 +110,47 @@
         </code>
     </div>
     }
+</div>
+
+<div class="row mb-3">
+    <div class="col-1">
+        <label class="col-form-label">Connect-To</label>
+    </div>
+    <div class="col-2">
+        @if (Model.ConnectedTo is null)
+        {
+            <input class="form-control text-bg-light text-danger border-danger" type="text" value="#N/A" readonly />
+        }
+        else
+        {
+            <input class="form-control" type="text" asp-for="ConnectedTo.AccountNumber" readonly />
+        }
+    </div>
+    <div class="col-4">
+        @if (Model.ConnectedTo is null)
+        {
+            <input class="form-control text-bg-light text-danger border-danger" type="text" value="#N/A" readonly />
+        }
+        else
+        {
+            <input class="form-control" type="text" asp-for="ConnectedTo.Name" readonly />
+        }
+    </div>
+
+</div>
+
+
+
+<div class="row mb-3">
+
+    <div class="col-2">
+        <label class="col-form-label">Connect-To GEIS Guid</label>
+    </div>
+    <div class="col-5">
+        <code>
+            <input class="form-control" type="text" asp-for="LinkedAccount" readonly />
+        </code>
+    </div>
 </div>
 <div class="row mb-3 mt-5">
     <h4>
@@ -168,43 +206,3 @@
     </div>
 </div>
 
-<div class="row mb-3">
-    <div class="col-1">
-        <label class="col-form-label">Connect-To</label>
-    </div>
-    <div class="col-2">
-        @if (Model.ConnectedTo is null)
-        {
-            <input class="form-control text-bg-light text-danger border-danger" type="text" value="#N/A" readonly />
-        }
-        else
-        {
-            <input class="form-control" type="text" asp-for="ConnectedTo.AccountNumber" readonly />
-        }
-    </div>
-    <div class="col-4">
-        @if (Model.ConnectedTo is null)
-        {
-            <input class="form-control text-bg-light text-danger border-danger" type="text" value="#N/A" readonly />
-        }
-        else
-        {
-            <input class="form-control" type="text" asp-for="ConnectedTo.Name" readonly />
-        }
-    </div>
-
-</div>
-
-
-
-<div class="row mb-3">
-
-    <div class="col-2">
-        <label class="col-form-label">Connect-To GEIS Guid</label>
-    </div>
-    <div class="col-5">
-        <code>
-            <input class="form-control" type="text" asp-for="LinkedAccount" readonly />
-        </code>
-    </div>
-</div>
