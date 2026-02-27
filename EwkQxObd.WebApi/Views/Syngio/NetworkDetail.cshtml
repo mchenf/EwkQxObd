@@ -29,46 +29,17 @@
                 <i class="fa fa-share"></i>
             </button>
 
-            <!-- Modal -->
+            <!-- Modal Prompt for Text Copy -->
             <div class="modal fade" id="networkShare" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                <div class="modal-dialog">
+                <div class="modal-dialog modal-lg">
                     <div class="modal-content">
                         <div class="modal-header">
-                            <h1 class="modal-title fs-5" id="exampleModalLabel">Share Network Info</h1>
+                            <h1 class="modal-title fs-5" id="exampleModalLabel">Share Network IQX Status</h1>
                             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                         </div>
                         <div class="modal-body font-monospace">
 
-<pre>@NetworkInfo.System \ [@NetworkInfo.NetworkId] @NetworkInfo.NetworkName</pre>
-                            @if (NetworkInfo.ConnectedTo is null)
-                            {
-<pre>[WARNING] IQX NOT CONNECTED</pre>                                
-                            }
-                            else
-                            {
-<pre>&nbsp;- Connected To:
-&lt;@NetworkInfo.ConnectedTo.AccountNumber&gt; @NetworkInfo.ConnectedTo.Name
- Street: @NetworkInfo.ConnectedTo.Street
-   City: @NetworkInfo.ConnectedTo.City
-Country: @NetworkInfo.ConnectedTo.Country</pre>
-                            }
-<pre>Instruments:</pre>
-                            @{
-                                StringBuilder NetworkInstListSb = new();
-                            }
-                            @foreach (InstrumentLinkStatus item in Model)
-                            {
-                                if (string.IsNullOrEmpty(item.SerialNumber))
-                                {
-                                    NetworkInstListSb.AppendLine(string.Format("{0,-16} {1}",
-                                        "<Empty Group>", item.InstrumentGroup));
-                                }
-                                else
-                                {
-                                    NetworkInstListSb.AppendLine(string.Format("{0,-16} {1, -32} {2}", item.SerialNumber,        item.InstrumentGroup, item.ContractNumber));
-                                }
-                            }
-                            <pre>@NetworkInstListSb.ToString()</pre>
+                        <pre>@Model.ShareInfo()</pre>
                         </div>
                         <div class="modal-footer">
                             <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>

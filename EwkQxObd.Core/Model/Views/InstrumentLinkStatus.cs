@@ -17,7 +17,8 @@ public class InstrumentLinkStatus
     [Column(nameof(RecordedAt), TypeName = "datetime2(7)")]
     public DateTime? RecordedAt { get; set; }
 
-    
+    [Column(nameof(QueryTimeStamp), TypeName = "datetime2(7)")]
+    public DateTime? QueryTimeStamp { get; set; }
     
 
     public string? System { get; set; }
