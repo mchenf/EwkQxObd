@@ -80,34 +80,34 @@
         string Cls_Stat_Off = "border-danger bg-warning ";
 
 
-    <div class="col-1">
+    <div class="col">
         <code>
             <input class="form-control text-center p-2 border-2 @(0 == (Model.StatusFlag & VinlkStatus.MissContract) ? Cls_Stat_On : Cls_Stat_Off))" type="text" value="CONTRACT" readonly />
         </code>
     </div>
-    <div class="col-1">
+    <div class="col">
         <code>
             <input class="form-control text-center p-2 border-2 @(0 == (Model.StatusFlag & VinlkStatus.MissSystem) ? Cls_Stat_On : Cls_Stat_Off))" type="text" value="SYSTEM" readonly />
         </code>
     </div>
-    <div class="col-1">
+    <div class="col">
         <code>
             <input class="form-control text-center p-2 border-2 @(0 == (Model.StatusFlag & VinlkStatus.MissNetwork) ? Cls_Stat_On : Cls_Stat_Off))" type="text" value="NETWORK" readonly />
         </code>
     </div>
-    <div class="col-9"></div>
-    <div class="col-1">
+    <div class="col-12"></div>
+    <div class="col">
         <code>
             <input class="form-control text-center p-2 border-2 @(0 == (Model.StatusFlag & VinlkStatus.LinkedToZero) ? Cls_Stat_On : Cls_Stat_Off))" type="text" value="LINKZERO" readonly />
         </code>
     </div>
-    <div class="col-1">
+    <div class="col">
         <code>
             <input class="form-control text-center p-2 border-2 @(0 == (Model.StatusFlag & VinlkStatus.LinkedToNull) ? Cls_Stat_On : Cls_Stat_Off))" type="text" value="LINKNULL" readonly />
         </code>
     </div>
 
-    <div class="col-1">
+    <div class="col">
         <code>
             <input class="form-control text-center p-2 border-2 @(0 == (Model.StatusFlag & VinlkStatus.MissAccount) ? Cls_Stat_On : Cls_Stat_Off))" type="text" value="ACCOUNT" readonly />
         </code>
