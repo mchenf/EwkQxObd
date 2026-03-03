@@ -152,6 +152,37 @@
         </code>
     </div>
 </div>
+<div class="row mb-3">
+
+    <div class="col-lg-2">
+        <label class="col-form-label">Datacenter Region</label>
+    </div>
+    <div class="col-lg-2">
+        @if (Model.ConnectedTo is null)
+        {
+            <input class="form-control text-bg-light text-danger border-danger" type="text" value="#N/A" readonly />
+        }
+        else
+        {
+            <input class="form-control" type="text" asp-for="ConnectedTo.Region" readonly />
+        }
+        
+
+    </div>
+    <div class="col-lg-3">
+        @if (Model.ConnectedTo is null)
+        {
+            <input class="form-control text-bg-light text-danger border-danger" type="text" value="#N/A" readonly />
+        }
+        else
+        {
+            <input class="form-control" type="text" asp-for="ConnectedTo.Country" readonly />
+        }
+    </div>
+</div>
+
+
+
 <div class="row mb-3 mt-5">
     <h4>
         Contract Status
@@ -163,9 +194,6 @@
     </div>
     <div class="col-2">
         <input class="form-control" type="text" asp-for="ContractNumber" readonly />
-    </div>
-
-    <div class="col-1">
     </div>
 
     <div class="col-2">
@@ -203,6 +231,35 @@
         <code>
             <input class="form-control" type="text" asp-for="ShippedTo.GeisGuid" readonly />
         </code>
+    </div>
+</div>
+
+<div class="row mb-3">
+
+    <div class="col-lg-2">
+        <label class="col-form-label">Datacenter Region</label>
+    </div>
+    <div class="col-lg-2">
+        @if (Model.ShippedTo is null)
+        {
+            <input class="form-control text-bg-light text-danger border-danger" type="text" value="#N/A" readonly />
+        }
+        else
+        {
+            <input class="form-control" type="text" asp-for="ShippedTo.Region" readonly />
+        }
+
+
+    </div>
+    <div class="col-lg-3">
+        @if (Model.ShippedTo is null)
+        {
+            <input class="form-control text-bg-light text-danger border-danger" type="text" value="#N/A" readonly />
+        }
+        else
+        {
+            <input class="form-control" type="text" asp-for="ShippedTo.Country" readonly />
+        }
     </div>
 </div>
 
