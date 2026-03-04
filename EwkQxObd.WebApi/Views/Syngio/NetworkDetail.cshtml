@@ -146,7 +146,7 @@
             <td>@m.SerialNumber</td>
             <td>@m.InstrumentName</td>
             <td>
-                @if (@m.ConnectedTo != null)
+                @if (m.ContractNumber is not null)
                 {
                     <a role="button" asp-controller="ContractObject" asp-action="ByContract" asp-route-ContractNumber="@m.ContractNumber"><i class="fa-solid fa-file-contract text-black"></i></a>
                     @m.ContractNumber
