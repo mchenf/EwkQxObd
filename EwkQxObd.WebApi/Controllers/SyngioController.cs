@@ -18,7 +18,9 @@ namespace EwkQxObd.WebApi.Controllers
         }
         public async Task<IActionResult> Index()
         {
-            var systems = await _context.SyngioViewSystems.ToListAsync();
+            var systems = await _context.SyngioViewSystems
+                .Where(s => s.System != "disconnected")
+                .ToListAsync();
 
             return View(systems);
         }
