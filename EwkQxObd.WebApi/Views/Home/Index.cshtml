@@ -3,17 +3,41 @@
     ViewData["Title"] = "Home";
 }
 
-<h1 class="text-center">Digital Workspace <br /> FOSS IQX™ Onboarding v1.11.00</h1>
+<h1 class="text-center">Digital Workspace <br /> FOSS IQX™ Onboarding v1.12.32</h1>
 
 
 <div class="row justify-content-evenly mt-3">
     <div class="col-lg-6 mb-3">
         <div class="card w-100 g-3">
-            <img src="~/images/business-contract_960_720.jpg" class="card-img-top" alt="Bussine Contract Signed" />
+            <img src="~/images/office-9705279_1920.png" class="card-img-top" alt="Busy office task" />
+            <div class="card-body">
+                <h3 class="card-title">Tasks</h3>
+                <p class="card-text">
+                    IQX task is an actionable item related to a configuration item, such as contract object, contract, or a ticket. Actionable items such as: onboarding, instrument migration, network migration, and more. 
+                </p>
+
+                <a class="btn btn-outline-success w-100 mb-2" asp-controller="TaskWorkFlow" asp-action="Index">
+                    <div class="row">
+                        <div class="col-1">
+
+                            <i class="fa fa-solid fa-list fa-xl"></i>
+                        </div>
+                        <div class="col-10">
+                            <span>List Task</span>
+                        </div>
+                    </div>
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-lg-6 mb-3">
+        <div class="card w-100 g-3">
+            <img src="~/images/business-contract_960_720.jpg" class="card-img-top" alt="Bussine Contract Signed"/>
             <div class="card-body">
                 <h3 class="card-title">Contract Objects</h3>
                 <p class="card-text">
-                    A contrat object represents a combination between a contract and an object (or an Instrument), which is bind to an account.
+                    A contract object represents a combination between a contract and an object (or an Instrument), which is bind to an account.
                     The contract object enables IQX to be active for accounts.
                 </p>
 
@@ -74,7 +98,7 @@
         </div>
     </div>
 
-    <div class="col-lg-6">
+    <div class="col-lg-6 mb-3">
         <div class="card w-100 g-3">
             <img src="~/images/laptop-6087062_640.png" class="card-img-top" alt="Laptop Showing Business Logic" />
             <div class="card-body">
@@ -126,9 +150,6 @@
         </div>
     </div>
 
-</div>
-
-<div class="row justify-content-evenly mt-3">
     <div class="col-lg-6 mb-3">
         <div class="card w-100 g-3">
             <img src="~/images/business-discussion_640.jpg" class="card-img-top" alt="Bussine Discussion" />
