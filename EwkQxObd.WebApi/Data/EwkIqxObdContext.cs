@@ -39,8 +39,13 @@ namespace EwkQxObd.WebApi.Data
 
         public DbSet<SyngioSearchAlpha> SyngioSearchAlpha { get; set; }
 
+        public DbSet<EqoTaskDefinition> EqoTaskDefinition { get; set; }
+
+        [Obsolete("Change to Task module in progress")]
         public DbSet<EqoTaskWorkflow> TaskWorkFlow { get; set; }
+        [Obsolete("Change to Task module in progress")]
         public DbSet<EqoTask> Task { get; set; }
+        [Obsolete("Change to Task module in progress")]
         public DbSet<EqoTaskItem> TaskItem { get; set; }
 
         public DbSet<IqxInstrumentType> InstrumentTypes { get; set; }
