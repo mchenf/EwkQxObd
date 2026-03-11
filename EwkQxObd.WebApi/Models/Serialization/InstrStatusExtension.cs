@@ -25,13 +25,13 @@ Instrument Name: {6}
 @"{0} \ [{1}] {2}";
 
         private const string fmrtOrgInfo =
-@"{0,15} :     {1}
- Account Number :     {2}
-   Account Name :     {3}
-         Street :     {4}
-           City :     {5}
-        Country :     {6}
-         Region :     {7}";
+@"{0,15} : {1}
+ Account Number : {2}
+   Account Name : {3}
+         Street : {4}
+           City : {5}
+        Country : {6}
+         Region : {7}";
 
         private const string fmrtContract =
 @"==== {0} ====
