@@ -7,16 +7,16 @@ using Microsoft.Extensions.Logging;
 namespace EwkQxObd.WebApi.Controllers
 {
     [Route("[controller]/[action]")]
-    public class TaskWorkFlowController(EwkIqxObdContext context, ILogger<TaskWorkFlowController> logger) : Controller
+    public class TaskController(EwkIqxObdContext context, ILogger<TaskController> logger) : Controller
     {
         private const string TwfCreateMsg = "Added TWF: {result}";
         private readonly EwkIqxObdContext _context = context;
-        private readonly ILogger<TaskWorkFlowController> _logger = logger;
+        private readonly ILogger<TaskController> _logger = logger;
 
         [HttpGet]
         public async Task<IActionResult> Index()
         {
-            var Results = await _context.TaskWorkFlow.ToListAsync();
+            var Results = await _context.EqoTaskDefinition.ToListAsync();
             return View(Results);
         }
 

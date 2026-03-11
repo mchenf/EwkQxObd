@@ -8,28 +8,32 @@ using System.Threading.Tasks;
 
 namespace EwkQxObd.Core.Model
 {
-    [Table("TtsTask", Schema = "eqo")]
+    [Table("Task", Schema = "eqo")]
     public class EqoTask
     {
         [Key]
         public int Id { get; set; }
 
         [Required]
-        [Column(nameof(Name), TypeName = "nvarchar(16)")]
-        public string Name { get; set; } = string.Empty;
+        [Column(nameof(TaskDef), TypeName = "int")]
+        public int TaskDef { get; set; }
+
+
+        [Column(nameof(Ticket), TypeName = "int")]
+        public int Ticket { get; set; }
+
+        [Column(nameof(Notes), TypeName = "nvarchar(255)")]
+        public string Notes { get; set; } = string.Empty;
 
         [Required]
-        [Column(nameof(Description), TypeName = "nvarchar(255)")]
-        public string Description { get; set; } = string.Empty;
+        [Column(nameof(CreatedAt), TypeName = "datetime2(7)")]
+        public DateTime CreatedAt { get; set; }
 
-        [Required]
-        [Column(nameof(WorkFlow), TypeName = "int")]
-        public int WorkFlowId { get; set; }
-        public EqoTaskWorkflow? WorkFlow { get; set; }
+        [Column(nameof(CancelledAt), TypeName = "datetime2(7)")]
+        public DateTime CancelledAt { get; set; }
 
-        [Column(nameof(Prerequisite), TypeName = "int")]
-        public int? PrerequisiteId { get; set; }
-        public EqoTask? Prerequisite { get; set; }
+        [Column(nameof(CompletedAt), TypeName = "datetime2(7)")]
+        public DateTime CompletedAt { get; set; }
 
     }
 }
