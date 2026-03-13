@@ -52,6 +52,9 @@ namespace EwkQxObd.WebApi.Data
 
         public DbSet<VwTopInstrumentType> VwTopInstrumentTypes { get; set; }
 
+
+        public DbSet<IqxUser> IqxUsers { get; set; }
+
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             foreach (var rel in modelBuilder.Model.GetEntityTypes().SelectMany(e => e.GetForeignKeys()))
