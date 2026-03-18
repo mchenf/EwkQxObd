@@ -109,5 +109,28 @@ namespace EwkQxObd.WebApi.Controllers.ewkiqxobd.api
             return Ok(new { ContentType = "application/json", Message = "User removed.", Data = result.Entity } );
         }
 
+        [HttpPut]
+        public async Task<IActionResult> Put([FromBody] IqxUser User)
+        {
+            var entity = await _context.IqxUsers.FindAsync(User.UserId);
+            if (entity is null)
+            {
+                return NotFound();
+            }
+
+            var entityBefore = entity.ShallowCopy();
+
+            entity.Email = User.Email;
+            entity.OrgGuid = User.OrgGuid;
+            entity.UserGuid = User.UserGuid;
+            entity.FirstName = User.FirstName;
+            entity.LastName = User.LastName;
+            entity.Locked = User.Locked;
+            entity.QueriedAt = User.QueriedAt;
+
+            await _context.SaveChangesAsync();
+            return Ok(new { ContentType = "application/json", Before = entityBefore, After = entity });
+        }
+
     }
 }

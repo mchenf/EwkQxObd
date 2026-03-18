@@ -45,5 +45,10 @@ namespace EwkQxObd.Core.Model
         [Column(nameof(QueriedAt), TypeName = "datetime2(7)")]
         public DateTime QueriedAt { get; set; }
 
+
+        public IqxUser ShallowCopy()
+        {
+            return (IqxUser)MemberwiseClone();
+        }
     }
 }
