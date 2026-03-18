@@ -1,12 +1,15 @@
 ﻿using EwkQxObd.Core.Model;
 using EwkQxObd.WebApi.Data;
+using Microsoft.AspNetCore.Http.HttpResults;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.Data.SqlClient;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Logging;
 
 namespace EwkQxObd.WebApi.Controllers.ewkiqxobd.api
 {
     [ApiController]
-    [Route("ewkiqxobd/api/[controller]/[action]")]
+    [Route("ewkiqxobd/api/[controller]")]
     public class UserController : Controller
     {
         private readonly ILogger<UserController> _logger;
@@ -27,20 +30,31 @@ namespace EwkQxObd.WebApi.Controllers.ewkiqxobd.api
             return Ok(new { ContentType = "application/json", data = query });
         }
 
-
-
         [HttpPost]
         [Consumes("application/json")]
-        public async Task<IActionResult> New([FromBody] IqxUser user)
+        public async Task<IActionResult> Create([FromBody] IqxUser user)
         {
             _logger.LogInformation("Adding IQX User, Single");
 
-            var userAdded = await _context.AddAsync(user);
+            var userAdded = await _context.IqxUsers.AddAsync(user);
 
             _logger.LogInformation("Checking User Added:");
             _logger.LogInformation("State: {0}", userAdded.State.ToString());
 
-            var changeSaved = await _context.SaveChangesAsync();
+            int changeSaved = 0;
+
+            try
+            {
+                changeSaved = await _context.SaveChangesAsync();
+            }
+            catch (DbUpdateException e)
+            {
+                return Conflict(new
+                {
+                    ContentType = "application/json",
+                    Message = e.InnerException is null ? e.Message : e.InnerException.Message
+                });
+            }
 
             _logger.LogInformation("Change Saved:");
             _logger.LogInformation(changeSaved.ToString());
@@ -48,14 +62,51 @@ namespace EwkQxObd.WebApi.Controllers.ewkiqxobd.api
             return Ok(new { ContentType = "application/json", Message = "New User Added" });
         }
 
-        [HttpPost]
+        [HttpPost("[action]")]
         [Consumes("application/json")]
-        public IActionResult NewMany([FromBody] List<IqxUser> users)
+        public async Task<IActionResult> CreateBulk([FromBody] List<IqxUser> users)
         {
             _logger.LogInformation("Adding IQX User, Many");
 
+            await _context.IqxUsers.AddRangeAsync(users);
+
+            int changeSaved = 0;
+            try
+            {
+                changeSaved = await _context.SaveChangesAsync();
+            }
+            catch (DbUpdateException e)
+            {
+                return Conflict(new
+                {
+                    ContentType = "application/json",
+                    Message = e.InnerException is null ? e.Message : e.InnerException.Message
+                });
+            }
+
+            _logger.LogInformation("Change Saved:");
+            _logger.LogInformation(changeSaved.ToString());
 
             return Ok(new { ContentType = "application/json", Message = "Many new Users Added" });
+        }
+
+        [HttpDelete("{UserId}")]
+        public async Task<IActionResult> Delete([FromRoute] int UserId)
+        {
+            _logger.LogInformation("Delete IQX User");
+            var UserToRemove = await _context.IqxUsers.FindAsync(UserId);
+
+            _logger.LogInformation(UserToRemove?.Email);
+            if (UserToRemove == null)
+            {
+                return NotFound();
+            }
+
+            var result = _context.IqxUsers.Remove(UserToRemove);
+
+            await _context.SaveChangesAsync();
+
+            return Ok(new { ContentType = "application/json", Message = "User removed.", Data = result.Entity } );
         }
 
     }
