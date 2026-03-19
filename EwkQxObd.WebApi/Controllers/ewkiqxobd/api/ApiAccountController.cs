@@ -43,14 +43,14 @@ namespace EwkQxObd.WebApi.Controllers.ewkiqxobd.api
 
         [HttpPost]
         [Consumes("application/json")]
-        public async Task<IActionResult> NewAccountSingle(IqxOrganization Account)
+        public async Task<IActionResult> Create(IqxOrganization Account)
         {
 
             await _context.IqxOrganisation.AddAsync(Account);
 
             await _context.SaveChangesAsync();
 
-            return Ok(new { Consumes = "application/json", Values = Account });
+            return Ok(new { ContentType = "application/json", Data = Account });
 
         }
 
