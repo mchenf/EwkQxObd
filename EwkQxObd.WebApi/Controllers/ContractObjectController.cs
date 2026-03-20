@@ -1,4 +1,5 @@
 ﻿using EwkQxObd.Core.Model;
+using EwkQxObd.Core.Model.Iqx;
 using EwkQxObd.Core.Model.Views;
 using EwkQxObd.WebApi.Data;
 using EwkQxObd.WebApi.Models;
@@ -132,11 +133,11 @@ namespace EwkQxObd.WebApi.Controllers
         public async Task<IActionResult> AddOn([FromQuery]int ContractId, [FromQuery]int ShipToId = 0, [FromQuery]bool AsTemplate = false)
         {
             EqoContract? contract = null;
-            IqxOrganization? shipTo = null;
+            Organization? shipTo = null;
             if (ShipToId > 0)
             {
                 shipTo = 
-                    await _context.IqxOrganisation
+                    await _context.Organization
                     .FirstOrDefaultAsync(c => c.AccountNumber == ShipToId);
             }
 

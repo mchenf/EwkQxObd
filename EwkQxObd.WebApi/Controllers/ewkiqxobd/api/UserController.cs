@@ -1,4 +1,4 @@
-﻿using EwkQxObd.Core.Model;
+﻿using EwkQxObd.Core.Model.Iqx;
 using EwkQxObd.WebApi.Data;
 using Microsoft.AspNetCore.Http.HttpResults;
 using Microsoft.AspNetCore.Mvc;
@@ -32,7 +32,7 @@ namespace EwkQxObd.WebApi.Controllers.ewkiqxobd.api
 
         [HttpPost]
         [Consumes("application/json")]
-        public async Task<IActionResult> Create([FromBody] IqxUser user)
+        public async Task<IActionResult> Create([FromBody] User user)
         {
             _logger.LogInformation("Adding IQX User, Single");
 
@@ -64,7 +64,7 @@ namespace EwkQxObd.WebApi.Controllers.ewkiqxobd.api
 
         [HttpPost("[action]")]
         [Consumes("application/json")]
-        public async Task<IActionResult> CreateBulk([FromBody] List<IqxUser> users)
+        public async Task<IActionResult> CreateBulk([FromBody] List<User> users)
         {
             _logger.LogInformation("Adding IQX User, Many");
 
@@ -110,9 +110,9 @@ namespace EwkQxObd.WebApi.Controllers.ewkiqxobd.api
         }
 
         [HttpPut]
-        public async Task<IActionResult> Put([FromBody] IqxUser User)
+        public async Task<IActionResult> Put([FromBody] User User)
         {
-            var entity = await _context.IqxUsers.FindAsync(User.UserId);
+            var entity = await _context.IqxUsers.FindAsync(User.UserGuid);
             if (entity is null)
             {
                 return NotFound();
@@ -120,13 +120,12 @@ namespace EwkQxObd.WebApi.Controllers.ewkiqxobd.api
 
             var entityBefore = entity.ShallowCopy();
 
+
             entity.Email = User.Email;
-            entity.OrgGuid = User.OrgGuid;
             entity.UserGuid = User.UserGuid;
             entity.FirstName = User.FirstName;
             entity.LastName = User.LastName;
             entity.Locked = User.Locked;
-            entity.QueriedAt = User.QueriedAt;
 
             await _context.SaveChangesAsync();
             return Ok(new { ContentType = "application/json", Before = entityBefore, After = entity });

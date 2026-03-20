@@ -7,19 +7,21 @@ using System.Text;
 using System.Text.Json.Serialization;
 using System.Threading.Tasks;
 
-namespace EwkQxObd.Core.Model
+namespace EwkQxObd.Core.Model.Iqx
 {
     [Table("UserOrganization", Schema ="iqx")]
-    public class IqxUserOrganization
+    public class UserOrganization
     {
         [Key]
-        [Column(nameof(UserId), TypeName = "int")]
-        public int UserId { get; set; }
+        [Column(nameof(Id), TypeName = "int")]
+        public int Id { get; set; }
 
-
-        [JsonPropertyName("id")]
+        [JsonIgnore]
         [Column(nameof(UserGuid), TypeName = "uniqueidentifier")]
         public Guid UserGuid { get; set; }
+
+        [JsonPropertyName("user")]
+        public required User User { get; set; }
 
         [JsonPropertyName("email")]
         [Column(nameof(Email), TypeName = "nvarchar(50)")]
@@ -46,9 +48,9 @@ namespace EwkQxObd.Core.Model
         public DateTime QueriedAt { get; set; }
 
 
-        public IqxUserOrganization ShallowCopy()
+        public UserOrganization ShallowCopy()
         {
-            return (IqxUserOrganization)MemberwiseClone();
+            return (UserOrganization)MemberwiseClone();
         }
     }
 }

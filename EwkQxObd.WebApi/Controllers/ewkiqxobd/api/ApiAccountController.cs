@@ -1,4 +1,4 @@
-﻿using EwkQxObd.Core.Model;
+﻿using EwkQxObd.Core.Model.Iqx;
 using EwkQxObd.WebApi.Data;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
@@ -24,9 +24,9 @@ namespace EwkQxObd.WebApi.Controllers.ewkiqxobd.api
         }
 
         [HttpGet("{partnerId}")]
-        public async Task<IqxOrganization?> Get([FromRoute] int partnerId)
+        public async Task<Organization?> Get([FromRoute] int partnerId)
         {
-            var Result = await _context.IqxOrganisation
+            var Result = await _context.Organization
                 .Where(a => a.AccountNumber == partnerId).FirstOrDefaultAsync();
 
             return Result;
@@ -34,19 +34,19 @@ namespace EwkQxObd.WebApi.Controllers.ewkiqxobd.api
 
 
         [HttpGet]
-        public IEnumerable<IqxOrganization> Details()
+        public IEnumerable<Organization> Details()
         {
-            return _context.IqxOrganisation;
+            return _context.Organization;
 
         }
 
 
         [HttpPost]
         [Consumes("application/json")]
-        public async Task<IActionResult> Create(IqxOrganization Account)
+        public async Task<IActionResult> Create(Organization Account)
         {
 
-            await _context.IqxOrganisation.AddAsync(Account);
+            await _context.Organization.AddAsync(Account);
 
             await _context.SaveChangesAsync();
 

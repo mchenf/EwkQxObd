@@ -37,7 +37,7 @@ namespace EwkQxObd.WebApi.Controllers
         [HttpGet]
         public async Task<IActionResult> Details([FromRoute] int AccountNo)
         {
-            var orgs = await _context.IqxOrganisation
+            var orgs = await _context.Organization
                 .FindAsync(AccountNo);
 
             if (orgs is null)

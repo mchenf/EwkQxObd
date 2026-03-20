@@ -1,6 +1,5 @@
-﻿
-using EwkQxObd.Core.Model;
-using EwkQxObd.WebApi.Conversion;
+﻿using EwkQxObd.Core.Model.Iqx;
+
 using EwkQxObd.WebApi.Data;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
@@ -26,17 +25,17 @@ namespace EwkQxObd.WebApi.Controllers.ewkiqxobd.api
         }
 
         [HttpGet]
-        public IEnumerable<IqxOrganization> Get()
+        public IEnumerable<Organization> Get()
         {
-            return _context.IqxOrganisation;
+            return _context.Organization;
         }
 
         [HttpPost("bulk")]
         [Consumes("application/json")]
-        public async Task<IActionResult> AddBulk(IEnumerable<IqxOrganization> orgs)
+        public async Task<IActionResult> AddBulk(IEnumerable<Organization> orgs)
         {
-            List<IqxOrganization> dups = [];
-            List<IqxOrganization> added = [];
+            List<Organization> dups = [];
+            List<Organization> added = [];
 
             foreach (var org in orgs)
             {
@@ -44,13 +43,13 @@ namespace EwkQxObd.WebApi.Controllers.ewkiqxobd.api
                 {
                     continue;
                 }
-                var found = await _context.IqxOrganisation
+                var found = await _context.Organization
                     .FirstOrDefaultAsync(a => a.AccountNumber == org.AccountNumber);
 
                 if (found == default)
                 {
                     added.Add(org);
-                    await _context.IqxOrganisation.AddAsync(org);
+                    await _context.Organization.AddAsync(org);
                 }
                 else
                 {
@@ -69,11 +68,11 @@ namespace EwkQxObd.WebApi.Controllers.ewkiqxobd.api
 
         [HttpPost()]
         [Consumes("application/json")]
-        public async Task<IActionResult> AddSingle(IqxOrganization org)
+        public async Task<IActionResult> AddSingle(Organization org)
         {
 
 
-            await _context.IqxOrganisation.AddAsync(org);
+            await _context.Organization.AddAsync(org);
 
             await _context.SaveChangesAsync();
 

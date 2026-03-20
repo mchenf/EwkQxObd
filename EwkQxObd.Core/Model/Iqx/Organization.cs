@@ -8,11 +8,11 @@ using System.Text;
 using System.Text.Json.Serialization;
 using System.Threading.Tasks;
 
-namespace EwkQxObd.Core.Model
+namespace EwkQxObd.Core.Model.Iqx
 {
     [Table("Organization", Schema = "iqx")]
     [Index(nameof(GeisGuid), IsUnique = true)]
-    public class IqxOrganization
+    public class Organization
     {
         [Key]
         [JsonPropertyName("accountNumber")]

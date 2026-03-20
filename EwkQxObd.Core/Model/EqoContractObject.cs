@@ -1,4 +1,5 @@
 ﻿using EwkQxObd.Core.Abstraction;
+using EwkQxObd.Core.Model.Iqx;
 using EwkQxObd.Core.Model.Views;
 using System;
 using System.Collections.Generic;
@@ -32,7 +33,7 @@ namespace EwkQxObd.Core.Model
         public int ShipToId { get; set; }
 
         public EqoContract? Contract { get; set; }
-        public IqxOrganization? ShipTo { get; set; }
+        public Organization? ShipTo { get; set; }
 
         public int AccountNumber { get => ShipTo == default ? -1 : ShipTo.AccountNumber; }
         public string? PartnerName { get => ShipTo == default ? null : ShipTo.Name; }

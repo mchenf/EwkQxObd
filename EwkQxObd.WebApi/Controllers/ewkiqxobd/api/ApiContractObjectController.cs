@@ -95,7 +95,7 @@ namespace EwkQxObd.WebApi.Controllers.ewkiqxobd.api
 
             if (contractObj.ShipTo != default)
             {
-                var shipTo = await _context.IqxOrganisation.FirstOrDefaultAsync(acc => acc.AccountNumber == contractObj.ShipTo.AccountNumber);
+                var shipTo = await _context.Organization.FirstOrDefaultAsync(acc => acc.AccountNumber == contractObj.ShipTo.AccountNumber);
                 if (shipTo == default)
                 {
                     contractObjToSync.ShipTo = contractObj.ShipTo;

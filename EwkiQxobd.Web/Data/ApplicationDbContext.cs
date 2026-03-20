@@ -1,4 +1,5 @@
 ﻿using EwkQxObd.Core.Model;
+using EwkQxObd.Core.Model.Iqx;
 using EwkQxObd.Core.Model.Views;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
@@ -13,7 +14,7 @@ namespace EwkiQxobd.Web.Data
         {
         }
 
-        public DbSet<IqxSystem> IqxSystem { get; set; }
+        public DbSet<EwkQxObd.Core.Model.Iqx.System> IqxSystem { get; set; }
         public DbSet<IqxNetworkInstrument> IqxInstrument { get; set; }
         public DbSet<IqxOrganization> IqxOrganisation { get; set; }
 

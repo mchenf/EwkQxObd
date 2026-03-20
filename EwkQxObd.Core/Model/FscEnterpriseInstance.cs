@@ -1,4 +1,5 @@
-﻿using System;
+﻿using EwkQxObd.Core.Model.Iqx;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
@@ -31,7 +32,7 @@ namespace EwkQxObd.Core.Model
 
         [Column("Customer")]
         public int CustomerId { get; set; }
-        public required IqxOrganization Customer { get; set; }
+        public required Organization Customer { get; set; }
 
 
         public IEnumerable<EqoContract>? EnterpriseContracts { get; set; }

@@ -1,4 +1,5 @@
 ﻿using EwkQxObd.Core.Abstraction;
+using EwkQxObd.Core.Model.Iqx;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations.Schema;
@@ -35,7 +36,7 @@ namespace EwkQxObd.Core.Model.Views
         [Column("InstrumentName", TypeName = "nvarchar(64)")]
         public string? InstrumentName { get; set; } = string.Empty;
 
-        public IqxOrganization? ConnectedTo { get; set; }
+        public Organization? ConnectedTo { get; set; }
 
     }
 }

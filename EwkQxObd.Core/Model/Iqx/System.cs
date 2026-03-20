@@ -4,10 +4,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace EwkQxObd.Core.Model
+namespace EwkQxObd.Core.Model.Iqx
 {
 
-    public class IqxSystem
+    public class System
     {
 
         public int id { get; set; }

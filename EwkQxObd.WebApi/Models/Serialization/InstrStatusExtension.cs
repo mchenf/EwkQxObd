@@ -1,4 +1,4 @@
-﻿using EwkQxObd.Core.Model;
+﻿using EwkQxObd.Core.Model.Iqx;
 using EwkQxObd.Core.Model.Views;
 using System.Text;
 
@@ -46,7 +46,7 @@ EOF
         //private const string GuidMask = "****-****-****-****-********";
         private const string GuidMask = "████-████-████-████-████████";
 
-        public static string ObfuscateGeis(this IqxOrganization Org)
+        public static string ObfuscateGeis(this Organization Org)
         {
 
             if (Org is null || Org.GeisGuid is null)

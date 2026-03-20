@@ -1,4 +1,5 @@
-﻿using System;
+﻿using EwkQxObd.Core.Model.Iqx;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations.Schema;
 
@@ -48,9 +49,9 @@ public class InstrumentLinkStatus
     [Column(nameof(ShippedToAccountNumber), TypeName = "int")]
     public int? ShippedToAccountNumber { get; set; }
 
-    public IqxOrganization? ConnectedTo { get; set; }
+    public Organization? ConnectedTo { get; set; }
     
-    public IqxOrganization? ShippedTo { get; set; }
+    public Organization? ShippedTo { get; set; }
 
     [NotMapped]
     public int? ExpiresIn

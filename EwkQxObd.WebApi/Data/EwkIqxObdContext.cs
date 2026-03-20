@@ -1,4 +1,5 @@
 ﻿using EwkQxObd.Core.Model;
+using EwkQxObd.Core.Model.Iqx;
 using EwkQxObd.Core.Model.Views;
 using Microsoft.EntityFrameworkCore;
 
@@ -11,9 +12,9 @@ namespace EwkQxObd.WebApi.Data
             
         }
 
-        public DbSet<IqxSystem> IqxSystem { get; set; }
+        public DbSet<Core.Model.Iqx.System> IqxSystem { get; set; }
         public DbSet<IqxNetworkInstrument> IqxInstrument { get; set; }
-        public DbSet<IqxOrganization> IqxOrganisation { get; set; }
+        public DbSet<Organization> Organization { get; set; }
 
 
         public DbSet<EqoContractObject> EqoContractObject { get; set; }
@@ -53,7 +54,7 @@ namespace EwkQxObd.WebApi.Data
         public DbSet<VwTopInstrumentType> VwTopInstrumentTypes { get; set; }
 
 
-        public DbSet<IqxUser> IqxUsers { get; set; }
+        public DbSet<User> IqxUsers { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
@@ -107,7 +108,7 @@ namespace EwkQxObd.WebApi.Data
                 new { eco.ContractId, eco.SerialNumber }
             ).IsUnique();
 
-            modelBuilder.Entity<IqxOrganization>()
+            modelBuilder.Entity<Organization>()
                 .ToTable(tb => tb.HasTrigger("trg_SyncAccountGuid"));
 
         }
