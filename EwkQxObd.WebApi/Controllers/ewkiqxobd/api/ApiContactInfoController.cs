@@ -34,5 +34,11 @@ namespace EwkQxObd.WebApi.Controllers.ewkiqxobd.api
             return Result;
         }
 
+        [HttpOptions("{TextToSearch}")]
+        public async Task<IActionResult> GetOptionByName([FromRoute] string TextToSearch)
+        {
+            throw new NotImplementedException();
+        }
+
     }
 }
