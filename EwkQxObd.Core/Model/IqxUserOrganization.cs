@@ -46,9 +46,9 @@ namespace EwkQxObd.Core.Model
         public DateTime QueriedAt { get; set; }
 
 
-        public IqxUser ShallowCopy()
+        public IqxUserOrganization ShallowCopy()
         {
-            return (IqxUser)MemberwiseClone();
+            return (IqxUserOrganization)MemberwiseClone();
         }
     }
 }
