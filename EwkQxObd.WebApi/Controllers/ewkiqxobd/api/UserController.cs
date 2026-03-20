@@ -91,7 +91,7 @@ namespace EwkQxObd.WebApi.Controllers.ewkiqxobd.api
         }
 
         [HttpDelete("{UserId}")]
-        public async Task<IActionResult> Delete([FromRoute] int UserId)
+        public async Task<IActionResult> Delete([FromRoute] Guid UserId)
         {
             _logger.LogInformation("Delete IQX User");
             var UserToRemove = await _context.IqxUsers.FindAsync(UserId);
