@@ -9,8 +9,8 @@ using System.Threading.Tasks;
 
 namespace EwkQxObd.Core.Model
 {
-    [Table("User", Schema ="iqx")]
-    public class IqxUser
+    [Table("UserOrganization", Schema ="iqx")]
+    public class IqxUserOrganization
     {
         [Key]
         [Column(nameof(UserId), TypeName = "int")]
