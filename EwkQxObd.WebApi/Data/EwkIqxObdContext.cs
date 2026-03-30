@@ -15,6 +15,7 @@ namespace EwkQxObd.WebApi.Data
         public DbSet<Core.Model.Iqx.System> IqxSystem { get; set; }
         public DbSet<IqxNetworkInstrument> IqxInstrument { get; set; }
         public DbSet<Organization> Organization { get; set; }
+        public DbSet<UserOrganization> UserOrganization { get; set; }
 
 
         public DbSet<EqoContractObject> EqoContractObject { get; set; }

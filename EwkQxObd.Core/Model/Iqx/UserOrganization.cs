@@ -21,27 +21,17 @@ namespace EwkQxObd.Core.Model.Iqx
         public Guid UserGuid { get; set; }
 
         [JsonPropertyName("user")]
+        [NotMapped]
         public required User User { get; set; }
+         
+        [JsonIgnore]
+        [Column(nameof(OrgAccountNo), TypeName = "int")]
+        public int OrgAccountNo { get; set; }
 
-        [JsonPropertyName("email")]
-        [Column(nameof(Email), TypeName = "nvarchar(50)")]
-        public string Email { get; set; } = string.Empty;
-
-        [JsonPropertyName("firstName")]
-        [Column(nameof(FirstName), TypeName = "nvarchar(50)")]
-        public string FirstName { get; set; } = string.Empty;
-
-        [JsonPropertyName("lastName")]
-        [Column(nameof(LastName), TypeName = "nvarchar(50)")]
-        public string LastName { get; set; } = string.Empty;
-
-        [JsonPropertyName("locked")]
-        [Column(nameof(Locked), TypeName = "bit")]
-        public bool Locked { get; set; }
 
         [JsonPropertyName("organization")]
-        [Column(nameof(OrgGuid), TypeName = "uniqueidentifier")]
-        public Guid OrgGuid { get; set; }
+        [NotMapped]
+        public required Organization Organization { get; set; }
 
         [JsonPropertyName("queriedAt")]
         [Column(nameof(QueriedAt), TypeName = "datetime2(7)")]
