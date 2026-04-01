@@ -1,6 +1,9 @@
 ﻿using EwkQxObd.Api.Authentication;
 using EwkQxObd.Api.Authentication.ObjectModel;
+using EwkQxObd.WebApi.Authorization;
 using EwkQxObd.WebApi.Models.IqxApi;
+using Microsoft.AspNetCore.Authentication;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
@@ -9,14 +12,15 @@ namespace EwkQxObd.WebApi.Controllers.IqxApi
     
     public class IqxApiController : Controller
     {
-        private readonly AuthClient _authClient;
+        private readonly AuthHandler _authClient;
 
-        public IqxApiController(AuthClient AuthClient)
+        public IqxApiController(AuthHandler AuthClient)
         {
             _authClient = AuthClient;
         }
 
-
+        [HttpGet]
+        [AllowAnonymous]
         public IActionResult Login()
         {
             return View();
@@ -24,22 +28,22 @@ namespace EwkQxObd.WebApi.Controllers.IqxApi
 
 
         [HttpPost]
-        public async Task<IActionResult> SendRequest(AuthRequestBody requestBody)
+        [AllowAnonymous]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> Login(string username, string password, string? returnUrl = null)
         {
 
-            _authClient.AttachRequestBody(requestBody);
-
-            
-
-
-            var Result = await _authClient.Authenticate();
-
-            if (Result.LoginSuccess)
+            if (User.Identity.IsAuthenticated)
             {
-                HttpContext.Session.SetString("AccessToken", _authClient.AccessToken);
-            }
+                await HttpContext.SignInAsync("FossApi", User, new AuthenticationProperties
+                {
+                    IsPersistent = true,
+                    ExpiresUtc = DateTimeOffset.UtcNow.AddSeconds(3660)
+                });
 
-            return RedirectToAction(nameof(LoginResult), Result);
+                return Redirect(nameof(LoginResult));
+            }
+            return Redirect(nameof(LoginResult));
         }
 
         [HttpGet]

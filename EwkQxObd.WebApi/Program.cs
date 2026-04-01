@@ -1,3 +1,4 @@
+using EwkQxObd.WebApi.Authorization;
 using EwkQxObd.WebApi.Data;
 using EwkQxObd.WebApi.Models.IqxApi;
 using Microsoft.EntityFrameworkCore;
@@ -14,6 +15,7 @@ namespace EwkQxObd.WebApi
 
             // Add services to the container.
 
+            builder.Services.AddHttpClient();
             builder.Services.AddDistributedMemoryCache();
             builder.Services.AddSession(opts =>
             {
@@ -28,6 +30,16 @@ namespace EwkQxObd.WebApi
             builder.Services.AddControllersWithViews();
             builder.Services.AddMvc();
 
+            builder.Services.AddAuthentication(options =>
+            {
+                options.DefaultAuthenticateScheme = "FossApi";
+                options.DefaultChallengeScheme = "FossApi";
+            })
+            .AddScheme<AuthHandlerOption, AuthHandler>("FossApi", options =>
+            {
+
+            });
+
             builder.Services.AddDbContext<EwkIqxObdContext>(options =>
             {
                 options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection"));
@@ -40,7 +52,7 @@ namespace EwkQxObd.WebApi
             var app = builder.Build();
 
             // Configure the HTTP request pipeline.
-
+            app.UseAuthentication();
             app.UseAuthorization();
             app.MapControllerRoute(
                 name: "default",
