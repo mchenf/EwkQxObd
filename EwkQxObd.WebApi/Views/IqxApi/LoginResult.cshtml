@@ -1,14 +1,15 @@
 ﻿@using EwkQxObd.WebApi.Models.IqxApi
+@using System.Security.Claims
 
-@model LoginResultPageModel
+@model ClaimsPrincipal
 
-@if(Model.LoginSuccess)
+@if(Model.Identity is null)
 {
-    <h1>Login is Successful</h1>
+    <h1>Login Failed</h1>
 }
 else
 {
-    <h1>Login Failed</h1>
+    <h1>Welcome! @Model.Identity.Name</h1>
 }
 
 

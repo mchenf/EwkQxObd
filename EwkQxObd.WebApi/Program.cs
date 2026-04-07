@@ -1,6 +1,7 @@
 using EwkQxObd.WebApi.Authorization;
 using EwkQxObd.WebApi.Data;
 using EwkQxObd.WebApi.Models.IqxApi;
+using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using System.Diagnostics;
@@ -19,9 +20,11 @@ namespace EwkQxObd.WebApi
             builder.Services.AddDistributedMemoryCache();
             builder.Services.AddSession(opts =>
             {
-                opts.IdleTimeout = TimeSpan.FromSeconds(10);
+                opts.IdleTimeout = TimeSpan.FromSeconds(3660);
                 opts.Cookie.HttpOnly = true;
                 opts.Cookie.IsEssential = true;
+                opts.Cookie.SameSite = SameSiteMode.Lax;
+                opts.Cookie.SecurePolicy = CookieSecurePolicy.Always;
             });
 
             builder.Services.AddSingleton<AuthClient>();
@@ -30,15 +33,19 @@ namespace EwkQxObd.WebApi
             builder.Services.AddControllersWithViews();
             builder.Services.AddMvc();
 
-            builder.Services.AddAuthentication(options =>
+            builder.Services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
+            .AddCookie(options =>
             {
-                options.DefaultAuthenticateScheme = "FossApi";
-                options.DefaultChallengeScheme = "FossApi";
-            })
-            .AddScheme<AuthHandlerOption, AuthHandler>("FossApi", options =>
-            {
-
+                options.LoginPath = "/IqxApi/Login";          // 未登录时跳转的地址
+                options.LogoutPath = "/IqxApi/Logout";
+                options.ExpireTimeSpan = TimeSpan.FromDays(7); // Cookie 过期时间
+                options.SlidingExpiration = true;
+                options.Cookie.HttpOnly = true;
+                options.Cookie.SameSite = SameSiteMode.Lax;
+                options.Cookie.SecurePolicy = CookieSecurePolicy.Always;
             });
+
+            builder.Services.AddScoped<LoginManager>();
 
             builder.Services.AddDbContext<EwkIqxObdContext>(options =>
             {
@@ -52,6 +59,9 @@ namespace EwkQxObd.WebApi
             var app = builder.Build();
 
             // Configure the HTTP request pipeline.
+
+
+            app.UseSession();
             app.UseAuthentication();
             app.UseAuthorization();
             app.MapControllerRoute(
@@ -59,8 +69,6 @@ namespace EwkQxObd.WebApi
                 pattern: "{controller=Home}/{action=Index}/{id?}"
 
             );
-
-            app.UseSession();
 
             app.UseStaticFiles();
             app.MapControllers();

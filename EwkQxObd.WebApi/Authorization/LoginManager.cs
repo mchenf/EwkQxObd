@@ -19,7 +19,7 @@ namespace EwkQxObd.WebApi.Authorization
             _config = config;
         }
 
-        public async Task<AuthResponseBody?> Login(string username, string password)
+        public async Task<AuthResponseBody?> LoginAsync(string username, string password)
         {
             if (string.IsNullOrEmpty(username) || string.IsNullOrEmpty(password))
             {

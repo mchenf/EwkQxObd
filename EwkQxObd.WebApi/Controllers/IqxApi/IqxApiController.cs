@@ -3,20 +3,22 @@ using EwkQxObd.Api.Authentication.ObjectModel;
 using EwkQxObd.WebApi.Authorization;
 using EwkQxObd.WebApi.Models.IqxApi;
 using Microsoft.AspNetCore.Authentication;
+using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using System.Security.Claims;
 
 namespace EwkQxObd.WebApi.Controllers.IqxApi
 {
     
     public class IqxApiController : Controller
     {
-        private readonly AuthHandler _authClient;
+        private readonly LoginManager _loginManager;
 
-        public IqxApiController(AuthHandler AuthClient)
+        public IqxApiController(LoginManager loginManager)
         {
-            _authClient = AuthClient;
+            _loginManager = loginManager;
         }
 
         [HttpGet]
@@ -33,23 +35,62 @@ namespace EwkQxObd.WebApi.Controllers.IqxApi
         public async Task<IActionResult> Login(string username, string password, string? returnUrl = null)
         {
 
-            if (User.Identity.IsAuthenticated)
+            if (!ModelState.IsValid)
             {
-                await HttpContext.SignInAsync("FossApi", User, new AuthenticationProperties
+                return View();
+            }
+
+            try
+            {
+                var tokenResponse = await _loginManager.LoginAsync(username, password);
+
+                if (tokenResponse is null || string.IsNullOrEmpty(tokenResponse.AccessToken))
+                {
+                    ModelState.AddModelError("", "Empty response from auth0");
+                    return View();
+                }
+
+                HttpContext.Session.SetString("AccessToken", tokenResponse.AccessToken);
+                //TODO: Extend expire time or refresh token, etc.
+
+                var claims = new List<Claim>
+                {
+                    new Claim(ClaimTypes.Name, username)
+                };
+
+                var claimsIdentity = new ClaimsIdentity(claims, CookieAuthenticationDefaults.AuthenticationScheme);
+                var authProperties = new AuthenticationProperties
                 {
                     IsPersistent = true,
-                    ExpiresUtc = DateTimeOffset.UtcNow.AddSeconds(3660)
-                });
+                    ExpiresUtc = DateTimeOffset.UtcNow.AddDays(1)
+                };
 
+                await HttpContext.SignInAsync(
+                    CookieAuthenticationDefaults.AuthenticationScheme,
+                    new ClaimsPrincipal(claimsIdentity),
+                    authProperties
+                );
+                return Redirect(nameof(LoginResult));
+
+            }
+            catch (UnauthorizedAccessException)
+            {
                 return Redirect(nameof(LoginResult));
             }
-            return Redirect(nameof(LoginResult));
+            catch (Exception)
+            {
+                throw;
+            }
         }
 
+
+
         [HttpGet]
-        public IActionResult LoginResult(LoginResultPageModel Result)
+        [AllowAnonymous]
+        public IActionResult LoginResult()
         {
-            return View(Result);
+
+            return View(User);
 
         }
     }
