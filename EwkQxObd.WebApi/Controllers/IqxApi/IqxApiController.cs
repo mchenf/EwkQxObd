@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Infrastructure;
 using System.Security.Claims;
 
 namespace EwkQxObd.WebApi.Controllers.IqxApi
@@ -83,7 +84,16 @@ namespace EwkQxObd.WebApi.Controllers.IqxApi
             }
         }
 
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        [Authorize]
+        public async Task<IActionResult> Logout()
+        {
+            HttpContext.Session.Clear();
+            await HttpContext.SignOutAsync(CookieAuthenticationDefaults.AuthenticationScheme);
 
+            return RedirectToAction("Index", "Home");
+        }
 
         [HttpGet]
         [AllowAnonymous]
@@ -92,6 +102,13 @@ namespace EwkQxObd.WebApi.Controllers.IqxApi
 
             return View(User);
 
+        }
+
+        [HttpGet]
+        [AllowAnonymous]
+        public IActionResult Account()
+        {
+            return View(User);
         }
     }
 }

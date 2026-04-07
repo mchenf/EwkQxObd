@@ -1,0 +1,28 @@
+﻿@using EwkQxObd.WebApi.ViewComponents
+
+@model UserStatusViewModel
+
+@if (Model.IsAuthenticated)
+{
+    <div class="nav-item dropdown">
+        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown">
+            Hello, @Model.UserName!
+        </a>
+        <ul class="dropdown-menu dropdown-menu-end">
+            <li><a class="dropdown-item" asp-controller="IqxApi" asp-action="Account">Profile</a></li>
+            <li><hr class="dropdown-divider"></li>
+            <li>
+                <form asp-controller="IqxApi" asp-action="Logout" method="post" id="logoutForm">
+                    @Html.AntiForgeryToken()
+                    <button type="submit" class="dropdown-item">Logout</button>
+                </form>
+            </li>
+        </ul>
+    </div>
+}
+else
+{
+    <div class="nav-item">
+        <a class="nav-link" asp-controller="IqxApi" asp-action="Login">Login</a>
+    </div>
+}
