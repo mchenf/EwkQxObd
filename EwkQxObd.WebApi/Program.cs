@@ -1,5 +1,6 @@
 using EwkQxObd.WebApi.Authorization;
 using EwkQxObd.WebApi.Data;
+using EwkQxObd.WebApi.Data.FossApi;
 using EwkQxObd.WebApi.Models.IqxApi;
 using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.EntityFrameworkCore;
@@ -46,6 +47,7 @@ namespace EwkQxObd.WebApi
             });
 
             builder.Services.AddScoped<LoginManager>();
+            builder.Services.AddScoped<CommonBFF>();
 
             builder.Services.AddDbContext<EwkIqxObdContext>(options =>
             {
