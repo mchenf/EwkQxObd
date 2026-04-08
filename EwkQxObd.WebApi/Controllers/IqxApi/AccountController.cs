@@ -13,11 +13,11 @@ using System.Security.Claims;
 namespace EwkQxObd.WebApi.Controllers.IqxApi
 {
     
-    public class IqxApiController : Controller
+    public class AccountController : Controller
     {
         private readonly LoginManager _loginManager;
 
-        public IqxApiController(LoginManager loginManager)
+        public AccountController(LoginManager loginManager)
         {
             _loginManager = loginManager;
         }
@@ -106,7 +106,7 @@ namespace EwkQxObd.WebApi.Controllers.IqxApi
 
         [HttpGet]
         [AllowAnonymous]
-        public IActionResult Account()
+        public IActionResult Profile()
         {
             return View(User);
         }
