@@ -1,6 +1,7 @@
 ﻿using EwkQxObd.Api.Authentication;
 using EwkQxObd.Api.Authentication.ObjectModel;
 using EwkQxObd.WebApi.Authorization;
+using EwkQxObd.WebApi.Data.Encryption;
 using EwkQxObd.WebApi.Models.IqxApi;
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authentication.Cookies;
@@ -16,10 +17,12 @@ namespace EwkQxObd.WebApi.Controllers.IqxApi
     public class AccountController : Controller
     {
         private readonly LoginManager _loginManager;
+        private readonly ITokenProtector _protector;
 
-        public AccountController(LoginManager loginManager)
+        public AccountController(LoginManager loginManager, ITokenProtector protector)
         {
             _loginManager = loginManager;
+            _protector = protector;
         }
 
         [HttpGet]
@@ -51,9 +54,6 @@ namespace EwkQxObd.WebApi.Controllers.IqxApi
                     return View();
                 }
 
-                HttpContext.Session.SetString("AccessToken", tokenResponse.AccessToken);
-                //TODO: Extend expire time or refresh token, etc.
-
                 var claims = new List<Claim>
                 {
                     new Claim(ClaimTypes.Name, username)
@@ -71,6 +71,19 @@ namespace EwkQxObd.WebApi.Controllers.IqxApi
                     new ClaimsPrincipal(claimsIdentity),
                     authProperties
                 );
+
+                var encryptedToken = _protector.Protect(tokenResponse.AccessToken);
+
+                var cookieOptions = new CookieOptions
+                {
+                    HttpOnly = true,
+                    Secure = false,
+                    SameSite = SameSiteMode.Lax,
+                    Expires = DateTimeOffset.UtcNow.AddSeconds(tokenResponse.ExpiresIn)
+                };
+
+                Response.Cookies.Append("Auth0.AccessToken", encryptedToken, cookieOptions);
+
                 return Redirect(nameof(LoginResult));
 
             }

@@ -1,5 +1,6 @@
 using EwkQxObd.WebApi.Authorization;
 using EwkQxObd.WebApi.Data;
+using EwkQxObd.WebApi.Data.Encryption;
 using EwkQxObd.WebApi.Data.FossApi;
 using EwkQxObd.WebApi.Models.IqxApi;
 using Microsoft.AspNetCore.Authentication.Cookies;
@@ -57,6 +58,9 @@ namespace EwkQxObd.WebApi
                 options.EnableSensitiveDataLogging();
 #endif
             });
+
+            builder.Services.AddDataProtection();
+            builder.Services.AddScoped<ITokenProtector, TokenProtector>();
 
             var app = builder.Build();
 
