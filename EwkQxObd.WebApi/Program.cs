@@ -37,8 +37,8 @@ namespace EwkQxObd.WebApi
             builder.Services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
             .AddCookie(options =>
             {
-                options.LoginPath = "/IqxApi/Login";          // 未登录时跳转的地址
-                options.LogoutPath = "/IqxApi/Logout";
+                options.LoginPath = "/account/login";          // 未登录时跳转的地址
+                options.LogoutPath = "/account/Logout";
                 options.ExpireTimeSpan = TimeSpan.FromDays(7); // Cookie 过期时间
                 options.SlidingExpiration = true;
                 options.Cookie.HttpOnly = true;

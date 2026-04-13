@@ -1,0 +1,32 @@
+﻿@using EwkQxObd.Core.Model.Iqx
+
+@model List<Organization>
+
+    <h1>Organizations From IQX</h1>
+    <table class="table table-bordered">
+        <thead>
+            <tr>
+                <th>Account No.</th>
+                <th>Organization Name</th>
+                <th>City</th>
+                <th>Street</th>
+            </tr>
+        </thead>
+        <tbody>
+                @foreach (Organization item in Model)
+            {
+
+            <tr>
+                <td rowspan="2" class="text-center align-middle">@item.AccountNumber</td>
+                <td>@item.Name</td>
+                <td>@item.City</td>
+                <td>@item.Street</td>
+            </tr>
+            <tr>
+                <td class="text-center" colspan="2">
+                <code>@item.GeisGuid</code></td>
+                <td></td>
+            </tr>
+            }
+        </tbody>
+    </table>

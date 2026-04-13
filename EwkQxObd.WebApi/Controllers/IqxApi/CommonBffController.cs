@@ -1,7 +1,10 @@
-﻿using EwkQxObd.WebApi.Data.FossApi;
+﻿using EwkQxObd.Core.Model.Iqx;
+using EwkQxObd.WebApi.Data.FossApi;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http.HttpResults;
 using Microsoft.AspNetCore.Mvc;
+using System.Text.Json;
+using System.Text.Json.Serialization;
 
 namespace EwkQxObd.WebApi.Controllers.IqxApi
 {
@@ -16,9 +19,9 @@ namespace EwkQxObd.WebApi.Controllers.IqxApi
             _logger = logger;
         }
 
-        [HttpGet]
+        [HttpGet("[action]")]
         [Authorize]
-        public async Task<IActionResult> Index()
+        public async Task<IActionResult> Org()
         {
             var accessToken = HttpContext.Session.GetString("AccessToken");
             if (string.IsNullOrEmpty(accessToken))
@@ -26,9 +29,13 @@ namespace EwkQxObd.WebApi.Controllers.IqxApi
                 return Unauthorized();
             }
             var result = await _comBff.GetUserOrgsAsync(accessToken);
+            var options = new JsonSerializerOptions
+            {
+                NumberHandling = JsonNumberHandling.AllowReadingFromString
+            };
+            var orgs = JsonSerializer.Deserialize<List<Organization>>(result, options);
 
-
-            return Ok(result);
+            return View(orgs);
         }
     }
 }
