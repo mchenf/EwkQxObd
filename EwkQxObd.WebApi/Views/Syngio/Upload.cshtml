@@ -3,7 +3,7 @@
 *@
 @{
     ViewData["Title"] = "Syngio Upload";
-    string[] SystemsToChoose = { "Pacific", "China", "Pacific02" };
+    string[] SystemsToChoose = { "Pacific", "China", "Pacific02", "PacificGrain" };
 }
 @model NetworkCsvUploadViewModel
 <div class="container">
@@ -15,27 +15,36 @@
     </div>
 
     <div class="bg-dark text-white pt-1 ps-5">
-        <pre><code>SELECT
-    DB_NAME() AS [System],
-    GETDATE() AS [Query Timestamp],
-    [NTWK].[Name] AS [Network Name],
-    [NTWK].[NetworkID],
-    LOWER([NTWK].[OrganisationID]) AS [GEIS GUID],
-    [GRUP].[Name] AS [Instrument Group],
-    [INST].[SerialNumber] AS [Instrument SN],
-    [INST].[Name] AS [Instrument Name]
-FROM
-    [tblMfCdInstrument] AS [INST]
-    FULL OUTER JOIN [tblMfCdInstrumentGroup] AS [GRUP]
-                ON [INST].[InstrumentGroupLogicalID] = [GRUP].[InstrumentGroupLogicalID]
-    FULL OUTER JOIN [tblMfCdNetwork] AS [NTWK]
-                ON [NTWK].[NetworkID] = [GRUP].[NetworkID]
-WHERE
-    ([INST].[Obsolete] = 0 OR [INST].[Obsolete] IS NULL)
-    AND ([NTWK].[Obsolete] = 0 OR [NTWK].[Obsolete] IS NULL)
-    AND ([GRUP].[Obsolete] = 0 OR [GRUP].[Obsolete] IS NULL)
-ORDER BY
-        [NTWK].[Name], [GRUP].[Name]</code></pre>
+        <pre><code>WITH
+INST AS (
+  SELECT InstrumentGroupLogicalID, SerialNumber, Name, Obsolete
+  FROM dbo.tblMfCdInstrument
+  WHERE Obsolete = 0 OR Obsolete IS NULL
+),
+GRUP AS (
+  SELECT InstrumentGroupLogicalID, NetworkID, Name, Obsolete
+  FROM dbo.tblMfCdInstrumentGroup
+  WHERE Obsolete = 0 OR Obsolete IS NULL
+),
+NTWK AS (
+  SELECT NetworkID, Name, OrganisationID, Obsolete
+  FROM dbo.tblMfCdNetwork
+  WHERE Obsolete = 0 OR Obsolete IS NULL
+)
+SELECT
+  DB_NAME() AS [System],
+  GETDATE() AS [Query Timestamp],
+  NTWK.Name AS [Network Name],
+  NTWK.NetworkID,
+  LOWER(CONVERT(varchar(40), NTWK.OrganisationID)) AS [GEIS GUID],
+  GRUP.Name AS [Instrument Group],
+  INST.SerialNumber AS [Instrument SN],
+  INST.Name AS [Instrument Name]
+FROM INST
+FULL OUTER JOIN GRUP
+  ON INST.InstrumentGroupLogicalID = GRUP.InstrumentGroupLogicalID
+FULL OUTER JOIN NTWK
+  ON NTWK.NetworkID = GRUP.NetworkID;</code></pre>
     </div>
 
     <div class="col col-8 justify-content-center">
