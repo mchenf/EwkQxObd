@@ -23,6 +23,14 @@ namespace EwkQxObd.WebApi.Controllers.ewkiqxobd.api
             return View();
         }
 
+        [HttpGet("exist/{contractNumber}")]
+        public async Task<bool> Exist([FromRoute] int contractNumber)
+        {
+            var Result = await _context.EqoContract.AnyAsync(c => c.ContractNumber == contractNumber);
+
+            return Result;
+        }
+
         [HttpGet("{contractNumber}")]
         public async Task<EqoContract?> Get([FromRoute] int contractNumber)
         {
