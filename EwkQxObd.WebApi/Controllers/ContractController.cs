@@ -13,6 +13,7 @@ namespace EwkQxObd.WebApi.Controllers
 
         private readonly EwkIqxObdContext _context = ctx;
 
+
         [HttpGet]
         public IActionResult Index()
         {
@@ -23,7 +24,7 @@ namespace EwkQxObd.WebApi.Controllers
         [HttpGet]
         public IActionResult Create()
         {
-            return View();
+            return View(new EqoContract());
         }
 
         [HttpPost]

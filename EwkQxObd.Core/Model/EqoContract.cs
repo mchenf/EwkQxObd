@@ -22,7 +22,6 @@ namespace EwkQxObd.Core.Model
 
         [Required]
         [Column(nameof(ContractNumber), TypeName = "int")]
-        [Range(999, 99999999, ErrorMessage = "Not a valid contract number")]
         public int? ContractNumber { get; set; }
 
         [Required]
