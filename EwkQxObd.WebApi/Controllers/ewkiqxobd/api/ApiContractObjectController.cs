@@ -1,8 +1,10 @@
 ﻿using EwkQxObd.Core.Model;
 using EwkQxObd.WebApi.Data;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.CodeAnalysis.Elfie.Model.Strings;
 using Microsoft.EntityFrameworkCore;
 using System.Diagnostics.Contracts;
+using System.Text;
 using System.Threading.Tasks;
 
 namespace EwkQxObd.WebApi.Controllers.ewkiqxobd.api
@@ -18,6 +20,31 @@ namespace EwkQxObd.WebApi.Controllers.ewkiqxobd.api
         {
             _logger = logger;
             _context = dataContext;
+        }
+
+        private async Task<string> VerifyFK(EqoContractObject NewContractObj)
+        {
+            StringBuilder sb = new();
+            //Verify if instrument type can be found
+            bool CanFindInstType = await _context.InstrumentTypes.AnyAsync(c => c.InstrumentTypeID == NewContractObj.InstrumentType);
+            if (!CanFindInstType)
+            {
+                sb.AppendLine("Use a valid instrument type");
+            }
+            bool CanFindContract = await _context.EqoContract.AnyAsync(c => c.Id == NewContractObj.ContractId);
+            if (!CanFindContract)
+            {
+                sb.AppendLine("Use a valid contract");
+            }
+
+            bool CanFindShipTo = await _context.Organization.AnyAsync(c => c.AccountNumber == NewContractObj.ShipToId);
+            if (!CanFindShipTo)
+            {
+                sb.AppendLine("Use a valid organization as shipto");
+            }
+
+            return sb.ToString();
+
         }
 
         [HttpPost]
@@ -39,6 +66,15 @@ namespace EwkQxObd.WebApi.Controllers.ewkiqxobd.api
                 return BadRequest(new
                 {
                     Message = $"Duplicated ID: {NewContractObj.Id}."
+                });
+            }
+
+            var verMessage = await VerifyFK(NewContractObj);
+            if (!string.IsNullOrEmpty(verMessage))
+            {
+                return BadRequest(new
+                {
+                    Message = verMessage
                 });
             }
 
@@ -84,11 +120,22 @@ namespace EwkQxObd.WebApi.Controllers.ewkiqxobd.api
 
             var Found = await _context.EqoContractObject.FindAsync(ContractObjectId);
 
+
+
             if (Found is null)
             {
                 return NotFound(new
                 {
                     Message = $"Object with ID {ContractObjectId} does not exist."
+                });
+            }
+
+            var verMessage = await VerifyFK(Update);
+            if (!string.IsNullOrEmpty(verMessage))
+            {
+                return BadRequest(new
+                {
+                    Message = verMessage
                 });
             }
 
