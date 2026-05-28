@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 namespace EwkQxObd.WebApi.Controllers.ewkiqxobd.api
 {
     [ApiController]
-    [Route("ewkiqxobd/api/ContractObject/[Action]")]
+    [Route("ewkiqxobd/api/ContractObject")]
     public class ApiContractObjectController : Controller
     {
         private readonly ILogger<ApiContractObjectController> _logger;
@@ -19,12 +19,87 @@ namespace EwkQxObd.WebApi.Controllers.ewkiqxobd.api
             _context = dataContext;
         }
 
-        public IActionResult Index()
+        [HttpPost]
+        public async Task<IActionResult> Create([FromBody] EqoContractObject NewContractObj)
         {
-            return View();
+            if (NewContractObj == null)
+            {
+                return BadRequest(new
+                {
+                    Message = "Must supply a valid, non-null contract object."
+                });
+            }
+
+            bool IsDuplicate = await _context.EqoContractObject.AnyAsync(c => c.Id == NewContractObj.Id);
+
+            if (IsDuplicate)
+            {
+                return BadRequest(new
+                {
+                    Message = $"Duplicated ID: {NewContractObj.Id}."
+                });
+            }
+
+            await _context.EqoContractObject.AddAsync(NewContractObj);
+
+            await _context.SaveChangesAsync();
+
+            return Ok(new
+            {
+                Message = "ContractObject Created.",
+                New = NewContractObj
+            });
+        }
+        [HttpGet("{ContractObjectId}")]
+        public async Task<IActionResult> Read([FromRoute] int ContractObjectId)
+        {
+            var Found = await _context.EqoContractObject.FindAsync(ContractObjectId);
+
+            if (Found is null)
+            {
+                return NotFound(new
+                {
+                    Message = $"Object with ID {ContractObjectId} does not exist."
+                });
+            }
+
+            return Ok(Found);
         }
 
         [HttpGet]
+        [Produces("application/json")]
+        public async Task<IActionResult> Index([FromQuery]int Offset = 0, [FromQuery]int Take = 50)
+        {
+            if (Offset < 0 || Take <= 0)
+            {
+                return BadRequest("Offset must be greater than 0, Take must be greater than 1.");
+            }
+
+            var query = _context.EqoContractObject.AsQueryable();
+
+            int total = await query.CountAsync();
+
+
+            var items = await query
+                .Skip(Offset)
+                .Take(Take)
+                .ToListAsync();
+
+            var result = new
+            {
+                Offset,
+                Take,
+                Total = total,
+                Items = items.Count,
+                Data = items
+            };
+
+
+
+            return Ok(result);
+        }
+
+        [HttpGet("[Action]")]
         public async Task<IActionResult> Details()
         {
             var result = await _context.EqoContractObject
@@ -38,7 +113,7 @@ namespace EwkQxObd.WebApi.Controllers.ewkiqxobd.api
             return NoContent();
         }
 
-        [HttpGet]
+        [HttpGet("[Action]")]
         [Produces("application/json")]
         public async Task<IActionResult> BusinessUnits()
         {
@@ -49,7 +124,7 @@ namespace EwkQxObd.WebApi.Controllers.ewkiqxobd.api
             return Ok(new { contentType = "application/json", values = BU });
         }
 
-        [HttpGet]
+        [HttpGet("[Action]")]
         [Produces("application/json")]
         public async Task<IActionResult> TopInstTypes()
         {
@@ -61,8 +136,7 @@ namespace EwkQxObd.WebApi.Controllers.ewkiqxobd.api
             return Ok(new { contentType = "application/json", values = OrderedInst });
         }
 
-        [Route("{BusinessUnit}")]
-        [HttpGet]
+        [HttpGet("[Action]/{BusinessUnit}")]
         [Produces("application/json")]
         public async Task<IActionResult> InstrumentType([FromRoute]string BusinessUnit)
         {
@@ -80,7 +154,7 @@ namespace EwkQxObd.WebApi.Controllers.ewkiqxobd.api
         }
 
 
-        [HttpPost]
+        [HttpPost("[Action]")]
         [Consumes("application/json")]
         [Produces("application/json")]
         public async Task<IActionResult> NewContractSingle(EqoContractObject contractObj)
