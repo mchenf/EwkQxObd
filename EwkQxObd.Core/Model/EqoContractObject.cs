@@ -7,6 +7,7 @@ using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Text;
+using System.Text.Json.Serialization;
 using System.Threading.Tasks;
 
 namespace EwkQxObd.Core.Model
@@ -32,14 +33,20 @@ namespace EwkQxObd.Core.Model
         [Column("ShipTo")]
         public int ShipToId { get; set; }
 
+        [JsonIgnore]
         public EqoContract? Contract { get; set; }
+        [JsonIgnore]
         public Organization? ShipTo { get; set; }
 
+        [JsonIgnore]
         public int AccountNumber { get => ShipTo == default ? -1 : ShipTo.AccountNumber; }
+        [JsonIgnore]
         public string? PartnerName { get => ShipTo == default ? null : ShipTo.Name; }
 
+        [JsonIgnore]
         public int? ContractNumber { get => Contract == default ? -1 : Contract.ContractNumber; }
 
+        [JsonIgnore]
         [NotMapped]
         public Syngio? InstrumentConnected { get; set; }
 
