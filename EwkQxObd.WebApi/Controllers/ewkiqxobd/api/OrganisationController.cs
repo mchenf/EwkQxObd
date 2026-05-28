@@ -1,5 +1,5 @@
 ﻿using EwkQxObd.Core.Model.Iqx;
-
+using EwkQxObd.WebApi.Controllers.ewkiqxobd.Common;
 using EwkQxObd.WebApi.Data;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
@@ -13,49 +13,30 @@ namespace EwkQxObd.WebApi.Controllers.ewkiqxobd.api
         private readonly ILogger<OrganisationController> _logger;
         private readonly EwkIqxObdContext _context;
 
-        public OrganisationController(ILogger<OrganisationController> logger, EwkIqxObdContext dataContext)
+        private readonly Helper _helper;
+
+        public OrganisationController(
+            ILogger<OrganisationController> logger, 
+            EwkIqxObdContext dataContext,
+            Helper helper)
         {
             _logger = logger;
             _context = dataContext;
+            _helper = helper;
         }
 
         [HttpGet]
         [Produces("application/json")]
         public async Task<IActionResult> ListAll([FromQuery] int Offset = 0, [FromQuery] int Take = 30)
         {
-            if (Offset < 0 || Take <= 0)
-            {
-                return BadRequest("Offset must be greater than 0, Take must be greater than 1.");
-            }
 
-            var query = _context.Organization.AsQueryable();
-
-            int total = await query.CountAsync();
-
-
-            var items = await query
-                .Skip(Offset)
-                .Take(Take)
-                .ToListAsync();
-
-            var result = new
-            {
+            return await _helper.PaginatedListAll<Organization>(
                 Offset,
                 Take,
-                Total = total,
-                Items = items.Count,
-                Data = items
-            };
-
-
-
-            return Ok(result);
-        }
-
-        [HttpGet]
-        public IEnumerable<Organization> Get()
-        {
-            return _context.Organization;
+                () => _context.Organization.AsQueryable(),
+                () => BadRequest("Offset must be greater than 0, Take must be greater than 1."),
+                c => Ok(c)
+             );
         }
 
         [HttpPost("bulk")]

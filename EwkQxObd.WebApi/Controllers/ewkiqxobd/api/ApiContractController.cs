@@ -1,4 +1,5 @@
 ﻿using EwkQxObd.Core.Model;
+using EwkQxObd.WebApi.Controllers.ewkiqxobd.Common;
 using EwkQxObd.WebApi.Data;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
@@ -11,16 +12,16 @@ namespace EwkQxObd.WebApi.Controllers.ewkiqxobd.api
     {
         private readonly ILogger<ApiContractController> _logger;
         private readonly EwkIqxObdContext _context;
+        private readonly Helper _helper;
 
-        public ApiContractController(ILogger<ApiContractController> logger, EwkIqxObdContext dataContext)
+        public ApiContractController(
+            ILogger<ApiContractController> logger, 
+            EwkIqxObdContext dataContext, 
+            Helper helper)
         {
             _logger = logger;
             _context = dataContext;
-        }
-
-        public IActionResult Index()
-        {
-            return View();
+            _helper = helper;
         }
 
         [HttpGet("exist/{contractNumber}")]
@@ -100,10 +101,16 @@ namespace EwkQxObd.WebApi.Controllers.ewkiqxobd.api
         }
 
         [HttpGet]
-        public IEnumerable<EqoContract> List()
+        [Produces("application/json")]
+        public async Task<IActionResult> Index([FromQuery] int Offset = 0, [FromQuery] int Take = 50)
         {
-            return _context.EqoContract;
-
+            return await _helper.PaginatedListAll<EqoContract>(
+                Offset,
+                Take,
+                () => _context.EqoContract.AsQueryable(),
+                () => BadRequest("Offset must be greater than 0, Take must be greater than 1."),
+                c => Ok(c)
+             );
         }
 
 

@@ -1,4 +1,5 @@
 using EwkQxObd.WebApi.Authorization;
+using EwkQxObd.WebApi.Controllers.ewkiqxobd.Common;
 using EwkQxObd.WebApi.Data;
 using EwkQxObd.WebApi.Data.Encryption;
 using EwkQxObd.WebApi.Data.FossApi;
@@ -30,6 +31,7 @@ namespace EwkQxObd.WebApi
             });
 
             builder.Services.AddSingleton<AuthClient>();
+            builder.Services.AddScoped<Helper>();
 
             builder.Services.AddControllers();
             builder.Services.AddControllersWithViews();

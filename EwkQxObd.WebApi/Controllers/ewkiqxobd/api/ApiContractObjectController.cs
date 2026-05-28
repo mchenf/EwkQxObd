@@ -1,4 +1,6 @@
 ﻿using EwkQxObd.Core.Model;
+using EwkQxObd.Core.Model.Iqx;
+using EwkQxObd.WebApi.Controllers.ewkiqxobd.Common;
 using EwkQxObd.WebApi.Data;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.CodeAnalysis.Elfie.Model.Strings;
@@ -16,10 +18,15 @@ namespace EwkQxObd.WebApi.Controllers.ewkiqxobd.api
         private readonly ILogger<ApiContractObjectController> _logger;
         private readonly EwkIqxObdContext _context;
 
-        public ApiContractObjectController(ILogger<ApiContractObjectController> logger, EwkIqxObdContext dataContext)
+        private readonly Helper _helper;
+        public ApiContractObjectController(
+            ILogger<ApiContractObjectController> logger, 
+            EwkIqxObdContext dataContext,
+            Helper helper)
         {
             _logger = logger;
             _context = dataContext;
+            _helper = helper;
         }
 
         private async Task<string> VerifyFK(EqoContractObject NewContractObj)
@@ -191,33 +198,13 @@ namespace EwkQxObd.WebApi.Controllers.ewkiqxobd.api
         [Produces("application/json")]
         public async Task<IActionResult> Index([FromQuery]int Offset = 0, [FromQuery]int Take = 50)
         {
-            if (Offset < 0 || Take <= 0)
-            {
-                return BadRequest("Offset must be greater than 0, Take must be greater than 1.");
-            }
-
-            var query = _context.EqoContractObject.AsQueryable();
-
-            int total = await query.CountAsync();
-
-
-            var items = await query
-                .Skip(Offset)
-                .Take(Take)
-                .ToListAsync();
-
-            var result = new
-            {
+            return await _helper.PaginatedListAll<EqoContractObject>(
                 Offset,
                 Take,
-                Total = total,
-                Items = items.Count,
-                Data = items
-            };
-
-
-
-            return Ok(result);
+                () => _context.EqoContractObject.AsQueryable(),
+                () => BadRequest("Offset must be greater than 0, Take must be greater than 1."),
+                c => Ok(c)
+             );
         }
 
         [HttpGet("[Action]")]
