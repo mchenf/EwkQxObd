@@ -19,9 +19,37 @@ namespace EwkQxObd.WebApi.Controllers.ewkiqxobd.api
             _context = dataContext;
         }
 
-        public IActionResult Index()
+        [HttpGet]
+        [Produces("application/json")]
+        public async Task<IActionResult> ListAll([FromQuery] int Offset = 0, [FromQuery] int Take = 30)
         {
-            return View();
+            if (Offset < 0 || Take <= 0)
+            {
+                return BadRequest("Offset must be greater than 0, Take must be greater than 1.");
+            }
+
+            var query = _context.Organization.AsQueryable();
+
+            int total = await query.CountAsync();
+
+
+            var items = await query
+                .Skip(Offset)
+                .Take(Take)
+                .ToListAsync();
+
+            var result = new
+            {
+                Offset,
+                Take,
+                Total = total,
+                Items = items.Count,
+                Data = items
+            };
+
+
+
+            return Ok(result);
         }
 
         [HttpGet]
