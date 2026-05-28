@@ -2,6 +2,7 @@
 using EwkQxObd.WebApi.Data;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using System.Diagnostics.Contracts;
 using System.Threading.Tasks;
 
 namespace EwkQxObd.WebApi.Controllers.ewkiqxobd.api
@@ -20,6 +21,7 @@ namespace EwkQxObd.WebApi.Controllers.ewkiqxobd.api
         }
 
         [HttpPost]
+        [Produces("application/json")]
         public async Task<IActionResult> Create([FromBody] EqoContractObject NewContractObj)
         {
             if (NewContractObj == null)
@@ -50,7 +52,9 @@ namespace EwkQxObd.WebApi.Controllers.ewkiqxobd.api
                 New = NewContractObj
             });
         }
+
         [HttpGet("{ContractObjectId}")]
+        [Produces("application/json")]
         public async Task<IActionResult> Read([FromRoute] int ContractObjectId)
         {
             var Found = await _context.EqoContractObject.FindAsync(ContractObjectId);
@@ -64,6 +68,76 @@ namespace EwkQxObd.WebApi.Controllers.ewkiqxobd.api
             }
 
             return Ok(Found);
+        }
+
+        [HttpPut("{ContractObjectId}")]
+        [Produces("application/json")]
+        public async Task<IActionResult> Update([FromRoute] int ContractObjectId, [FromBody] EqoContractObject Update)
+        {
+            if (ContractObjectId != Update.Id)
+            {
+                return BadRequest( new
+                {
+                    Message = "Compare carefully the id to target and the one in payload object."
+                });
+            }
+
+            var Found = await _context.EqoContractObject.FindAsync(ContractObjectId);
+
+            if (Found is null)
+            {
+                return NotFound(new
+                {
+                    Message = $"Object with ID {ContractObjectId} does not exist."
+                });
+            }
+
+            EqoContractObject old = new ()
+            {
+                Id = Found.Id,
+                InstrumentType = Found.InstrumentType,
+                SerialNumber = Found.SerialNumber,
+                ContractId = Found.ContractId,
+                ShipToId = Found.ShipToId,
+            };
+
+            Found.SerialNumber = Update.SerialNumber;
+            Found.InstrumentType = Update.InstrumentType;
+            Found.ContractId = Update.ContractId;
+            Found.ShipToId = Update.ShipToId;
+
+            await _context.SaveChangesAsync();
+
+            return Ok(new
+            {
+                Message = "Update successful.",
+                Old = old,
+                New = Found
+            });
+        }
+
+        [HttpDelete("{ContractObjectId}")]
+        public async Task<IActionResult> Delete([FromRoute] int ContractObjectId)
+        {
+            var Found = await _context.EqoContractObject.FindAsync(ContractObjectId);
+
+            if (Found is null)
+            {
+                return NotFound(new
+                {
+                    Message = $"Object with ID {ContractObjectId} does not exist."
+                });
+            }
+
+            _context.EqoContractObject.Remove(Found);
+
+            await _context.SaveChangesAsync();
+
+            return Ok(new
+            {
+                Message = $"ContractObject {ContractObjectId} is deleted.",
+                Deleted = Found
+            });
         }
 
         [HttpGet]
