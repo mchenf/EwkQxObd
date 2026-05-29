@@ -24,7 +24,7 @@ namespace EwkQxObd.WebApi.Controllers.ewkiqxobd.api
             _helper = helper;
         }
 
-        [HttpGet("exist/{contractNumber}")]
+        [HttpGet("{contractNumber}/[Action]")]
         public async Task<bool> Exist([FromRoute] int contractNumber)
         {
             var Result = await _context.EqoContract.AnyAsync(c => c.ContractNumber == contractNumber);
