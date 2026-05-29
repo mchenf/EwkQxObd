@@ -17,6 +17,7 @@ namespace EwkQxObd.Core.Model.Iqx
         [Key]
         [JsonPropertyName("accountNumber")]
         [Column(nameof(AccountNumber), TypeName = "int")]
+        [Range(10000, 9999999)]
         public int AccountNumber { get; set; } = int.MinValue;
 
         [JsonPropertyName("id")]
@@ -25,24 +26,29 @@ namespace EwkQxObd.Core.Model.Iqx
 
         [JsonPropertyName("name")]
         [Column(nameof(Name), TypeName = "nvarchar(64)")]
+        [StringLength(64)]
         public string? Name { get; set; } = string.Empty;
 
 
         [JsonPropertyName("region")]
         [Column(nameof(Region), TypeName = "nvarchar(16)")]
+        [StringLength(16)]
         public string? Region { get; set; } = string.Empty;
 
 
         [JsonPropertyName("country")]
         [Column(nameof(Country), TypeName = "nvarchar(16)")]
+        [StringLength(16)]
         public string? Country { get; set; } = string.Empty;
 
         [JsonPropertyName("city")]
         [Column(nameof(City), TypeName = "nvarchar(64)")]
+        [StringLength(64)]
         public string? City { get; set; } = string.Empty;
 
         [JsonPropertyName("street")]
         [Column(nameof(Street), TypeName = "nvarchar(128)")]
+        [StringLength(128)]
         public string? Street { get; set; } = string.Empty;
 
     }
