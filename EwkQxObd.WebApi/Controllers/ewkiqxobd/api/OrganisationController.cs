@@ -129,7 +129,7 @@ namespace EwkQxObd.WebApi.Controllers.ewkiqxobd.api
             });
         }
 
-        [HttpDelete("{ContractObjectId}")]
+        [HttpDelete("{AccountNumber}")]
         [Produces("application/json")]
         public async Task<IActionResult> Delete([FromRoute] int AccountNumber)
         {
