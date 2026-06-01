@@ -10,6 +10,7 @@ const ContractNumber = '#iptContractNumber';
 const Description = '#rowDescription';
 const DesIpt = '#iptContractDesc';
 const ValidFrom = '#rowValidFrom';
+//TODO: Progressive form filling to complete
 
 setInputEvent($(ContractNumber), checkContractNumber);
 setInputEvent($(DesIpt), checkDescription);
