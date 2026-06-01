@@ -4,36 +4,24 @@
 //released: 6/1/2026
 
 
-export function toggleFieldDisplay(elmTag) {
-    let elm = document.getElementById(elmTag);
-    if (elm === null) {
-        throw new Error(`Element with ID '${elmTag}' cannot be found.`);
-    }
-    if (elm.classList.contains('d-none')) {
-        elm.classList.remove('d-none');
-    }
-    else {
-        elm.classList.add('d-none');
-    }
-}
 
 export function ensureFieldDisplayOn(elmTag) {
-    let elm = document.getElementById(elmTag);
-    if (elm === null) {
+    let elm = $(elmTag);
+    if (elm.length === 0) {
         throw new Error(`Element with ID '${elmTag}' cannot be found.`);
     }
-    if (elm.classList.contains('d-none')) {
-        elm.classList.remove('d-none');
+    if (elm.hasClass('d-none')) {
+        elm.removeClass('d-none');
     }
 }
 
 export function ensureFieldDisplayOff(elmTag) {
-    let elm = document.getElementById(elmTag);
-    if (elm === null) {
+    let elm = $(elmTag);
+    if (elm.length === 0) {
         throw new Error(`Element with ID '${elmTag}' cannot be found.`);
     }
-    if (!elm.classList.contains('d-none')) {
-        elm.classList.add('d-none');
+    if (!elm.hasClass('d-none')) {
+        elm.addClass('d-none');
     }
 }
 

@@ -6,10 +6,13 @@
 import { ensureFieldDisplayOn, ensureFieldDisplayOff } from './iterateField.js'
 
 
-const Number = '#iptContractNumber';
-const Description = 'rowDescription';
+const ContractNumber = '#iptContractNumber';
+const Description = '#rowDescription';
+const DesIpt = '#iptContractDesc';
+const ValidFrom = '#rowValidFrom';
 
-setInputEvent($(Number), checkContractNumber);
+setInputEvent($(ContractNumber), checkContractNumber);
+setInputEvent($(DesIpt), checkDescription);
 
 function setInputEvent(inputElement, checkObj, num) {
     let debounceTimer;
@@ -21,7 +24,6 @@ function setInputEvent(inputElement, checkObj, num) {
 
 
         if (identifier.length === 0) {
-            resetForm();
             return;
         }
 
@@ -43,6 +45,14 @@ function checkObj(identifier, fetchUrl, fillAction) {
         .catch(e => {
             console.error('Error:', e);
         })
+}
+
+function checkDescription(DescriptionText) {
+
+    if (!DescriptionText) return;
+    if (DescriptionText.length > 5) {
+        ensureFieldDisplayOn(ValidFrom);
+    }
 }
 
 function checkContractNumber(contractNumber) {
