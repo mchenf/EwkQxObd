@@ -21,7 +21,6 @@
 
   <ItemGroup>
     <ProjectReference Include="..\EwkQxObd.Api\EwkQxObd.Api.csproj" />
-    <ProjectReference Include="..\EwkQxObd.Data\EwkQxObd.Data.csproj" />
     <ProjectReference Include="..\EwkQxObd.Pwsh\EwkQxObd.Pwsh.csproj" />
   </ItemGroup>
 

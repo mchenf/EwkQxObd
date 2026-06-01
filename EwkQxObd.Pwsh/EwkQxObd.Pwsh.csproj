@@ -17,9 +17,6 @@
 
   <ItemGroup>
     <ProjectReference Include="..\EwkQxObd.Api\EwkQxObd.Api.csproj" />
-    <ProjectReference Include="..\EwkQxObd.Data\EwkQxObd.Data.csproj">
-      <ReferenceOutputAssembly>True</ReferenceOutputAssembly>
-    </ProjectReference>
   </ItemGroup>
 
 </Project>
