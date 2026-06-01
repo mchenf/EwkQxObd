@@ -3,6 +3,8 @@ using EwkQxObd.WebApi.Controllers.ewkiqxobd.Common;
 using EwkQxObd.WebApi.Data;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using System.Linq.Expressions;
+using System.Reflection.Metadata;
 
 namespace EwkQxObd.WebApi.Controllers.ewkiqxobd.api
 {
@@ -161,6 +163,83 @@ namespace EwkQxObd.WebApi.Controllers.ewkiqxobd.api
                 Message = $"Contract {ContractId} is deleted.",
                 Deleted = found
             });
+        }
+
+        [HttpGet("[Action]")]
+        [Produces("application/json")]
+        public async Task<IActionResult> Match([FromQuery] int ContractNo)
+        {
+
+            int digits = GetDigit(ContractNo);
+
+            if (digits < 3 || digits > 8)
+            {
+                return BadRequest();
+            }
+
+            int Lbound = ContractNo;
+            int UBound = ContractNo + 1;
+
+            var Query = _context.EqoContract.AsQueryable();
+
+            int NBound = 8 - digits;
+
+            var Bounds = new List<Expression<Func<EqoContract, bool>>>();
+
+            for (int i = 0; i < NBound; i++)
+            {
+                var l = Lbound;
+                var u = UBound;
+
+                Bounds.Add(c => c.ContractNumber >= l && c.ContractNumber < u);
+
+                Lbound *= 10;
+                UBound *= 10;
+            }
+
+            Expression<Func<EqoContract, bool>> combined = Bounds[0];
+
+            foreach (var p in Bounds.Skip(1))
+            {
+                combined = combined.OrElse(p);
+            }
+
+            if (combined is not null)
+            {
+                Query = Query.Where(combined);
+            }
+
+
+            var Result = await Query.ToListAsync();
+
+            if (Result is null)
+            {
+                return NoContent();
+            }
+
+            return Ok(Result);
+        }
+
+        private int GetDigit(int n)
+        {
+            if (n == 0)
+            {
+                return 1;
+            }
+
+            if (n < 0)
+            {
+                throw new ArgumentOutOfRangeException();
+            }
+
+            int count = 0;
+
+            while (n > 0)
+            {
+                n /= 10;
+                count++;
+            }
+            return count;
         }
 
     }
