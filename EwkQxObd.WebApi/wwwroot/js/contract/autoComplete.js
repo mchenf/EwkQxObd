@@ -31,36 +31,6 @@ function setInputEvent(inputElement, checkObj, num) {
     });
 }
 
-
-
-function formatDate(date) {
-    if (!date) return;
-    var d = new Date(date);
-    const yyyy = d.getFullYear().toString().padStart(4, "0");
-    const MM = (d.getMonth() + 1).toString().padStart(2, "0");
-    const dd = d.getDate().toString().padStart(2, "0");
-    return `${yyyy}-${MM}-${dd}`
-
-}
-
-function formatDateTime(dateTime) {
-    if (!dateTime) return;
-    var d = new Date(dateTime);
-    const yyyy = d.getFullYear().toString().padStart(4, "0");
-    const MM = (d.getMonth() + 1).toString().padStart(2, "0");
-    const dd = d.getDate().toString().padStart(2, "0");
-
-    const HH = d.getHours().toString().padStart(2, "0");
-    const mm = d.getMinutes().toString().padStart(2, "0");
-
-
-
-    return `${yyyy}-${MM}-${dd} ${HH}:${mm}`
-
-}
-
-
-
 function checkObj(identifier, fetchUrl, fillAction) {
     if (!identifier) return;
     fetch(fetchUrl)
