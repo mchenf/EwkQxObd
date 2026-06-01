@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.CodeAnalysis.Elfie.Model.Strings;
 using Microsoft.EntityFrameworkCore;
 using System.Diagnostics.Contracts;
+using System.Linq.Expressions;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -325,6 +326,82 @@ namespace EwkQxObd.WebApi.Controllers.ewkiqxobd.api
             return Ok(new { Consumes = "application/json", Values = contractObjToSync });
 
 
+        }
+
+        [HttpPost("[Action]")]
+        [Consumes("application/json")]
+        [Produces("application/json")]
+        public async Task<IActionResult> Filter([FromBody] ContractObjectFilter filter)
+        {
+            var query = _context.EqoContractObject.AsQueryable();
+
+            var conditions = new List<Expression<Func<EqoContractObject, bool>>>();
+
+            if (!string.IsNullOrEmpty(filter.SerialNumber))
+            {
+                conditions.Add(o => o.SerialNumber == filter.SerialNumber);
+            }
+            if(filter.InstrumentType is not null)
+            {
+                conditions.Add(o => o.InstrumentType == filter.InstrumentType);
+            }
+            if(filter.ContractNumber is not null)
+            {
+                var contractId = await _context.EqoContract
+                    .Where(c => c.ContractNumber == filter.ContractNumber)
+                    .Select(c => c.Id)
+                    .SingleOrDefaultAsync();
+                if(contractId == null)
+                {
+                    return NotFound(new
+                    {
+                        Message = $"Contract number {filter.ContractNumber} does not exist."
+                    });
+                }
+                else
+                {
+                    conditions.Add(o => o.ContractId == contractId);
+                }
+            }
+            if (filter.ShipToNumber is not null)
+            {
+                conditions.Add(o => o.ShipToId == filter.ShipToNumber);
+
+            }
+
+            Expression<Func<EqoContractObject, bool>>  combined = conditions[0];
+
+            foreach (var q in conditions.Skip(1))
+            {
+                combined = combined.And(q);
+
+            }
+
+            if (combined is not null)
+            {
+                query = query.Where(combined);
+
+            }
+
+            var found = await query.ToListAsync();
+            if (found == null)
+            {
+                return NoContent();
+
+            }
+            else
+            {
+                return Ok(found);
+            }
+
+
+        }
+
+        [HttpGet("[Action]")]
+        [Produces("application/json")]
+        public IActionResult Filter()
+        {
+            return Ok(new ContractObjectFilter());
         }
 
     }
