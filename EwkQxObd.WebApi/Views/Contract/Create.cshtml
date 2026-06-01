@@ -8,18 +8,36 @@
 </div>
 
 <form asp-action="Create" method="post">
-    <div class="container mt-4 justify-content-around">
+    <div class="container mt-4 justify-content-around g-2">
         <input type="hidden" class="form-control" id="iptContractId" asp-for="Id"/>
-        <div class="row">
+        <div class="row mb-3">
             <div class="col-2">
                 <label for="iptContractNumber" class="col-form-label w-100 text-end">
                     Contract Number
                 </label>
             </div>
-            <div class="col-3">
-                <input type="text" class="form-control" id="iptContractNumber" asp-for="ContractNumber"/>
-                <span asp-validation-for="ContractNumber" class="text-danger"></span>
+            <div class="col-4">
+                <input type="text" class="form-control" id="iptContractNumber" list="contractListOpt" asp-for="ContractNumber"/>
+
             </div>
         </div>
+        <div class="row d-none mb-3" id="rowDescription">
+            <div class="col-2">
+                <label for="iptContractDesc" class="col-form-label w-100 text-end">
+                    Description
+                </label>
+            </div>
+            <div class="col-6">
+                <input type="text" class="form-control" id="iptContractDesc" asp-for="Description"/>
+
+            </div>
+        </div>
+
     </div>
 </form>
+@section Scripts {
+
+    <script type="module" src="~/js/contract/autocomplete.js" asp-append-version="true"></script>
+    <script type="module" src="~/js/contract/iterateField.js" asp-append-version="true"></script>
+
+}
