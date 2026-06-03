@@ -3,25 +3,29 @@ using EwkQxObd.WebApi.Data;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using System.Net;
+using System.Threading.Tasks;
 
 namespace EwkQxObd.WebApi.Controllers.ewkiqxobd.api
 {
     [ApiController]
-    [Route("ewkiqxobd/api/contactinfo")]
-    public class ApiContactInfoController : Controller
+    [Route("ewkiqxobd/api/{controller}")]
+    public class ContactController : Controller
     {
-        private readonly ILogger<ApiContactInfoController> _logger;
+        private readonly ILogger<ContactController> _logger;
         private readonly EwkIqxObdContext _context;
 
-        public ApiContactInfoController(ILogger<ApiContactInfoController> logger, EwkIqxObdContext dataContext)
+        public ContactController(ILogger<ContactController> logger, EwkIqxObdContext dataContext)
         {
             _logger = logger;
             _context = dataContext;
         }
 
-        public IActionResult Index()
+        [HttpGet]
+        [Produces("application/json")]
+        public async Task<IActionResult> Index()
         {
-            return View();
+            var results = await _context.EqoContactInfo.ToListAsync();
+            return Ok(results);
         }
 
         [HttpGet("byemail/{emailAddress}")]
