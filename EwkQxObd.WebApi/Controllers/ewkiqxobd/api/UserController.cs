@@ -23,6 +23,7 @@ namespace EwkQxObd.WebApi.Controllers.ewkiqxobd.api
         }
 
         [HttpGet]
+        [Produces("application/json")]
         public async Task<IActionResult> List()
         {
             var query = await _context.IqxUsers.ToListAsync();
@@ -32,7 +33,8 @@ namespace EwkQxObd.WebApi.Controllers.ewkiqxobd.api
         }
 
         [HttpPost]
-        [Consumes("application/json")]
+        [Consumes("application/json")]       
+        [Produces("application/json")]
         public async Task<IActionResult> Create([FromBody] User user)
         {
             _logger.LogInformation("Adding IQX User, Single");
@@ -65,6 +67,7 @@ namespace EwkQxObd.WebApi.Controllers.ewkiqxobd.api
 
         [HttpPost("[action]")]
         [Consumes("application/json")]
+        [Produces("application/json")]
         public async Task<IActionResult> CreateBulk([FromBody] List<User> users)
         {
             _logger.LogInformation("Adding IQX User, Many");
@@ -92,6 +95,7 @@ namespace EwkQxObd.WebApi.Controllers.ewkiqxobd.api
         }
 
         [HttpDelete("{UserId}")]
+        [Produces("application/json")]
         public async Task<IActionResult> Delete([FromRoute] Guid UserId)
         {
             _logger.LogInformation("Delete IQX User");
@@ -111,6 +115,8 @@ namespace EwkQxObd.WebApi.Controllers.ewkiqxobd.api
         }
 
         [HttpPut]
+        [Consumes("application/json")]
+        [Produces("application/json")]
         public async Task<IActionResult> Put([FromBody] User User)
         {
             var entity = await _context.IqxUsers.SingleOrDefaultAsync(u => u.UserGuid == User.UserGuid);
@@ -133,6 +139,7 @@ namespace EwkQxObd.WebApi.Controllers.ewkiqxobd.api
         }
 
         [HttpGet("[action]")]
+        [Produces("application/json")]
         public async Task<IActionResult> Match([FromQuery] string text)
         {
             if(string.IsNullOrEmpty(text))
