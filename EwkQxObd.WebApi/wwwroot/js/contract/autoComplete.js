@@ -58,6 +58,7 @@ function checkDescription(DescriptionText) {
     }
 }
 
+
 function checkContractNumber(contractNumber) {
 
     checkObj(contractNumber,
