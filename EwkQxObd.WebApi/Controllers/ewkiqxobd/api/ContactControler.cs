@@ -28,6 +28,31 @@ namespace EwkQxObd.WebApi.Controllers.ewkiqxobd.api
             return Ok(results);
         }
 
+        [HttpGet("{action}")]
+        [Produces("application/json")]
+        public async Task<IActionResult> Match([FromQuery]string Text)
+        {
+            if (string.IsNullOrEmpty(Text))
+            {
+                return BadRequest(new
+                {
+                    Message = "Search text must not be null"
+                });
+            }
+
+            var results = await _context.EqoContactInfo
+                .Where(
+                    c => (!string.IsNullOrEmpty(c.EmailAddress) && c.EmailAddress.StartsWith(Text)) || c.FullName.StartsWith(Text)
+                ).ToListAsync();
+            if (results.Count == 0)
+            {
+                return NoContent();
+
+            } 
+            return Ok(results);
+
+        }
+
         [HttpGet("byemail/{emailAddress}")]
         public async Task<EqoContactInfo?> GetByEmail([FromRoute] string emailAddress)
         {
