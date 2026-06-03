@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 namespace EwkQxObd.WebApi.Controllers.ewkiqxobd.api
 {
     [ApiController]
-    [Route("ewkiqxobd/api/{controller}")]
+    [Route("ewkiqxobd/api/[controller]")]
     public class ContactController : Controller
     {
         private readonly ILogger<ContactController> _logger;
@@ -20,15 +20,15 @@ namespace EwkQxObd.WebApi.Controllers.ewkiqxobd.api
             _context = dataContext;
         }
 
-        [HttpGet]
+        [HttpGet("[action]")]
         [Produces("application/json")]
-        public async Task<IActionResult> Index()
+        public async Task<IActionResult> List()
         {
             var results = await _context.EqoContactInfo.ToListAsync();
             return Ok(results);
         }
 
-        [HttpGet("{action}")]
+        [HttpGet("[action]")]
         [Produces("application/json")]
         public async Task<IActionResult> Match([FromQuery]string Text)
         {
@@ -53,21 +53,20 @@ namespace EwkQxObd.WebApi.Controllers.ewkiqxobd.api
 
         }
 
-        [HttpGet("byemail/{emailAddress}")]
-        public async Task<EqoContactInfo?> GetByEmail([FromRoute] string emailAddress)
+        [HttpGet("{ContactId}")]
+        [Produces("application/json")]
+        public async Task<IActionResult> Read([FromRoute]int ContactId)
         {
-            string decoded = WebUtility.UrlDecode(emailAddress);
-            var Result = await _context.EqoContactInfo
-                .Where(a => a.EmailAddress == emailAddress).FirstOrDefaultAsync();
+            var result = await _context.EqoContactInfo.FindAsync(ContactId);
 
-            return Result;
+            if (result == null)
+            {
+                return NoContent();
+
+            }
+
+            return Ok(result);
+
         }
-
-        [HttpOptions("{TextToSearch}")]
-        public async Task<IActionResult> GetOptionByName([FromRoute] string TextToSearch)
-        {
-            throw new NotImplementedException();
-        }
-
     }
 }
