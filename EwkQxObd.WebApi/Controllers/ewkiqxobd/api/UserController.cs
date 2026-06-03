@@ -5,6 +5,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.Data.SqlClient;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
+using System.Linq.Expressions;
 
 namespace EwkQxObd.WebApi.Controllers.ewkiqxobd.api
 {
@@ -94,7 +95,7 @@ namespace EwkQxObd.WebApi.Controllers.ewkiqxobd.api
         public async Task<IActionResult> Delete([FromRoute] Guid UserId)
         {
             _logger.LogInformation("Delete IQX User");
-            var UserToRemove = await _context.IqxUsers.FindAsync(UserId);
+            var UserToRemove = await _context.IqxUsers.SingleOrDefaultAsync(u => u.UserGuid == UserId);
 
             _logger.LogInformation(UserToRemove?.Email);
             if (UserToRemove == null)
@@ -112,7 +113,7 @@ namespace EwkQxObd.WebApi.Controllers.ewkiqxobd.api
         [HttpPut]
         public async Task<IActionResult> Put([FromBody] User User)
         {
-            var entity = await _context.IqxUsers.FindAsync(User.UserGuid);
+            var entity = await _context.IqxUsers.SingleOrDefaultAsync(u => u.UserGuid == User.UserGuid);
             if (entity is null)
             {
                 return NotFound();
@@ -128,7 +129,32 @@ namespace EwkQxObd.WebApi.Controllers.ewkiqxobd.api
             entity.Locked = User.Locked;
 
             await _context.SaveChangesAsync();
-            return Ok(new { ContentType = "application/json", Before = entityBefore, After = entity });
+            return Ok(new { Message = "Change succesfully applied.", Before = entityBefore, After = entity });
+        }
+
+        [HttpGet("[action]")]
+        public async Task<IActionResult> Match([FromQuery] string text)
+        {
+            if(string.IsNullOrEmpty(text))
+            {
+                return BadRequest();
+            }
+            var Found = await _context.IqxUsers.Where(
+                u => u.Email.StartsWith(text) || u.FirstName.StartsWith(text) || u.LastName.StartsWith(text)
+                ).ToListAsync();
+
+            if (Found.Count == 0)
+            {
+                return NoContent();
+
+            }
+
+            return Ok(new
+            {
+                Found
+            });
+
+
         }
 
     }
