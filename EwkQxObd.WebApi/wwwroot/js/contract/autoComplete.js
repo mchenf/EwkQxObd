@@ -10,6 +10,7 @@ const ContractNumber = '#iptContractNumber';
 const Description = '#rowDescription';
 const DesIpt = '#iptContractDesc';
 const ValidFrom = '#rowValidFrom';
+const ValidTo = '#rowValidTo';
 //TODO: Progressive form filling to complete
 
 setInputEvent($(ContractNumber), checkContractNumber);
@@ -53,6 +54,7 @@ function checkDescription(DescriptionText) {
     if (!DescriptionText) return;
     if (DescriptionText.length > 5) {
         ensureFieldDisplayOn(ValidFrom);
+        ensureFieldDisplayOn(ValidTo);
     }
 }
 
