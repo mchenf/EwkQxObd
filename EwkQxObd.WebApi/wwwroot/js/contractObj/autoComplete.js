@@ -117,7 +117,7 @@ function checkUser(email, num) {
     const userName = `#iptUserFullName-${num}`
 
     checkObj(email,
-        '/ewkiqxobd/api/contactinfo/byemail/' + email,
+        '/ewkiqxobd/api/contact/match?text=' + email,
         (data) => {
             $(userId).val(data.id);
             $(userName).val(data.fullName);

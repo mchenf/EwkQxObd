@@ -3,16 +3,16 @@
 <div class="row mb-1">
 
     <input id="iptUserId-@ViewBag.TagId" type="hidden" asp-for="Id"/>
-    <div class="col-2">
+    <div class="col-3">
         <label class="col-form-label">@ViewBag.Label</label>
     </div>
-    <div class="col-sm-4">
-        <input id="iptUserEmail-@ViewBag.TagId" class="form-control" type="email" asp-for="EmailAddress" placeholder="i.e. user@company.co" />
+    <div class="col-sm-6">
+        <input id="iptUserEmail-@ViewBag.TagId" class="form-control" type="email" asp-for="EmailAddress" placeholder="Search Here" />
     </div>
 </div>
 
-<div class="row mb-3">
-    <div class="col-2"></div>
+<div class="row mb-3 d-none">
+    <div class="col-3"></div>
     <div class="col-sm-6">
         <input id="iptUserFullName-@ViewBag.TagId" class="form-control" type="text" asp-for="FullName" placeholder="i.e. Joe Doe" />
     </div>
