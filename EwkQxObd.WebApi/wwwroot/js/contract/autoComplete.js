@@ -3,18 +3,29 @@
 //version: 1.0.0.0
 //released: 6/1/2026
 
+// OBSOLETE!!
+
 import { ensureFieldDisplayOn, ensureFieldDisplayOff } from './iterateField.js'
 
 
 const ContractNumber = '#iptContractNumber';
+
 const Description = '#rowDescription';
 const DesIpt = '#iptContractDesc';
+
 const ValidFrom = '#rowValidFrom';
 const ValidTo = '#rowValidTo';
+
+const ValidFromInpt = '#iptValidFrom';
+const ValidToInput = '#iptValidTo';
 //TODO: Progressive form filling to complete
 
 setInputEvent($(ContractNumber), checkContractNumber);
 setInputEvent($(DesIpt), checkDescription);
+setInputEvent($(ValidFromInpt), checkValid);
+setInputEvent($(ValidToInput), checkValid);
+
+
 
 function setInputEvent(inputElement, checkObj, num) {
     let debounceTimer;
@@ -72,4 +83,9 @@ function checkContractNumber(contractNumber) {
             }
         }
     );
+}
+
+function checkValid(validDates) {
+    if (!validDates) return;
+    console.log(validDates);
 }
