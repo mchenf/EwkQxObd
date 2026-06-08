@@ -6,9 +6,6 @@
 <div class="container align-content-center">
     <h1 class="text-center text-primary display-2 pb-3">New Contract</h1>
 </div>
-
-
-
 <form asp-action="Create" method="post">
     <div class="btn-toolbar mb-5 justify-content-between" role="toolbar">
         <div class="btn-group me-2" role="group">
@@ -45,10 +42,18 @@
 
 
     </div>
-    <div class="container mt-4 justify-content-around g-2">
+
+    <div class="row ms-3 mb-3 pb-3 text-black-50 bg-dark-subtle">
+        <div class="col-1">
+            <i class="fa fa-info-circle"></i>
+        </div>
+        <div class="col">Fill in the below information to complete the IQX contract record.</div>
+    </div>
+
+    <div class="container mt-4 justify-content-around g-1">
         <input type="hidden" class="form-control" id="iptContractId" asp-for="Id"/>
         <div class="row mb-3">
-            <div class="col-2">
+            <div class="col-3">
                 <label for="iptContractNumber" class="col-form-label w-100 text-end">
                     Contract Number
                 </label>
@@ -58,46 +63,132 @@
 
             </div>
         </div>
-        <div class="row mb-3" id="rowDescription">
-            <div class="col-2">
-                <label for="iptContractDesc" class="col-form-label w-100 text-end">
-                    Description
-                </label>
-            </div>
-            <div class="col-6">
-                <input type="text" class="form-control" id="iptContractDesc" asp-for="Description"/>
+        <div class="d-none">
 
-            </div>
-        </div>
-        <div class="row mb-3" id="rowValidFrom">
-            <div class="col-2">
-                <label for="iptValidFrom" class="col-form-label w-100 text-end">
-                   Valid From 
-                </label>
-            </div>
-            <div class="col-6">
-                <input type="date" class="form-control" id="iptValidFrom" asp-for="ValidFrom"/>
+            <div class="row mb-3" id="rowDescription">
+                <div class="col-3">
+                    <label for="iptContractDesc" class="col-form-label w-100 text-end">
+                        Description
+                    </label>
+                </div>
+                <div class="col-6">
+                    <input type="text" class="form-control" id="iptContractDesc" asp-for="Description"/>
 
+                </div>
             </div>
-        </div>
-        <div class="row mb-3" id="rowValidTo">
-            <div class="col-2">
-                <label for="iptValidTo" class="col-form-label w-100 text-end">
-                   Valid To 
-                </label>
-            </div>
-            <div class="col-6">
-                <input type="date" class="form-control" id="iptValidTo" asp-for="ValidTo"/>
+            <div class="row mb-3" id="rowValidFrom">
+                <div class="col-3">
+                    <label for="iptValidFrom" class="col-form-label w-100 text-end">
+                       Valid From 
+                    </label>
+                </div>
+                <div class="col-4">
+                    <input type="date" class="form-control" id="iptValidFrom" asp-for="ValidFrom"/>
 
+                </div>
             </div>
-        </div>
+            <div class="row mb-3" id="rowValidTo">
+                <div class="col-3">
+                    <label for="iptValidTo" class="col-form-label w-100 text-end">
+                       Valid To 
+                    </label>
+                </div>
+                <div class="col-4">
+                    <input type="date" class="form-control" id="iptValidTo" asp-for="ValidTo"/>
 
-        <div class="row mb-3" id="rowEmployee">
-            <div class="col-2"
-        </div>
+                </div>
+            </div>
+
+            <div class="row mb-5"></div>
+
+            <div class="row mb-3" id="rowEmployee">
+                <div class="col-3">
+                    <label for="iptEmployeeSearch" class="col-form-label w-100 text-end">
+                        Employee Responsible
+                    </label>
+                </div>
+                <div class="col-5">
+                    <input type="text" class="form-control" id="iptEmployeeSearch" />
+
+                </div>
+            </div>
         
+            <div class="row mb-3" id="rowCustomer">
+                <div class="col-3">
+                    <label for="iptCustomerSearch" class="col-form-label w-100 text-end">
+                        Customer Contact
+                    </label>
+                </div>
+                <div class="col-5">
+                    <input type="text" class="form-control" id="iptCustomerSearch" />
 
+                </div>
+            </div>
 
+        </div>
 
+        <div class="row mb-5 mt-5"></div>
+
+        <div class="d-none">
+
+            <h3 class="text-black-50 text-center">
+                Assets
+            </h3>
+            <div class="row ms-3 mb-3 pb-3 text-black-50 bg-dark-subtle">
+                <div class="col-1">
+                    <i class="fa fa-info-circle"></i>
+                </div>
+                <div class="col">Complete the instrument information, and attach it to this contract.</div>
+            </div>
+
+            <div class="row mb-3" id="rowSerialNo">
+                <div class="col-3">
+                    <label for="iptSerialNo" class="col-form-label w-100 text-end">
+                        Serial Number
+                    </label>
+                </div>
+                <div class="col-3">
+                    <input type="text" class="form-control" id="iptSerialNo" />
+
+                </div>
+            </div>
+
+            <div class="row mb-3" id="rowShipTo">
+                <div class="col-3">
+                    <label for="iptShipToSearch" class="col-form-label w-100 text-end">
+                        Ship-To
+                    </label>
+                </div>
+                <div class="col-3">
+                    <input type="text" class="form-control" id="iptShipToSearch" />
+
+                </div>
+            </div>
+
+            <div class="row mb-3" id="rowShipToA">
+                <div class="col-3">
+                    <label for="iptShipToA" class="col-form-label w-100 text-end">
+                        Ship-To Account
+                    </label>
+                </div>
+                <div class="col-5">
+                    <input type="text" class="form-control" id="iptShipToA" />
+
+                </div>
+            </div>
+
+            <div class="row mb-5"></div>
+
+            <div class="row mb-3 w-100" >
+                <div class="col-3">
+                </div>
+                <div class="col">
+                    <div class="btn btn-primary w-25">
+                        <i class="fa fa-paperclip"></i> Attach Asset
+                    </div>
+                </div>
+            </div>
+
+        </div>
     </div>
 </form>
