@@ -54,16 +54,16 @@
         <input type="hidden" class="form-control" id="iptContractId" asp-for="Id"/>
         <div class="row mb-3">
             <div class="col-3">
-                <label for="iptContractNumber" class="col-form-label w-100 text-end">
+                <label for="iptContractNo" class="col-form-label w-100 text-end">
                     Contract Number
                 </label>
             </div>
             <div class="col-4">
-                <input type="text" class="form-control" id="iptContractNumber" list="contractListOpt" asp-for="ContractNumber"/>
+                <input type="text" class="form-control" id="iptContractNo" asp-for="ContractNumber"/>
 
             </div>
         </div>
-        <div class="d-none">
+        <div id="sectContractForm" class="d-none">
 
             <div class="row mb-3" id="rowDescription">
                 <div class="col-3">
@@ -192,3 +192,8 @@
         </div>
     </div>
 </form>
+
+
+@section Scripts {
+    <script src="~/js/contract/FormValidation.js" asp-append-version="true"></script>
+}
